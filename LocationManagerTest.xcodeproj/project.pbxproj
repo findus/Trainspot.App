@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D9A5BA8B53D35DD8B97C3D1 /* Pods_LocationManagerTest_LocationManagerTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88A323A8CEDD0164D46A0FF /* Pods_LocationManagerTest_LocationManagerTestUITests.framework */; };
+		8773188A96BE89EE7890D60C /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C18627021B7A5948ABF56FD /* Pods_LocationManagerTest.framework */; };
+		D45C505024882C3C00A3D857 /* TrainLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */; };
+		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
+		D4AF20012488239D0075F327 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF20002488239D0075F327 /* Journey.swift */; };
+		D4AF2004248825B20075F327 /* TrainLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF2003248825B20075F327 /* TrainLocationController.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
 		D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
 		D4DEAACC2487AC1900D33AA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAACB2487AC1900D33AA2 /* ViewController.swift */; };
@@ -19,9 +25,30 @@
 		D4DEAAE52487D55A00D33AA2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */; };
 		D4DEAAE82487D9F100D33AA2 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE72487D9F100D33AA2 /* CLLocation+Extension.swift */; };
 		D4DEAAEA2487DA1D00D33AA2 /* Math+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */; };
+		D4EA3D5E24880387003D7469 /* LocationManagerTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA3D5D24880387003D7469 /* LocationManagerTestUITests.swift */; };
+		D4EA3D66248803DC003D7469 /* hafas_test_json.json in Resources */ = {isa = PBXBuildFile; fileRef = D4EA3D65248803DC003D7469 /* hafas_test_json.json */; };
+		D4EA3D672488063E003D7469 /* hafas_test_json.json in Resources */ = {isa = PBXBuildFile; fileRef = D4EA3D65248803DC003D7469 /* hafas_test_json.json */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D4EA3D6024880387003D7469 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4DEAABC2487AC1900D33AA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4DEAAC32487AC1900D33AA2;
+			remoteInfo = LocationManagerTest;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		1C18627021B7A5948ABF56FD /* Pods_LocationManagerTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B5C1FF62A107403676159D6 /* Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		81DAC181B364BA2179336F19 /* Pods-LocationManagerTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest.release.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest.release.xcconfig"; sourceTree = "<group>"; };
+		BFEFB2F185F1EDB86D47F583 /* Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationDelegate.swift; sourceTree = "<group>"; };
+		D45C505324883D8800A3D857 /* TrainLocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationPin.swift; sourceTree = "<group>"; };
+		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
+		D4AF2003248825B20075F327 /* TrainLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationController.swift; sourceTree = "<group>"; };
 		D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +63,12 @@
 		D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D4DEAAE72487D9F100D33AA2 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
 		D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Math+Extension.swift"; sourceTree = "<group>"; };
+		D4EA3D5B24880387003D7469 /* LocationManagerTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationManagerTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4EA3D5D24880387003D7469 /* LocationManagerTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerTestUITests.swift; sourceTree = "<group>"; };
+		D4EA3D5F24880387003D7469 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4EA3D65248803DC003D7469 /* hafas_test_json.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hafas_test_json.json; sourceTree = "<group>"; };
+		D7742B9CD2F560923E7F2079 /* Pods-LocationManagerTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest.debug.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest.debug.xcconfig"; sourceTree = "<group>"; };
+		D88A323A8CEDD0164D46A0FF /* Pods_LocationManagerTest_LocationManagerTestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTest_LocationManagerTestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,17 +76,55 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8773188A96BE89EE7890D60C /* Pods_LocationManagerTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4EA3D5824880387003D7469 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D9A5BA8B53D35DD8B97C3D1 /* Pods_LocationManagerTest_LocationManagerTestUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AAA8BBA48C41B9BBD430AD08 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C18627021B7A5948ABF56FD /* Pods_LocationManagerTest.framework */,
+				D88A323A8CEDD0164D46A0FF /* Pods_LocationManagerTest_LocationManagerTestUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4AF20022488259C0075F327 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D4AF2003248825B20075F327 /* TrainLocationController.swift */,
+				D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D4AF200524882A250075F327 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D4AF20002488239D0075F327 /* Journey.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D4DEAABB2487AC1900D33AA2 = {
 			isa = PBXGroup;
 			children = (
 				D4DEAAC62487AC1900D33AA2 /* LocationManagerTest */,
+				D4EA3D5C24880387003D7469 /* LocationManagerTestUITests */,
 				D4DEAAC52487AC1900D33AA2 /* Products */,
+				DE099E028417340F4470B39B /* Pods */,
+				AAA8BBA48C41B9BBD430AD08 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */,
+				D4EA3D5B24880387003D7469 /* LocationManagerTestUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,6 +140,9 @@
 		D4DEAAC62487AC1900D33AA2 /* LocationManagerTest */ = {
 			isa = PBXGroup;
 			children = (
+				D4AF200524882A250075F327 /* Model */,
+				D4AF20022488259C0075F327 /* Controller */,
+				D4EA3D65248803DC003D7469 /* hafas_test_json.json */,
 				D4DEAAEB2487DA3B00D33AA2 /* Location */,
 				D4DEAAE62487D9E000D33AA2 /* Extensions */,
 				D4DEAADD2487D1DB00D33AA2 /* Map */,
@@ -89,6 +164,7 @@
 				D4DEAADE2487D3B000D33AA2 /* MapViewControllerProtocol.swift */,
 				D4DEAAE02487D3E900D33AA2 /* MapEntity.swift */,
 				D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */,
+				D45C505324883D8800A3D857 /* TrainLocationPin.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -109,6 +185,26 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		D4EA3D5C24880387003D7469 /* LocationManagerTestUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D4EA3D5D24880387003D7469 /* LocationManagerTestUITests.swift */,
+				D4EA3D5F24880387003D7469 /* Info.plist */,
+			);
+			path = LocationManagerTestUITests;
+			sourceTree = "<group>";
+		};
+		DE099E028417340F4470B39B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D7742B9CD2F560923E7F2079 /* Pods-LocationManagerTest.debug.xcconfig */,
+				81DAC181B364BA2179336F19 /* Pods-LocationManagerTest.release.xcconfig */,
+				4B5C1FF62A107403676159D6 /* Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig */,
+				BFEFB2F185F1EDB86D47F583 /* Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -116,9 +212,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4DEAAD82487AC1E00D33AA2 /* Build configuration list for PBXNativeTarget "LocationManagerTest" */;
 			buildPhases = (
+				8A6B4ECA5B7D7941FE614C69 /* [CP] Check Pods Manifest.lock */,
 				D4DEAAC02487AC1900D33AA2 /* Sources */,
 				D4DEAAC12487AC1900D33AA2 /* Frameworks */,
 				D4DEAAC22487AC1900D33AA2 /* Resources */,
+				38AD2E6949A8B5AA565DC168 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -128,6 +226,26 @@
 			productName = LocationManagerTest;
 			productReference = D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D4EA3D5A24880387003D7469 /* LocationManagerTestUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4EA3D6224880387003D7469 /* Build configuration list for PBXNativeTarget "LocationManagerTestUITests" */;
+			buildPhases = (
+				32EA554ADF0C9A113D24ED2C /* [CP] Check Pods Manifest.lock */,
+				D4EA3D5724880387003D7469 /* Sources */,
+				D4EA3D5824880387003D7469 /* Frameworks */,
+				D4EA3D5924880387003D7469 /* Resources */,
+				39FBF593B2FDE805B7700A02 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4EA3D6124880387003D7469 /* PBXTargetDependency */,
+			);
+			name = LocationManagerTestUITests;
+			productName = LocationManagerTestUITests;
+			productReference = D4EA3D5B24880387003D7469 /* LocationManagerTestUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -141,6 +259,10 @@
 				TargetAttributes = {
 					D4DEAAC32487AC1900D33AA2 = {
 						CreatedOnToolsVersion = 11.5;
+					};
+					D4EA3D5A24880387003D7469 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = D4DEAAC32487AC1900D33AA2;
 					};
 				};
 			};
@@ -158,6 +280,7 @@
 			projectRoot = "";
 			targets = (
 				D4DEAAC32487AC1900D33AA2 /* LocationManagerTest */,
+				D4EA3D5A24880387003D7469 /* LocationManagerTestUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -169,30 +292,140 @@
 			files = (
 				D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */,
 				D4DEAAD12487AC1E00D33AA2 /* Assets.xcassets in Resources */,
+				D4EA3D66248803DC003D7469 /* hafas_test_json.json in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D4EA3D5924880387003D7469 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4EA3D672488063E003D7469 /* hafas_test_json.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32EA554ADF0C9A113D24ED2C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LocationManagerTest-LocationManagerTestUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		38AD2E6949A8B5AA565DC168 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39FBF593B2FDE805B7700A02 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A6B4ECA5B7D7941FE614C69 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LocationManagerTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D4DEAAC02487AC1900D33AA2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */,
 				D4DEAACC2487AC1900D33AA2 /* ViewController.swift in Sources */,
 				D4DEAAE12487D3EA00D33AA2 /* MapEntity.swift in Sources */,
 				D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */,
 				D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */,
+				D4AF2004248825B20075F327 /* TrainLocationController.swift in Sources */,
+				D4AF20012488239D0075F327 /* Journey.swift in Sources */,
 				D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */,
 				D4DEAAEA2487DA1D00D33AA2 /* Math+Extension.swift in Sources */,
+				D45C505024882C3C00A3D857 /* TrainLocationDelegate.swift in Sources */,
 				D4DEAAE82487D9F100D33AA2 /* CLLocation+Extension.swift in Sources */,
 				D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */,
 				D4DEAAE52487D55A00D33AA2 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D4EA3D5724880387003D7469 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4EA3D5E24880387003D7469 /* LocationManagerTestUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D4EA3D6124880387003D7469 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4DEAAC32487AC1900D33AA2 /* LocationManagerTest */;
+			targetProxy = D4EA3D6024880387003D7469 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D4DEAACD2487AC1900D33AA2 /* Main.storyboard */ = {
@@ -330,6 +563,7 @@
 		};
 		D4DEAAD92487AC1E00D33AA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7742B9CD2F560923E7F2079 /* Pods-LocationManagerTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -348,6 +582,7 @@
 		};
 		D4DEAADA2487AC1E00D33AA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81DAC181B364BA2179336F19 /* Pods-LocationManagerTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -361,6 +596,48 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D4EA3D6324880387003D7469 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B5C1FF62A107403676159D6 /* Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 682WVA5N96;
+				INFOPLIST_FILE = LocationManagerTestUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTestUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LocationManagerTest;
+			};
+			name = Debug;
+		};
+		D4EA3D6424880387003D7469 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFEFB2F185F1EDB86D47F583 /* Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 682WVA5N96;
+				INFOPLIST_FILE = LocationManagerTestUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTestUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LocationManagerTest;
 			};
 			name = Release;
 		};
@@ -381,6 +658,15 @@
 			buildConfigurations = (
 				D4DEAAD92487AC1E00D33AA2 /* Debug */,
 				D4DEAADA2487AC1E00D33AA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4EA3D6224880387003D7469 /* Build configuration list for PBXNativeTarget "LocationManagerTestUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4EA3D6324880387003D7469 /* Debug */,
+				D4EA3D6424880387003D7469 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
