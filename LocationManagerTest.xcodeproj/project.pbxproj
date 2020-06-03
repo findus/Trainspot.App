@@ -13,6 +13,12 @@
 		D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAACD2487AC1900D33AA2 /* Main.storyboard */; };
 		D4DEAAD12487AC1E00D33AA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */; };
 		D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD22487AC1E00D33AA2 /* LaunchScreen.storyboard */; };
+		D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAADB2487D1AF00D33AA2 /* MapViewControllerDelegate.swift */; };
+		D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAADE2487D3B000D33AA2 /* MapViewControllerProtocol.swift */; };
+		D4DEAAE12487D3EA00D33AA2 /* MapEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE02487D3E900D33AA2 /* MapEntity.swift */; };
+		D4DEAAE52487D55A00D33AA2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */; };
+		D4DEAAE82487D9F100D33AA2 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE72487D9F100D33AA2 /* CLLocation+Extension.swift */; };
+		D4DEAAEA2487DA1D00D33AA2 /* Math+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,12 @@
 		D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4DEAAD32487AC1E00D33AA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4DEAAD52487AC1E00D33AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4DEAADB2487D1AF00D33AA2 /* MapViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerDelegate.swift; sourceTree = "<group>"; };
+		D4DEAADE2487D3B000D33AA2 /* MapViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerProtocol.swift; sourceTree = "<group>"; };
+		D4DEAAE02487D3E900D33AA2 /* MapEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapEntity.swift; sourceTree = "<group>"; };
+		D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		D4DEAAE72487D9F100D33AA2 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
+		D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Math+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,9 @@
 		D4DEAAC62487AC1900D33AA2 /* LocationManagerTest */ = {
 			isa = PBXGroup;
 			children = (
+				D4DEAAEB2487DA3B00D33AA2 /* Location */,
+				D4DEAAE62487D9E000D33AA2 /* Extensions */,
+				D4DEAADD2487D1DB00D33AA2 /* Map */,
 				D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */,
 				D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */,
 				D4DEAACB2487AC1900D33AA2 /* ViewController.swift */,
@@ -65,6 +80,33 @@
 				D4DEAAD52487AC1E00D33AA2 /* Info.plist */,
 			);
 			path = LocationManagerTest;
+			sourceTree = "<group>";
+		};
+		D4DEAADD2487D1DB00D33AA2 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				D4DEAADB2487D1AF00D33AA2 /* MapViewControllerDelegate.swift */,
+				D4DEAADE2487D3B000D33AA2 /* MapViewControllerProtocol.swift */,
+				D4DEAAE02487D3E900D33AA2 /* MapEntity.swift */,
+				D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		D4DEAAE62487D9E000D33AA2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4DEAAE72487D9F100D33AA2 /* CLLocation+Extension.swift */,
+				D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D4DEAAEB2487DA3B00D33AA2 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +181,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DEAACC2487AC1900D33AA2 /* ViewController.swift in Sources */,
+				D4DEAAE12487D3EA00D33AA2 /* MapEntity.swift in Sources */,
 				D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */,
+				D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */,
+				D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */,
+				D4DEAAEA2487DA1D00D33AA2 /* Math+Extension.swift in Sources */,
+				D4DEAAE82487D9F100D33AA2 /* CLLocation+Extension.swift in Sources */,
 				D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */,
+				D4DEAAE52487D55A00D33AA2 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +264,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +318,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -1,24 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eiO-9N-ueo">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8L-X6-Uqn">
+                                <rect key="frame" x="0.0" y="-19.5" width="414" height="896"/>
+                                <connections>
+                                    <segue destination="iqN-KL-GHB" kind="embed" id="Kx4-hX-DDW"/>
+                                </connections>
+                            </containerView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.north.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vCU-ZU-3hG">
+                                <rect key="frame" x="20" y="611" width="374" height="191.5"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vCU-ZU-3hG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="AIn-gD-Lns"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vCU-ZU-3hG" secondAttribute="trailing" constant="20" id="Cgf-UH-iZK"/>
+                            <constraint firstItem="g8L-X6-Uqn" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="FPU-04-csQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vCU-ZU-3hG" secondAttribute="bottom" constant="10" id="Hw0-S0-KLR"/>
+                            <constraint firstItem="g8L-X6-Uqn" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="SiL-7W-NEr"/>
+                            <constraint firstItem="vCU-ZU-3hG" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.25" id="WcP-Z5-div"/>
+                            <constraint firstItem="g8L-X6-Uqn" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Xb5-0Z-Ka4"/>
+                            <constraint firstItem="g8L-X6-Uqn" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="iev-Pa-V6o"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="ZVL-Ji-bya"/>
+                    <connections>
+                        <outlet property="imageView" destination="vCU-ZU-3hG" id="f3L-tZ-QA3"/>
+                        <outlet property="mapContainerView" destination="g8L-X6-Uqn" id="a17-A3-U7V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="930" y="-599"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="YEg-NX-Tre">
+            <objects>
+                <viewController id="nWj-3m-J0e" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3fT-oB-qf0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="iLi-sN-YVL"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="8Xy-14-gs4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hEk-RT-JCe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="930" y="90"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="hCe-6c-J3B">
+            <objects>
+                <tabBarController id="eiO-9N-ueo" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Ar-Rr-b0M">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="fKI-W5-JBX"/>
+                        <segue destination="nWj-3m-J0e" kind="relationship" relationship="viewControllers" id="b5A-OS-MLq"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4uL-wl-1bZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-336" y="-475"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="mZg-Rd-dTC">
+            <objects>
+                <viewController id="iqN-KL-GHB" customClass="MapViewController" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dc8-Zy-txy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="f8C-dZ-kxd">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="f8C-dZ-kxd" firstAttribute="width" secondItem="Dc8-Zy-txy" secondAttribute="width" id="9Zc-1t-nc3"/>
+                            <constraint firstItem="f8C-dZ-kxd" firstAttribute="centerX" secondItem="Dc8-Zy-txy" secondAttribute="centerX" id="Ld0-Cf-EXg"/>
+                            <constraint firstItem="f8C-dZ-kxd" firstAttribute="height" secondItem="Dc8-Zy-txy" secondAttribute="height" id="OKr-a7-etV"/>
+                            <constraint firstItem="f8C-dZ-kxd" firstAttribute="centerY" secondItem="Dc8-Zy-txy" secondAttribute="centerY" id="t85-Pi-BfV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aZn-jE-wON"/>
+                    </view>
+                    <connections>
+                        <outlet property="map" destination="f8C-dZ-kxd" id="xTW-mM-MTR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s8y-oz-Bv3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1725" y="-582"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="location.north.fill" catalog="system" width="108" height="128"/>
+    </resources>
 </document>
