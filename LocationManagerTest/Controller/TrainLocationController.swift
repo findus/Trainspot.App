@@ -10,17 +10,16 @@ import Foundation
 
 class TrainLocationController {
         
-    var duration = 45.0
     var journeys: Array<Journey> = [Journey]()
     var timer: Timer? = nil
-    static let T_45_MINUTES  = 2700.0
-    
+
+
     static let shared = TrainLocationController()
     
     weak var delegate: TrainLocationDelegate?
         
     private init() {
-        self.timer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(eventLoop), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: DURATION, target: self, selector: #selector(eventLoop), userInfo: nil, repeats: true)
     }
     
     func register(journey: Journey) {
@@ -39,27 +38,9 @@ class TrainLocationController {
     }
     
     private func updateJourney(journey: Journey) {
-        guard let arrayPosition = self.calculateTrainPosition(forJourney: journey) else {
+        guard let arrayPosition = journey.calculateTrainPosition(forJourney: journey) else {
             return
         }
-        self.delegate?.trainPositionUpdated(forJourney: journey, toPosition: arrayPosition, withDuration: duration)
+        self.delegate?.trainPositionUpdated(forJourney: journey, toPosition: arrayPosition, withDuration: DURATION)
     }
-    
-    /**
-     Returns the current position of the train, which is the nth position inside the array, returns empty if array bounds are exceeded
-     */
-    private func calculateTrainPosition(forJourney journey: Journey) -> Int? {
-        let date = journey.fetchTime
-        let now = Date.init()
-        let diff = now.timeIntervalSince(date)
-        if diff > TrainLocationController.T_45_MINUTES {
-            print("Journey \(journey.name) exceeded max time")
-            return nil
-        } else {
-            let arrayPosition = Int(floor( ( (1 / 45) * ceil(diff) ) )  + 1)
-            print("Returning \(arrayPosition) for \(journey.name)")
-            return arrayPosition
-        }
-    }
-    
 }
