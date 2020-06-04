@@ -15,7 +15,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     let locationManager = CLLocationManager()
     var mapViewController: MapViewController?
-    let manager =  TrainLocationController.shared
+    let manager = TrainLocationProxy.shared
+    
     let tripProvider = MockTrainDataJourneyProvider.init()
     
     var lastLocation: CLLocation? {
@@ -61,19 +62,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
         
-        self.manager.delegate = self
-        
+        // Start and append different controller instances
+        let radarLocationController = TrainLocationRadarController()
+        let tripLocationController = TrainLocationTripController()
+        self.manager.register(controller: radarLocationController)
+        self.manager.register(controller: tripLocationController)
+
         self.mapViewController?.delegate = self
         
-        let trips = tripProvider.getAllTrips()
-        
-        trips.forEach { (trip) in
-            
-            self.mapViewController?.drawLine(entries: trip.line)
-            let mapEntity = MapEntity(name: trip.name, location: trip.line.first!.location)
-            self.mapViewController?.addEntry(entry: mapEntity)
-            _ = self.manager.register(trip: trip)
-        }
+//        let trips = tripProvider.getAllTrips()
+//        
+//        trips.forEach { (trip) in
+//            
+//            self.mapViewController?.drawLine(entries: trip.line)
+//            let mapEntity = MapEntity(name: trip.name, location: trip.line.first!.location)
+//            self.mapViewController?.addEntry(entry: mapEntity)
+//            _ = self.manager.register(trip: trip)
+//        }
 
     }
     

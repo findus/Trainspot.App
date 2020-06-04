@@ -20,11 +20,14 @@ class Trip {
     
     let journey: Journey?
     
-    public init(withFetchTime time: Date, andName name: String, andLines line: Array<MapEntity>, forJourney journey: Journey? = nil) {
+    let type: String
+    
+    public init(withFetchTime time: Date, andName name: String, andLines line: Array<MapEntity>, isType type: String) {
         self.fetchTime = time
         self.line = line
         self.name = name
-        self.journey = journey
+        self.journey = nil
+        self.type = type
     }
     
     /**

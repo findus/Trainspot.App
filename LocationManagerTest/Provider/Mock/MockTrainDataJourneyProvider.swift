@@ -33,7 +33,7 @@ class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
                 
                 let name = json["line"]["name"]
                 
-                return Trip(withFetchTime: Date(), andName: name.stringValue, andLines: coords)
+                return Trip(withFetchTime: Date(), andName: name.stringValue, andLines: coords, isType: "trip")
         }
         
         return trips

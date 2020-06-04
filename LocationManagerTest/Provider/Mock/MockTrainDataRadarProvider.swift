@@ -41,7 +41,7 @@ class MockTrainDataProvider : TrainDataProviderProtocol {
                 
                 let name = json["line"]["name"]
                 
-                return Trip(withFetchTime: Date(), andName: name.stringValue, andLines: coords)
+                return Trip(withFetchTime: Date(), andName: name.stringValue, andLines: coords, isType: "radar")
         }
         
         return trips

@@ -8,17 +8,14 @@
 
 import Foundation
 
-class TrainLocationController {
+class TrainLocationRadarController: TrainLocationProtocol {
         
     var trips: Array<Trip> = [Trip]()
     var timer: Timer? = nil
-
-
-    static let shared = TrainLocationController()
     
     weak var delegate: TrainLocationDelegate?
         
-    private init() {
+    init() {
         self.timer = Timer.scheduledTimer(timeInterval: DURATION, target: self, selector: #selector(eventLoop), userInfo: nil, repeats: true)
     }
     
