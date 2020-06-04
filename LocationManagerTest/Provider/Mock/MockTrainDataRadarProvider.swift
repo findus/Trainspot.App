@@ -12,13 +12,13 @@ import CoreLocation
 
 class MockTrainDataProvider : TrainDataProviderProtocol {
     
-    private var trips : Array<Trip>? = nil
+    private var trips : Array<RadarTrip>? = nil
     
     init() {
         self.trips = self.loadTrips()
     }
     
-    private func loadTrips() -> Array<Trip>? {
+    private func loadTrips() -> Array<RadarTrip>? {
         guard
             let filePath = Bundle(for: type(of: self)).path(forResource: "data2", ofType: ""),
             let data = NSData(contentsOfFile: filePath) else {
@@ -32,7 +32,7 @@ class MockTrainDataProvider : TrainDataProviderProtocol {
         let trips = json.arrayValue
             .filter({ $0["line"]["id"].stringValue != "bus-sev" })
             .filter({ $0["line"]["name"].stringValue != "Bus SEV" })
-            .map { (json) -> Trip in
+            .map { (json) -> RadarTrip in
                 let coords = json["polyline"]["features"].arrayValue.map { MapEntity(name: "line", location: CLLocation(latitude: $0["geometry"]["coordinates"][1].doubleValue, longitude: $0["geometry"]["coordinates"][0].doubleValue ))  }
                 let framecount = json["frames"].arrayValue.count
                 print("Frames  ", framecount)
@@ -41,17 +41,15 @@ class MockTrainDataProvider : TrainDataProviderProtocol {
                 
                 let name = json["line"]["name"]
                 
-                return Trip(withFetchTime: Date(), andName: name.stringValue, andLines: coords, isType: "radar")
+                return RadarTrip(withFetchTime: Date(), andName: name.stringValue, andLines: coords, isType: "radar")
         }
         
         return trips
 
     }
 
-    
     func getAllTrips() -> Array<Trip> {
         return trips ?? []
     }
-    
-    
+
 }

@@ -35,7 +35,7 @@ class TrainLocationRadarController: TrainLocationProtocol {
     }
     
     private func updateTrip(trip: Trip) {
-        guard let arrayPosition = trip.currentTrainPosition(forTrip: trip) else {
+        guard let arrayPosition = trip.currentTrainPosition() else {
             return
         }
         self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: arrayPosition, withDuration: DURATION)
@@ -53,7 +53,7 @@ class TrainLocationRadarController: TrainLocationProtocol {
         self.trips = trips
     }
     
-    func setDataProvider<T>(withProvider provider: T) where T : TrainDataProviderProtocol {
+    func setDataProvider<E>(withProvider provider: E) where E : TrainDataProviderProtocol {
         self.dataProvider = provider
     }
 }

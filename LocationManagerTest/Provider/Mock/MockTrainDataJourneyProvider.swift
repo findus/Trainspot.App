@@ -11,8 +11,9 @@ import SwiftyJSON
 import CoreLocation
 
 class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
+
     
-    private func loadTrips() -> Array<Trip>? {
+    private func loadTrips() -> Array<JourneyTrip>? {
         guard
             let filePath = Bundle(for: type(of: self)).path(forResource: "trip_test", ofType: ""),
             let wf_trip_data = NSData(contentsOfFile: filePath) else {
@@ -24,7 +25,7 @@ class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
         let trips = json.arrayValue
             .filter({ $0["line"]["id"].stringValue != "bus-sev" })
             .filter({ $0["line"]["name"].stringValue != "Bus SEV" })
-            .map { (json) -> Trip in
+            .map { (json) -> JourneyTrip in
                 let coords = json["polyline"]["features"].arrayValue.map { MapEntity(name: "line", location: CLLocation(latitude: $0["geometry"]["coordinates"][1].doubleValue, longitude: $0["geometry"]["coordinates"][0].doubleValue ))  }
                 let framecount = json["frames"].arrayValue.count
                 print("Frames  ", framecount)
@@ -33,7 +34,7 @@ class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
                 
                 let name = json["line"]["name"]
                 
-                return Trip(withFetchTime: Date(), andName: name.stringValue, andLines: coords, isType: "trip")
+                return JourneyTrip(withFetchTime: Date(), andName: name.stringValue, andLines: coords, isType: "trip")
         }
         
         return trips
@@ -41,7 +42,7 @@ class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
     }
     
     func getAllTrips() -> Array<Trip> {
-        return loadTrips() ?? Array.init()
+        return loadTrips() ?? []
     }
     
     private func getJourneys(fromJSON json: JSON) -> Array<Journey> {

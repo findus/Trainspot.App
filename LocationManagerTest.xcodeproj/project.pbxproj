@@ -21,6 +21,8 @@
 		D45C506924892CC900A3D857 /* TrainLocationProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506824892CC900A3D857 /* TrainLocationProxy.swift */; };
 		D45C506E2489396200A3D857 /* TrainLocationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506A24892FB200A3D857 /* TrainLocationProtocol.swift */; };
 		D45C506F2489396900A3D857 /* TrainLocationTripController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506624892C8200A3D857 /* TrainLocationTripController.swift */; };
+		D45C507124893F4900A3D857 /* RadarTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C507024893F4900A3D857 /* RadarTrip.swift */; };
+		D45C50732489414C00A3D857 /* JourneyTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C50722489414C00A3D857 /* JourneyTrip.swift */; };
 		D4AF20012488239D0075F327 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF20002488239D0075F327 /* Journey.swift */; };
 		D4AF2004248825B20075F327 /* TrainLocationRadarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
@@ -67,6 +69,8 @@
 		D45C506624892C8200A3D857 /* TrainLocationTripController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationTripController.swift; sourceTree = "<group>"; };
 		D45C506824892CC900A3D857 /* TrainLocationProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationProxy.swift; sourceTree = "<group>"; };
 		D45C506A24892FB200A3D857 /* TrainLocationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationProtocol.swift; sourceTree = "<group>"; };
+		D45C507024893F4900A3D857 /* RadarTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarTrip.swift; sourceTree = "<group>"; };
+		D45C50722489414C00A3D857 /* JourneyTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyTrip.swift; sourceTree = "<group>"; };
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationRadarController.swift; sourceTree = "<group>"; };
 		D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +183,8 @@
 			children = (
 				D4AF20002488239D0075F327 /* Journey.swift */,
 				D45C506024891B9100A3D857 /* Trip.swift */,
+				D45C507024893F4900A3D857 /* RadarTrip.swift */,
+				D45C50722489414C00A3D857 /* JourneyTrip.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -468,11 +474,13 @@
 				D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */,
 				D4DEAACC2487AC1900D33AA2 /* ViewController.swift in Sources */,
 				D45C506E2489396200A3D857 /* TrainLocationProtocol.swift in Sources */,
+				D45C507124893F4900A3D857 /* RadarTrip.swift in Sources */,
 				D4DEAAE12487D3EA00D33AA2 /* MapEntity.swift in Sources */,
 				D45C505D2488E8CB00A3D857 /* MockTrainDataRadarProvider.swift in Sources */,
 				D45C506F2489396900A3D857 /* TrainLocationTripController.swift in Sources */,
 				D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */,
 				D45C505A2488E70A00A3D857 /* TrainDataProviderProtocol.swift in Sources */,
+				D45C50732489414C00A3D857 /* JourneyTrip.swift in Sources */,
 				D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */,
 				D4AF2004248825B20075F327 /* TrainLocationRadarController.swift in Sources */,
 				D4AF20012488239D0075F327 /* Journey.swift in Sources */,

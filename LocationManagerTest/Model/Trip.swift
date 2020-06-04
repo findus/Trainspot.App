@@ -9,76 +9,33 @@
 import Foundation
 import CoreLocation
 
-class Trip {
-   
-    let fetchTime: Date
+protocol Trip {
+       
+    var fetchTime: Date { get }
     /**
             A line, that represents the trains approximate location for the next 45 Minutes, 61 entries ~every 45 Seconds
      */
-    let line: Array<MapEntity>
-    let name: String
+    var line: Array<MapEntity> { get }
     
-    let journey: Journey?
+    var name: String { get }
     
-    let type: String
+    var journey: Journey? { get }
     
-    public init(withFetchTime time: Date, andName name: String, andLines line: Array<MapEntity>, isType type: String) {
-        self.fetchTime = time
-        self.line = line
-        self.name = name
-        self.journey = nil
-        self.type = type
-    }
-    
+    var type: String { get }
+
     /**
      Checks, if the train is heading towards the user, or still passed the location
      */
-    func isParting(forUserLocation loc: CLLocation) -> Bool {
-        let shortestPosition = self.shortestDistanceArrayPosition(forUserLocation: loc)
-        let trainPosition = self.currentTrainPosition(forTrip: self)
-        
-        if trainPosition ?? self.line.count > shortestPosition {
-            return true
-        }
-        
-        return false
-    }
+    func isParting(forUserLocation loc: CLLocation) -> Bool
     
     /*
      Gets tracks shortest distance to the user, so that we can calulcate the approximate arrival of the train
      */
-    func shorttestDistanceToTrack(forUserLocation loc : CLLocation) -> Double {
-        return line[self.shortestDistanceArrayPosition(forUserLocation: loc)].location.distance(from: loc)
-    }
-    
-    private func shortestDistanceArrayPosition(forUserLocation loc: CLLocation) -> Int {
-        let distances = line.map { $0.location.distance(from: loc) }
-        
-        var arrayPosition = 0
-        for (index, distance) in distances.enumerated() {
-            if distances[arrayPosition] > distance {
-                arrayPosition = index
-            }
-        }
-        
-        return arrayPosition
-    }
+    func shorttestDistanceToTrack(forUserLocation loc : CLLocation) -> Double
     
     /**
      Returns the current position of the train, which is the nth position inside the array, returns empty if array bounds are exceeded
      */
-    func currentTrainPosition(forTrip trip: Trip) -> Int? {
-        let date = trip.fetchTime
-        let now = Date.init()
-        let diff = now.timeIntervalSince(date)
-        if ceil(diff) >= T_45_MINUTES {
-            print("Trip \(trip.name) exceeded max time")
-            return nil
-        } else {
-            let arrayPosition = Int(floor( ( (1 / DURATION ) * ceil(diff) ) )  + 1)
-            print("Returning \(arrayPosition) for \(trip.name)")
-            return arrayPosition
-        }
-    }
+    func currentTrainPosition() -> Int?
     
 }

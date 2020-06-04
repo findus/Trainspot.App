@@ -21,7 +21,7 @@ class TrainLocationTripController: TrainLocationProtocol  {
     }
     
     func start() {
-        self.timer = Timer.scheduledTimer(timeInterval: DURATION, target: self, selector: #selector(eventLoop), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(eventLoop), userInfo: nil, repeats: true)
     }
     
     func update() {
@@ -30,7 +30,7 @@ class TrainLocationTripController: TrainLocationProtocol  {
             return
         }
         
-        trips.forEach { self.updateTrip(trip: $0); self.delegate?.drawPolyLine(forTrip: $0) }
+        trips.forEach { self.register(trip: $0); self.delegate?.drawPolyLine(forTrip: $0) }
     }
     
     func register(trip: Trip) {
@@ -49,10 +49,10 @@ class TrainLocationTripController: TrainLocationProtocol  {
     }
     
     private func updateTrip(trip: Trip) {
-        guard let arrayPosition = trip.currentTrainPosition(forTrip: trip) else {
+        guard let arrayPosition = trip.currentTrainPosition() else {
             return
         }
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: arrayPosition, withDuration: DURATION)
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: arrayPosition, withDuration: 1)
     }
     
     func setDataProvider<T>(withProvider provider: T) where T : TrainDataProviderProtocol {
