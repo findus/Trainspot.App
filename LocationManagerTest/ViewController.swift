@@ -16,6 +16,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var mapViewController: MapViewController?
     let manager =  TrainLocationController.shared
+    let journeyProvider = MockTrainDataProvider.init()
     
     var lastLocation: CLLocation? {
         didSet {
@@ -64,31 +65,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         self.mapViewController?.delegate = self
         
-        guard
-            let filePath = Bundle(for: type(of: self)).path(forResource: "hafas_test_json", ofType: "json"),
-            let data = NSData(contentsOfFile: filePath) else {
-                return
+        let journeys = journeyProvider.getAllJourneys()
+        
+        journeys.forEach { (journey) in
+            
+            self.mapViewController?.drawLine(entries: journey.line)
+            let mapEntity = MapEntity(name: journey.name, location: journey.line.first!.location)
+            self.mapViewController?.addEntry(entry: mapEntity)
+            _ = self.manager.register(journey: journey)
         }
-        
-        let json = try! JSON(data: data as Data)
-        let coords = json[0]["polyline"]["features"].arrayValue.map { MapEntity(name: "line", location: CLLocation(latitude: $0["geometry"]["coordinates"][1].doubleValue, longitude: $0["geometry"]["coordinates"][0].doubleValue ))  }
-        let framecount = json[0]["frames"].arrayValue.count
-        print("Frames  ", framecount)
-        
-        let polylinecount = json[0]["polyline"]["features"].arrayValue.count
-        print("Polyline", polylinecount)
-                
-        self.mapViewController?.drawLine(entries: coords)
-        
-        
-        let testJourney = Journey(withFetchTime: Date(), andName: json[0]["line"]["name"].stringValue, andLines: coords)
-        
-        let mapEntity = MapEntity(name: testJourney.name, location: testJourney.line.first!.location)
-        
-        self.mapViewController?.addEntry(entry: mapEntity)
-        
-        _ = self.manager.register(journey: testJourney)
-    
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -128,6 +114,8 @@ extension ViewController: TrainLocationDelegate {
         self.pinnedLocation = journey.line[toPosition].location
         if let lastLocation = self.lastLocation  {
             print("Shortest Distance to Track: \(journey.shorttestDistanceToTrack(forUserLocation: lastLocation))")
+            print("Is arriving: \(!journey.isParting(forUserLocation: lastLocation))")
+
         }
     }
 }
