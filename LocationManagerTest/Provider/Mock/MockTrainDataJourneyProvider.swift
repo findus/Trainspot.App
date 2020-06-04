@@ -9,30 +9,105 @@
 import Foundation
 import SwiftyJSON
 import CoreLocation
+import simd
 
 protocol Feature {
-    
+    var lat: Double { get set }
+    var lon: Double { get set }
 }
 
 struct Path: Feature {
     var lat: Double
     var lon: Double
+    
+    //animation data
+    var duration: Int?
+    var lastBeforeStop: Bool = false
 }
 
 struct StopOver: Feature {
+
+    var name: String
     
     var lat: Double
     var lon: Double
-    var name: String
-    
     var arrival: Date?
     var departure: Date?
 }
+
+
 
 struct Timeline {
     var name: String
     var line: Array<Feature>
     var departure: Date
+    
+    func trainPosition() -> CLLocation? {
+        
+        // let currentTime = Date() disabled for debugging
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2020
+        dateComponents.month = 6
+        dateComponents.day = 4
+        dateComponents.hour = 14
+        dateComponents.minute = 59
+
+        // Create date from components
+        let userCalendar = Calendar.current // user calendar
+        let currentTime = userCalendar.date(from: dateComponents)!
+        
+        let (e1, nextStop) = line.enumerated().filter({ $0.element is StopOver && ($0.element as! StopOver).arrival?.timeIntervalSince(currentTime) ?? -1 >= 0 }).first!
+        let (e2, lastStop) = line.enumerated().filter({ $0.element is StopOver && ($0.element as! StopOver).departure?.timeIntervalSince(currentTime) ?? 1 <= 0 }).last!
+        let timeNeededAtoB = (nextStop as! StopOver).arrival!.timeIntervalSince((lastStop as! StopOver).departure!)
+        let timeSinceAtoNow = currentTime.timeIntervalSince((lastStop as! StopOver).departure!)
+        
+        let remaining = timeNeededAtoB - timeSinceAtoNow
+        
+        let percentageMissing = remaining / timeNeededAtoB
+        
+        let slice = line[e2...e1]
+        let distance = zip(slice,slice.dropFirst()).map { (first, second) -> Double in
+            let c1 = CLLocation(latitude: first.lat, longitude: first.lon)
+            let c2 = CLLocation(latitude: second.lat, longitude: second.lon)
+            return c1.distance(from: c2)
+        }
+        
+        let sum = distance.reduce(0, +)
+        
+        let missingdistance = sum * percentageMissing
+        
+        var count = 0.0
+        for (first, second) in zip(slice,slice.dropFirst()).reversed() {
+            let c1 = CLLocation(latitude: first.lat, longitude: first.lon)
+            let c2 = CLLocation(latitude: second.lat, longitude: second.lon)
+            
+            if (count + c1.distance(from: c2) < missingdistance) {
+                count += c1.distance(from: c2)
+                continue
+            }
+            
+            var temploc = c2
+            while (count + c1.distance(from: temploc) > missingdistance) {
+                temploc = c1.midPoint(withLocation: temploc)
+            }
+            
+            count += c1.distance(from: c2)
+            return temploc
+            
+            
+//            let vec = SIMD2(x: c1.coordinate.latitude - c2.coordinate.latitude, y: c1.coordinate.longitude - c2.coordinate.longitude)
+//            let normvec = simd_normalize(vec)
+//            let distance = simd_distance(simd_double8(normvec.x), simd_double8(normvec.y))
+//            let distance1 = simd_distance(simd_double8(vec.x), simd_double8(vec.y))
+//            print(normvec)
+        }
+        
+        print(missingdistance)
+        return nil
+    }
+    
+    
 }
 
 class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
@@ -64,14 +139,17 @@ class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
                 
                 let name = stopOver["stop"]["name"].stringValue
                 
-                return StopOver(lat: lat, lon: lon, name: name, arrival: arrival, departure: departure)
+                return StopOver(name: name, lat: lat, lon: lon, arrival: arrival, departure: departure)
             } else {
                 return Path(lat: lat, lon: lon)
             }
         }
         
+        
         return Timeline(name: name, line: line, departure: date)
     }
+    
+    
     
     private func loadTrips() -> Array<JourneyTrip>? {
         guard

@@ -11,6 +11,9 @@ import UIKit
 extension Double {
     var toRadians: CGFloat { return CGFloat(self * .pi / 180) }
     var toDegrees: CGFloat { return CGFloat(self * 180 / .pi) }
+    
+    var toRadiansd: Double { return Double(self * .pi / 180) }
+    var toDegreesd: Double { return Double(self * 180 / .pi) }
 }
 
 extension CGFloat {

@@ -21,7 +21,7 @@ class TrainLocationTripController: TrainLocationProtocol  {
     }
     
     func start() {
-        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(eventLoop), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 100, target: self, selector: #selector(eventLoop), userInfo: nil, repeats: true)
     }
     
     func update() {

@@ -76,4 +76,6 @@ class JourneyTrip: Trip {
         return counter
     }
     
+    
+    
 }

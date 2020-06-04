@@ -30,4 +30,28 @@ extension CLLocation {
         return bearingToLocationRadian(destinationLocation).toDegrees
         
     }
+    
+    func midPoint(withLocation location: CLLocation) -> CLLocation {
+        var c1 = CLLocationCoordinate2D()
+        var c2 = CLLocationCoordinate2D()
+        
+        c2.latitude = self.coordinate.latitude.toRadiansd
+        c1.latitude = location.coordinate.latitude.toRadiansd
+        
+        c2.longitude = self.coordinate.longitude
+        c1.longitude = location.coordinate.longitude
+
+        let dLon = (c2.longitude - c1.longitude).toRadiansd
+        let bx = cos(c2.latitude) * cos(dLon);
+        let by = cos(c2.latitude) * sin(dLon);
+        let latitude = atan2(sin(c1.latitude) + sin(c2.latitude), sqrt((cos(c1.latitude) + bx) * (cos(c1.latitude) + bx) + by*by));
+        let longitude = c1.longitude.toRadiansd + atan2(by, cos(c1.latitude) + bx);
+
+        var midpointCoordinate = CLLocationCoordinate2D()
+        midpointCoordinate.longitude = longitude.toDegreesd
+        midpointCoordinate.latitude = latitude.toDegreesd
+
+        return CLLocation(latitude: midpointCoordinate.latitude, longitude: midpointCoordinate.longitude);
+
+    }
 }
