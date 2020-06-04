@@ -38,7 +38,7 @@ class TrainLocationController {
     }
     
     private func updateJourney(journey: Journey) {
-        guard let arrayPosition = journey.calculateTrainPosition(forJourney: journey) else {
+        guard let arrayPosition = journey.currentTrainPosition(forJourney: journey) else {
             return
         }
         self.delegate?.trainPositionUpdated(forJourney: journey, toPosition: arrayPosition, withDuration: DURATION)
