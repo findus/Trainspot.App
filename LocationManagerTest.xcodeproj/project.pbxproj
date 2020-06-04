@@ -17,6 +17,7 @@
 		D45C505F2488F22800A3D857 /* data2 in Resources */ = {isa = PBXBuildFile; fileRef = D45C505E2488F22700A3D857 /* data2 */; };
 		D45C506124891B9100A3D857 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506024891B9100A3D857 /* Trip.swift */; };
 		D45C506324891D1400A3D857 /* MockTrainDataJourneyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506224891D1400A3D857 /* MockTrainDataJourneyProvider.swift */; };
+		D45C50652489266600A3D857 /* trip_test in Resources */ = {isa = PBXBuildFile; fileRef = D45C50642489266600A3D857 /* trip_test */; };
 		D4AF20012488239D0075F327 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF20002488239D0075F327 /* Journey.swift */; };
 		D4AF2004248825B20075F327 /* TrainLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF2003248825B20075F327 /* TrainLocationController.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
@@ -59,6 +60,7 @@
 		D45C505E2488F22700A3D857 /* data2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data2; sourceTree = "<group>"; };
 		D45C506024891B9100A3D857 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		D45C506224891D1400A3D857 /* MockTrainDataJourneyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrainDataJourneyProvider.swift; sourceTree = "<group>"; };
+		D45C50642489266600A3D857 /* trip_test */ = {isa = PBXFileReference; lastKnownFileType = text; path = trip_test; sourceTree = "<group>"; };
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationController.swift; sourceTree = "<group>"; };
 		D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +197,7 @@
 				D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */,
 				D4DEAAD22487AC1E00D33AA2 /* LaunchScreen.storyboard */,
 				D4DEAAD52487AC1E00D33AA2 /* Info.plist */,
+				D45C50642489266600A3D857 /* trip_test */,
 			);
 			path = LocationManagerTest;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				D45C505F2488F22800A3D857 /* data2 in Resources */,
 				D4EA3D66248803DC003D7469 /* hafas_test_json.json in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
+				D45C50652489266600A3D857 /* trip_test in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

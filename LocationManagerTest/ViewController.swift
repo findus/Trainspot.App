@@ -16,7 +16,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var mapViewController: MapViewController?
     let manager =  TrainLocationController.shared
-    let tripProvider = MockTrainDataProvider.init()
+    let tripProvider = MockTrainDataJourneyProvider.init()
     
     var lastLocation: CLLocation? {
         didSet {
