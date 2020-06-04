@@ -10,39 +10,39 @@ import Foundation
 import CoreLocation
 
 class JourneyTrip: Trip {
+   
+    var line: Array<MapEntity>
  
     let fetchTime: Date
     /**
             A line, that represents the trains approximate location for the next 45 Minutes, 61 entries ~every 45 Seconds
      */
-    let line: Array<MapEntity>
+    let timeline: Timeline
     let name: String
     
     let journey: Journey?
-    
-    let type: String
-    
+        
     var counter = 0
     
-    public init(withFetchTime time: Date, andName name: String, andLines line: Array<MapEntity>, isType type: String) {
+    public init(withFetchTime time: Date, andName name: String, andTimeline timeline: Timeline, andPolyline line: Array<MapEntity>) {
         self.fetchTime = time
         self.line = line
         self.name = name
         self.journey = nil
-        self.type = type
+        self.timeline = timeline
     }
     
     /**
      Checks, if the train is heading towards the user, or still passed the location
      */
     func isParting(forUserLocation loc: CLLocation) -> Bool {
-        let shortestPosition = self.shortestDistanceArrayPosition(forUserLocation: loc)
-        let trainPosition = self.currentTrainPosition()
-        
-        if trainPosition ?? self.line.count > shortestPosition {
-            return true
-        }
-        
+//        let shortestPosition = self.shortestDistanceArrayPosition(forUserLocation: loc)
+//        let trainPosition = self.currentTrainPosition()
+//
+//        if trainPosition ?? self.line.count > shortestPosition {
+//            return true
+//        }
+//
         return false
     }
     
@@ -50,20 +50,22 @@ class JourneyTrip: Trip {
      Gets tracks shortest distance to the user, so that we can calulcate the approximate arrival of the train
      */
     func shorttestDistanceToTrack(forUserLocation loc : CLLocation) -> Double {
-        return line[self.shortestDistanceArrayPosition(forUserLocation: loc)].location.distance(from: loc)
+        //return line[self.shortestDistanceArrayPosition(forUserLocation: loc)].location.distance(from: loc)
+        return 0.0
     }
     
     private func shortestDistanceArrayPosition(forUserLocation loc: CLLocation) -> Int {
-        let distances = line.map { $0.location.distance(from: loc) }
-        
-        var arrayPosition = 0
-        for (index, distance) in distances.enumerated() {
-            if distances[arrayPosition] > distance {
-                arrayPosition = index
-            }
-        }
-        
-        return arrayPosition
+//        let distances = line.map { $0.location.distance(from: loc) }
+//
+//        var arrayPosition = 0
+//        for (index, distance) in distances.enumerated() {
+//            if distances[arrayPosition] > distance {
+//                arrayPosition = index
+//            }
+//        }
+//
+//        return arrayPosition
+        return 0
     }
     
     /**

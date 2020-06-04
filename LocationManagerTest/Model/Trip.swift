@@ -21,8 +21,6 @@ protocol Trip {
     
     var journey: Journey? { get }
     
-    var type: String { get }
-
     /**
      Checks, if the train is heading towards the user, or still passed the location
      */
