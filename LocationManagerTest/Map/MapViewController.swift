@@ -78,7 +78,11 @@ extension MapViewController: MKMapViewDelegate {
     
     func updateTrainLocation(forId id: String, toLocation location: CLLocationCoordinate2D, withDuration duration: Double) {
         guard let entry = self.entryList.filter({ $0.name == id }).first else {
-            print("No MapEntry found for \(id)")
+            print("No MapEntry found for \(id), will create entry at location")
+            self.addEntry(entry:
+                MapEntity(name: id, location: CLLocation(latitude: location.latitude, longitude: location.longitude))
+            )
+            
             return
         }
 

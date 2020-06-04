@@ -18,9 +18,9 @@
 		D45C506124891B9100A3D857 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506024891B9100A3D857 /* Trip.swift */; };
 		D45C506324891D1400A3D857 /* MockTrainDataJourneyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506224891D1400A3D857 /* MockTrainDataJourneyProvider.swift */; };
 		D45C50652489266600A3D857 /* trip_test in Resources */ = {isa = PBXBuildFile; fileRef = D45C50642489266600A3D857 /* trip_test */; };
-		D45C506724892C8200A3D857 /* TrainLocationTripController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506624892C8200A3D857 /* TrainLocationTripController.swift */; };
 		D45C506924892CC900A3D857 /* TrainLocationProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506824892CC900A3D857 /* TrainLocationProxy.swift */; };
-		D45C506B24892FB200A3D857 /* TrainLocationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506A24892FB200A3D857 /* TrainLocationProtocol.swift */; };
+		D45C506E2489396200A3D857 /* TrainLocationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506A24892FB200A3D857 /* TrainLocationProtocol.swift */; };
+		D45C506F2489396900A3D857 /* TrainLocationTripController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506624892C8200A3D857 /* TrainLocationTripController.swift */; };
 		D4AF20012488239D0075F327 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF20002488239D0075F327 /* Journey.swift */; };
 		D4AF2004248825B20075F327 /* TrainLocationRadarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
@@ -146,16 +146,32 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
-		D4AF20022488259C0075F327 /* Controller */ = {
+		D45C506C248938EA00A3D857 /* Proxy */ = {
 			isa = PBXGroup;
 			children = (
-				D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */,
-				D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */,
-				D45C506624892C8200A3D857 /* TrainLocationTripController.swift */,
 				D45C506824892CC900A3D857 /* TrainLocationProxy.swift */,
-				D45C506A24892FB200A3D857 /* TrainLocationProtocol.swift */,
 			);
-			path = Controller;
+			path = Proxy;
+			sourceTree = "<group>";
+		};
+		D45C506D248938F400A3D857 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D45C506A24892FB200A3D857 /* TrainLocationProtocol.swift */,
+				D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		D4AF20022488259C0075F327 /* LocationController */ = {
+			isa = PBXGroup;
+			children = (
+				D45C506D248938F400A3D857 /* Protocol */,
+				D45C506C248938EA00A3D857 /* Proxy */,
+				D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */,
+				D45C506624892C8200A3D857 /* TrainLocationTripController.swift */,
+			);
+			path = LocationController;
 			sourceTree = "<group>";
 		};
 		D4AF200524882A250075F327 /* Model */ = {
@@ -194,7 +210,7 @@
 				D45C50582488E6F200A3D857 /* Provider */,
 				D45C50552488E25100A3D857 /* AppConstants */,
 				D4AF200524882A250075F327 /* Model */,
-				D4AF20022488259C0075F327 /* Controller */,
+				D4AF20022488259C0075F327 /* LocationController */,
 				D4EA3D65248803DC003D7469 /* hafas_test_json.json */,
 				D4DEAAEB2487DA3B00D33AA2 /* Location */,
 				D4DEAAE62487D9E000D33AA2 /* Extensions */,
@@ -450,11 +466,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */,
-				D45C506724892C8200A3D857 /* TrainLocationTripController.swift in Sources */,
 				D4DEAACC2487AC1900D33AA2 /* ViewController.swift in Sources */,
-				D45C506B24892FB200A3D857 /* TrainLocationProtocol.swift in Sources */,
+				D45C506E2489396200A3D857 /* TrainLocationProtocol.swift in Sources */,
 				D4DEAAE12487D3EA00D33AA2 /* MapEntity.swift in Sources */,
 				D45C505D2488E8CB00A3D857 /* MockTrainDataRadarProvider.swift in Sources */,
+				D45C506F2489396900A3D857 /* TrainLocationTripController.swift in Sources */,
 				D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */,
 				D45C505A2488E70A00A3D857 /* TrainDataProviderProtocol.swift in Sources */,
 				D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */,

@@ -10,5 +10,8 @@ import Foundation
 
 protocol TrainLocationProtocol {
     func register(trip :Trip)
+    func start()
+    func update()
+    func setDataProvider<T: TrainDataProviderProtocol>(withProvider provider: T)
     var delegate: TrainLocationDelegate? { set get }
 }

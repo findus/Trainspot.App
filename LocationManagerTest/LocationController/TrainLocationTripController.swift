@@ -1,22 +1,36 @@
 //
-//  TrainLocationController.swift
+//  TrainLocationTripController.swift
 //  LocationManagerTest
 //
-//  Created by Philipp Hentschel on 03.06.20.
+//  Created by Philipp Hentschel on 04.06.20.
 //  Copyright © 2020 Philipp Hentschel. All rights reserved.
 //
 
 import Foundation
 
-class TrainLocationRadarController: TrainLocationProtocol {
-        
-    var trips: Array<Trip> = [Trip]()
-    var timer: Timer? = nil
+class TrainLocationTripController: TrainLocationProtocol  {
     
     weak var delegate: TrainLocationDelegate?
         
+    var trips: Array<Trip> = [Trip]()
+    private var timer: Timer? = nil
+    private var dataProvider: TrainDataProviderProtocol?
+            
     init() {
+        self.dataProvider = MockTrainDataJourneyProvider()
+    }
+    
+    func start() {
         self.timer = Timer.scheduledTimer(timeInterval: DURATION, target: self, selector: #selector(eventLoop), userInfo: nil, repeats: true)
+    }
+    
+    func update() {
+        guard let trips = dataProvider?.getAllTrips() else {
+            print("Error retreiving trips")
+            return
+        }
+        
+        trips.forEach { self.updateTrip(trip: $0); self.delegate?.drawPolyLine(forTrip: $0) }
     }
     
     func register(trip: Trip) {
@@ -39,5 +53,9 @@ class TrainLocationRadarController: TrainLocationProtocol {
             return
         }
         self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: arrayPosition, withDuration: DURATION)
+    }
+    
+    func setDataProvider<T>(withProvider provider: T) where T : TrainDataProviderProtocol {
+        self.dataProvider = provider
     }
 }

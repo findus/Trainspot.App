@@ -62,13 +62,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
         
+        self.mapViewController?.delegate = self
+        self.manager.delegate = self
+        
         // Start and append different controller instances
         let radarLocationController = TrainLocationRadarController()
         let tripLocationController = TrainLocationTripController()
         self.manager.register(controller: radarLocationController)
         self.manager.register(controller: tripLocationController)
 
-        self.mapViewController?.delegate = self
         
 //        let trips = tripProvider.getAllTrips()
 //        
@@ -114,6 +116,10 @@ extension ViewController: MapViewControllerDelegate {
 }
 
 extension ViewController: TrainLocationDelegate {
+    func drawPolyLine(forTrip: Trip) {
+        self.mapViewController?.drawLine(entries: forTrip.line)
+    }
+    
     func trainPositionUpdated(forTrip trip: Trip, toPosition: Int, withDuration duration: Double) {
         self.mapViewController?.updateTrainLocation(forId: trip.name, toLocation: trip.line[toPosition].location.coordinate, withDuration: duration)
         self.pinnedLocation = trip.line[toPosition].location

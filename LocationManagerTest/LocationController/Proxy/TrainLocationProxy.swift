@@ -20,9 +20,12 @@ class TrainLocationProxy: NSObject {
     }
     
     func register<T: TrainLocationProtocol>(controller: T) {
+        print("Registered \(String(describing: controller.self)) as a TrainLocation Controller")
         var ctrl = controller
         ctrl.delegate = self
         controllers.append(ctrl)
+        controller.update()
+        controller.start()
     }
     
     func updateAll() {
@@ -32,6 +35,10 @@ class TrainLocationProxy: NSObject {
 }
 
 extension TrainLocationProxy : TrainLocationDelegate {
+    func drawPolyLine(forTrip: Trip) {
+        self.delegate?.drawPolyLine(forTrip: forTrip)
+    }
+    
     func trainPositionUpdated(forTrip trip: Trip, toPosition: Int, withDuration duration: Double) {
         self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: toPosition, withDuration: duration)
     }
