@@ -16,7 +16,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var mapViewController: MapViewController?
     let manager =  TrainLocationController.shared
-    let journeyProvider = MockTrainDataProvider.init()
+    let tripProvider = MockTrainDataProvider.init()
     
     var lastLocation: CLLocation? {
         didSet {
@@ -65,14 +65,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         self.mapViewController?.delegate = self
         
-        let journeys = journeyProvider.getAllJourneys()
+        let trips = tripProvider.getAllTrips()
         
-        journeys.forEach { (journey) in
+        trips.forEach { (trip) in
             
-            self.mapViewController?.drawLine(entries: journey.line)
-            let mapEntity = MapEntity(name: journey.name, location: journey.line.first!.location)
+            self.mapViewController?.drawLine(entries: trip.line)
+            let mapEntity = MapEntity(name: trip.name, location: trip.line.first!.location)
             self.mapViewController?.addEntry(entry: mapEntity)
-            _ = self.manager.register(journey: journey)
+            _ = self.manager.register(trip: trip)
         }
 
     }
@@ -109,12 +109,12 @@ extension ViewController: MapViewControllerDelegate {
 }
 
 extension ViewController: TrainLocationDelegate {
-    func trainPositionUpdated(forJourney journey: Journey, toPosition: Int, withDuration duration: Double) {
-        self.mapViewController?.updateTrainLocation(forId: journey.name, toLocation: journey.line[toPosition].location.coordinate, withDuration: duration)
-        self.pinnedLocation = journey.line[toPosition].location
+    func trainPositionUpdated(forTrip trip: Trip, toPosition: Int, withDuration duration: Double) {
+        self.mapViewController?.updateTrainLocation(forId: trip.name, toLocation: trip.line[toPosition].location.coordinate, withDuration: duration)
+        self.pinnedLocation = trip.line[toPosition].location
         if let lastLocation = self.lastLocation  {
-            print("Shortest Distance to Track: \(journey.shorttestDistanceToTrack(forUserLocation: lastLocation))")
-            print("Is arriving: \(!journey.isParting(forUserLocation: lastLocation))")
+            print("Shortest Distance to Track: \(trip.shorttestDistanceToTrack(forUserLocation: lastLocation))")
+            print("Is arriving: \(!trip.isParting(forUserLocation: lastLocation))")
 
         }
     }

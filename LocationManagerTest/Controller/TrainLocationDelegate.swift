@@ -9,5 +9,5 @@
 import Foundation
 
 protocol TrainLocationDelegate: NSObject {
-    func trainPositionUpdated(forJourney journey: Journey, toPosition: Int, withDuration duration: Double) -> Void
+    func trainPositionUpdated(forTrip trip: Trip, toPosition: Int, withDuration duration: Double) -> Void
 }

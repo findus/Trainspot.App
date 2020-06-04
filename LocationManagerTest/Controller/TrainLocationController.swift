@@ -10,7 +10,7 @@ import Foundation
 
 class TrainLocationController {
         
-    var journeys: Array<Journey> = [Journey]()
+    var trips: Array<Trip> = [Trip]()
     var timer: Timer? = nil
 
 
@@ -22,25 +22,25 @@ class TrainLocationController {
         self.timer = Timer.scheduledTimer(timeInterval: DURATION, target: self, selector: #selector(eventLoop), userInfo: nil, repeats: true)
     }
     
-    func register(journey: Journey) {
-        self.journeys.append(journey)
-        self.delegate?.trainPositionUpdated(forJourney: journey, toPosition: 0, withDuration: 0)
+    func register(trip: Trip) {
+        self.trips.append(trip)
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: 0, withDuration: 0)
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            self.updateJourney(journey: journey)
+            self.updateTrip(trip: trip)
         }
     }
     
     @objc private func eventLoop() {
         print("Event loop")
-        self.journeys.forEach { (journey) in
-            self.updateJourney(journey: journey)
+        self.trips.forEach { (trip) in
+            self.updateTrip(trip: trip)
         }
     }
     
-    private func updateJourney(journey: Journey) {
-        guard let arrayPosition = journey.currentTrainPosition(forJourney: journey) else {
+    private func updateTrip(trip: Trip) {
+        guard let arrayPosition = trip.currentTrainPosition(forTrip: trip) else {
             return
         }
-        self.delegate?.trainPositionUpdated(forJourney: journey, toPosition: arrayPosition, withDuration: DURATION)
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: arrayPosition, withDuration: DURATION)
     }
 }
