@@ -25,8 +25,8 @@ struct StopOver: Feature {
     var lon: Double
     var name: String
     
-    var arrival: Date
-    var departure: Date
+    var arrival: Date?
+    var departure: Date?
 }
 
 struct Timeline {
@@ -43,7 +43,7 @@ class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
         let polyline = trip["polyline"]["features"].arrayValue
         
         let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
 
         let date = dateFormatterGet.date(from: trip["departure"].stringValue)!
                 
@@ -59,8 +59,8 @@ class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
             if stopId.exists() {
                 let stopOver = stops.filter({ $0["stop"]["id"] == stopId }).first!
                 
-                let departure = dateFormatterGet.date(from: stopOver["departure"].stringValue)!
-                let arrival =  dateFormatterGet.date(from: stopOver["arrival"].stringValue)!
+                let departure = dateFormatterGet.date(from: stopOver["departure"].stringValue)
+                let arrival =  dateFormatterGet.date(from: stopOver["arrival"].stringValue)
                 
                 let name = stopOver["stop"]["name"].stringValue
                 
