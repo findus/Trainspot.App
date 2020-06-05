@@ -51,12 +51,56 @@ class HafasParser {
         return Timeline(name: name, line: line, animationData: animationData ,departure: date)
     }
     
+    struct Section {
+        var time: TimeInterval
+        var distance: Double
+        var distances: Array<Double>
+        func distancePerSecond() -> Double {
+            return distance / time
+        }
+    }
+    
     public static func generateAnimationData(fromFeatures features: Array<Feature>) -> Array<AnimationData> {
         
-        let stops = features.enumerated().filter( { $0.element is StopOver } )
-        let statons = zip(stops, stops.dropFirst()).map( { ($0.0.offset, $0.1.offset) } )
         
-        return []
+        let stops = features.enumerated().filter( { $0.element is StopOver } )
+        let station_array_positions = zip(stops, stops.dropFirst()).map( { ($0.0.offset, $0.1.offset) } )
+        let sections = station_array_positions.map { (e) -> Section in
+            let (departure, arrival) = e
+            let slice = features[departure...arrival]
+            
+//            let wholeDistance = zip(slice, slice.dropFirst()).reduce(0.0) { (res, arg1) -> Double in
+//                let (loc1, loc2) = arg1
+//                loc1.coords.distance(from: loc2.coords)
+//            }
+            
+            let distances = zip(slice, slice.dropFirst()).map { (loc1, loc2) -> Double in
+                return loc1.coords.distance(from: loc2.coords)
+            }
+            
+            let wholeDistance = distances.reduce(0, +)
+            
+            let time = (features[arrival] as! StopOver).arrival!.timeIntervalSince((features[departure] as! StopOver).departure!)
+            
+            return Section(time: time, distance: wholeDistance, distances: distances)
+            
+        }
+        
+        let animationData = sections.map { (s) -> [AnimationData] in
+            let distancePerSecond = s.distancePerSecond()
+            return s.distances.enumerated().map { (i,singleDistance) -> AnimationData in
+                if i == 0 {
+                    return AnimationData(vehicleState: .Accelerating , duration: singleDistance / distancePerSecond)
+                } else if i == s.distances.count - 1 {
+                    return AnimationData(vehicleState: .Stopping , duration: singleDistance / distancePerSecond)
+                } else {
+                    return AnimationData(vehicleState: .Driving , duration: singleDistance / distancePerSecond)
+                }
+            }
+            
+        }
+        
+        return Array(animationData.joined())
     }
         
     public static  func loadJourneyTrip(fromJSON json: JSON) -> Array<JourneyTrip>? {
