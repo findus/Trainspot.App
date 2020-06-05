@@ -1,16 +1,20 @@
 PODS:
+  - Log (2.0)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
+  - Log
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   trunk:
+    - Log
     - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Log: 73fab10e8b88f15cef5f322b12c9be87cf19ee6e
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 9a12d9a8d562cb86d301807627d436c8ac53c1ab
+PODFILE CHECKSUM: d42f7e5f518e92b50940496e84cd06dfc00f7152
 
 COCOAPODS: 1.8.4

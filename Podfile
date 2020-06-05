@@ -7,6 +7,7 @@ target 'LocationManagerTest' do
 
   # Pods for LocationManagerTest
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'Log'
 
   target 'LocationManagerTestUITests' do
     # Pods for testing
