@@ -42,7 +42,11 @@ struct Timeline {
     var line: Array<Feature>
     var departure: Date
     
-    func trainPosition() -> CLLocation? {
+    
+    /**
+     Tries to find the exact train position on the polyine, returns the approximate position, the end of the current line the train is on, and the duration how long it would take to reach it
+     */
+    func trainPosition() -> (current:CLLocation, nextOnMap: CLLocation, duration: Int)? {
         
         // let currentTime = Date() disabled for debugging
         
@@ -50,22 +54,30 @@ struct Timeline {
         dateComponents.year = 2020
         dateComponents.month = 6
         dateComponents.day = 4
-        dateComponents.hour = 14
-        dateComponents.minute = 59
+        dateComponents.hour = 15
+        dateComponents.minute = 00
 
         // Create date from components
         let userCalendar = Calendar.current // user calendar
         let currentTime = userCalendar.date(from: dateComponents)!
         
+        // Finds the next Stop for the current train
         let (e1, nextStop) = line.enumerated().filter({ $0.element is StopOver && ($0.element as! StopOver).arrival?.timeIntervalSince(currentTime) ?? -1 >= 0 }).first!
+        // Finds the last Stop for the current train
         let (e2, lastStop) = line.enumerated().filter({ $0.element is StopOver && ($0.element as! StopOver).departure?.timeIntervalSince(currentTime) ?? 1 <= 0 }).last!
+        
+        // Calculates the time, the Train needs to travel between the last and the next stop
         let timeNeededAtoB = (nextStop as! StopOver).arrival!.timeIntervalSince((lastStop as! StopOver).departure!)
+        
+        // Calculates the time the train is already moving since the last stop
         let timeSinceAtoNow = currentTime.timeIntervalSince((lastStop as! StopOver).departure!)
         
+        // Calculates the time the train still needs to reach the next stop
         let remaining = timeNeededAtoB - timeSinceAtoNow
-        
+    
         let percentageMissing = remaining / timeNeededAtoB
         
+        // Calculates the distance between the two stops
         let slice = line[e2...e1]
         let distance = zip(slice,slice.dropFirst()).map { (first, second) -> Double in
             let c1 = CLLocation(latitude: first.lat, longitude: first.lon)
@@ -73,10 +85,17 @@ struct Timeline {
             return c1.distance(from: c2)
         }
         
+        // Sums it
         let sum = distance.reduce(0, +)
         
+        // Calculates how many kilometers the train needs to travel to reach the destination
         let missingdistance = sum * percentageMissing
         
+        /**
+        Tries to find the exact lat/lon of the train by adding all polyline distances together from NextStop to LastStop.
+         If the sum of one additional vector length exceeds the remaining distance, the algorithm tries calculate an approximate position on the vector
+         by dividing the distance vector into smaller parts
+         **/
         var count = 0.0
         for (first, second) in zip(slice,slice.dropFirst()).reversed() {
             let c1 = CLLocation(latitude: first.lat, longitude: first.lon)
@@ -93,7 +112,7 @@ struct Timeline {
             }
             
             count += c1.distance(from: c2)
-            return temploc
+            return (temploc,c1,10)
             
             
 //            let vec = SIMD2(x: c1.coordinate.latitude - c2.coordinate.latitude, y: c1.coordinate.longitude - c2.coordinate.longitude)
@@ -115,7 +134,7 @@ class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
     typealias TripData = JourneyTrip
     
     func getAllTrips() -> Array<JourneyTrip> {
-        self.loadTrips() ?? []
+        return self.loadTrips() ?? []
     }
     
     func generateTimeLine(forTrip trip: JSON) -> Timeline {

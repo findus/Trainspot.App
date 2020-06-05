@@ -56,7 +56,7 @@ class TrainLocationTripController: TrainLocationProtocol  {
         guard let arrayPosition = trip.currentTrainPosition() else {
             return
         }
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.line[0].location, withDuration: 1)
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.timeline.trainPosition()!, withDuration: 1)
     }
     
     func setDataProvider(withProvider provider: TripProvider<JourneyTrip>) {
