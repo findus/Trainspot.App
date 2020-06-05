@@ -48,7 +48,7 @@ struct Timeline {
     var departure: Date
 }
 
-class JourneyTrip: Trip {
+class JourneyTrip: Trip, Hashable {
     
     var atStation: Bool = false
    
@@ -114,8 +114,14 @@ class JourneyTrip: Trip {
         return counter
     }
     
+}
+
+extension JourneyTrip {
+    static func == (lhs: JourneyTrip, rhs: JourneyTrip) -> Bool {
+        return lhs.name == rhs.name
+    }
     
-    
-    
-    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.name)
+    }
 }

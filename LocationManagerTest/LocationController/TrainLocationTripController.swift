@@ -21,22 +21,15 @@ class TrainLocationTripController: TrainLocationProtocol  {
 
     weak var delegate: TrainLocationDelegate?
         
-    var trips: Array<JourneyTrip> = [JourneyTrip]()
+    var trips: [String: (JourneyTrip, Timer)] = [:]
     private var timer: Timer? = nil
     private var dataProvider: TripProvider<T>?
-            
+    
+    var timers : Array<Timer> = []
+    
+    var datestack : Array<Date> = []
+    
     init() {
-        // self.dataProvider = MockTrainDataJourneyProvider()
-    }
-    
-    func start() {
-        self.trips.forEach { (trip) in
-            self.startTrip(trip: trip)
-        }
-    }
-    
-    private func startTrip(trip: JourneyTrip) {
-        
         var dateComponents = DateComponents()
         dateComponents.year = 2020
         dateComponents.month = 6
@@ -47,9 +40,24 @@ class TrainLocationTripController: TrainLocationProtocol  {
         
         // Create date from components
         let userCalendar = Calendar.current // user calendar
-        let debugTime = userCalendar.date(from: dateComponents)!
+        datestack.append(userCalendar.date(from: dateComponents)!)
         
-        let (loc, array, d) = self.findApproximateTrainLocation(forTrip: trip, andDate: debugTime)!
+        dateComponents.minute = 0
+        dateComponents.second = 0
+        
+        datestack.append(userCalendar.date(from: dateComponents)!)
+    }
+    
+    func start() {
+        self.trips.values.forEach { (trip, timer) in
+            self.startTrip(trip: trip, withDate: datestack.popLast()!)
+        }
+    }
+    
+    private func startTrip(trip: JourneyTrip, withDate date: Date = Date()) {
+        // TODO somehow handle not startet trips
+        
+        let (loc, array, d) = self.findApproximateTrainLocation(forTrip: trip, andDate: date)!
         let location = CLLocation(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
         self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: location, withDuration: 0)
         let position = trip.timeline.line.firstIndex(where: {$0.coords == array.coords})!
@@ -60,14 +68,13 @@ class TrainLocationTripController: TrainLocationProtocol  {
             //TODO diff to next minute as duration
             self.startNewAnimation(forTrip: trip, toPosition: location, withDuration: 10, andArrayPosition: position)
         }
-        
     }
-    
-    private func startNewAnimation(forTrip trip: Trip, toPosition position: CLLocation, withDuration duration: TimeInterval, andArrayPosition pos: Int) {
-        Log.debug("Animation: Di:", position ,"Du:", duration)
-        self.timer?.invalidate()
+
+    private func startNewAnimation(forTrip trip: JourneyTrip, toPosition position: CLLocation, withDuration duration: TimeInterval, andArrayPosition pos: Int) {
+        Log.debug("New Animation for: ", trip.name, "Duration: ", duration, "Seconds")
+        self.trips[trip.name]?.1.invalidate()
         self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: position, withDuration: duration)
-        self.timer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(eventLoop), userInfo: pos, repeats: true)
+        self.trips[trip.name] = (trip ,Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(expired), userInfo: (trip.name, pos), repeats: true))
     }
     
     func update() {
@@ -80,19 +87,13 @@ class TrainLocationTripController: TrainLocationProtocol  {
     }
     
     func register(trip: T) {
-        self.trips.append(trip)
-//        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.line[0].location, withDuration: 0)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-//            self.updateTrip(trip: trip)
-//        }
+        self.trips[trip.name] = (trip, Timer())
     }
     
     
-    @objc private func eventLoop(timer: Timer) {
-        print("Event loop")
-        self.trips.forEach { (trip) in
-            self.updateTrip(trip: trip, arrayPosition: timer.userInfo as! Int)
-        }
+    @objc private func expired(timer: Timer) {
+        let (name, pos) = timer.userInfo as! (String,Int)
+        self.updateTrip(trip: self.trips[name]!.0 , arrayPosition: pos)
     }
     
     private func updateTrip(trip: JourneyTrip, arrayPosition: Int) {
@@ -105,7 +106,7 @@ class TrainLocationTripController: TrainLocationProtocol  {
                 trip.atStation = true
                 Log.info("[\(trip.name) arrived at \(stop.name)]")
                 // TODO halt time
-                self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(eventLoop), userInfo: arrayPosition, repeats: true)
+                self.trips[trip.name] = (trip, Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(expired), userInfo: (trip.name, arrayPosition), repeats: true))
                 return
             } else {
                 Log.info("[\(trip.name) started moving at at \(stop.name)]")
