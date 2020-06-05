@@ -112,6 +112,11 @@ struct Timeline {
 
 class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
 
+    typealias TripData = JourneyTrip
+    
+    func getAllTrips() -> Array<JourneyTrip> {
+        self.loadTrips() ?? []
+    }
     
     func generateTimeLine(forTrip trip: JSON) -> Timeline {
         let stops = trip["stopovers"].arrayValue
@@ -177,10 +182,6 @@ class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
 
     }
  
-    func getAllTrips() -> Array<Trip> {
-        return loadTrips() ?? []
-    }
-    
     private func getJourneys(fromJSON json: JSON) -> Array<Journey> {
         json.arrayValue
             .filter({ ["nationalExpress", "national", "regionalExp", "regional"].contains(where: $0["line"]["product"].stringValue.contains)  })

@@ -9,19 +9,23 @@
 import Foundation
 
 class TrainLocationRadarController: TrainLocationProtocol {
-   
-    var trips: Array<Trip> = [Trip]()
+
+    typealias T = RadarTrip
+    typealias P = TripProvider<T>
+    
+    var trips: Array<T> = [T]()
     var timer: Timer? = nil
-    private var dataProvider: TrainDataProviderProtocol?
+    private var dataProvider: TripProvider<T>?
 
     weak var delegate: TrainLocationDelegate?
         
     init() {
+        
     }
     
-    func register(trip: Trip) {
+    func register(trip: T) {
         self.trips.append(trip)
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: 0, withDuration: 0)
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.line[0].location, withDuration: 0)
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             self.updateTrip(trip: trip)
         }
@@ -38,7 +42,7 @@ class TrainLocationRadarController: TrainLocationProtocol {
         guard let arrayPosition = trip.currentTrainPosition() else {
             return
         }
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: arrayPosition, withDuration: DURATION)
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.line[arrayPosition].location, withDuration: DURATION)
     }
     
     func start() {
@@ -47,13 +51,12 @@ class TrainLocationRadarController: TrainLocationProtocol {
     
     func update() {
         guard let trips = dataProvider?.getAllTrips() else {
-            print("Error retreiving trips")
             return
         }
         self.trips = trips
     }
     
-    func setDataProvider<E>(withProvider provider: E) where E : TrainDataProviderProtocol {
+    func setDataProvider(withProvider provider: TripProvider<RadarTrip>) {
         self.dataProvider = provider
     }
 }

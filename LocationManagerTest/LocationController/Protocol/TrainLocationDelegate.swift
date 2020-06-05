@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol TrainLocationDelegate: NSObject {
-    func trainPositionUpdated(forTrip trip: Trip, toPosition: Int, withDuration duration: Double) -> Void
+    func trainPositionUpdated(forTrip trip: Trip, toPosition: CLLocation, withDuration duration: Double) -> Void
     func drawPolyLine(forTrip: Trip) -> Void
 }

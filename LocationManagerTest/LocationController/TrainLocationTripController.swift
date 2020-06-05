@@ -9,15 +9,18 @@
 import Foundation
 
 class TrainLocationTripController: TrainLocationProtocol  {
-    
+
+    typealias T = JourneyTrip
+    typealias P = TripProvider<T>
+
     weak var delegate: TrainLocationDelegate?
         
-    var trips: Array<Trip> = [Trip]()
+    var trips: Array<JourneyTrip> = [JourneyTrip]()
     private var timer: Timer? = nil
-    private var dataProvider: TrainDataProviderProtocol?
+    private var dataProvider: TripProvider<T>?
             
     init() {
-        self.dataProvider = MockTrainDataJourneyProvider()
+        // self.dataProvider = MockTrainDataJourneyProvider()
     }
     
     func start() {
@@ -33,13 +36,14 @@ class TrainLocationTripController: TrainLocationProtocol  {
         trips.forEach { self.register(trip: $0); self.delegate?.drawPolyLine(forTrip: $0) }
     }
     
-    func register(trip: Trip) {
+    func register(trip: T) {
         self.trips.append(trip)
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: 0, withDuration: 0)
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.line[0].location, withDuration: 0)
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             self.updateTrip(trip: trip)
         }
     }
+    
     
     @objc private func eventLoop() {
         print("Event loop")
@@ -48,14 +52,15 @@ class TrainLocationTripController: TrainLocationProtocol  {
         }
     }
     
-    private func updateTrip(trip: Trip) {
+    private func updateTrip(trip: JourneyTrip) {
         guard let arrayPosition = trip.currentTrainPosition() else {
             return
         }
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: arrayPosition, withDuration: 1)
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.line[0].location, withDuration: 1)
     }
     
-    func setDataProvider<T>(withProvider provider: T) where T : TrainDataProviderProtocol {
+    func setDataProvider(withProvider provider: TripProvider<JourneyTrip>) {
         self.dataProvider = provider
     }
+
 }

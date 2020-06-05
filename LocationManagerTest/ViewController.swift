@@ -120,9 +120,9 @@ extension ViewController: TrainLocationDelegate {
         self.mapViewController?.drawLine(entries: forTrip.line)
     }
     
-    func trainPositionUpdated(forTrip trip: Trip, toPosition: Int, withDuration duration: Double) {
-        self.mapViewController?.updateTrainLocation(forId: trip.name, toLocation: trip.line[toPosition].location.coordinate, withDuration: duration)
-        self.pinnedLocation = trip.line[toPosition].location
+    func trainPositionUpdated(forTrip trip: Trip, toPosition position: CLLocation, withDuration duration: Double) {
+        self.mapViewController?.updateTrainLocation(forId: trip.name, toLocation: position.coordinate, withDuration: duration)
+        self.pinnedLocation = position
         if let lastLocation = self.lastLocation  {
             print("Shortest Distance to Track: \(trip.shorttestDistanceToTrack(forUserLocation: lastLocation))")
             print("Is arriving: \(!trip.isParting(forUserLocation: lastLocation))")

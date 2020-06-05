@@ -9,5 +9,6 @@
 import Foundation
 
 protocol TrainDataProviderProtocol {
-    func getAllTrips() -> Array<Trip>
+    associatedtype TripData: Trip
+    func getAllTrips() -> Array<TripData>
 }

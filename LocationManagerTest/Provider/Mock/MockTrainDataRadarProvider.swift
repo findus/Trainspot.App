@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import CoreLocation
 
-class MockTrainDataProvider : TrainDataProviderProtocol {
+class MockTrainDataRadarProvider : TrainDataProviderProtocol {
     
     private var trips : Array<RadarTrip>? = nil
     
@@ -48,7 +48,7 @@ class MockTrainDataProvider : TrainDataProviderProtocol {
 
     }
 
-    func getAllTrips() -> Array<Trip> {
+    func getAllTrips() -> Array<RadarTrip> {
         return trips ?? []
     }
 
