@@ -11,42 +11,6 @@ import SwiftyJSON
 import CoreLocation
 import simd
 
-protocol Feature {
-    var lat: Double { get set }
-    var lon: Double { get set }
-}
-
-struct Path: Feature {
-    var lat: Double
-    var lon: Double
-    
-    //animation data
-    var duration: Int?
-    var lastBeforeStop: Bool = false
-}
-
-struct StopOver: Feature {
-
-    var name: String
-    
-    var lat: Double
-    var lon: Double
-    var arrival: Date?
-    var departure: Date?
-}
-
-struct Section {
-    var distance: Double
-    var time: TimeInterval
-    var segemnts: Array<CLLocation>
-}
-
-struct Timeline {
-    var name: String
-    var line: Array<Feature>
-    var departure: Date
-}
-
 class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
 
     typealias TripData = JourneyTrip
