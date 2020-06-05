@@ -25,7 +25,7 @@ class TrainLocationRadarController: TrainLocationProtocol {
     
     func register(trip: T) {
         self.trips.append(trip)
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.line[0].location, withDuration: 0)
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.polyline[0].location, withDuration: 0)
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             self.updateTrip(trip: trip)
         }
@@ -42,7 +42,7 @@ class TrainLocationRadarController: TrainLocationProtocol {
         guard let arrayPosition = trip.currentTrainPosition() else {
             return
         }
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.line[arrayPosition].location, withDuration: DURATION)
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.polyline[arrayPosition].location, withDuration: DURATION)
     }
     
     func start() {

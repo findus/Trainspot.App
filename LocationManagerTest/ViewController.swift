@@ -120,7 +120,7 @@ extension ViewController: MapViewControllerDelegate {
 
 extension ViewController: TrainLocationDelegate {
     func drawPolyLine(forTrip: Trip) {
-        self.mapViewController?.drawLine(entries: forTrip.line)
+        self.mapViewController?.drawLine(entries: forTrip.polyline)
     }
     
     func trainPositionUpdated(forTrip trip: Trip, toPosition position: CLLocation, withDuration duration: Double) {

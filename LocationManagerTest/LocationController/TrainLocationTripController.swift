@@ -105,16 +105,16 @@ class TrainLocationTripController: TrainLocationProtocol  {
                 return
             } else {
                 Log.info("[\(trip.name) started moving at at \(stop.name)]")
-                self.startNewAnimation(forTrip: trip, toPosition: trip.line[newPos].location, withDuration: animationData.duration, andArrayPosition: newPos)
+                self.startNewAnimation(forTrip: trip, toPosition: trip.polyline[newPos].location, withDuration: animationData.duration, andArrayPosition: newPos)
                 return
             }
         }
         
-        if trip.line[newPos] is StopOver {
+        if trip.polyline[newPos] is StopOver {
             // TODO stopping
         }
         
-        self.startNewAnimation(forTrip: trip, toPosition: trip.line[newPos].location, withDuration: animationData.duration, andArrayPosition: newPos)
+        self.startNewAnimation(forTrip: trip, toPosition: trip.polyline[newPos].location, withDuration: animationData.duration, andArrayPosition: newPos)
     }
     
     func setDataProvider(withProvider provider: TripProvider<JourneyTrip>) {

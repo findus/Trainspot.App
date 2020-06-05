@@ -15,7 +15,7 @@ class RadarTrip: Trip {
     /**
             A line, that represents the trains approximate location for the next 45 Minutes, 61 entries ~every 45 Seconds
      */
-    let line: Array<MapEntity>
+    let polyline: Array<MapEntity>
     let name: String
     
     let journey: Journey?
@@ -24,7 +24,7 @@ class RadarTrip: Trip {
     
     public init(withFetchTime time: Date, andName name: String, andLines line: Array<MapEntity>, isType type: String) {
         self.fetchTime = time
-        self.line = line
+        self.polyline = line
         self.name = name
         self.journey = nil
         self.type = type
@@ -37,7 +37,7 @@ class RadarTrip: Trip {
         let shortestPosition = self.shortestDistanceArrayPosition(forUserLocation: loc)
         let trainPosition = self.currentTrainPosition()
         
-        if trainPosition ?? self.line.count > shortestPosition {
+        if trainPosition ?? self.polyline.count > shortestPosition {
             return true
         }
         
@@ -48,11 +48,11 @@ class RadarTrip: Trip {
      Gets tracks shortest distance to the user, so that we can calulcate the approximate arrival of the train
      */
     func shorttestDistanceToTrack(forUserLocation loc : CLLocation) -> Double {
-        return line[self.shortestDistanceArrayPosition(forUserLocation: loc)].location.distance(from: loc)
+        return polyline[self.shortestDistanceArrayPosition(forUserLocation: loc)].location.distance(from: loc)
     }
     
     private func shortestDistanceArrayPosition(forUserLocation loc: CLLocation) -> Int {
-        let distances = line.map { $0.location.distance(from: loc) }
+        let distances = polyline.map { $0.location.distance(from: loc) }
         
         var arrayPosition = 0
         for (index, distance) in distances.enumerated() {

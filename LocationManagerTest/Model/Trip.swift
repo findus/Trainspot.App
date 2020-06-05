@@ -15,7 +15,7 @@ protocol Trip {
     /**
             A line, that represents the trains approximate location for the next 45 Minutes, 61 entries ~every 45 Seconds
      */
-    var line: Array<MapEntity> { get }
+    var polyline: Array<MapEntity> { get }
     
     var name: String { get }
     
