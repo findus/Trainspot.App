@@ -114,7 +114,7 @@ class HafasParser {
                 
                 let tl = generateTimeLine(forTrip: json)
                 
-                return JourneyTrip(withFetchTime: tl.departure, andName: tl.name, andTimeline: tl , andPolyline: coords)
+                return JourneyTrip(withDeparture: tl.departure, andName: tl.name, andTimeline: tl , andPolyline: coords)
         }
         
         return trips

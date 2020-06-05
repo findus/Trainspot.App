@@ -10,6 +10,10 @@ import Foundation
 import CoreLocation
 import Log
 
+/**
+ This class controls trips, that have no direct binding from locations and times, for example if you download a timetable
+ This Controller tries to calculate proper animations for a trip
+ */
 class TrainLocationTripController: TrainLocationProtocol  {
     
     typealias T = JourneyTrip

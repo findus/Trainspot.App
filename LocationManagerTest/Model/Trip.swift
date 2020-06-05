@@ -11,7 +11,7 @@ import CoreLocation
 
 protocol Trip {
        
-    var fetchTime: Date { get }
+    var departure: Date { get }
     /**
             A line, that represents the trains approximate location for the next 45 Minutes, 61 entries ~every 45 Seconds
      */

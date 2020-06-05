@@ -54,10 +54,7 @@ class JourneyTrip: Trip {
    
     var polyline: Array<MapEntity>
  
-    let fetchTime: Date
-    /**
-            A line, that represents the trains approximate location for the next 45 Minutes, 61 entries ~every 45 Seconds
-     */
+    let departure: Date
     let timeline: Timeline
     let name: String
     
@@ -65,8 +62,8 @@ class JourneyTrip: Trip {
         
     var counter = 0
     
-    public init(withFetchTime time: Date, andName name: String, andTimeline timeline: Timeline, andPolyline line: Array<MapEntity>) {
-        self.fetchTime = time
+    public init(withDeparture time: Date, andName name: String, andTimeline timeline: Timeline, andPolyline line: Array<MapEntity>) {
+        self.departure = time
         self.polyline = line
         self.name = name
         self.journey = nil

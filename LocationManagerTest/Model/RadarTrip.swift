@@ -11,7 +11,7 @@ import CoreLocation
 
 class RadarTrip: Trip {
    
-    let fetchTime: Date
+    let departure: Date
     /**
             A line, that represents the trains approximate location for the next 45 Minutes, 61 entries ~every 45 Seconds
      */
@@ -22,8 +22,8 @@ class RadarTrip: Trip {
     
     let type: String
     
-    public init(withFetchTime time: Date, andName name: String, andLines line: Array<MapEntity>, isType type: String) {
-        self.fetchTime = time
+    public init(withDeparture time: Date, andName name: String, andLines line: Array<MapEntity>, isType type: String) {
+        self.departure = time
         self.polyline = line
         self.name = name
         self.journey = nil
@@ -68,7 +68,7 @@ class RadarTrip: Trip {
      Returns the current position of the train, which is the nth position inside the array, returns empty if array bounds are exceeded
      */
     func currentTrainPosition() -> Int? {
-        let date = self.fetchTime
+        let date = self.departure
         let now = Date.init()
         let diff = now.timeIntervalSince(date)
         if ceil(diff) >= T_45_MINUTES {
