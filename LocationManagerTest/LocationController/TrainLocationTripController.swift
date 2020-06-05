@@ -70,12 +70,12 @@ class TrainLocationTripController: TrainLocationProtocol  {
         let userCalendar = Calendar.current // user calendar
         let debugTime = userCalendar.date(from: dateComponents)!
         
-        let animation = self.generateAnimationData(atTime: debugTime, forNextMinutes: 2, forTrip: trip)
+        //let animation = self.generateAnimationData(atTime: debugTime, forNextMinutes: 2, forTrip: trip)
         
         let position = self.findApproximateTrainLocation(forTrip: trip, andDate: debugTime)!.0
         let location = CLLocation(latitude: position.coordinate.latitude, longitude: position.coordinate.longitude)
         self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: location, withDuration: 0)
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: animation!.first!.location, withDuration: animation!.first!.duration)
+        //self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: animation!.first!.location, withDuration: animation!.first!.duration)
     }
     
     func setDataProvider(withProvider provider: TripProvider<JourneyTrip>) {
@@ -88,46 +88,36 @@ class TrainLocationTripController: TrainLocationProtocol  {
 
 extension TrainLocationTripController {
     
-    enum VehicleState {
-        case Driving
-        case Stopping
-        case Accelerating
-    }
-        
-    struct AnimationData {
-        var vehicleState: VehicleState
-        var duration: Double
-        var location: CLLocation
-    }
-    
-    func generateAnimationData(atTime: Date, forNextMinutes minutes: TimeInterval, forTrip trip: JourneyTrip) -> Array<AnimationData>? {
-        
-        var dateComponents = DateComponents()
-        dateComponents.year = 2020
-        dateComponents.month = 6
-        dateComponents.day = 4
-        dateComponents.hour = 14
-        dateComponents.minute = 57
-        
-        // Create date from components
-        let userCalendar = Calendar.current // user calendar
-        let debugTime = userCalendar.date(from: dateComponents)!
-        
-        guard
-            let position1 = findApproximateTrainLocation(forTrip: trip, andDate: debugTime),
-            let position2 = findApproximateTrainLocation(forTrip: trip, andDate: debugTime.addingTimeInterval(minutes * 60))
-            else {
-                Log.error("Could not generate animation data: Train locations could not be determined")
-                return nil
-        }
-        
-        //Check if slice contains a stop
-        //let arrayPosition1 = trip.timeline.line.enumerated().find
-        let animationData = AnimationData(vehicleState: .Driving, duration: minutes * 60, location: position2.0)
-        
-        return [animationData]
-    }
-    
+
+//
+//    func generateAnimationData(atTime: Date, forNextMinutes minutes: TimeInterval, forTrip trip: JourneyTrip) -> Array<AnimationData>? {
+//
+//        var dateComponents = DateComponents()
+//        dateComponents.year = 2020
+//        dateComponents.month = 6
+//        dateComponents.day = 4
+//        dateComponents.hour = 14
+//        dateComponents.minute = 57
+//
+//        // Create date from components
+//        let userCalendar = Calendar.current // user calendar
+//        let debugTime = userCalendar.date(from: dateComponents)!
+//
+//        guard
+//            let position1 = findApproximateTrainLocation(forTrip: trip, andDate: debugTime),
+//            let position2 = findApproximateTrainLocation(forTrip: trip, andDate: debugTime.addingTimeInterval(minutes * 60))
+//            else {
+//                Log.error("Could not generate animation data: Train locations could not be determined")
+//                return nil
+//        }
+//
+//        //Check if slice contains a stop
+//        //let arrayPosition1 = trip.timeline.line.enumerated().find
+//        let animationData = AnimationData(vehicleState: .Driving, duration: minutes * 60, location: position2.0)
+//
+//        return [animationData]
+//    }
+//
     /**
      Tries to find the exact train position on the polyine, returns the approximate position, the end of the current line the train is on, and the duration how long it would take to reach it
      */

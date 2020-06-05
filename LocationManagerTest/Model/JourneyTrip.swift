@@ -33,15 +33,21 @@ struct StopOver: Feature {
     var departure: Date?
 }
 
-struct Section {
-    var distance: Double
-    var time: TimeInterval
-    var segemnts: Array<CLLocation>
+enum VehicleState {
+    case Driving
+    case Stopping
+    case Accelerating
+}
+    
+struct AnimationData {
+    var vehicleState: VehicleState
+    var duration: Double
 }
 
 struct Timeline {
     var name: String
     var line: Array<Feature>
+    var animationData: Array<AnimationData>
     var departure: Date
 }
 
