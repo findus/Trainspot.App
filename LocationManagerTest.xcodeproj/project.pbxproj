@@ -10,6 +10,7 @@
 		2D9A5BA8B53D35DD8B97C3D1 /* Pods_LocationManagerTest_LocationManagerTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88A323A8CEDD0164D46A0FF /* Pods_LocationManagerTest_LocationManagerTestUITests.framework */; };
 		8773188A96BE89EE7890D60C /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C18627021B7A5948ABF56FD /* Pods_LocationManagerTest.framework */; };
 		D4270AB1248A71620022A6BB /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB0248A71620022A6BB /* File.swift */; };
+		D4270AB4248A8F770022A6BB /* HafasParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB3248A8F770022A6BB /* HafasParser.swift */; };
 		D45C505024882C3C00A3D857 /* TrainLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */; };
 		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
 		D45C50572488E27400A3D857 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C50562488E27400A3D857 /* AppConstants.swift */; };
@@ -60,6 +61,7 @@
 		81DAC181B364BA2179336F19 /* Pods-LocationManagerTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest.release.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest.release.xcconfig"; sourceTree = "<group>"; };
 		BFEFB2F185F1EDB86D47F583 /* Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D4270AB0248A71620022A6BB /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		D4270AB3248A8F770022A6BB /* HafasParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasParser.swift; sourceTree = "<group>"; };
 		D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationDelegate.swift; sourceTree = "<group>"; };
 		D45C505324883D8800A3D857 /* TrainLocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationPin.swift; sourceTree = "<group>"; };
 		D45C50562488E27400A3D857 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
@@ -136,6 +138,14 @@
 			path = Logging;
 			sourceTree = "<group>";
 		};
+		D4270AB2248A8F620022A6BB /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				D4270AB3248A8F770022A6BB /* HafasParser.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
 		D45C50552488E25100A3D857 /* AppConstants */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +157,7 @@
 		D45C50582488E6F200A3D857 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
+				D4270AB2248A8F620022A6BB /* Parser */,
 				D45C505B2488E85E00A3D857 /* Mock */,
 				D45C50592488E70A00A3D857 /* TrainDataProviderProtocol.swift */,
 				D45C5074248A51EA00A3D857 /* TripProvider.swift */,
@@ -499,6 +510,7 @@
 				D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */,
 				D4AF2004248825B20075F327 /* TrainLocationRadarController.swift in Sources */,
 				D4AF20012488239D0075F327 /* Journey.swift in Sources */,
+				D4270AB4248A8F770022A6BB /* HafasParser.swift in Sources */,
 				D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */,
 				D45C506324891D1400A3D857 /* MockTrainDataJourneyProvider.swift in Sources */,
 				D45C5075248A51EB00A3D857 /* TripProvider.swift in Sources */,
