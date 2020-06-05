@@ -26,7 +26,44 @@ class TrainLocationTripController: TrainLocationProtocol  {
     }
     
     func start() {
-        self.timer = Timer.scheduledTimer(timeInterval: 100, target: self, selector: #selector(eventLoop), userInfo: nil, repeats: true)
+        self.trips.forEach { (trip) in
+            self.startTrip(trip: trip)
+        }
+    }
+    
+    private func startTrip(trip: JourneyTrip) {
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2020
+        dateComponents.month = 6
+        dateComponents.day = 4
+        dateComponents.hour = 15
+        dateComponents.minute = 02
+        dateComponents.second = 0
+        
+        // Create date from components
+        let userCalendar = Calendar.current // user calendar
+        let debugTime = userCalendar.date(from: dateComponents)!
+        
+        let (loc, array, d) = self.findApproximateTrainLocation(forTrip: trip, andDate: debugTime)!
+        let location = CLLocation(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: location, withDuration: 0)
+        let position = trip.timeline.line.firstIndex(where: {$0.coords == array.coords})!
+        if position > 0 {
+            let animationData = trip.timeline.animationData[position - 1]
+            self.startNewAnimation(forTrip: trip, toPosition: location, withDuration: animationData.duration, andArrayPosition: position)
+        } else {
+            //TODO diff to next minute as duration
+            self.startNewAnimation(forTrip: trip, toPosition: location, withDuration: 10, andArrayPosition: position)
+        }
+        
+    }
+    
+    private func startNewAnimation(forTrip trip: Trip, toPosition position: CLLocation, withDuration duration: TimeInterval, andArrayPosition pos: Int) {
+        Log.debug("Animation: Di:", position ,"Du:", duration)
+        self.timer?.invalidate()
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: position, withDuration: duration)
+        self.timer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(eventLoop), userInfo: pos, repeats: true)
     }
     
     func update() {
@@ -40,42 +77,44 @@ class TrainLocationTripController: TrainLocationProtocol  {
     
     func register(trip: T) {
         self.trips.append(trip)
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.line[0].location, withDuration: 0)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            self.updateTrip(trip: trip)
-        }
+//        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.line[0].location, withDuration: 0)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+//            self.updateTrip(trip: trip)
+//        }
     }
     
     
-    @objc private func eventLoop() {
+    @objc private func eventLoop(timer: Timer) {
         print("Event loop")
         self.trips.forEach { (trip) in
-            self.updateTrip(trip: trip)
+            self.updateTrip(trip: trip, arrayPosition: timer.userInfo as! Int)
         }
     }
     
-    private func updateTrip(trip: JourneyTrip) {
-        guard let arrayPosition = trip.currentTrainPosition() else {
-            return
+    private func updateTrip(trip: JourneyTrip, arrayPosition: Int) {
+        
+        let newPos = arrayPosition + 1
+        let animationData = trip.timeline.animationData[newPos - 1]
+        
+        if let stop = trip.timeline.line[arrayPosition] as? StopOver {
+            if trip.atStation == false {
+                trip.atStation = true
+                Log.info("[\(trip.name) arrived at \(stop.name)]")
+                // TODO halt time
+                self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(eventLoop), userInfo: arrayPosition, repeats: true)
+                return
+            } else {
+                Log.info("[\(trip.name) started moving at at \(stop.name)]")
+                self.startNewAnimation(forTrip: trip, toPosition: trip.line[newPos].location, withDuration: animationData.duration, andArrayPosition: newPos)
+                return
+            }
         }
         
-        var dateComponents = DateComponents()
-        dateComponents.year = 2020
-        dateComponents.month = 6
-        dateComponents.day = 4
-        dateComponents.hour = 14
-        dateComponents.minute = 57
+        if trip.line[newPos] is StopOver {
+            // TODO stopping
+        }
         
-        // Create date from components
-        let userCalendar = Calendar.current // user calendar
-        let debugTime = userCalendar.date(from: dateComponents)!
-        
-        //let animation = self.generateAnimationData(atTime: debugTime, forNextMinutes: 2, forTrip: trip)
-        
-        let position = self.findApproximateTrainLocation(forTrip: trip, andDate: debugTime)!.0
-        let location = CLLocation(latitude: position.coordinate.latitude, longitude: position.coordinate.longitude)
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: location, withDuration: 0)
-        //self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: animation!.first!.location, withDuration: animation!.first!.duration)
+        self.startNewAnimation(forTrip: trip, toPosition: trip.line[newPos].location, withDuration: animationData.duration, andArrayPosition: newPos)
     }
     
     func setDataProvider(withProvider provider: TripProvider<JourneyTrip>) {
@@ -127,8 +166,6 @@ extension TrainLocationTripController {
         
         // let currentTime = Date() disabled for debugging
         let line = trip.timeline.line
-        
-
         
         // Finds the next Stop for the current train
         let (e1, nextStop) = line.enumerated().filter({ $0.element is StopOver && ($0.element as! StopOver).arrival?.timeIntervalSince(date) ?? -1 >= 0 }).first!

@@ -113,6 +113,7 @@ class HafasParser {
                 let coords = json["polyline"]["features"].arrayValue.map { MapEntity(name: "line", location: CLLocation(latitude: $0["geometry"]["coordinates"][1].doubleValue, longitude: $0["geometry"]["coordinates"][0].doubleValue ))  }
                 
                 let tl = generateTimeLine(forTrip: json)
+                tl.debug()
                 
                 return JourneyTrip(withFetchTime: tl.departure, andName: tl.name, andTimeline: tl , andPolyline: coords)
         }

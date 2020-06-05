@@ -46,9 +46,17 @@ struct Timeline {
     var line: Array<Feature>
     var animationData: Array<AnimationData>
     var departure: Date
+    func debug() {
+        zip(animationData,line.enumerated()).forEach { (arg0) in
+            let (AnimationData, Feature) = arg0
+            //Log.debug(Feature.offset, Feature.element.coords.distance(from: line[Feature.offset + 1].coords), AnimationData.duration)
+        }
+    }
 }
 
 class JourneyTrip: Trip {
+    
+    var atStation: Bool = false
    
     var line: Array<MapEntity>
  
