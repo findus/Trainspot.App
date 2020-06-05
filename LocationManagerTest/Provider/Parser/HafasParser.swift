@@ -40,18 +40,22 @@ class HafasParser {
                 
                 let name = stopOver["stop"]["name"].stringValue
                 
-                return StopOver(name: name, lat: lat, lon: lon, arrival: arrival, departure: departure)
+                return StopOver(name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure)
             } else {
-                return Path(lat: lat, lon: lon)
+                return Path(coords: CLLocation(latitude: lat, longitude: lon))
             }
         }
         
-        let animationData = generateAnimationData()
+        let animationData = generateAnimationData(fromFeatures: line)
         
         return Timeline(name: name, line: line, animationData: animationData ,departure: date)
     }
     
-    public static func generateAnimationData() -> Array<AnimationData> {
+    public static func generateAnimationData(fromFeatures features: Array<Feature>) -> Array<AnimationData> {
+        
+        let stops = features.enumerated().filter( { $0.element is StopOver } )
+        let statons = zip(stops, stops.dropFirst()).map( { ($0.0.offset, $0.1.offset) } )
+        
         return []
     }
         

@@ -149,9 +149,7 @@ extension TrainLocationTripController {
         // Calculates the distance between the two stops
         let slice = line[e2...e1]
         let distance = zip(slice,slice.dropFirst()).map { (first, second) -> Double in
-            let c1 = CLLocation(latitude: first.lat, longitude: first.lon)
-            let c2 = CLLocation(latitude: second.lat, longitude: second.lon)
-            return c1.distance(from: c2)
+            return first.coords.distance(from: second.coords)
         }
         
         // Sums it
@@ -170,20 +168,18 @@ extension TrainLocationTripController {
         
         for (first, second) in zip(slice,slice.dropFirst()).reversed() {
             nextFeature = first
-            let c1 = CLLocation(latitude: first.lat, longitude: first.lon)
-            let c2 = CLLocation(latitude: second.lat, longitude: second.lon)
             
-            if (count + c1.distance(from: c2) < missingdistance) {
-                count += c1.distance(from: c2)
+            if (count + first.coords.distance(from: second.coords) < missingdistance) {
+                count += first.coords.distance(from: second.coords)
                 continue
             }
             
-            var temploc = c2
-            while (count + c1.distance(from: temploc) > missingdistance) {
-                temploc = c1.midPoint(withLocation: temploc)
+            var temploc = second.coords
+            while (count + first.coords.distance(from: temploc) > missingdistance) {
+                temploc = first.coords.midPoint(withLocation: temploc)
             }
             
-            count += c1.distance(from: c2)
+            count += first.coords.distance(from: second.coords)
             Log.debug("[\(trip.name)] finished searching for location")
             return (temploc,nextFeature,10)
             

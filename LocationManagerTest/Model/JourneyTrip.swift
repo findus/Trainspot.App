@@ -10,14 +10,12 @@ import Foundation
 import CoreLocation
 
 protocol Feature {
-    var lat: Double { get set }
-    var lon: Double { get set }
+    var coords: CLLocation { get set }
 }
 
 struct Path: Feature {
-    var lat: Double
-    var lon: Double
-    
+    var coords: CLLocation
+
     //animation data
     var duration: Int?
     var lastBeforeStop: Bool = false
@@ -26,9 +24,8 @@ struct Path: Feature {
 struct StopOver: Feature {
 
     var name: String
-    
-    var lat: Double
-    var lon: Double
+    var coords: CLLocation
+
     var arrival: Date?
     var departure: Date?
 }
