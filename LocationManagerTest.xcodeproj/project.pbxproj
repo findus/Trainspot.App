@@ -17,6 +17,7 @@
 		D4270ABC248BDEAE0022A6BB /* TrainLocationTripByTimeFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABB248BDEAE0022A6BB /* TrainLocationTripByTimeFrameController.swift */; };
 		D4270ABE248BDF5C0022A6BB /* TimeFrameTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABD248BDF5C0022A6BB /* TimeFrameTrip.swift */; };
 		D4270AC0248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABF248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift */; };
+		D4270AC7248C439B0022A6BB /* TransportRestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AC6248C439B0022A6BB /* TransportRestProvider.swift */; };
 		D45C505024882C3C00A3D857 /* TrainLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */; };
 		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
 		D45C50572488E27400A3D857 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C50562488E27400A3D857 /* AppConstants.swift */; };
@@ -31,6 +32,8 @@
 		D45C507124893F4900A3D857 /* RadarTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C507024893F4900A3D857 /* RadarTrip.swift */; };
 		D45C50732489414C00A3D857 /* JourneyTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C50722489414C00A3D857 /* JourneyTrip.swift */; };
 		D45C5075248A51EB00A3D857 /* TripProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C5074248A51EA00A3D857 /* TripProvider.swift */; };
+		D46292CE248C468B006E638F /* LocationManagerTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46292CD248C468B006E638F /* LocationManagerTestTests.swift */; };
+		D46292D5248C4735006E638F /* MapEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE02487D3E900D33AA2 /* MapEntity.swift */; };
 		D4AF20012488239D0075F327 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF20002488239D0075F327 /* Journey.swift */; };
 		D4AF2004248825B20075F327 /* TrainLocationRadarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
@@ -51,6 +54,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D46292D0248C468B006E638F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4DEAABC2487AC1900D33AA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4DEAAC32487AC1900D33AA2;
+			remoteInfo = LocationManagerTest;
+		};
 		D4EA3D6024880387003D7469 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D4DEAABC2487AC1900D33AA2 /* Project object */;
@@ -72,6 +82,7 @@
 		D4270ABB248BDEAE0022A6BB /* TrainLocationTripByTimeFrameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationTripByTimeFrameController.swift; sourceTree = "<group>"; };
 		D4270ABD248BDF5C0022A6BB /* TimeFrameTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrameTrip.swift; sourceTree = "<group>"; };
 		D4270ABF248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrainDataTimeFrameProvider.swift; sourceTree = "<group>"; };
+		D4270AC6248C439B0022A6BB /* TransportRestProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportRestProvider.swift; sourceTree = "<group>"; };
 		D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationDelegate.swift; sourceTree = "<group>"; };
 		D45C505324883D8800A3D857 /* TrainLocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationPin.swift; sourceTree = "<group>"; };
 		D45C50562488E27400A3D857 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
@@ -87,6 +98,9 @@
 		D45C507024893F4900A3D857 /* RadarTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarTrip.swift; sourceTree = "<group>"; };
 		D45C50722489414C00A3D857 /* JourneyTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyTrip.swift; sourceTree = "<group>"; };
 		D45C5074248A51EA00A3D857 /* TripProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProvider.swift; sourceTree = "<group>"; };
+		D46292CB248C468B006E638F /* LocationManagerTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationManagerTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D46292CD248C468B006E638F /* LocationManagerTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerTestTests.swift; sourceTree = "<group>"; };
+		D46292CF248C468B006E638F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationRadarController.swift; sourceTree = "<group>"; };
 		D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +126,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D46292C8248C468B006E638F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4DEAAC12487AC1900D33AA2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -165,6 +186,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D4270AC1248C36FA0022A6BB /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				D4270AC6248C439B0022A6BB /* TransportRestProvider.swift */,
+			);
+			path = Backend;
+			sourceTree = "<group>";
+		};
 		D45C50552488E25100A3D857 /* AppConstants */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +207,7 @@
 			children = (
 				D4270AB2248A8F620022A6BB /* Parser */,
 				D45C505B2488E85E00A3D857 /* Mock */,
+				D4270AC1248C36FA0022A6BB /* Backend */,
 				D45C50592488E70A00A3D857 /* TrainDataProviderProtocol.swift */,
 				D45C5074248A51EA00A3D857 /* TripProvider.swift */,
 			);
@@ -211,6 +241,22 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		D46292C6248C4662006E638F /* LocationManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocationManagerTests;
+			sourceTree = "<group>";
+		};
+		D46292CC248C468B006E638F /* LocationManagerTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				D46292CD248C468B006E638F /* LocationManagerTestTests.swift */,
+				D46292CF248C468B006E638F /* Info.plist */,
+			);
+			path = LocationManagerTestTests;
+			sourceTree = "<group>";
+		};
 		D4AF20022488259C0075F327 /* LocationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,8 +284,10 @@
 		D4DEAABB2487AC1900D33AA2 = {
 			isa = PBXGroup;
 			children = (
+				D46292C6248C4662006E638F /* LocationManagerTests */,
 				D4DEAAC62487AC1900D33AA2 /* LocationManagerTest */,
 				D4EA3D5C24880387003D7469 /* LocationManagerTestUITests */,
+				D46292CC248C468B006E638F /* LocationManagerTestTests */,
 				D4DEAAC52487AC1900D33AA2 /* Products */,
 				DE099E028417340F4470B39B /* Pods */,
 				AAA8BBA48C41B9BBD430AD08 /* Frameworks */,
@@ -251,6 +299,7 @@
 			children = (
 				D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */,
 				D4EA3D5B24880387003D7469 /* LocationManagerTestUITests.xctest */,
+				D46292CB248C468B006E638F /* LocationManagerTestTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -332,6 +381,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D46292CA248C468B006E638F /* LocationManagerTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D46292D2248C468B006E638F /* Build configuration list for PBXNativeTarget "LocationManagerTestTests" */;
+			buildPhases = (
+				D46292C7248C468B006E638F /* Sources */,
+				D46292C8248C468B006E638F /* Frameworks */,
+				D46292C9248C468B006E638F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D46292D1248C468B006E638F /* PBXTargetDependency */,
+			);
+			name = LocationManagerTestTests;
+			productName = LocationManagerTestTests;
+			productReference = D46292CB248C468B006E638F /* LocationManagerTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D4DEAAC32487AC1900D33AA2 /* LocationManagerTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4DEAAD82487AC1E00D33AA2 /* Build configuration list for PBXNativeTarget "LocationManagerTest" */;
@@ -381,6 +448,10 @@
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Philipp Hentschel";
 				TargetAttributes = {
+					D46292CA248C468B006E638F = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = D4DEAAC32487AC1900D33AA2;
+					};
 					D4DEAAC32487AC1900D33AA2 = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -405,11 +476,19 @@
 			targets = (
 				D4DEAAC32487AC1900D33AA2 /* LocationManagerTest */,
 				D4EA3D5A24880387003D7469 /* LocationManagerTestUITests */,
+				D46292CA248C468B006E638F /* LocationManagerTestTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D46292C9248C468B006E638F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4DEAAC22487AC1900D33AA2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -516,6 +595,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D46292C7248C468B006E638F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D46292CE248C468B006E638F /* LocationManagerTestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4DEAAC02487AC1900D33AA2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -532,6 +619,7 @@
 				D45C50732489414C00A3D857 /* JourneyTrip.swift in Sources */,
 				D4270ABC248BDEAE0022A6BB /* TrainLocationTripByTimeFrameController.swift in Sources */,
 				D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */,
+				D4270AC7248C439B0022A6BB /* TransportRestProvider.swift in Sources */,
 				D4AF2004248825B20075F327 /* TrainLocationRadarController.swift in Sources */,
 				D4270ABA248BDE550022A6BB /* TrainLocationTripAnimationTimeController.swift in Sources */,
 				D4AF20012488239D0075F327 /* Journey.swift in Sources */,
@@ -558,12 +646,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4EA3D5E24880387003D7469 /* LocationManagerTestUITests.swift in Sources */,
+				D46292D5248C4735006E638F /* MapEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D46292D1248C468B006E638F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4DEAAC32487AC1900D33AA2 /* LocationManagerTest */;
+			targetProxy = D46292D0248C468B006E638F /* PBXContainerItemProxy */;
+		};
 		D4EA3D6124880387003D7469 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D4DEAAC32487AC1900D33AA2 /* LocationManagerTest */;
@@ -591,6 +685,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D46292D3248C468B006E638F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 682WVA5N96;
+				INFOPLIST_FILE = LocationManagerTestTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocationManagerTest.app/LocationManagerTest";
+			};
+			name = Debug;
+		};
+		D46292D4248C468B006E638F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 682WVA5N96;
+				INFOPLIST_FILE = LocationManagerTestTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocationManagerTest.app/LocationManagerTest";
+			};
+			name = Release;
+		};
 		D4DEAAD62487AC1E00D33AA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -788,6 +924,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D46292D2248C468B006E638F /* Build configuration list for PBXNativeTarget "LocationManagerTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D46292D3248C468B006E638F /* Debug */,
+				D46292D4248C468B006E638F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D4DEAABF2487AC1900D33AA2 /* Build configuration list for PBXProject "LocationManagerTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -19,5 +19,9 @@ class TripProvider<T : Trip> : TrainDataProviderProtocol {
     func getAllTrips() -> Array<T> {
         return trips
     }
+    
+    func update() {
+        
+    }
 
 }

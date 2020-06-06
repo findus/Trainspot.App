@@ -11,4 +11,5 @@ import Foundation
 protocol TrainDataProviderProtocol {
     associatedtype TripData: Trip
     func getAllTrips() -> Array<TripData>
+    func update() -> Void
 }

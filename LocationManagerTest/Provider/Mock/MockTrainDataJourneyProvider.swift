@@ -20,6 +20,10 @@ class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
         return journeyTrips
     }
     
+    func update() {
+        
+    }
+    
     private func loadJSON() -> JSON? {
         guard
             let filePath = Bundle(for: type(of: self)).path(forResource: "trip_test", ofType: ""),

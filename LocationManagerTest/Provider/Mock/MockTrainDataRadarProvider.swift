@@ -11,11 +11,15 @@ import SwiftyJSON
 import CoreLocation
 
 class MockTrainDataRadarProvider : TrainDataProviderProtocol {
-    
+
     private var trips : Array<RadarTrip>? = nil
     
     init() {
         self.trips = self.loadTrips()
+    }
+    
+    func update() {
+        
     }
     
     private func loadTrips() -> Array<RadarTrip>? {
