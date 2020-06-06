@@ -29,21 +29,23 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     
     var datestack : Array<Date> = []
     
+    var i : Double = 0
+    
     init() {
         var dateComponents = DateComponents()
         dateComponents.year = 2020
         dateComponents.month = 6
         dateComponents.day = 4
-        dateComponents.hour = 15
-        dateComponents.minute = 2
-        dateComponents.second = 55
+        dateComponents.hour = 14
+        dateComponents.minute = 55
+        dateComponents.second = 0
         
         // Create date from components
         let userCalendar = Calendar.current // user calendar
         datestack.append(userCalendar.date(from: dateComponents)!)
         
-        dateComponents.minute = 0
-        dateComponents.second = 0
+        dateComponents.minute = 55
+        dateComponents.second = 10
         
         datestack.append(userCalendar.date(from: dateComponents)!)
     }
@@ -55,18 +57,16 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     }
     
     private func startTrip(trip: TimeFrameTrip, withDate date: Date = Date()) {
-        // TODO somehow handle not startet trips
-        
-        
-    }
-
-    private func startNewAnimation(forTrip trip: TimeFrameTrip, toPosition position: CLLocation, withDuration duration: TimeInterval, andArrayPosition pos: Int) {
-        Log.debug("New Animation for: ", trip.name, "Duration: ", duration, "Seconds")
-        self.trips[trip.name]?.1.invalidate()
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: position, withDuration: duration)
-        self.trips[trip.name] = (trip ,Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(expired), userInfo: (trip.name, pos), repeats: true))
+        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(test), userInfo: (trip, date), repeats: true)
     }
     
+    @objc func test(timer: Timer) {
+        var (trip, date) = timer.userInfo as! (TimeFrameTrip, Date)
+        let coord = self.getTrainLocation(forTrip: trip, atDate: date.addingTimeInterval(i))
+        i += 1
+        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: coord, withDuration: 0)
+    }
+
     func update() {
         guard let trips = dataProvider?.getAllTrips() else {
             print("Error retreiving trips")
@@ -80,16 +80,6 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         self.trips[trip.name] = (trip, Timer())
     }
     
-    
-    @objc private func expired(timer: Timer) {
-        let (name, pos) = timer.userInfo as! (String,Int)
-        self.updateTrip(trip: self.trips[name]!.0 , arrayPosition: pos)
-    }
-    
-    private func updateTrip(trip: TimeFrameTrip, arrayPosition: Int) {
-
-    }
-    
     func setDataProvider(withProvider provider: TripProvider<TimeFrameTrip>) {
         self.dataProvider = provider
     }
@@ -97,3 +87,27 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
 }
 
 //MARK: -- Location Tracking
+
+extension TrainLocationTripByTimeFrameController {
+    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> CLLocation {
+        let (index,loc) = trip.locationArray.enumerated()
+            .filter( { $0.element.departure!.timeIntervalSince(date) <= 0 && $0.element.departure!.addingTimeInterval($0.element.durationToNext!).timeIntervalSince(date) >= 0  } ).first!
+        
+        let location = loc
+        
+        let wholeDuration = location.durationToNext!
+        let departure = location.departure!
+       
+        let startCoords = location.coords.coordinate
+        let endCoords = trip.locationArray[index + 1].coords.coordinate
+        
+        let secondsIntoSection = ( date.timeIntervalSince(departure) )
+        
+        let ratio = secondsIntoSection / wholeDuration
+        
+        let newLat = startCoords.latitude + ((endCoords.latitude - startCoords.latitude) * ratio)
+        let newLon = startCoords.longitude + ((endCoords.longitude - startCoords.longitude) * ratio)
+        
+        return CLLocation(latitude: newLat, longitude: newLon)
+    }
+}
