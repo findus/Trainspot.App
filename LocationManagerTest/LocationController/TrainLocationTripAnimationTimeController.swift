@@ -14,7 +14,7 @@ import Log
  This class controls trips, that have no direct binding from locations and times, for example if you download a timetable
  This Controller tries to calculate proper animations for a trip
  */
-class TrainLocationTripController: TrainLocationProtocol  {
+class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
     
     typealias T = JourneyTrip
     typealias P = TripProvider<T>
@@ -130,7 +130,7 @@ class TrainLocationTripController: TrainLocationProtocol  {
 
 //MARK: -- Location Tracking
 
-extension TrainLocationTripController {
+extension TrainLocationTripAnimationTimeController {
     
 
 //

@@ -67,7 +67,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         // Start and append different controller instances
         let radarLocationController = TrainLocationRadarController()
-        let tripLocationController = TrainLocationTripController()
+        let tripLocationController = TrainLocationTripAnimationTimeController()
         
         tripLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataJourneyProvider()))
         
