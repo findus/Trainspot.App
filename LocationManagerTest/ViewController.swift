@@ -122,6 +122,10 @@ extension ViewController: MapViewControllerDelegate {
 }
 
 extension ViewController: TrainLocationDelegate {
+    func removeTripFromMap(forTrip trip: Trip) {
+        self.mapViewController?.deleteEntry(withName: trip.name)
+    }
+    
     func drawPolyLine(forTrip: Trip) {
         self.mapViewController?.drawLine(entries: forTrip.polyline)
     }

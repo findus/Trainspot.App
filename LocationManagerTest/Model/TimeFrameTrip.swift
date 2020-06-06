@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class TimeFrameTrip: Trip {
+class TimeFrameTrip: Trip, Hashable {
     
     var departure: Date
     var journey: Journey?
@@ -76,4 +76,14 @@ class TimeFrameTrip: Trip {
         return counter
     }
     
+}
+
+extension TimeFrameTrip {
+    static func == (lhs: TimeFrameTrip, rhs: TimeFrameTrip) -> Bool {
+        lhs.name == rhs.name
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        return hasher.combine(self.name)
+    }
 }

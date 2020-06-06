@@ -11,6 +11,6 @@ import CoreLocation
 
 protocol MapViewControllerProtocol: NSObject {
     func addEntry(entry: MapEntity)
-    func deleteEntry(entry: MapEntity)
+    func deleteEntry(withName: String)
     func updateTrainLocation(forId id: String, toLocation location: CLLocationCoordinate2D, withDuration duration: Double)
 }

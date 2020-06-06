@@ -49,7 +49,7 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         self.map.addOverlay(polyline)
     }
     
-    func deleteEntry(entry: MapEntity) {
+    func deleteEntry(withName: String) {
         
     }
     

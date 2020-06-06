@@ -36,6 +36,10 @@ class TrainLocationProxy: NSObject {
 }
 
 extension TrainLocationProxy : TrainLocationDelegate {
+    func removeTripFromMap(forTrip trip: Trip) {
+        self.delegate?.removeTripFromMap(forTrip: trip)
+    }
+    
     func drawPolyLine(forTrip: Trip) {
         self.delegate?.drawPolyLine(forTrip: forTrip)
     }

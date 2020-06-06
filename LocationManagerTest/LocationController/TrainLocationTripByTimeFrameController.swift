@@ -21,12 +21,14 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
 
     weak var delegate: TrainLocationDelegate?
         
-    var trips: [String: (TimeFrameTrip, Timer)] = [:]
-    private var timer: Timer? = nil
+    var trips: Set<TimeFrameTrip> = Set.init()
+    private var timer: Timer? {
+        didSet {
+            oldValue?.invalidate()
+        }
+    }
     private var dataProvider: TripProvider<T>?
-    
-    var timers : Array<Timer> = []
-    
+        
     var datestack : Array<Date> = []
     
     var i : Double = 0
@@ -36,49 +38,64 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         dateComponents.year = 2020
         dateComponents.month = 6
         dateComponents.day = 4
-        dateComponents.hour = 15
-        dateComponents.minute = 4
+        dateComponents.hour = 14
+        dateComponents.minute = 54
         dateComponents.second = 00
         
         // Create date from components
         let userCalendar = Calendar.current // user calendar
         datestack.append(userCalendar.date(from: dateComponents)!)
         
-        dateComponents.minute = 0
-        dateComponents.second = 40
+        dateComponents.minute = 54
+        dateComponents.second = 10
         
         datestack.append(userCalendar.date(from: dateComponents)!)
     }
     
     func start() {
-        self.trips.values.forEach { (trip, timer) in
-            self.startTrip(trip: trip, withDate: datestack.popLast()!)
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(onTick), userInfo: nil, repeats: true)
+    }
+    
+    @objc func onTick(timer: Timer) {
+        self.trips.forEach { (trip) in
+            if let coord = self.getTrainLocation(forTrip: trip, atDate: Date()) {
+                self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: coord, withDuration: 1)
+            }
         }
-    }
-    
-    private func startTrip(trip: TimeFrameTrip, withDate date: Date = Date()) {
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(test), userInfo: (trip, date), repeats: true)
-    }
-    
-    @objc func test(timer: Timer) {
-        var (trip, date) = timer.userInfo as! (TimeFrameTrip, Date)
-        let coord = self.getTrainLocation(forTrip: trip, atDate: date.addingTimeInterval(i))
-        i += 1
-        print( date.addingTimeInterval(i))
-        self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: coord, withDuration: 0)
     }
 
     func update() {
+        
+        //Stop timer while updating entries
+        self.timer?.invalidate()
+        
         guard let trips = dataProvider?.getAllTrips() else {
             print("Error retreiving trips")
             return
         }
         
-        trips.forEach { self.register(trip: $0); self.delegate?.drawPolyLine(forTrip: $0) }
+        let set = Set(trips)
+        
+        let remaining = self.trips.intersection(set)
+        let new = set.subtracting(self.trips)
+        let lost = self.trips.subtracting(remaining)
+        
+        lost.forEach { (poorLostTrip) in
+            Log.info("Lost Trip \(poorLostTrip.name)")
+            self.delegate?.removeTripFromMap(forTrip: poorLostTrip)
+        }
+        
+        new.forEach { (newTrips) in
+            Log.info("Got new Trip \(newTrips.name)")
+        }
+        
+        self.trips = remaining.union(new)
+        
+        self.start()
     }
     
     func register(trip: T) {
-        self.trips[trip.name] = (trip, Timer())
+        self.trips.insert(trip)
     }
     
     func setDataProvider(withProvider provider: TripProvider<TimeFrameTrip>) {
@@ -90,7 +107,7 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
 //MARK: -- Location Tracking
 
 extension TrainLocationTripByTimeFrameController {
-    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> CLLocation {
+    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> CLLocation? {
         guard let loc = zip(trip.locationArray,trip.locationArray.dropFirst())
             .first(where: { (this, next) -> Bool in
                 if this is Path && next is StopOver {
@@ -119,7 +136,7 @@ extension TrainLocationTripByTimeFrameController {
                 }
             }) else {
                 Log.error("Error finding a location for Trip \(trip.name) at \(date)")
-                fatalError()
+                return nil
         }
         
         
