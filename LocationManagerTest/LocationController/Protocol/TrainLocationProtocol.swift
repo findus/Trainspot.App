@@ -11,6 +11,7 @@ import Foundation
 protocol TrainLocationProtocol {
     associatedtype T : Trip
     associatedtype P
+    func remove(trip :T)
     func register(trip :T)
     func start()
     func update()

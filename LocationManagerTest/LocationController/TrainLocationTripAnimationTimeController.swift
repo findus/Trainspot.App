@@ -48,6 +48,10 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
         datestack.append(userCalendar.date(from: dateComponents)!)
     }
     
+    func remove(trip: JourneyTrip) {
+        
+    }
+    
     func start() {
         self.trips.values.forEach { (trip, timer) in
             self.startTrip(trip: trip, withDate: datestack.popLast()!)

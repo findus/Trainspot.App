@@ -15,7 +15,7 @@ import Log
  This Controller tries to calculate proper animations for a trip
  */
 class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
-    
+
     typealias T = TimeFrameTrip
     typealias P = TripProvider<T>
 
@@ -52,14 +52,26 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         datestack.append(userCalendar.date(from: dateComponents)!)
     }
     
+    func remove(trip: TimeFrameTrip) {
+        self.timer?.invalidate()
+        self.trips.remove(trip)
+        self.delegate?.removeTripFromMap(forTrip: trip)
+        self.start()
+    }
+    
     func start() {
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(onTick), userInfo: nil, repeats: true)
     }
     
     @objc func onTick(timer: Timer) {
         self.trips.forEach { (trip) in
-            if let coord = self.getTrainLocation(forTrip: trip, atDate: Date()) {
-                self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: coord, withDuration: 1)
+            if isTripInBounds(trip: trip) {
+                if let coord = self.getTrainLocation(forTrip: trip, atDate: Date()) {
+                    self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: coord, withDuration: 1)
+                }
+            } else {
+                Log.info("Gonna remove Trip \(trip) from set, because time is invalid")
+                self.remove(trip: trip)
             }
         }
     }
@@ -107,6 +119,27 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
 //MARK: -- Location Tracking
 
 extension TrainLocationTripByTimeFrameController {
+    
+    private func isTripInBounds(trip: TimeFrameTrip) -> Bool {
+        let start = trip.departure
+        let end = trip.locationArray.last?.departure ?? Date.init(timeIntervalSince1970: 0)
+        let now = Date()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.mm.yyyy HH:mm"
+        
+        if start.timeIntervalSince(now) >= 0 || end.timeIntervalSince(now) <= 0 {
+            Log.warning("Trip \(trip) is not in bounds!")
+            if start.timeIntervalSince(now) >= 0 {
+                Log.warning("[\(formatter.string(from: trip.departure)).....(\(formatter.string(from: end))]................[\(formatter.string(from: start)))]")
+            } else {
+                Log.warning("[\(formatter.string(from: start))]..................[\(formatter.string(from: trip.departure)).....\(formatter.string(from: end))]")
+            }
+            return false
+        }
+        return true
+    }
+    
     func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> CLLocation? {
         guard let loc = zip(trip.locationArray,trip.locationArray.dropFirst())
             .first(where: { (this, next) -> Bool in

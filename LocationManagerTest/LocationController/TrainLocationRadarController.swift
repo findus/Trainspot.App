@@ -10,7 +10,6 @@ import Foundation
 
 class TrainLocationRadarController: TrainLocationProtocol {
 
-
     typealias T = RadarTrip
     typealias P = TripProvider<T>
     
@@ -45,6 +44,10 @@ class TrainLocationRadarController: TrainLocationProtocol {
             return
         }
         self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: trip.polyline[arrayPosition].location, withDuration: DURATION)
+    }
+    
+    func remove(trip: RadarTrip) {
+        
     }
     
     func start() {
