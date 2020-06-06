@@ -100,11 +100,8 @@ extension TrainLocationTripByTimeFrameController {
                         |__________*_____|     Stop     |________> Time .
                       15:00              15:02    15:03          15:04
                      */
-                    let result = (this as! Path).departure!.timeIntervalSince(date) <= 0 && (next as! StopOver).arrival!.timeIntervalSince(date) > 0
-                    if result == true {
-                        print("a")
-                    }
-                    return result
+                return (this as! Path).departure!.timeIntervalSince(date) <= 0 && (next as! StopOver).arrival!.timeIntervalSince(date) > 0
+               
                 } else if this is StopOver && next is Path {
                     /**
                     Map Against Arrival Data:
@@ -112,20 +109,13 @@ extension TrainLocationTripByTimeFrameController {
                         |________________|     Train     |________> Time .
                     15:00                                 15:03          15:04
                     */
-                    let result =
+                   return
                             ((this as! StopOver).arrival?.timeIntervalSince(date) ?? 1 <= 0 && (this as! StopOver).departure!.timeIntervalSince(date) > 0)
                         ||
                                 (this as! StopOver).departure!.timeIntervalSince(date) <= 0 && (next).departure!.timeIntervalSince(date) >= 0
-                    if result == true {
-                        print("a")
-                    }
-                    return result
+
                 } else {
-                    let result =  this.departure!.timeIntervalSince(date) <= 0 && next.departure!.timeIntervalSince(date) > 0
-                    if result == true {
-                        print("a")
-                    }
-                    return result
+                    return this.departure!.timeIntervalSince(date) <= 0 && next.departure!.timeIntervalSince(date) > 0
                 }
             }) else {
                 Log.error("Error finding a location for Trip \(trip.name) at \(date)")
