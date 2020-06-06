@@ -149,6 +149,25 @@ class HafasParser {
         
     }
     
+    public static func loadTimeFrameTrip(fromJSON json: JSON) -> Array<TimeFrameTrip>? {
+           
+           let trips = json.arrayValue
+               .filter({ $0["line"]["id"].stringValue != "bus-sev" })
+               .filter({ $0["line"]["name"].stringValue != "Bus SEV" })
+               .map { (json) -> TimeFrameTrip in
+                   
+                   let coords = json["polyline"]["features"].arrayValue.map { MapEntity(name: "line", location: CLLocation(latitude: $0["geometry"]["coordinates"][1].doubleValue, longitude: $0["geometry"]["coordinates"][0].doubleValue ))  }
+                   
+                let tl = generateTimeLine(forTrip: json)
+                let locationBasedFeatures = getFeaturesWithDates(forFeatures: tl.line, andAnimationData: tl.animationData)
+                   
+                return TimeFrameTrip(withDeparture: tl.departure, andName: tl.name, andPolyline: coords,andLocationMapping: locationBasedFeatures)
+           }
+           
+           return trips
+           
+       }
+    
     private func getJourneys(fromJSON json: JSON) -> Array<Journey> {
         json.arrayValue
             .filter({ ["nationalExpress", "national", "regionalExp", "regional"].contains(where: $0["line"]["product"].stringValue.contains)  })
