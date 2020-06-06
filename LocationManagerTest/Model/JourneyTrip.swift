@@ -11,17 +11,22 @@ import CoreLocation
 
 protocol Feature {
     var coords: CLLocation { get set }
+    var departure: Date? { get set }
+    var durationToNext: Double? { get set }
 }
 
 struct Path: Feature {
+    var durationToNext: Double?
+    
+    var departure: Date?
     var coords: CLLocation
 
     //animation data
-    var duration: Int?
     var lastBeforeStop: Bool = false
 }
 
 struct StopOver: Feature {
+    var durationToNext: Double?
 
     var name: String
     var coords: CLLocation
@@ -68,6 +73,10 @@ class JourneyTrip: Trip, Hashable {
         self.name = name
         self.journey = nil
         self.timeline = timeline
+    }
+    
+    func positionAtTime(date: Date) {
+        
     }
     
     /**

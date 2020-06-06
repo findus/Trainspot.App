@@ -11,6 +11,8 @@
 		8773188A96BE89EE7890D60C /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C18627021B7A5948ABF56FD /* Pods_LocationManagerTest.framework */; };
 		D4270AB1248A71620022A6BB /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB0248A71620022A6BB /* File.swift */; };
 		D4270AB4248A8F770022A6BB /* HafasParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB3248A8F770022A6BB /* HafasParser.swift */; };
+		D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */; };
+		D4270AB9248BAD170022A6BB /* TrainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4270AB8248BAD170022A6BB /* TrainView.xib */; };
 		D45C505024882C3C00A3D857 /* TrainLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */; };
 		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
 		D45C50572488E27400A3D857 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C50562488E27400A3D857 /* AppConstants.swift */; };
@@ -62,6 +64,8 @@
 		BFEFB2F185F1EDB86D47F583 /* Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D4270AB0248A71620022A6BB /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		D4270AB3248A8F770022A6BB /* HafasParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasParser.swift; sourceTree = "<group>"; };
+		D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainAnnotation.swift; sourceTree = "<group>"; };
+		D4270AB8248BAD170022A6BB /* TrainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainView.xib; sourceTree = "<group>"; };
 		D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationDelegate.swift; sourceTree = "<group>"; };
 		D45C505324883D8800A3D857 /* TrainLocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationPin.swift; sourceTree = "<group>"; };
 		D45C50562488E27400A3D857 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
@@ -144,6 +148,15 @@
 				D4270AB3248A8F770022A6BB /* HafasParser.swift */,
 			);
 			path = Parser;
+			sourceTree = "<group>";
+		};
+		D4270AB5248BACBE0022A6BB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */,
+				D4270AB8248BAD170022A6BB /* TrainView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D45C50552488E25100A3D857 /* AppConstants */ = {
@@ -261,6 +274,7 @@
 		D4DEAADD2487D1DB00D33AA2 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				D4270AB5248BACBE0022A6BB /* Views */,
 				D4DEAADB2487D1AF00D33AA2 /* MapViewControllerDelegate.swift */,
 				D4DEAADE2487D3B000D33AA2 /* MapViewControllerProtocol.swift */,
 				D4DEAAE02487D3E900D33AA2 /* MapEntity.swift */,
@@ -392,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */,
+				D4270AB9248BAD170022A6BB /* TrainView.xib in Resources */,
 				D4DEAAD12487AC1E00D33AA2 /* Assets.xcassets in Resources */,
 				D45C505F2488F22800A3D857 /* data2 in Resources */,
 				D4EA3D66248803DC003D7469 /* hafas_test_json.json in Resources */,
@@ -516,6 +531,7 @@
 				D45C5075248A51EB00A3D857 /* TripProvider.swift in Sources */,
 				D45C506924892CC900A3D857 /* TrainLocationProxy.swift in Sources */,
 				D4DEAAEA2487DA1D00D33AA2 /* Math+Extension.swift in Sources */,
+				D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */,
 				D45C505024882C3C00A3D857 /* TrainLocationDelegate.swift in Sources */,
 				D4DEAAE82487D9F100D33AA2 /* CLLocation+Extension.swift in Sources */,
 				D45C50572488E27400A3D857 /* AppConstants.swift in Sources */,

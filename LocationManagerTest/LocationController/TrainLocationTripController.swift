@@ -35,8 +35,8 @@ class TrainLocationTripController: TrainLocationProtocol  {
         dateComponents.month = 6
         dateComponents.day = 4
         dateComponents.hour = 15
-        dateComponents.minute = 02
-        dateComponents.second = 0
+        dateComponents.minute = 2
+        dateComponents.second = 55
         
         // Create date from components
         let userCalendar = Calendar.current // user calendar

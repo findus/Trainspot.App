@@ -47,6 +47,7 @@ class HafasParser {
         }
         
         let animationData = generateAnimationData(fromFeatures: line)
+        let test = getFeaturesWithDates(forFeatures: line, andAnimationData: animationData)
         
         return Timeline(name: name, line: line, animationData: animationData ,departure: date)
     }
@@ -60,6 +61,37 @@ class HafasParser {
         }
     }
     
+    /**
+     Returns an Array of features where every feature has the needed duration to the next Feature and the current location
+     */
+    public static func getFeaturesWithDates(forFeatures features: Array<Feature>, andAnimationData animationData: Array<AnimationData>) -> Array<Feature> {
+        zip(features, animationData).reduce([Feature]()) { (prev, tuple) -> Array<Feature> in
+            var newArray = prev
+            if let last = prev.last {
+                let lastDate = last.departure
+                
+                if tuple.0 is StopOver {
+                    let stop = tuple.0 as! StopOver
+                    var st = StopOver(name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)
+                    st.durationToNext = tuple.1.duration
+                    newArray.append(st)
+                    return newArray
+                } else {
+                    let d = Path(durationToNext: tuple.1.duration, departure: lastDate!.addingTimeInterval(last.durationToNext!), coords: tuple.0.coords, lastBeforeStop: false)
+                    newArray.append(d)
+                    return newArray
+                }
+            } else {
+                let stop = tuple.0 as! StopOver
+                var st = StopOver(name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)
+                st.durationToNext = tuple.1.duration
+                newArray.append(st)
+                return newArray
+
+            }
+        }
+    }
+    
     public static func generateAnimationData(fromFeatures features: Array<Feature>) -> Array<AnimationData> {
         
         
@@ -69,10 +101,6 @@ class HafasParser {
             let (departure, arrival) = e
             let slice = features[departure...arrival]
             
-//            let wholeDistance = zip(slice, slice.dropFirst()).reduce(0.0) { (res, arg1) -> Double in
-//                let (loc1, loc2) = arg1
-//                loc1.coords.distance(from: loc2.coords)
-//            }
             
             let distances = zip(slice, slice.dropFirst()).map { (loc1, loc2) -> Double in
                 return loc1.coords.distance(from: loc2.coords)
@@ -99,7 +127,7 @@ class HafasParser {
             }
             
         }
-        
+
         return Array(animationData.joined())
     }
         

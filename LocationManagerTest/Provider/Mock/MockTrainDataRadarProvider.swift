@@ -27,8 +27,6 @@ class MockTrainDataRadarProvider : TrainDataProviderProtocol {
         
         let json = try! JSON(data: data as Data)
         
-        
-        
         let trips = json.arrayValue
             .filter({ $0["line"]["id"].stringValue != "bus-sev" })
             .filter({ $0["line"]["name"].stringValue != "Bus SEV" })
