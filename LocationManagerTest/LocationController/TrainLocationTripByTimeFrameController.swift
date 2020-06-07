@@ -79,6 +79,10 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
             }
         }
     }
+    
+    func fetchServer() {
+        self.dataProvider?.update()
+    }
 
     func update() {
         
@@ -116,7 +120,7 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     
     func setDataProvider(withProvider provider: TripProvider<TimeFrameTrip>) {
         self.dataProvider = provider
-        self.dataProvider?.delegate = self
+        self.dataProvider?.setDeleate(delegate: self)
     }
 
 }

@@ -24,6 +24,10 @@ class MockTrainDataRadarProvider : TrainDataProviderProtocol {
         
     }
     
+    func setDeleate(delegate: TrainDataProviderDelegate) {
+
+    }
+    
     private func loadTrips() -> Array<RadarTrip>? {
         guard
             let filePath = Bundle(for: type(of: self)).path(forResource: "data2", ofType: ""),

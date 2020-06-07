@@ -80,5 +80,6 @@ class RadarTrip: Trip {
             return arrayPosition
         }
     }
+
     
 }

@@ -35,5 +35,5 @@ protocol Trip {
      Returns the current position of the train, which is the nth position inside the array, returns empty if array bounds are exceeded
      */
     func currentTrainPosition() -> Int?
-    
+
 }

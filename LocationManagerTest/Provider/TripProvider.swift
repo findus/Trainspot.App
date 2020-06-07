@@ -10,9 +10,7 @@
 import Foundation
 
 class TripProvider<T> : TrainDataProviderProtocol {
-
-    var delegate: TrainDataProviderDelegate? = nil
- 
+    
     var trips: Array<T> = []
     
     private let providerBox: BaseTrainDataProvider<T>
@@ -29,11 +27,15 @@ class TripProvider<T> : TrainDataProviderProtocol {
     func update() {
         self.providerBox.update()
     }
+    
+    func setDeleate(delegate: TrainDataProviderDelegate) {
+        self.providerBox.setDeleate(delegate: delegate)
+    }
 
 }
 
 private class BaseTrainDataProvider<T>: TrainDataProviderProtocol {
-    
+   
     var delegate: TrainDataProviderDelegate?
     
     init() {
@@ -48,6 +50,10 @@ private class BaseTrainDataProvider<T>: TrainDataProviderProtocol {
     
     func update() {
         fatalError("Abstract class, you must override this")
+    }
+    
+    func setDeleate(delegate: TrainDataProviderDelegate) {
+        fatalError("Do not initialize this abstract class directly")
     }
 }
 
@@ -64,5 +70,9 @@ private class TrainDataProviderBox<P: TrainDataProviderProtocol>: BaseTrainDataP
     
     override func update() {
         self.provider.update()
+    }
+    
+    override func setDeleate(delegate: TrainDataProviderDelegate) {
+        self.provider.setDeleate(delegate: delegate)
     }
 }

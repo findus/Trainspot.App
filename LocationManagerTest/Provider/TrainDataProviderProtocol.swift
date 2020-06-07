@@ -10,9 +10,9 @@ import Foundation
 
 protocol TrainDataProviderProtocol {
     associatedtype TripData
-    var delegate: TrainDataProviderDelegate? { get set }
     func getAllTrips() -> Array<TripData>
     func update() -> Void
+    func setDeleate(delegate: TrainDataProviderDelegate)
 }
 
 //TODO Somehow pass the associated trip type as argument, but currently not sure how to realize this

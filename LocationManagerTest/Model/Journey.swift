@@ -15,6 +15,7 @@ struct Journey: Hashable {
     var to: String
     var tripID: String
     var when: Date
+    var name: String
     
     var hashValue: Int {
         return tripID.hashValue

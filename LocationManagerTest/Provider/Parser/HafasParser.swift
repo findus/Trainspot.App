@@ -46,6 +46,7 @@ class HafasParser {
             }
         }
         
+        Log.info("Generate Animation Data for: \(name)")
         let animationData = generateAnimationData(fromFeatures: line)
         let test = getFeaturesWithDates(forFeatures: line, andAnimationData: animationData)
         
@@ -77,7 +78,7 @@ class HafasParser {
                     newArray.append(st)
                     return newArray
                 } else {
-                    let d = Path(durationToNext: tuple.1.duration, departure: lastDate!.addingTimeInterval(last.durationToNext!), coords: tuple.0.coords, lastBeforeStop: false)
+                    let d = Path(durationToNext: tuple.1.duration, departure: lastDate?.addingTimeInterval(last.durationToNext ?? 0) ?? Date(), coords: tuple.0.coords, lastBeforeStop: false)
                     newArray.append(d)
                     return newArray
                 }
@@ -94,7 +95,6 @@ class HafasParser {
     
     public static func generateAnimationData(fromFeatures features: Array<Feature>) -> Array<AnimationData> {
         
-        
         let stops = features.enumerated().filter( { $0.element is StopOver } )
         let station_array_positions = zip(stops, stops.dropFirst()).map( { ($0.0.offset, $0.1.offset) } )
         let sections = station_array_positions.map { (e) -> Section in
@@ -108,7 +108,7 @@ class HafasParser {
             
             let wholeDistance = distances.reduce(0, +)
             
-            let time = (features[arrival] as! StopOver).arrival!.timeIntervalSince((features[departure] as! StopOver).departure!)
+            let time = ( (features[arrival] as! StopOver).arrival ?? (features[arrival] as! StopOver).departure!).timeIntervalSince(((features[departure] as! StopOver).departure ?? (features[departure] as! StopOver).arrival)!)
             
             return Section(time: time, distance: wholeDistance, distances: distances)
             
@@ -149,6 +149,22 @@ class HafasParser {
         
     }
     
+    public static func loadTimeFrameTrip2(fromJSON json: JSON) -> TimeFrameTrip? {
+
+        let coords = json["polyline"]["features"].arrayValue.map { MapEntity(name: "line", location: CLLocation(latitude: $0["geometry"]["coordinates"][1].doubleValue, longitude: $0["geometry"]["coordinates"][0].doubleValue ))  }
+        
+        if json["cancelled"].exists() {
+            Log.warning("\(json["stop"]["name"]) cancelled")
+            return nil
+        }
+        
+        let tl = generateTimeLine(forTrip: json)
+        let locationBasedFeatures = getFeaturesWithDates(forFeatures: tl.line, andAnimationData: tl.animationData)
+        
+        return TimeFrameTrip(withDeparture: tl.departure, andName: tl.name, andPolyline: coords,andLocationMapping: locationBasedFeatures)  
+       }
+    
+    //TODO for journeys / Mocking
     public static func loadTimeFrameTrip(fromJSON json: JSON) -> Array<TimeFrameTrip>? {
            
            let trips = json.arrayValue
@@ -176,7 +192,7 @@ class HafasParser {
                     Log.warning("\($0["stop"]["name"]) cancelled")
                     return nil
                 }
-                return Journey(from_id: $0["stop"]["id"].stringValue, from: $0["stop"]["name"].stringValue, to: $0["direction"].stringValue, tripID: $0["tripId"].stringValue, when: formatHafasDate(fromString: $0["when"].stringValue)!)
+                return Journey(from_id: $0["stop"]["id"].stringValue, from: $0["stop"]["name"].stringValue, to: $0["direction"].stringValue, tripID: $0["tripId"].stringValue, when: formatHafasDate(fromString: $0["when"].stringValue)!, name: $0["line"]["id"].stringValue)
         }
                 
     }

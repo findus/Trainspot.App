@@ -16,11 +16,16 @@ class TransportRestProvider: TrainDataProviderProtocol {
     var delegate: TrainDataProviderDelegate? = nil
 
     var journeys: Set<Journey> = []
+    var trips: Array<TimeFrameTrip> = []
 
     typealias TripData = TimeFrameTrip
     
     func getAllTrips() -> Array<TimeFrameTrip> {
-        return []
+        return trips
+    }
+    
+    func setDeleate(delegate: TrainDataProviderDelegate) {
+        self.delegate = delegate
     }
      
     func update() {
@@ -32,11 +37,24 @@ class TransportRestProvider: TrainDataProviderProtocol {
         .map({ ( output : [Publishers.MergeMany<Future<Array<Journey>, AFError>>.Output]) -> Set<Journey> in
             Set(Array(output.joined()))
         })
+            .flatMap({ (journeys: Set<Journey>) -> Future<Array<JSON>, AFError> in
+            let futures = Array(journeys).map { (j:Journey) -> Future<JSON, AFError> in
+                self.fetchTrips(forJourney: j)
+            }
+                return Future { (completion) in
+                    Publishers.MergeMany(futures).collect().receive(on: RunLoop.main).sink(receiveCompletion: { (competion) in
+                    }) { (x: Array<JSON>) in
+                        completion(.success(x))
+                    }
+                }
+        })
         .receive(on: RunLoop.main)
         .sink(receiveCompletion: { (onComplete) in
                 Log.info(onComplete)
-            }) { (journeys) in
-                self.journeys = journeys
+            }) { (trips) in
+                let trips = trips.compactMap({ HafasParser.loadTimeFrameTrip2(fromJSON: $0) })
+                self.trips = trips
+                self.delegate?.onTripsUpdated()
         }
     }
     
@@ -97,4 +115,30 @@ class TransportRestProvider: TrainDataProviderProtocol {
         }
         
     }
+    
+    private func fetchTrips(forJourney journey: Journey) -> Future<JSON, AFError> {
+         
+         let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
+         
+         let parameters = [
+            "lineName" : journey.name,
+            "polyline" : "true"
+         ]
+        
+        let urlParameters = URLComponents(string: "https://2.db.transport.rest/trips/\(journey.tripID.replacingOccurrences(of: "|", with: "%7C"))")!
+         
+         return Future<JSON, AFError> { (completion) in
+            AF.request(urlParameters.url!, parameters: parameters, headers: headers ).responseData { (response) in
+                 switch response.result {
+                 case .success(let value):
+                     let json = JSON(value)
+                     completion(.success(json))
+                 case .failure(let error):
+                    Log.debug(error)
+                    completion(.failure(error))
+                 }
+             }
+         }
+         
+     }
 }
