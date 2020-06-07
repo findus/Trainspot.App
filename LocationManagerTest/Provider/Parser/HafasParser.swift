@@ -130,7 +130,7 @@ class HafasParser {
 
         return Array(animationData.joined())
     }
-        
+            
     public static  func loadJourneyTrip(fromJSON json: JSON) -> Array<JourneyTrip>? {
         
         let trips = json.arrayValue

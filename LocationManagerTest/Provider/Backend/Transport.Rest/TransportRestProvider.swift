@@ -46,39 +46,39 @@ class TransportRestProvider: TrainDataProviderProtocol {
           URLQueryItem(name: "duration", value: "60")
         ]
         
-        let task = URLSession.shared.dataTask(with: urlComponents.url!) { (result) in
-            switch result {
-            case .success( _, let data):
-                if let json = try? JSON(data: data) {
-                    self.journeys = json
-                } else {
-                    Log.error("Failed downloading Journeys")
-                }
-                break
-                
-            case .failure( _):
-                Log.error("Failed downloading Journeys")
-                break
-            }
+        guard let url = urlComponents.url else {
+            Log.error("Could not parse url")
+            return
         }
         
+        var request = URLRequest(url: url)
+        request.setValue("de.f1ndus.trainspotTest", forHTTPHeaderField: "X-Identifier")
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let data = data {
+                let json = JSON(data)
+                self.journeys = json
+            }
+        }
+
         task.resume()
     }
 }
 
-extension URLSession {    func dataTask(with url: URL, result: @escaping (Result<(URLResponse, Data), Error>) -> Void) -> URLSessionDataTask {
-    return dataTask(with: url) { (data, response, error) in
-        if let error = error {
-            result(.failure(error))
-            return
+extension URLSession {
+    func dataTask(with url: URL, result: @escaping (Result<(URLResponse, Data), Error>) -> Void) -> URLSessionDataTask {
+        return dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                result(.failure(error))
+                return
+            }
+            
+            guard let response = response, let data = data else {
+                let error = NSError(domain: "error", code: 0, userInfo: nil)
+                result(.failure(error))
+                return
+            }
+            result(.success((response, data)))
         }
-        
-        guard let response = response, let data = data else {
-            let error = NSError(domain: "error", code: 0, userInfo: nil)
-            result(.failure(error))
-            return
-        }
-        result(.success((response, data)))
     }
-}
 }
