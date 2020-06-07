@@ -10,6 +10,8 @@ import Foundation
 import SwiftyJSON
 
 class TransportRestProvider: TrainDataProviderProtocol {
+   
+    var delegate: TrainDataProviderDelegate? = nil
 
     var journeys: JSON? = nil
 

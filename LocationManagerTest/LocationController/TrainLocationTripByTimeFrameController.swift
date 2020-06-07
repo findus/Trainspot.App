@@ -116,6 +116,15 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
 
 }
 
+//Mark: -- Update Handling
+
+extension TrainLocationTripByTimeFrameController: TrainDataProviderDelegate {
+    func onTripsUpdated() {
+        Log.info("Trips got updated")
+        self.update()
+    }
+}
+
 //MARK: -- Location Tracking
 
 extension TrainLocationTripByTimeFrameController {

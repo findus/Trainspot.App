@@ -10,7 +10,9 @@ import Foundation
 import SwiftyJSON
 
 class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
-
+   
+    var delegate: TrainDataProviderDelegate? = nil
+    
     typealias TripData = JourneyTrip
     
     func getAllTrips() -> Array<JourneyTrip> {

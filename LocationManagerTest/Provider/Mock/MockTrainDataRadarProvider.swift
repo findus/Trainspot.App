@@ -11,6 +11,8 @@ import SwiftyJSON
 import CoreLocation
 
 class MockTrainDataRadarProvider : TrainDataProviderProtocol {
+   
+    var delegate: TrainDataProviderDelegate? = nil
 
     private var trips : Array<RadarTrip>? = nil
     

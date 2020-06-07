@@ -10,6 +10,8 @@ import Foundation
 import SwiftyJSON
 
 class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
+   
+    var delegate: TrainDataProviderDelegate? = nil
 
     typealias TripData = TimeFrameTrip
     
