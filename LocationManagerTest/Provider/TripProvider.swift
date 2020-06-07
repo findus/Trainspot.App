@@ -51,14 +51,14 @@ private class BaseTrainDataProvider<T>: TrainDataProviderProtocol {
     }
 }
 
-private class TrainDataProviderBox<B: TrainDataProviderProtocol>: BaseTrainDataProvider<B.TripData> {
-    private let provider: B
+private class TrainDataProviderBox<P: TrainDataProviderProtocol>: BaseTrainDataProvider<P.TripData> {
+    private let provider: P
     
-    init(concreteProvider: B) {
+    init(concreteProvider: P) {
         self.provider = concreteProvider
     }
     
-    override func getAllTrips() -> Array<B.TripData> {
+    override func getAllTrips() -> Array<P.TripData> {
         return provider.getAllTrips()
     }
     
