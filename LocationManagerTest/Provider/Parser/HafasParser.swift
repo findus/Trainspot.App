@@ -168,10 +168,10 @@ class HafasParser {
            
        }
     
-    private func getJourneys(fromJSON json: JSON) -> Array<Journey> {
+    public static func getJourneys(fromJSON json: JSON) -> Array<Journey> {
         json.arrayValue
             .filter({ ["nationalExpress", "national", "regionalExp", "regional"].contains(where: $0["line"]["product"].stringValue.contains)  })
-            .map { Journey(from_id: $0["stop"]["id"].stringValue, from: $0["stop"]["name"].stringValue, to: $0["direction"].stringValue, tripID: $0["tripId"].stringValue) }
+            .map { Journey(from_id: $0["stop"]["id"].stringValue, from: $0["stop"]["name"].stringValue, to: $0["direction"].stringValue, tripID: $0["tripId"].stringValue, when: formatHafasDate(fromString: $0["when"].stringValue)!) }
     }
 
 }

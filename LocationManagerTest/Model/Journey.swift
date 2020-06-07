@@ -14,5 +14,6 @@ struct Journey {
     var from: String
     var to: String
     var tripID: String
+    var when: Date
     
 }
