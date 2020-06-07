@@ -90,6 +90,12 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
         trips.forEach { self.register(trip: $0); self.delegate?.drawPolyLine(forTrip: $0) }
     }
     
+    func pause() {
+        self.timer?.invalidate()
+        //TODO recalc animations
+        fatalError("Pausing not fully implemented")
+    }
+    
     func register(trip: T) {
         self.trips[trip.name] = (trip, Timer())
     }

@@ -54,6 +54,12 @@ class TrainLocationRadarController: TrainLocationProtocol {
         self.timer = Timer.scheduledTimer(timeInterval: DURATION, target: self, selector: #selector(eventLoop), userInfo: nil, repeats: true)
     }
     
+    func pause() {
+        self.timer?.invalidate()
+        //TODO recalc animations
+        fatalError("Pausing not fully implemented")
+    }
+    
     func update() {
         guard let trips = dataProvider?.getAllTrips() else {
             return

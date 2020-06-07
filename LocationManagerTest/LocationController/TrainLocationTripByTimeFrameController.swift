@@ -63,6 +63,10 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(onTick), userInfo: nil, repeats: true)
     }
     
+    func pause() {
+        self.timer?.invalidate()
+    }
+    
     @objc func onTick(timer: Timer) {
         self.trips.forEach { (trip) in
             if isTripInBounds(trip: trip) {
@@ -112,6 +116,7 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     
     func setDataProvider(withProvider provider: TripProvider<TimeFrameTrip>) {
         self.dataProvider = provider
+        self.dataProvider?.delegate = self
     }
 
 }

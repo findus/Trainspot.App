@@ -189,7 +189,7 @@
 		D4270AC1248C36FA0022A6BB /* Backend */ = {
 			isa = PBXGroup;
 			children = (
-				D4270AC6248C439B0022A6BB /* TransportRestProvider.swift */,
+				D46292D6248D17F6006E638F /* Transport.Rest */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -255,6 +255,14 @@
 				D46292CF248C468B006E638F /* Info.plist */,
 			);
 			path = LocationManagerTestTests;
+			sourceTree = "<group>";
+		};
+		D46292D6248D17F6006E638F /* Transport.Rest */ = {
+			isa = PBXGroup;
+			children = (
+				D4270AC6248C439B0022A6BB /* TransportRestProvider.swift */,
+			);
+			path = Transport.Rest;
 			sourceTree = "<group>";
 		};
 		D4AF20022488259C0075F327 /* LocationController */ = {

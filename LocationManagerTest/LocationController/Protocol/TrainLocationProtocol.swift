@@ -15,6 +15,7 @@ protocol TrainLocationProtocol {
     func register(trip :T)
     func start()
     func update()
+    func pause()
     func setDataProvider(withProvider provider: P)
     var delegate: TrainLocationDelegate? { set get }
 }
