@@ -8,6 +8,8 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
+import PromisedFuture
 
 class TransportRestProvider: TrainDataProviderProtocol {
    
@@ -23,6 +25,7 @@ class TransportRestProvider: TrainDataProviderProtocol {
      
     func update() {
         self.downloadJourneys(forStation: "8000049")
+        self.fetchDepartures(forStation: "8000049")
     }
     
     public enum APIServiceError: Error {
@@ -31,6 +34,33 @@ class TransportRestProvider: TrainDataProviderProtocol {
         case invalidResponse
         case noData
         case decodeError
+    }
+    
+    
+    private func fetchDepartures(forStation id: String) -> PromisedFuture.Future<JSON, Error> {
+        
+        let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
+        
+        let now = Int(Date().addingTimeInterval(-2700).timeIntervalSince1970)
+        //TODO time based on distance/time to station
+        
+        let parameters = [
+            "departure" : String(now),
+            "duration" : "60"
+        ]
+        
+        return Future (operation: { completion in
+            AF.request("https://2.db.transport.rest/stations/\(id)/departures", parameters: parameters, headers: headers).responseData { (response) in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    completion(.success(json))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        })
+        
     }
         
     private func downloadJourneys(forStation id: String) -> Void {

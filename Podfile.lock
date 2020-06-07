@@ -1,24 +1,28 @@
 PODS:
   - Alamofire (5.2.1)
   - Log (2.0)
+  - PromisedFuture (1.0.2)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Log
+  - PromisedFuture
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Log
+    - PromisedFuture
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   Log: 73fab10e8b88f15cef5f322b12c9be87cf19ee6e
+  PromisedFuture: 15ab3542f9d9c9d62886e2228c606a3e0fd16ccd
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 6e733edb0ca0aad3d9d9cb3506172bc47cfd41e1
+PODFILE CHECKSUM: 7d30e05b7a29fd6d43ec5fec04ce24172fbaf617
 
 COCOAPODS: 1.8.4
