@@ -18,3 +18,9 @@ func formatHafasDate(fromString string: String?) -> Date? {
     
     return dateFormatterGet.date(from: string)
 }
+
+func getDateFormatter() -> DateFormatter {
+    let hafasDateFormatter = DateFormatter()
+    hafasDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+    return hafasDateFormatter
+}

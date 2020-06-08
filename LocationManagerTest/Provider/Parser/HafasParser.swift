@@ -176,6 +176,7 @@ class HafasParser {
                 
                 guard let tl = generateTimeLine(forTrip: json) else {
                     Log.error("[\(name)] Parse Error, could not generate Timeline, wil exclude this trip")
+                    fatalError()
                 }
                 
                 return JourneyTrip(withDeparture: tl.departure, andName: tl.name, andTimeline: tl , andPolyline: coords)
@@ -195,9 +196,9 @@ class HafasParser {
         }
         
         let tl = generateTimeLine(forTrip: json)
-        let locationBasedFeatures = getFeaturesWithDates(forFeatures: tl.line, andAnimationData: tl.animationData)
+        let locationBasedFeatures = getFeaturesWithDates(forFeatures: tl!.line, andAnimationData: tl!.animationData)
         
-        return TimeFrameTrip(withDeparture: tl.departure, andName: tl.name, andPolyline: coords,andLocationMapping: locationBasedFeatures)  
+        return TimeFrameTrip(withDeparture: tl!.departure, andName: tl!.name, andPolyline: coords,andLocationMapping: locationBasedFeatures)
        }
     
     //TODO for journeys / Mocking
@@ -211,9 +212,9 @@ class HafasParser {
                    let coords = json["polyline"]["features"].arrayValue.map { MapEntity(name: "line", location: CLLocation(latitude: $0["geometry"]["coordinates"][1].doubleValue, longitude: $0["geometry"]["coordinates"][0].doubleValue ))  }
                    
                 let tl = generateTimeLine(forTrip: json)
-                let locationBasedFeatures = getFeaturesWithDates(forFeatures: tl.line, andAnimationData: tl.animationData)
+                let locationBasedFeatures = getFeaturesWithDates(forFeatures: tl!.line, andAnimationData: tl!.animationData)
                    
-                return TimeFrameTrip(withDeparture: tl.departure, andName: tl.name, andPolyline: coords,andLocationMapping: locationBasedFeatures)
+                return TimeFrameTrip(withDeparture: tl!.departure, andName: tl!.name, andPolyline: coords,andLocationMapping: locationBasedFeatures)
            }
            
            return trips
