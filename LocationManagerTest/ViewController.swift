@@ -70,9 +70,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let tripLocationController = TrainLocationTripAnimationTimeController()
         let tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
         
-        tripLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataJourneyProvider()))
+        //tripLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataJourneyProvider()))
         
-        //tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider()))
+        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(NetworkTrainDataTimeFrameProvider()))
         
         //tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(TransportRestProvider()))
       
@@ -120,16 +120,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
 extension ViewController: MapViewControllerDelegate {
     func userPressedAt(location: CLLocation) {
-        self.mapViewController?.removeAllEntries()
-        self.pinnedLocation = location
-        self.mapViewController?.addEntry(entry: MapEntity(name: "test", location: location))
+//        self.mapViewController?.removeAllEntries()
+//        self.pinnedLocation = location
+//        self.mapViewController?.addEntry(entry: MapEntity(name: "test", location: location))
 
     }
 }
 
 extension ViewController: TrainLocationDelegate {
     func removeTripFromMap(forTrip trip: Trip) {
-        self.mapViewController?.deleteEntry(withName: trip.name)
+        self.mapViewController?.deleteEntry(withName: trip.tripId, andLabel: trip.name)
     }
     
     func drawPolyLine(forTrip: Trip) {
@@ -137,12 +137,10 @@ extension ViewController: TrainLocationDelegate {
     }
     
     func trainPositionUpdated(forTrip trip: Trip, toPosition position: CLLocation, withDuration duration: Double) {
-        self.mapViewController?.updateTrainLocation(forId: trip.name, toLocation: position.coordinate, withDuration: duration)
+        self.mapViewController?.updateTrainLocation(forId: trip.tripId, withLabel: trip.name, toLocation: position.coordinate, withDuration: duration)
         self.pinnedLocation = position
         if let lastLocation = self.lastLocation  {
-            print("Shortest Distance to Track: \(trip.shorttestDistanceToTrack(forUserLocation: lastLocation))")
-            print("Is arriving: \(!trip.isParting(forUserLocation: lastLocation))")
-
+            //Log.info(trip.name , ": Position:", position)
         }
     }
 }

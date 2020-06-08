@@ -58,7 +58,7 @@ class TransportRestProvider {
             }
             }) { (trips) in
                 self.trips = trips
-               // self.delegate?.onTripsUpdated()
+                self.delegate?.onTripsUpdated()
         }
     }
     

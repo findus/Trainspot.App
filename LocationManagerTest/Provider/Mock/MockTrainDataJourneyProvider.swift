@@ -16,10 +16,10 @@ class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
     typealias TripData = JourneyTrip
     
     func getAllTrips() -> Array<JourneyTrip> {
-        guard let json = loadJSON(), let journeyTrips = HafasParser.loadJourneyTrip(fromJSON: json) else {
-            return []
-        }
-        return journeyTrips
+//        guard let json = loadJSON(), let journeyTrips = HafasParser.loadJourneyTrip(fromJSON: json) else {
+//            return []
+//        }
+        return []
     }
     
     func update() {

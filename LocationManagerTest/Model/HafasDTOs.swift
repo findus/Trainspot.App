@@ -12,7 +12,7 @@ struct HafasJourney: Decodable, Hashable {
     let tripId: String
     let stop: HafasStop
     let line: HafasLine
-    let when: Date
+    let when: Date?
     
     static func == (lhs: HafasJourney, rhs: HafasJourney) -> Bool {
         lhs.tripId == rhs.tripId
@@ -44,21 +44,21 @@ struct HafasStopOver: Decodable {
     let departure: Date?
     let arrival: Date?
     
-    let departureDelay: Int?
-    let arrivalDelay: Int?
+//    let departureDelay: Int?
+//    let arrivalDelay: Int?
 }
 
 
-struct HafasTrip: Decodable {
+public struct HafasTrip: Decodable {
     let id: String
     let origin: HafasStop
     let destination: HafasStop
     let departure: Date?
     let arrival: Date?
-    let arrivalDelay: Int
+   //let arrivalDelay: Int
     let polyline: HafasFeatureCollection
     let line: HafasLine
-    let direction: String
+   //let direction: String
     let stopovers: Array<HafasStopOver>
 }
 

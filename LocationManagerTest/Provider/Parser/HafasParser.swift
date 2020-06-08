@@ -18,21 +18,21 @@ class HafasParser {
         case DecodeError(errormessage: String)
     }
     
-    public static func generateTimeLine(forTrip trip: JSON) -> Timeline? {
+    public static func generateTimeLine(forTrip trip: HafasTrip) throws -> Timeline {
         
-        let name = trip["line"]["name"].stringValue
-        let stops = trip["stopovers"].arrayValue
-        let polyline = trip["polyline"]["features"].arrayValue
+        let tripName = trip.line.name
+        let stops = trip.stopovers
+        let polyline = trip.polyline.features
         
-        guard let date = formatHafasDate(fromString: trip["departure"].stringValue) else {
-            Log.error("[\(name)] Could not parse departure date")
-            return nil
+        guard let date = trip.departure else {
+            let error = "[\(tripName)] Could not parse departure date"
+            Log.error(error)
+            throw AnimationCalculationError.DepartureDateNotFound(message: error)
         }
-        
       
         do {
             
-            let line = try polyline.enumerated().map { (offset,entry) -> Feature in
+            let line = try polyline.enumerated().map { (offset,feature) -> Feature in
                 
                 func isFirstStop() -> Bool {
                     return offset == 0
@@ -41,48 +41,46 @@ class HafasParser {
                 func isLastStop() -> Bool {
                     return offset == polyline.count - 1
                 }
+                                
+                let lat = feature.geometry.coordinates[1]
+                let lon = feature.geometry.coordinates[0]
                 
-                let stopId = entry["properties"]["id"]
-                
-                let lat = entry["geometry"]["coordinates"][1].doubleValue
-                let lon = entry["geometry"]["coordinates"][0].doubleValue
-                
-                if stopId.exists() {
+                if feature.isStopOver() {
                     
-                    guard let stopOver = stops.filter({ $0["stop"]["id"] == stopId }).first else {
-                        throw HafasParseError.DecodeError(errormessage: "[\(name) StopID: \(stopId)] Could not find stopOver for this id")
+                    guard let stopOver = stops.filter({ $0.stop.id == feature.properties!.id }).first else {
+                        throw HafasParseError.DecodeError(errormessage: "[\(tripName) StopID: \(feature.properties!.id)] Could not find stopOver for this id")
                     }
                     
-                    let name = stopOver["stop"]["name"].stringValue
+                    let name = stopOver.stop.name
                     
-                    let departure = formatHafasDate(fromString: stopOver["departure"].string)
+                    let departure = stopOver.departure
                     if !isLastStop() && departure == nil {
-                        throw HafasParseError.DecodeError(errormessage: "[\(name) Substop: \(name)] Could not parse departure date")
+                        throw HafasParseError.DecodeError(errormessage: "[\(tripName) Substop: \(name)] Could not parse departure date in middle of trip")
                     }
                     
-                    let arrival =  formatHafasDate(fromString: stopOver["arrival"].string)
+                    var arrival = stopOver.arrival
                     if !isFirstStop() && arrival == nil {
-                        throw HafasParseError.DecodeError(errormessage: "[\(name) Substop: \(name)] Could not parse arrival date")
+                        //throw HafasParseError.DecodeError(errormessage: "[\(tripName) Substop: \(name)] Could not parse arrival date in middle of trip")
+                        arrival = stopOver.departure
                     }
-                               
+                    
                     return StopOver(name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure)
+                               
                 } else {
                     return Path(coords: CLLocation(latitude: lat, longitude: lon))
                 }
             }
             
-            Log.info("Generate Animation Data for: \(name)")
+            Log.info("Generate Animation Data for: \(tripName)")
             let animationData = generateAnimationData(fromFeatures: line)
             
-            return Timeline(name: name, line: line, animationData: animationData ,departure: date)
+            return Timeline(name: tripName, line: line, animationData: animationData ,departure: date)
             
         } catch {
             Log.error(error)
-            return nil
+            throw error
         }
         
-        
-        return nil
     }
     
     struct Section {
@@ -94,33 +92,42 @@ class HafasParser {
         }
     }
     
+    enum AnimationCalculationError: Error {
+        case NoDurationFound(message : String)
+        case DepartureDateNotFound(message : String)
+    }
+    
     /**
      Returns an Array of features where every feature has the needed duration to the next Feature and the current location
      */
-    public static func getFeaturesWithDates(forFeatures features: Array<Feature>, andAnimationData animationData: Array<AnimationData>) -> Array<Feature> {
-        zip(features, animationData).reduce([Feature]()) { (prev, tuple) -> Array<Feature> in
+    public static func getFeaturesWithDates(forFeatures features: Array<Feature>, andAnimationData animationData: Array<AnimationData>, forTrip trip: HafasTrip) throws -> Array<Feature> {
+        try zip(features, animationData).reduce([Feature]()) { (prev, tuple) -> Array<Feature> in
             var newArray = prev
+            let (newFeature, animationData) = tuple
             if let last = prev.last {
                 let lastDate = last.departure
                 
-                if tuple.0 is StopOver {
-                    let stop = tuple.0 as! StopOver
+                if newFeature is StopOver {
+                    let stop = newFeature as! StopOver
                     var st = StopOver(name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)
-                    st.durationToNext = tuple.1.duration
+                    st.durationToNext = animationData.duration
                     newArray.append(st)
                     return newArray
                 } else {
-                    let d = Path(durationToNext: tuple.1.duration, departure: lastDate!.addingTimeInterval(last.durationToNext!), coords: tuple.0.coords, lastBeforeStop: false)
-                    newArray.append(d)
+                    guard let durationToNext = last.durationToNext else {
+                        let errormsg = "[\(trip.line.name)] Could not find the duration from \(last.coords)"
+                        throw AnimationCalculationError.NoDurationFound(message: errormsg)
+                    }
+                    let path = Path(durationToNext: animationData.duration, departure: lastDate!.addingTimeInterval(durationToNext), coords: newFeature.coords, lastBeforeStop: false)
+                    newArray.append(path)
                     return newArray
                 }
             } else {
-                let stop = tuple.0 as! StopOver
+                let stop = newFeature as! StopOver
                 var st = StopOver(name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)
-                st.durationToNext = tuple.1.duration
+                st.durationToNext = animationData.duration
                 newArray.append(st)
                 return newArray
-
             }
         }
     }
@@ -163,63 +170,41 @@ class HafasParser {
         return Array(animationData.joined())
     }
             
-    public static  func loadJourneyTrip(fromJSON json: JSON) -> Array<JourneyTrip>? {
+    public static  func loadJourneyTrip(fromHAFASTrips: Array<HafasTrip>) -> Array<JourneyTrip> {
         
-        let trips = json.arrayValue
-            .filter({ $0["line"]["id"].stringValue != "bus-sev" })
-            .filter({ $0["line"]["name"].stringValue != "Bus SEV" })
-            .compactMap { (json) -> JourneyTrip in
-                
-                let name = json["line"]["name"].stringValue
-
-                let coords = json["polyline"]["features"].arrayValue.map { MapEntity(name: "line", location: CLLocation(latitude: $0["geometry"]["coordinates"][1].doubleValue, longitude: $0["geometry"]["coordinates"][0].doubleValue ))  }
-                
-                guard let tl = generateTimeLine(forTrip: json) else {
-                    Log.error("[\(name)] Parse Error, could not generate Timeline, wil exclude this trip")
-                    fatalError()
-                }
-                
-                return JourneyTrip(withDeparture: tl.departure, andName: tl.name, andTimeline: tl , andPolyline: coords)
-        }
+        let trips = fromHAFASTrips.compactMap({ (trip) -> JourneyTrip? in
+            let name = trip.line.name
+            
+            let coords = trip.polyline.features.map { MapEntity(name: "line", tripId: trip.id, location: CLLocation(latitude: $0.geometry.coordinates[0], longitude: $0.geometry.coordinates[1]))  }
+            
+            guard let tl = try? generateTimeLine(forTrip: trip)  else {
+                Log.error("[\(name)] Parse Error, could not generate Timeline, wil exclude this trip")
+                return nil
+            }
+            
+            return JourneyTrip(withDeparture: tl.departure, andName: tl.name, andTimeline: tl , andPolyline: coords, andID: trip.id)
+        })
         
         return trips
         
     }
     
-    public static func loadTimeFrameTrip2(fromJSON json: JSON) -> TimeFrameTrip? {
-
-        let coords = json["polyline"]["features"].arrayValue.map { MapEntity(name: "line", location: CLLocation(latitude: $0["geometry"]["coordinates"][1].doubleValue, longitude: $0["geometry"]["coordinates"][0].doubleValue ))  }
-        
-        if json["cancelled"].exists() {
-            Log.warning("\(json["stop"]["name"]) cancelled")
-            return nil
-        }
-        
-        let tl = generateTimeLine(forTrip: json)
-        let locationBasedFeatures = getFeaturesWithDates(forFeatures: tl!.line, andAnimationData: tl!.animationData)
-        
-        return TimeFrameTrip(withDeparture: tl!.departure, andName: tl!.name, andPolyline: coords,andLocationMapping: locationBasedFeatures)
-       }
-    
     //TODO for journeys / Mocking
-    public static func loadTimeFrameTrip(fromJSON json: JSON) -> Array<TimeFrameTrip>? {
-           
-           let trips = json.arrayValue
-               .filter({ $0["line"]["id"].stringValue != "bus-sev" })
-               .filter({ $0["line"]["name"].stringValue != "Bus SEV" })
-               .map { (json) -> TimeFrameTrip in
-                   
-                   let coords = json["polyline"]["features"].arrayValue.map { MapEntity(name: "line", location: CLLocation(latitude: $0["geometry"]["coordinates"][1].doubleValue, longitude: $0["geometry"]["coordinates"][0].doubleValue ))  }
-                   
-                let tl = generateTimeLine(forTrip: json)
-                let locationBasedFeatures = getFeaturesWithDates(forFeatures: tl!.line, andAnimationData: tl!.animationData)
-                   
-                return TimeFrameTrip(withDeparture: tl!.departure, andName: tl!.name, andPolyline: coords,andLocationMapping: locationBasedFeatures)
-           }
-           
-           return trips
-           
-       }
+    public static func loadTimeFrameTrip(fromHafasTrips array: Array<HafasTrip>) -> Array<TimeFrameTrip> {
+        
+        array.compactMap({ (trip) -> TimeFrameTrip? in
+            let coords = trip.polyline.features.map { MapEntity(name: "line", tripId: trip.id, location: CLLocation(latitude: $0.geometry.coordinates[0], longitude: $0.geometry.coordinates[1]))  }
+            do {
+                let timeline = try generateTimeLine(forTrip: trip)
+                let locationBasedFeatures = try getFeaturesWithDates(forFeatures: timeline.line, andAnimationData: timeline.animationData, forTrip: trip)
+                return TimeFrameTrip(withDeparture: timeline.departure, andName: timeline.name, andPolyline: coords,andLocationMapping: locationBasedFeatures, andID: trip.id)
+            } catch {
+                Log.error(error.localizedDescription)
+                return nil
+            }
+            
+        })
+    }
     
     public static func getJourneys(fromJSON json: JSON) -> Array<Journey> {
         json.arrayValue

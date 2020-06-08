@@ -11,6 +11,8 @@ import CoreLocation
 
 class RadarTrip: Trip {
    
+    var tripId: String
+   
     let departure: Date
     /**
             A line, that represents the trains approximate location for the next 45 Minutes, 61 entries ~every 45 Seconds
@@ -22,12 +24,13 @@ class RadarTrip: Trip {
     
     let type: String
     
-    public init(withDeparture time: Date, andName name: String, andLines line: Array<MapEntity>, isType type: String) {
+    public init(withDeparture time: Date, andName name: String, andLines line: Array<MapEntity>, isType type: String, andId id: String) {
         self.departure = time
         self.polyline = line
         self.name = name
         self.journey = nil
         self.type = type
+        self.tripId = id
     }
     
     /**

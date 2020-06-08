@@ -10,6 +10,8 @@ import Foundation
 import CoreLocation
 
 protocol Trip {
+    
+    var tripId: String { get set }
        
     var departure: Date { get }
     /**

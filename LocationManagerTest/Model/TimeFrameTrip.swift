@@ -11,6 +11,7 @@ import CoreLocation
 
 class TimeFrameTrip: Trip, Hashable {
     
+    var tripId: String
     var departure: Date
     var journey: Journey?
     var polyline: Array<MapEntity>
@@ -20,12 +21,13 @@ class TimeFrameTrip: Trip, Hashable {
             
     var counter = 0
     
-    public init(withDeparture time: Date, andName name: String, andPolyline line: Array<MapEntity>, andLocationMapping mapping: Array<Feature>) {
+    public init(withDeparture time: Date, andName name: String, andPolyline line: Array<MapEntity>, andLocationMapping mapping: Array<Feature>, andID id: String) {
         self.departure = time
         self.polyline = line
         self.name = name
         self.journey = nil
         self.locationArray = mapping
+        self.tripId = id
     }
     
     func positionAtTime(date: Date) {

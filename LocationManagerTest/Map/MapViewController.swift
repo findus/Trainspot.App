@@ -35,7 +35,7 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         let pin = MKPointAnnotation()
         pin.coordinate = entry.location.coordinate
         pin.title = entry.name
-        markerDict[entry.name] = pin
+        markerDict[entry.tripId] = pin
         self.map.addAnnotation(pin)
         
         let region = MKCoordinateRegion(center: pin.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
@@ -49,7 +49,7 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         self.map.addOverlay(polyline)
     }
     
-    func deleteEntry(withName: String) {
+    func deleteEntry(withName: String, andLabel: String) {
         
     }
     
@@ -76,17 +76,17 @@ extension MapViewController: MKMapViewDelegate {
 
     }
     
-    func updateTrainLocation(forId id: String, toLocation location: CLLocationCoordinate2D, withDuration duration: Double) {
-        guard let entry = self.entryList.filter({ $0.name == id }).first else {
+    func updateTrainLocation(forId id: String, withLabel label: String, toLocation location: CLLocationCoordinate2D, withDuration duration: Double) {
+        guard let entry = self.entryList.filter({ $0.tripId == id }).first else {
             print("No MapEntry found for \(id), will create entry at location")
             self.addEntry(entry:
-                MapEntity(name: id, location: CLLocation(latitude: location.latitude, longitude: location.longitude))
+                MapEntity(name: label, tripId: id, location: CLLocation(latitude: location.latitude, longitude: location.longitude))
             )
             
             return
         }
 
-        let pin = self.markerDict[entry.name]
+        let pin = self.markerDict[entry.tripId]
         let startPoint = pin?.coordinate
         let endPoint = location
         

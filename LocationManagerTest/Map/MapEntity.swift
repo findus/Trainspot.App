@@ -11,5 +11,6 @@ import CoreLocation
 
 struct MapEntity {
     var name: String
+    var tripId: String
     var location: CLLocation
 }

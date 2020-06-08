@@ -41,7 +41,8 @@ class MockTrainDataRadarProvider : TrainDataProviderProtocol {
             .filter({ $0["line"]["id"].stringValue != "bus-sev" })
             .filter({ $0["line"]["name"].stringValue != "Bus SEV" })
             .map { (json) -> RadarTrip in
-                let coords = json["polyline"]["features"].arrayValue.map { MapEntity(name: "line", location: CLLocation(latitude: $0["geometry"]["coordinates"][1].doubleValue, longitude: $0["geometry"]["coordinates"][0].doubleValue ))  }
+                //TODO TripId
+                let coords = json["polyline"]["features"].arrayValue.map { MapEntity(name: "line", tripId: "e", location: CLLocation(latitude: $0["geometry"]["coordinates"][1].doubleValue, longitude: $0["geometry"]["coordinates"][0].doubleValue ))  }
                 let framecount = json["frames"].arrayValue.count
                 print("Frames  ", framecount)
                 let polylinecount = json["polyline"]["features"].arrayValue.count
@@ -49,7 +50,8 @@ class MockTrainDataRadarProvider : TrainDataProviderProtocol {
                 
                 let name = json["line"]["name"]
                 
-                return RadarTrip(withDeparture: Date(), andName: name.stringValue, andLines: coords, isType: "radar")
+                //TODO parse id
+                return RadarTrip(withDeparture: Date(), andName: name.stringValue, andLines: coords, isType: "radar", andId: "e")
         }
         
         return trips

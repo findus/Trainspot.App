@@ -147,11 +147,11 @@ extension TrainLocationTripByTimeFrameController {
         formatter.dateFormat = "dd.mm.yyyy HH:mm"
         
         if start.timeIntervalSince(now) >= 0 || end.timeIntervalSince(now) <= 0 {
-            Log.warning("Trip \(trip) is not in bounds!")
+            Log.warning("Trip \(trip.name) is not in bounds!")
             if start.timeIntervalSince(now) >= 0 {
-                Log.warning("[\(formatter.string(from: trip.departure)).....(\(formatter.string(from: end))]................[\(formatter.string(from: start)))]")
+                Log.warning("[\(formatter.string(from: trip.departure))....[\(formatter.string(from: end))]..................\(formatter.string(from: start))")
             } else {
-                Log.warning("[\(formatter.string(from: start))]..................[\(formatter.string(from: trip.departure)).....\(formatter.string(from: end))]")
+                Log.warning("\(formatter.string(from: start))..................[\(formatter.string(from: trip.departure)).....\(formatter.string(from: end))]")
             }
             return false
         }
@@ -198,7 +198,7 @@ extension TrainLocationTripByTimeFrameController {
         if location is StopOver {
             let stopover = (location as! StopOver)
             if stopover.arrival?.timeIntervalSince(date) ?? 1 <= 0 && stopover.departure!.timeIntervalSince(date) > 0 {
-                Log.debug("Currently halting til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
+                Log.debug("[\(trip.name)] Currently halting at: \(stopover.name) til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
                 return stopover.coords
             }
         }
