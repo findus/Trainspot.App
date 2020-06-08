@@ -198,7 +198,7 @@ extension TrainLocationTripByTimeFrameController {
         if location is StopOver {
             let stopover = (location as! StopOver)
             if stopover.arrival?.timeIntervalSince(date) ?? 1 <= 0 && stopover.departure!.timeIntervalSince(date) > 0 {
-                Log.debug("[\(trip.name)] Currently halting at: \(stopover.name) til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
+                Log.debug("[\(trip.name)] Currently idling at: \(stopover.name) til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
                 return stopover.coords
             }
         }
