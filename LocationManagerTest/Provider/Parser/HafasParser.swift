@@ -78,7 +78,7 @@ class HafasParser {
                     newArray.append(st)
                     return newArray
                 } else {
-                    let d = Path(durationToNext: tuple.1.duration, departure: lastDate?.addingTimeInterval(last.durationToNext ?? 0) ?? Date(), coords: tuple.0.coords, lastBeforeStop: false)
+                    let d = Path(durationToNext: tuple.1.duration, departure: lastDate!.addingTimeInterval(last.durationToNext!), coords: tuple.0.coords, lastBeforeStop: false)
                     newArray.append(d)
                     return newArray
                 }
@@ -108,7 +108,7 @@ class HafasParser {
             
             let wholeDistance = distances.reduce(0, +)
             
-            let time = ( (features[arrival] as! StopOver).arrival ?? (features[arrival] as! StopOver).departure!).timeIntervalSince(((features[departure] as! StopOver).departure ?? (features[departure] as! StopOver).arrival)!)
+            let time = (features[arrival] as! StopOver).arrival!.timeIntervalSince(((features[departure] as! StopOver).departure!))
             
             return Section(time: time, distance: wholeDistance, distances: distances)
             
