@@ -36,6 +36,7 @@ struct HafasLine: Decodable {
     let fahrtNr: String
     let name: String
     let cancelled: Bool?
+    let product: String
 }
 
 struct HafasStopOver: Decodable {
