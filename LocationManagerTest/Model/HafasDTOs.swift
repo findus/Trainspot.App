@@ -76,16 +76,20 @@ struct HafasPoint: Decodable {
     let coordinates: Array<Double>
 }
 
-class HafasFeature: Decodable {
+public class HafasFeature: Decodable {
     let type: String
     let properties: HafasStop?
     let geometry: HafasPoint
+    
+    func isStopOver() -> Bool {
+        return self.properties != nil
+    }
     
     private enum CodingKeys: String, CodingKey {
         case type, properties, geometry
     }
 
-    required init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         type = try values.decode(String.self, forKey: .type)
         properties = try? values.decode(HafasStop.self, forKey: .properties)
