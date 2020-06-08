@@ -8,9 +8,13 @@
 
 import Foundation
 
-func formatHafasDate(fromString string: String) -> Date? {
+func formatHafasDate(fromString string: String?) -> Date? {
     let dateFormatterGet = DateFormatter()
     dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+    
+    guard let string = string else {
+        return nil
+    }
     
     return dateFormatterGet.date(from: string)
 }

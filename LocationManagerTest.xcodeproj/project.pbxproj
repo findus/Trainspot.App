@@ -37,6 +37,7 @@
 		D4AF20012488239D0075F327 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF20002488239D0075F327 /* Journey.swift */; };
 		D4AF2004248825B20075F327 /* TrainLocationRadarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */; };
 		D4AF5163248D2E3800C9D7BE /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF5162248D2E3800C9D7BE /* DateUtils.swift */; };
+		D4C22BEF248E793A00FB7120 /* HafasJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C22BEE248E793A00FB7120 /* HafasJourney.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
 		D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
 		D4DEAACC2487AC1900D33AA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAACB2487AC1900D33AA2 /* ViewController.swift */; };
@@ -105,6 +106,7 @@
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationRadarController.swift; sourceTree = "<group>"; };
 		D4AF5162248D2E3800C9D7BE /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		D4C22BEE248E793A00FB7120 /* HafasJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasJourney.swift; sourceTree = "<group>"; };
 		D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				D45C507024893F4900A3D857 /* RadarTrip.swift */,
 				D45C50722489414C00A3D857 /* JourneyTrip.swift */,
 				D4270ABD248BDF5C0022A6BB /* TimeFrameTrip.swift */,
+				D4C22BEE248E793A00FB7120 /* HafasJourney.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */,
 				D4AF5163248D2E3800C9D7BE /* DateUtils.swift in Sources */,
 				D45C505024882C3C00A3D857 /* TrainLocationDelegate.swift in Sources */,
+				D4C22BEF248E793A00FB7120 /* HafasJourney.swift in Sources */,
 				D4DEAAE82487D9F100D33AA2 /* CLLocation+Extension.swift in Sources */,
 				D45C50572488E27400A3D857 /* AppConstants.swift in Sources */,
 				D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */,
