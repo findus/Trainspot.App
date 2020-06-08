@@ -72,6 +72,9 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
             if isTripInBounds(trip: trip) {
                 if let coord = self.getTrainLocation(forTrip: trip, atDate: Date()) {
                     self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: coord, withDuration: 1)
+                } else {
+                    Log.info("Gonna remove Trip \(trip) from set, because time is invalid")
+                     self.remove(trip: trip)
                 }
             } else {
                 Log.info("Gonna remove Trip \(trip) from set, because time is invalid")
@@ -139,7 +142,7 @@ extension TrainLocationTripByTimeFrameController: TrainDataProviderDelegate {
 extension TrainLocationTripByTimeFrameController {
     
     private func isTripInBounds(trip: TimeFrameTrip) -> Bool {
-        let start = trip.departure
+        let start = trip.departure.addingTimeInterval(-2700)
         let end = trip.locationArray.last?.departure ?? Date.init(timeIntervalSince1970: 0)
         let now = Date()
         
@@ -180,14 +183,18 @@ extension TrainLocationTripByTimeFrameController {
                    return
                             ((this as! StopOver).arrival?.timeIntervalSince(date) ?? 1 <= 0 && (this as! StopOver).departure!.timeIntervalSince(date) > 0)
                         ||
-                                (this as! StopOver).departure!.timeIntervalSince(date) <= 0 && (next).departure!.timeIntervalSince(date) >= 0
+                            (this as! StopOver).departure!.timeIntervalSince(date) <= 0 && (next).departure!.timeIntervalSince(date) >= 0
 
                 } else {
                     return this.departure!.timeIntervalSince(date) <= 0 && next.departure!.timeIntervalSince(date) > 0
                 }
             }) else {
-                Log.error("Error finding a location for Trip \(trip.name) at \(date)")
-                return nil
+                if trip.locationArray.first!.departure!.timeIntervalSince(Date()) <= 900 {
+                    return trip.locationArray.first!.coords
+                } else {
+                    Log.error("Error finding a location for Trip \(trip.name) at \(date)")
+                    return nil
+                }
         }
         
         

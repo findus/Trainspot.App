@@ -109,9 +109,15 @@ class HafasParser {
                 
                 if newFeature is StopOver {
                     let stop = newFeature as! StopOver
-                    var st = StopOver(name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)
-                    st.durationToNext = animationData.duration
-                    newArray.append(st)
+                    var st: StopOver? = nil
+                    if newArray.isEmpty {
+                        st = StopOver(name: stop.name, coords: stop.coords, arrival: Date().addingTimeInterval(-2700), departure: stop.departure)
+                    } else {
+                        st = StopOver(name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)
+                    }
+    
+                    st!.durationToNext = animationData.duration
+                    newArray.append(st!)
                     return newArray
                 } else {
                     guard let durationToNext = last.durationToNext else {
