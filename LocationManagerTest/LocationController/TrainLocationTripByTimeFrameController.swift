@@ -115,6 +115,8 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         self.trips = remaining.union(new)
         
         self.start()
+        
+        trips.forEach { self.delegate?.drawPolyLine(forTrip: $0) }
     }
     
     func register(trip: T) {

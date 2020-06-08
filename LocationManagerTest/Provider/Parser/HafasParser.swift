@@ -181,7 +181,7 @@ class HafasParser {
         let trips = fromHAFASTrips.compactMap({ (trip) -> JourneyTrip? in
             let name = trip.line.name
             
-            let coords = trip.polyline.features.map { MapEntity(name: "line", tripId: trip.id, location: CLLocation(latitude: $0.geometry.coordinates[0], longitude: $0.geometry.coordinates[1]))  }
+            let coords = trip.polyline.features.map { MapEntity(name: "line", tripId: trip.id, location: CLLocation(latitude: $0.geometry.coordinates[1], longitude: $0.geometry.coordinates[0]))  }
             
             guard let tl = try? generateTimeLine(forTrip: trip)  else {
                 Log.error("[\(name)] Parse Error, could not generate Timeline, wil exclude this trip")
@@ -199,7 +199,7 @@ class HafasParser {
     public static func loadTimeFrameTrip(fromHafasTrips array: Array<HafasTrip>) -> Array<TimeFrameTrip> {
         
         array.compactMap({ (trip) -> TimeFrameTrip? in
-            let coords = trip.polyline.features.map { MapEntity(name: "line", tripId: trip.id, location: CLLocation(latitude: $0.geometry.coordinates[0], longitude: $0.geometry.coordinates[1]))  }
+            let coords = trip.polyline.features.map { MapEntity(name: "line", tripId: trip.id, location: CLLocation(latitude: $0.geometry.coordinates[1], longitude: $0.geometry.coordinates[0]))  }
             do {
                 let timeline = try generateTimeLine(forTrip: trip)
                 let locationBasedFeatures = try getFeaturesWithDates(forFeatures: timeline.line, andAnimationData: timeline.animationData, forTrip: trip)
