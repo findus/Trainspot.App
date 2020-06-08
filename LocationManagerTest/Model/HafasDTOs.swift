@@ -41,11 +41,11 @@ struct HafasLine: Decodable {
 
 struct HafasStopOver: Decodable {
     let stop :HafasStop
-    let departure: Date
-    let arrival: Date
+    let departure: Date?
+    let arrival: Date?
     
-    let departurDdelay: Int
-    let arrivalDelay: Int
+    let departureDelay: Int?
+    let arrivalDelay: Int?
 }
 
 
@@ -56,29 +56,14 @@ struct HafasTrip: Decodable {
     let departure: Date?
     let arrival: Date?
     let arrivalDelay: Int
-    let polyline: FeatureCollection
+    let polyline: HafasFeatureCollection
     let line: HafasLine
     let direction: String
-    let stopovers: Array<HafasStop>
+    let stopovers: Array<HafasStopOver>
 }
 
-struct FeatureCollection: Decodable {
+struct HafasFeatureCollection: Decodable {
     let features: Array<HafasFeature>
-}
-
-struct HafasCoordinates: Decodable {
-    var lat: Double
-    var lon: Double
-    
-    private enum CodingKeys: String, CodingKey {
-        case lat = "0", lon = "1"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        lat = try container.decode(Double.self, forKey: .lat)
-        lon = try container.decode(Double.self, forKey: .lon)
-    }
 }
 
 struct HafasStopCoordinate: Decodable {
@@ -87,11 +72,23 @@ struct HafasStopCoordinate: Decodable {
 }
 
 struct HafasPoint: Decodable {
-    let coordinates: HafasCoordinates
+    let type: String
+    let coordinates: Array<Double>
 }
 
-struct HafasFeature: Decodable {
+class HafasFeature: Decodable {
     let type: String
-    let properties: HafasStop
+    let properties: HafasStop?
     let geometry: HafasPoint
+    
+    private enum CodingKeys: String, CodingKey {
+        case type, properties, geometry
+    }
+
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        type = try values.decode(String.self, forKey: .type)
+        properties = try? values.decode(HafasStop.self, forKey: .properties)
+        geometry = try values.decode(HafasPoint.self, forKey: .geometry)
+    }
 }

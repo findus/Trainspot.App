@@ -73,7 +73,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         tripLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataJourneyProvider()))
         
         //tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider()))
-        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(TransportRestProvider()))
+        
+        //tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(TransportRestProvider()))
       
         // self.manager.register(controller: radarLocationController)
         //self.manager.register(controller: tripLocationController)

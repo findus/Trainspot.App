@@ -11,14 +11,16 @@ import SwiftyJSON
 import Alamofire
 import Combine
 
-class TransportRestProvider: TrainDataProviderProtocol {
+class TransportRestProvider {
+    
+    let SERVER = "https://transport.russendis.co"
     
     let decoder = JSONDecoder()
    
     var delegate: TrainDataProviderDelegate? = nil
 
     var journeys: Set<Journey> = []
-    var trips: Array<TimeFrameTrip> = []
+    var trips: Array<HafasTrip> = []
 
     typealias TripData = TimeFrameTrip
     
@@ -26,7 +28,7 @@ class TransportRestProvider: TrainDataProviderProtocol {
         decoder.dateDecodingStrategy = .formatted(getDateFormatter())
     }
     
-    func getAllTrips() -> Array<TimeFrameTrip> {
+    func getAllTrips() -> Array<HafasTrip> {
         return trips
     }
     
@@ -42,7 +44,7 @@ class TransportRestProvider: TrainDataProviderProtocol {
         .map({ ( output : [Publishers.MergeMany<Future<Array<HafasJourney>, AFError>>.Output]) -> Set<HafasJourney> in
             Set<HafasJourney>(Array(output.joined())).filter({ ["nationalExpress", "national", "regionalExp", "regional"].contains($0.line.product) })
         })
-        .flatMap({ (journeys: Set<HafasJourney>) -> Future<Array<JSON>, AFError> in
+        .flatMap({ (journeys: Set<HafasJourney>) -> Future<Array<HafasTrip>, AFError> in
                 let futures = self.generateTripFutures(fromJourneys: journeys)
                 return self.fetch(trips: futures)
         })
@@ -55,19 +57,18 @@ class TransportRestProvider: TrainDataProviderProtocol {
                 Log.info(result)
             }
             }) { (trips) in
-                let trips = trips.compactMap({ HafasParser.loadTimeFrameTrip2(fromJSON: $0) })
                 self.trips = trips
-                self.delegate?.onTripsUpdated()
+               // self.delegate?.onTripsUpdated()
         }
     }
     
-    private func generateTripFutures(fromJourneys journeys: Set<HafasJourney>) -> Array<Future<JSON, AFError>> {
-        return Array(journeys).map { (journey) -> Future<JSON, AFError> in
+    private func generateTripFutures(fromJourneys journeys: Set<HafasJourney>) -> Array<Future<HafasTrip, AFError>> {
+        return Array(journeys).map { (journey) -> Future<HafasTrip, AFError> in
             self.fetchTrip(forJourney: journey)
         }
     }
     
-    private func fetch(trips fromFutures: Array<Future<JSON, AFError>>) -> Future<Array<JSON>, AFError> {
+    private func fetch(trips fromFutures: Array<Future<HafasTrip, AFError>>) -> Future<Array<HafasTrip>, AFError> {
         return Future { (completion) in
             let _ = Publishers.MergeMany(fromFutures).collect().receive(on: RunLoop.current).sink(receiveCompletion: {(result) in
                 switch result {
@@ -76,7 +77,7 @@ class TransportRestProvider: TrainDataProviderProtocol {
                 case .finished:
                     Log.info(result)
                 }
-            }) { (trips: Array<JSON>) in
+            }) { (trips: Array<HafasTrip>) in
                 completion(.success(trips))
             }
         }
@@ -98,7 +99,7 @@ class TransportRestProvider: TrainDataProviderProtocol {
         ]
         
         return Future<Array<HafasJourney>, AFError> { (completion) in
-            AF.request("https://2.db.transport.rest/stations/\(id)/departures", parameters: parameters, headers: headers ).responseDecodable(of: Array<HafasJourney>.self, decoder: self.decoder) { (response) in
+            AF.request("\(self.SERVER)/stations/\(id)/departures", parameters: parameters, headers: headers ).responseDecodable(of: Array<HafasJourney>.self, decoder: self.decoder) { (response) in
                 switch response.result {
                 case .success(let journeys):
                     Log.info("Fetched \(journeys.count) departures")
@@ -125,7 +126,7 @@ class TransportRestProvider: TrainDataProviderProtocol {
         ]
         
         return Future<Array<HafasJourney>, AFError> { (completion) in
-            AF.request("https://2.db.transport.rest/stations/\(id)/arrivals", parameters: parameters, headers: headers ).responseDecodable(of: Array<HafasJourney>.self, decoder: self.decoder) { (response) in
+            AF.request("\(self.SERVER)/stations/\(id)/arrivals", parameters: parameters, headers: headers ).responseDecodable(of: Array<HafasJourney>.self, decoder: self.decoder) { (response) in
                 switch response.result {
                 case .success(let journeys):
                     Log.info("Fetched \(journeys.count) departures")
@@ -139,7 +140,7 @@ class TransportRestProvider: TrainDataProviderProtocol {
         
     }
     
-    private func fetchTrip(forJourney journey: HafasJourney) -> Future<JSON, AFError> {
+    private func fetchTrip(forJourney journey: HafasJourney) -> Future<HafasTrip, AFError> {
          
          let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
          
@@ -148,14 +149,13 @@ class TransportRestProvider: TrainDataProviderProtocol {
             "polyline" : "true"
          ]
         
-        let urlParameters = URLComponents(string: "https://2.db.transport.rest/trips/\(journey.tripId.replacingOccurrences(of: "|", with: "%7C"))")!
+        let urlParameters = URLComponents(string: "\(SERVER)/trips/\(journey.tripId.replacingOccurrences(of: "|", with: "%7C"))")!
          
-         return Future<JSON, AFError> { (completion) in
-            AF.request(urlParameters.url!, parameters: parameters, headers: headers ).responseData { (response) in
+         return Future<HafasTrip, AFError> { (completion) in
+            AF.request(urlParameters.url!, parameters: parameters, headers: headers ).responseDecodable(of: HafasTrip.self, decoder: self.decoder) { (response) in
                  switch response.result {
                  case .success(let value):
-                     let json = JSON(value)
-                     completion(.success(json))
+                     completion(.success(value))
                  case .failure(let error):
                     Log.debug(error)
                     completion(.failure(error))
