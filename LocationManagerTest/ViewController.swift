@@ -63,7 +63,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         
         self.mapViewController?.delegate = self
-        self.manager.delegate = self
+        self.manager.delegate?.append(self)
         
         // Start and append different controller instances
         let radarLocationController = TrainLocationRadarController()
@@ -128,6 +128,10 @@ extension ViewController: MapViewControllerDelegate {
 }
 
 extension ViewController: TrainLocationDelegate {
+    var id: String {
+        return "viewcontroller"
+    }
+    
     func removeTripFromMap(forTrip trip: Trip) {
         self.mapViewController?.deleteEntry(withName: trip.tripId, andLabel: trip.name)
     }
