@@ -66,16 +66,8 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
     
 }
 
-extension MapViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-
-        let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-        polylineRenderer.strokeColor = .blue
-        polylineRenderer.lineWidth = 2
-        return polylineRenderer
-
-    }
-    
+extension MapViewController {
+   
     func updateTrainLocation(forId id: String, withLabel label: String, toLocation location: CLLocationCoordinate2D, withDuration duration: Double) {
         guard let entry = self.entryList.filter({ $0.tripId == id }).first else {
             print("No MapEntry found for \(id), will create entry at location")
@@ -102,4 +94,41 @@ extension MapViewController: MKMapViewDelegate {
         
     }
     
+}
+
+extension MapViewController: MKMapViewDelegate
+{
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+
+        let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+        polylineRenderer.strokeColor = .blue
+        polylineRenderer.lineWidth = 2
+        return polylineRenderer
+
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "annotationView")
+        annotationView.canShowCallout = true
+        annotationView.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure)
+
+        return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation else
+        {
+            return
+        }
+        
+        let name = annotation.title
+        
+        guard let entry = self.entryList.filter({ $0.name == name }).first else {
+            return
+        }
+        
+        (self.parent as! ViewController).pinnedLocation = entry.location
+    }
+
 }

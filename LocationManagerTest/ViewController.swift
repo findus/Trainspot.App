@@ -13,6 +13,9 @@ import SwiftyJSON
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
+    @IBOutlet weak var mapContainerView: UIView!
+    @IBOutlet weak var imageView: UIImageView!
+    
     let locationManager = CLLocationManager()
     var mapViewController: MapViewController?
     let manager = TrainLocationProxy.shared
@@ -41,8 +44,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         return lastLocation?.bearingToLocationRadian(self.pinnedLocation ?? CLLocation()) ?? 0
     }
     
-    @IBOutlet weak var mapContainerView: UIView!
-    @IBOutlet weak var imageView: UIImageView!
+
     
     private func calcBearing() {
         let angle = self.computeNewAngle(with: CGFloat(self.heading ?? 0))
@@ -142,11 +144,8 @@ extension ViewController: TrainLocationDelegate {
     
     func trainPositionUpdated(forTrip trip: Trip, toPosition position: CLLocation, withDuration duration: Double) {
         self.mapViewController?.updateTrainLocation(forId: trip.tripId, withLabel: trip.name, toLocation: position.coordinate, withDuration: duration)
-        self.pinnedLocation = position
         if let lastLocation = self.lastLocation  {
             //Log.info(trip.name , ": Position:", position)
         }
     }
 }
-
-
