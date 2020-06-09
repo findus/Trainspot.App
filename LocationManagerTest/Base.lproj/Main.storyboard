@@ -58,10 +58,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jyA-xI-vxr">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="trainOverviewCell" id="jyA-xI-vxr" customClass="TrainOverviewCell" customModule="LocationManagerTest" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="37"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jyA-xI-vxr" id="JAM-id-YjI">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jyA-xI-vxr" id="JAM-id-YjI" customClass="TrainOverviewCell" customModule="LocationManagerTest" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -97,6 +97,11 @@
                                         <constraint firstAttribute="trailing" secondItem="IsF-cj-QCd" secondAttribute="trailing" id="r99-J9-0o3"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="arrival" destination="fPU-0i-H4t" id="Kf2-2h-Hzm"/>
+                                    <outlet property="name" destination="39k-gH-bMO" id="Z3J-mu-6Cd"/>
+                                    <outlet property="status" destination="LyP-Pc-Md4" id="vOa-z6-dot"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

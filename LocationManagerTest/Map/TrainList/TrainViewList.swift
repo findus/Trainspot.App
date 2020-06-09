@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import CoreLocation
 
 class TrainViewList: UITableViewController {
+    
+    private let trainLocationProxy = TrainLocationProxy.shared
+    private var trips : Array<Trip> = Array.init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,23 +28,25 @@ class TrainViewList: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.trips.count
     }
 
-    /*
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "trainOverviewCell", for: indexPath) as! TrainOverviewCell
 
         // Configure the cell...
+        cell
+        
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -86,5 +92,28 @@ class TrainViewList: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+extension TrainViewList: TrainLocationDelegate {
+    var id: String {
+        "StatusOverViewTableView"
+    }
+    
+    func trainPositionUpdated(forTrip trip: Trip, toPosition: CLLocation, withDuration duration: Double) {
+        if !self.trips.contains(where: { $0.tripId == trip.tripId }) {
+            self.trips.append(trip)
+            self.tableView.reloadData()
+        }
+    }
+    
+    func removeTripFromMap(forTrip trip: Trip) {
+        self.trips.removeAll(where: { $0.tripId == trip.tripId })
+        self.tableView.reloadData()
+    }
+    
+    func drawPolyLine(forTrip: Trip) {
+        
+    }
 
 }

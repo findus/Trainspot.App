@@ -36,6 +36,7 @@
 		D46292D5248C4735006E638F /* MapEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE02487D3E900D33AA2 /* MapEntity.swift */; };
 		D46B6B5A248EB28A00AF77F6 /* NetworkTrainDataTimeFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B59248EB28A00AF77F6 /* NetworkTrainDataTimeFrameProvider.swift */; };
 		D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5C2490195100AF77F6 /* TrainViewList.swift */; };
+		D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */; };
 		D4AF20012488239D0075F327 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF20002488239D0075F327 /* Journey.swift */; };
 		D4AF2004248825B20075F327 /* TrainLocationRadarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */; };
 		D4AF5163248D2E3800C9D7BE /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF5162248D2E3800C9D7BE /* DateUtils.swift */; };
@@ -107,6 +108,7 @@
 		D46292CF248C468B006E638F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D46B6B59248EB28A00AF77F6 /* NetworkTrainDataTimeFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTrainDataTimeFrameProvider.swift; sourceTree = "<group>"; };
 		D46B6B5C2490195100AF77F6 /* TrainViewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewList.swift; sourceTree = "<group>"; };
+		D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainOverviewCell.swift; sourceTree = "<group>"; };
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationRadarController.swift; sourceTree = "<group>"; };
 		D4AF5162248D2E3800C9D7BE /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				D46B6B5C2490195100AF77F6 /* TrainViewList.swift */,
+				D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */,
 			);
 			path = TrainList;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				D4270ABE248BDF5C0022A6BB /* TimeFrameTrip.swift in Sources */,
 				D4270AC0248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift in Sources */,
 				D45C506324891D1400A3D857 /* MockTrainDataJourneyProvider.swift in Sources */,
+				D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */,
 				D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */,
 				D45C5075248A51EB00A3D857 /* TripProvider.swift in Sources */,
 				D45C506924892CC900A3D857 /* TrainLocationProxy.swift in Sources */,
