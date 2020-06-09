@@ -38,7 +38,7 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         markerDict[entry.tripId] = pin
         self.map.addAnnotation(pin)
         
-        let region = MKCoordinateRegion(center: pin.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
+        let region = MKCoordinateRegion(center: self.map.userLocation.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
         map.setRegion(region, animated: true)
     }
     

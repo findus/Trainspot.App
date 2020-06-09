@@ -32,6 +32,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var pinnedLocation: CLLocation? {
         didSet {
             self.calcBearing()
+            
+            if self.pinnedLocation != nil {
+                self.imageView.isHidden = false
+            } else {
+                self.imageView.isHidden = true
+            }
         }
     }
     
@@ -44,9 +50,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var pinnedLocationBearing: CGFloat {
         return lastLocation?.bearingToLocationRadian(self.pinnedLocation ?? CLLocation()) ?? 0
     }
-    
-
-    
+     
     private func calcBearing() {
         let angle = self.computeNewAngle(with: CGFloat(self.heading ?? 0))
         self.imageView.transform = CGAffineTransform(rotationAngle: angle)
@@ -84,18 +88,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.manager.register(controller: tripTimeFrameLocationController)
         
         tripTimeFrameLocationController.fetchServer()
-
-
         
-//        let trips = tripProvider.getAllTrips()
-//        
-//        trips.forEach { (trip) in
-//            
-//            self.mapViewController?.drawLine(entries: trip.line)
-//            let mapEntity = MapEntity(name: trip.name, location: trip.line.first!.location)
-//            self.mapViewController?.addEntry(entry: mapEntity)
-//            _ = self.manager.register(trip: trip)
-//        }
+        self.imageView.isHidden = true
 
     }
     
