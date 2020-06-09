@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Map-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,7 +39,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="ZVL-Ji-bya"/>
+                    <tabBarItem key="tabBarItem" title="Map" id="ZVL-Ji-bya"/>
                     <connections>
                         <outlet property="imageView" destination="vCU-ZU-3hG" id="f3L-tZ-QA3"/>
                         <outlet property="mapContainerView" destination="g8L-X6-Uqn" id="a17-A3-U7V"/>
@@ -49,21 +49,65 @@
             </objects>
             <point key="canvasLocation" x="930" y="-599"/>
         </scene>
-        <!--Item 2-->
-        <scene sceneID="YEg-NX-Tre">
+        <!--Overview-->
+        <scene sceneID="Kd2-Uu-7Vz">
             <objects>
-                <viewController id="nWj-3m-J0e" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3fT-oB-qf0">
+                <tableViewController title="Overview" id="1fa-wT-uYc" customClass="TrainViewList" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jqf-Uk-wot">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="iLi-sN-YVL"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="8Xy-14-gs4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hEk-RT-JCe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jyA-xI-vxr">
+                                <rect key="frame" x="0.0" y="28" width="414" height="21"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jyA-xI-vxr" id="JAM-id-YjI">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="21"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="IsF-cj-QCd">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="21"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Train Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39k-gH-bMO" userLabel="Train Name">
+                                                    <rect key="frame" x="0.0" y="0.0" width="87" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyP-Pc-Md4" userLabel="Status">
+                                                    <rect key="frame" x="192.5" y="0.0" width="49.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPU-0i-H4t" userLabel="Arrival In">
+                                                    <rect key="frame" x="347.5" y="0.0" width="66.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="IsF-cj-QCd" firstAttribute="top" secondItem="JAM-id-YjI" secondAttribute="top" id="CuW-Ss-t6g"/>
+                                        <constraint firstAttribute="bottom" secondItem="IsF-cj-QCd" secondAttribute="bottom" id="Fmf-SE-CDR"/>
+                                        <constraint firstItem="IsF-cj-QCd" firstAttribute="leading" secondItem="JAM-id-YjI" secondAttribute="leading" id="gIp-F0-Vn5"/>
+                                        <constraint firstAttribute="trailing" secondItem="IsF-cj-QCd" secondAttribute="trailing" id="r99-J9-0o3"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1fa-wT-uYc" id="qo4-I9-qEn"/>
+                            <outlet property="delegate" destination="1fa-wT-uYc" id="bT5-4G-hgy"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Status Board" id="dur-Ku-Wqm"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dPk-VZ-nnL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="930" y="90"/>
+            <point key="canvasLocation" x="659" y="74"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hCe-6c-J3B">
@@ -75,18 +119,18 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="fKI-W5-JBX"/>
-                        <segue destination="nWj-3m-J0e" kind="relationship" relationship="viewControllers" id="b5A-OS-MLq"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" destinationCreationSelector="Map" id="fKI-W5-JBX"/>
+                        <segue destination="1fa-wT-uYc" kind="relationship" relationship="viewControllers" destinationCreationSelector="List" id="1hK-UI-7cK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uL-wl-1bZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-336" y="-475"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Map-->
         <scene sceneID="mZg-Rd-dTC">
             <objects>
-                <viewController id="iqN-KL-GHB" customClass="MapViewController" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map" id="iqN-KL-GHB" customClass="MapViewController" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dc8-Zy-txy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
