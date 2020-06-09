@@ -12,8 +12,21 @@ import CoreLocation
 enum TrainState {
     case WaitForStart
     case Ended
-    case Stopped(til: Date)
+    case Stopped(Date)
     case Driving
+    
+    func get() -> String {
+        switch self {
+        case .WaitForStart:
+            return "Wait for Start"
+        case .Ended:
+            return "Ended"
+        case .Driving:
+            return "Driving"
+        case .Stopped(let date):
+            return "Stopped for \(date.timeIntervalSince(Date()))s"
+        }
+    }
 }
 
 struct TripData {

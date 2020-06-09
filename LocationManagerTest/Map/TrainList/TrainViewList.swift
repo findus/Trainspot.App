@@ -13,7 +13,8 @@ class TrainViewList: UITableViewController {
     
     private let trainLocationProxy = TrainLocationProxy.shared
     private var trips : Array<Trip> = Array.init()
-
+    private var tripData: Dictionary<String, TripData> = Dictionary.init()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,7 +44,10 @@ class TrainViewList: UITableViewController {
 
         // Configure the cell...
         cell.name.text = self.trips[indexPath.row].name
-
+        //cell.arrival.text = self.trips[indexPath.row].ar
+        //cell.distance.text = self.trips[indexPath.row].shorttestDistanceToTrack(forUserLocation: <#T##CLLocation#>)
+        cell.status.text = self.tripData[self.trips[indexPath.row].tripId]?.state.get()
+        
         return cell
     }
 
@@ -100,9 +104,10 @@ extension TrainViewList: TrainLocationDelegate {
         "StatusOverViewTableView"
     }
     
-    func trainPositionUpdated(forTrip trip: Trip, withData: TripData, withDuration duration: Double) {
+    func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
         if !self.trips.contains(where: { $0.tripId == trip.tripId }) {
             self.trips.append(trip)
+            self.tripData[trip.tripId] = data
             self.tableView.reloadData()
         }
     }

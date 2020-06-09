@@ -129,7 +129,7 @@ class TransportRestProvider {
             AF.request("\(self.SERVER)/stations/\(id)/arrivals", parameters: parameters, headers: headers ).responseDecodable(of: Array<HafasJourney>.self, decoder: self.decoder) { (response) in
                 switch response.result {
                 case .success(let journeys):
-                    Log.info("Fetched \(journeys.count) departures")
+                    Log.info("Fetched \(journeys.count) arrivals")
                     Log.trace("\(journeys)")
                     completion(.success(journeys))
                 case .failure(let error):
