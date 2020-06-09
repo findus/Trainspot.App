@@ -58,7 +58,7 @@ extension TrainLocationProxy : TrainLocationDelegate {
         self.delegate?.forEach( { delegate in delegate.drawPolyLine(forTrip: forTrip) })
     }
     
-    func trainPositionUpdated(forTrip trip: Trip, toPosition: CLLocation, withDuration duration: Double) {
-        self.delegate?.forEach( { delegate in delegate.trainPositionUpdated(forTrip: trip, toPosition: toPosition, withDuration: duration) })
+    func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
+        self.delegate?.forEach( { delegate in delegate.trainPositionUpdated(forTrip: trip, withData: data, withDuration: duration) })
     }
 }

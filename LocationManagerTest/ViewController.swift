@@ -137,11 +137,11 @@ extension ViewController: TrainLocationDelegate {
         self.mapViewController?.drawLine(entries: forTrip.polyline)
     }
     
-    func trainPositionUpdated(forTrip trip: Trip, toPosition position: CLLocation, withDuration duration: Double) {
-        self.mapViewController?.updateTrainLocation(forId: trip.tripId, withLabel: trip.name, toLocation: position.coordinate, withDuration: duration)
+    func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
+        self.mapViewController?.updateTrainLocation(forId: trip.tripId, withLabel: trip.name, toLocation: data.location.coordinate, withDuration: duration)
         
         if trip.tripId == self.tripIdToUpdateLocation {
-            self.pinnedLocation = position
+            self.pinnedLocation = data.location
         }
         
         if let lastLocation = self.lastLocation  {

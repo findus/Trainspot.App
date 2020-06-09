@@ -70,8 +70,9 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     @objc func onTick(timer: Timer) {
         self.trips.forEach { (trip) in
             if isTripInBounds(trip: trip) {
-                if let coord = self.getTrainLocation(forTrip: trip, atDate: Date()) {
-                    self.delegate?.trainPositionUpdated(forTrip: trip, toPosition: coord, withDuration: 1)
+                if let data = self.getTrainLocation(forTrip: trip, atDate: Date()) {
+                    let tripData = TripData(location: data.0, state: data.1, nextStop: "hell")
+                    self.delegate?.trainPositionUpdated(forTrip: trip, withData: tripData, withDuration: 1)
                 } else {
                     Log.info("Gonna remove Trip \(trip) from set, because time is invalid")
                      self.remove(trip: trip)
@@ -163,7 +164,7 @@ extension TrainLocationTripByTimeFrameController {
         return true
     }
     
-    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> CLLocation? {
+    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> (CLLocation, TrainState)? {
         guard let loc = zip(trip.locationArray,trip.locationArray.dropFirst())
             .first(where: { (this, next) -> Bool in
                 if this is Path && next is StopOver {
@@ -192,7 +193,7 @@ extension TrainLocationTripByTimeFrameController {
                 }
             }) else {
                 if trip.locationArray.first!.departure!.timeIntervalSince(Date()) <= 900 {
-                    return trip.locationArray.first!.coords
+                    return (trip.locationArray.first!.coords, .WaitForStart)
                 } else {
                     Log.error("Error finding a location for Trip \(trip.name) at \(date)")
                     return nil
@@ -208,7 +209,7 @@ extension TrainLocationTripByTimeFrameController {
             let stopover = (location as! StopOver)
             if stopover.arrival?.timeIntervalSince(date) ?? 1 <= 0 && stopover.departure!.timeIntervalSince(date) > 0 {
                 Log.debug("[\(trip.name)] Currently idling at: \(stopover.name) til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
-                return stopover.coords
+                return (stopover.coords, .Stopped(til: stopover.departure!))
             }
         }
         
@@ -225,6 +226,6 @@ extension TrainLocationTripByTimeFrameController {
         let newLat = startCoords.latitude + ((endCoords.latitude - startCoords.latitude) * ratio)
         let newLon = startCoords.longitude + ((endCoords.longitude - startCoords.longitude) * ratio)
         
-        return CLLocation(latitude: newLat, longitude: newLon)
+        return (CLLocation(latitude: newLat, longitude: newLon), .Driving)
     }
 }

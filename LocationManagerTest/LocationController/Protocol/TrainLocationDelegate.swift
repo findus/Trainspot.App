@@ -16,7 +16,7 @@ enum TrainState {
     case Driving
 }
 
-struct TripState {
+struct TripData {
     let location: CLLocation
     let state: TrainState
     let nextStop: String
@@ -24,7 +24,7 @@ struct TripState {
 
 protocol TrainLocationDelegate: NSObject {
     var id: String { get }
-    func trainPositionUpdated(forTrip trip: Trip, toPosition: CLLocation, withDuration duration: Double) -> Void
+    func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) -> Void
     func removeTripFromMap(forTrip trip: Trip) -> Void
     func drawPolyLine(forTrip: Trip) -> Void
 }

@@ -100,7 +100,7 @@ extension TrainViewList: TrainLocationDelegate {
         "StatusOverViewTableView"
     }
     
-    func trainPositionUpdated(forTrip trip: Trip, toPosition: CLLocation, withDuration duration: Double) {
+    func trainPositionUpdated(forTrip trip: Trip, withData: TripData, withDuration duration: Double) {
         if !self.trips.contains(where: { $0.tripId == trip.tripId }) {
             self.trips.append(trip)
             self.tableView.reloadData()
