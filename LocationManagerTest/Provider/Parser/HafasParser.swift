@@ -53,15 +53,22 @@ class HafasParser {
                     
                     let name = stopOver.stop.name
                     
-                    let departure = stopOver.departure
+                    var departure = stopOver.departure
                     if !isLastStop() && departure == nil {
-                        throw HafasParseError.DecodeError(errormessage: "[\(tripName) Substop: \(name)] Could not parse departure date in middle of trip")
+                        Log.warning("[\(tripName) Substop: \(name)] Could not parse departure date in middle of trip, will use arrival date as departure date")
+                        guard let arrival = stopOver.arrival else {
+                            throw HafasParseError.DecodeError(errormessage: "[\(tripName) Substop: \(name)] No Departure AND Arrival Date found")
+                        }
+                        departure = arrival
                     }
                     
                     var arrival = stopOver.arrival
                     if !isFirstStop() && arrival == nil {
-                        //throw HafasParseError.DecodeError(errormessage: "[\(tripName) Substop: \(name)] Could not parse arrival date in middle of trip")
-                        arrival = stopOver.departure
+                        Log.warning("[\(tripName) Substop: \(name)] Could not parse arrival date in middle of trip, using departure date instead")
+                        guard let departure = stopOver.departure else {
+                            throw HafasParseError.DecodeError(errormessage: "[\(tripName) Substop: \(name)] No Departure AND Arrival Date found")
+                        }
+                        arrival = departure
                     }
                     
                     return StopOver(name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure)
