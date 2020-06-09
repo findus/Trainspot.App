@@ -80,10 +80,10 @@ class TimeFrameTrip: Trip, Hashable {
 
 extension TimeFrameTrip {
     static func == (lhs: TimeFrameTrip, rhs: TimeFrameTrip) -> Bool {
-        lhs.name == rhs.name
+        lhs.tripId == rhs.tripId
     }
     
     func hash(into hasher: inout Hasher) {
-        return hasher.combine(self.name)
+        return hasher.combine(self.tripId)
     }
 }

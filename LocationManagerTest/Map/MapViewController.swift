@@ -124,6 +124,7 @@ extension MapViewController: MKMapViewDelegate
                
                let name = annotation.title
                
+        // TODO pass tripId to Annotation
                guard let entry = self.entryList.filter({ $0.name == name }).first else {
                    return
                }
