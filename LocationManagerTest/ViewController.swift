@@ -19,6 +19,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var mapViewController: MapViewController?
     let manager = TrainLocationProxy.shared
+    var tripIdToUpdateLocation: String?
     
     let tripProvider = MockTrainDataJourneyProvider.init()
     
@@ -144,6 +145,11 @@ extension ViewController: TrainLocationDelegate {
     
     func trainPositionUpdated(forTrip trip: Trip, toPosition position: CLLocation, withDuration duration: Double) {
         self.mapViewController?.updateTrainLocation(forId: trip.tripId, withLabel: trip.name, toLocation: position.coordinate, withDuration: duration)
+        
+        if trip.tripId == self.tripIdToUpdateLocation {
+            self.pinnedLocation = position
+        }
+        
         if let lastLocation = self.lastLocation  {
             //Log.info(trip.name , ": Position:", position)
         }

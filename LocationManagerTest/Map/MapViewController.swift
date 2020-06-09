@@ -117,18 +117,18 @@ extension MapViewController: MKMapViewDelegate
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard let annotation = view.annotation else
-        {
-            return
-        }
-        
-        let name = annotation.title
-        
-        guard let entry = self.entryList.filter({ $0.name == name }).first else {
-            return
-        }
-        
-        (self.parent as! ViewController).pinnedLocation = entry.location
+         guard let annotation = view.annotation else
+               {
+                   return
+               }
+               
+               let name = annotation.title
+               
+               guard let entry = self.entryList.filter({ $0.name == name }).first else {
+                   return
+               }
+              
+        (self.parent as! ViewController).tripIdToUpdateLocation = entry.tripId
     }
 
 }
