@@ -65,23 +65,29 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="IsF-cj-QCd">
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="IsF-cj-QCd">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Train Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39k-gH-bMO" userLabel="Train Name">
-                                                    <rect key="frame" x="8" y="8" width="87" height="21"/>
+                                                    <rect key="frame" x="8" y="8" width="133.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyP-Pc-Md4" userLabel="Status">
-                                                    <rect key="frame" x="192.5" y="8" width="49.5" height="21"/>
+                                                    <rect key="frame" x="141.5" y="8" width="76" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9c-r6-yT6" userLabel="Distance">
+                                                    <rect key="frame" x="217.5" y="8" width="102.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPU-0i-H4t" userLabel="Arrival In">
-                                                    <rect key="frame" x="339.5" y="8" width="66.5" height="21"/>
+                                                    <rect key="frame" x="320" y="8" width="86" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -99,6 +105,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="arrival" destination="fPU-0i-H4t" id="Kf2-2h-Hzm"/>
+                                    <outlet property="distance" destination="Y9c-r6-yT6" id="e5K-1c-LNH"/>
                                     <outlet property="name" destination="39k-gH-bMO" id="Z3J-mu-6Cd"/>
                                     <outlet property="status" destination="LyP-Pc-Md4" id="vOa-z6-dot"/>
                                 </connections>
