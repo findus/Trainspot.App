@@ -38,13 +38,13 @@ class TimeFrameTrip: Trip, Hashable {
      Checks, if the train is heading towards the user, or still passed the location
      */
     func isParting(forUserLocation loc: CLLocation) -> Bool {
-//        let shortestPosition = self.shortestDistanceArrayPosition(forUserLocation: loc)
-//        let trainPosition = self.currentTrainPosition()
-//
-//        if trainPosition ?? self.line.count > shortestPosition {
-//            return true
-//        }
-//
+        let shortestPosition = self.shortestDistanceArrayPosition(forUserLocation: loc)
+        let trainPosition = self.currentTrainPosition()
+        
+        if trainPosition ?? self.locationArray.count > shortestPosition {
+            return true
+        }
+        
         return false
     }
     
@@ -52,22 +52,20 @@ class TimeFrameTrip: Trip, Hashable {
      Gets tracks shortest distance to the user, so that we can calulcate the approximate arrival of the train
      */
     func shorttestDistanceToTrack(forUserLocation loc : CLLocation) -> Double {
-        //return line[self.shortestDistanceArrayPosition(forUserLocation: loc)].location.distance(from: loc)
-        return 0.0
+        return self.locationArray[self.shortestDistanceArrayPosition(forUserLocation: loc)].coords.distance(from: loc)
     }
     
     private func shortestDistanceArrayPosition(forUserLocation loc: CLLocation) -> Int {
-//        let distances = line.map { $0.location.distance(from: loc) }
-//
-//        var arrayPosition = 0
-//        for (index, distance) in distances.enumerated() {
-//            if distances[arrayPosition] > distance {
-//                arrayPosition = index
-//            }
-//        }
-//
-//        return arrayPosition
-        return 0
+        let distances = locationArray.map { $0.coords.distance(from: loc) }
+
+        var arrayPosition = 0
+        for (index, distance) in distances.enumerated() {
+            if distances[arrayPosition] > distance {
+                arrayPosition = index
+            }
+        }
+
+        return arrayPosition
     }
     
     /**

@@ -42,7 +42,7 @@ class TransportRestProvider {
         .merge(with: fetchArrivals(forStation: "8000049"))
         .collect()
         .map({ ( output : [Publishers.MergeMany<Future<Array<HafasJourney>, AFError>>.Output]) -> Set<HafasJourney> in
-            Set<HafasJourney>(Array(output.joined())).filter({ ["nationalExpress", "national", "regionalExp", "regional"].contains($0.line.product) })
+            Set<HafasJourney>(Array(output.joined())).filter({ ["nationalExp","nationalExpress", "national", "regionalExp", "regional"].contains($0.line.product) })
         })
         .flatMap({ (journeys: Set<HafasJourney>) -> Future<Array<HafasTrip>, AFError> in
                 let futures = self.generateTripFutures(fromJourneys: journeys)
