@@ -12,7 +12,7 @@ import CoreLocation
 class TrainLocationProxy: NSObject {
     
     //var controllers: Array<TrainLocationProtocol> = []
-    public var delegate: Array<TrainLocationDelegate>?
+    public var delegate: Array<TrainLocationDelegate>? = Array.init()
     
     public static let shared = TrainLocationProxy()
     
@@ -51,14 +51,14 @@ extension TrainLocationProxy : TrainLocationDelegate {
     }
     
     func removeTripFromMap(forTrip trip: Trip) {
-        self.delegate?.forEach( { _ in removeTripFromMap(forTrip: trip) })
+        self.delegate?.forEach( { delegate in delegate.removeTripFromMap(forTrip: trip) })
     }
     
     func drawPolyLine(forTrip: Trip) {
-        self.delegate?.forEach( { _ in drawPolyLine(forTrip: forTrip) })
+        self.delegate?.forEach( { delegate in delegate.drawPolyLine(forTrip: forTrip) })
     }
     
     func trainPositionUpdated(forTrip trip: Trip, toPosition: CLLocation, withDuration duration: Double) {
-        self.delegate?.forEach( { _ in trainPositionUpdated(forTrip: trip, toPosition: toPosition, withDuration: duration) })
+        self.delegate?.forEach( { delegate in delegate.trainPositionUpdated(forTrip: trip, toPosition: toPosition, withDuration: duration) })
     }
 }
