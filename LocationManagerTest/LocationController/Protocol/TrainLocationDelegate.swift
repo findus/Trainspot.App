@@ -9,6 +9,19 @@
 import Foundation
 import CoreLocation
 
+enum TrainState {
+    case WaitForStart
+    case Ended
+    case Stopped(til: Date)
+    case Driving
+}
+
+struct TripState {
+    let location: CLLocation
+    let state: TrainState
+    let nextStop: String
+}
+
 protocol TrainLocationDelegate: NSObject {
     var id: String { get }
     func trainPositionUpdated(forTrip trip: Trip, toPosition: CLLocation, withDuration duration: Double) -> Void

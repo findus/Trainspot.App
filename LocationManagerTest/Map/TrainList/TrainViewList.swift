@@ -22,6 +22,7 @@ class TrainViewList: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        trainLocationProxy.addListener(listener: self)
     }
 
     // MARK: - Table view data source
@@ -41,8 +42,7 @@ class TrainViewList: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "trainOverviewCell", for: indexPath) as! TrainOverviewCell
 
         // Configure the cell...
-        cell
-        
+        cell.name.text = self.trips[indexPath.row].name
 
         return cell
     }
