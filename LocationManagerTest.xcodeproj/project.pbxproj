@@ -37,9 +37,11 @@
 		D46B6B5A248EB28A00AF77F6 /* NetworkTrainDataTimeFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B59248EB28A00AF77F6 /* NetworkTrainDataTimeFrameProvider.swift */; };
 		D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5C2490195100AF77F6 /* TrainViewList.swift */; };
 		D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */; };
+		D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46B6B6524912CF200AF77F6 /* StatusView.xib */; };
 		D4AF20012488239D0075F327 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF20002488239D0075F327 /* Journey.swift */; };
 		D4AF2004248825B20075F327 /* TrainLocationRadarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */; };
 		D4AF5163248D2E3800C9D7BE /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF5162248D2E3800C9D7BE /* DateUtils.swift */; };
+		D4BCAF81249137DD000B40D8 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF80249137DD000B40D8 /* StatusView.swift */; };
 		D4C22BF0248E9D1700FB7120 /* HafasDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
 		D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
@@ -109,9 +111,11 @@
 		D46B6B59248EB28A00AF77F6 /* NetworkTrainDataTimeFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTrainDataTimeFrameProvider.swift; sourceTree = "<group>"; };
 		D46B6B5C2490195100AF77F6 /* TrainViewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewList.swift; sourceTree = "<group>"; };
 		D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainOverviewCell.swift; sourceTree = "<group>"; };
+		D46B6B6524912CF200AF77F6 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationRadarController.swift; sourceTree = "<group>"; };
 		D4AF5162248D2E3800C9D7BE /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		D4BCAF80249137DD000B40D8 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasDTOs.swift; sourceTree = "<group>"; };
 		D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -190,8 +194,8 @@
 		D4270AB5248BACBE0022A6BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */,
-				D4270AB8248BAD170022A6BB /* TrainView.xib */,
+				D46B6B6424912CD900AF77F6 /* StatusView */,
+				D46B6B6324912CC700AF77F6 /* Annotation */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +315,24 @@
 				D4EA3D65248803DC003D7469 /* hafas_test_json.json */,
 			);
 			path = MockData;
+			sourceTree = "<group>";
+		};
+		D46B6B6324912CC700AF77F6 /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */,
+				D4270AB8248BAD170022A6BB /* TrainView.xib */,
+			);
+			path = Annotation;
+			sourceTree = "<group>";
+		};
+		D46B6B6424912CD900AF77F6 /* StatusView */ = {
+			isa = PBXGroup;
+			children = (
+				D46B6B6524912CF200AF77F6 /* StatusView.xib */,
+				D4BCAF80249137DD000B40D8 /* StatusView.swift */,
+			);
+			path = StatusView;
 			sourceTree = "<group>";
 		};
 		D4AF20022488259C0075F327 /* LocationController */ = {
@@ -562,6 +584,7 @@
 				D45C505F2488F22800A3D857 /* data2 in Resources */,
 				D4EA3D66248803DC003D7469 /* hafas_test_json.json in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
+				D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */,
 				D45C50652489266600A3D857 /* trip_test in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -676,6 +699,7 @@
 				D45C506E2489396200A3D857 /* TrainLocationProtocol.swift in Sources */,
 				D45C507124893F4900A3D857 /* RadarTrip.swift in Sources */,
 				D4DEAAE12487D3EA00D33AA2 /* MapEntity.swift in Sources */,
+				D4BCAF81249137DD000B40D8 /* StatusView.swift in Sources */,
 				D45C505D2488E8CB00A3D857 /* MockTrainDataRadarProvider.swift in Sources */,
 				D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */,
 				D45C505A2488E70A00A3D857 /* TrainDataProviderProtocol.swift in Sources */,

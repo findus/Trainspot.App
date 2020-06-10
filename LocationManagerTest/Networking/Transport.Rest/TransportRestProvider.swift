@@ -70,7 +70,7 @@ class TransportRestProvider {
     
     private func fetch(trips fromFutures: Array<Future<HafasTrip, AFError>>) -> Future<Array<HafasTrip>, AFError> {
         return Future { (completion) in
-            let _ = Publishers.MergeMany(fromFutures).collect().receive(on: RunLoop.current).sink(receiveCompletion: {(result) in
+            let _ = Publishers.MergeMany(fromFutures).collect().receive(on: RunLoop.main).sink(receiveCompletion: {(result) in
                 switch result {
                 case .failure(let error):
                     completion(.failure(error))
