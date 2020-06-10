@@ -294,6 +294,15 @@
 			path = Conroller;
 			sourceTree = "<group>";
 		};
+		D46B6B6124912BD800AF77F6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D46B6B5B2490191900AF77F6 /* TrainList */,
+				D4DEAADD2487D1DB00D33AA2 /* MapView */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		D4AF20022488259C0075F327 /* LocationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +368,7 @@
 		D4DEAAC62487AC1900D33AA2 /* LocationManagerTest */ = {
 			isa = PBXGroup;
 			children = (
+				D46B6B6124912BD800AF77F6 /* UI */,
 				D4C22BF1248EA05200FB7120 /* Networking */,
 				D4AF5161248D2E2600C9D7BE /* Formatting */,
 				D4270AAF248A71540022A6BB /* Logging */,
@@ -370,7 +380,6 @@
 				D4EA3D65248803DC003D7469 /* hafas_test_json.json */,
 				D4DEAAEB2487DA3B00D33AA2 /* Location */,
 				D4DEAAE62487D9E000D33AA2 /* Extensions */,
-				D4DEAADD2487D1DB00D33AA2 /* Map */,
 				D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */,
 				D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */,
 				D4DEAACB2487AC1900D33AA2 /* ViewController.swift */,
@@ -383,10 +392,9 @@
 			path = LocationManagerTest;
 			sourceTree = "<group>";
 		};
-		D4DEAADD2487D1DB00D33AA2 /* Map */ = {
+		D4DEAADD2487D1DB00D33AA2 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
-				D46B6B5B2490191900AF77F6 /* TrainList */,
 				D4270AB5248BACBE0022A6BB /* Views */,
 				D4DEAADB2487D1AF00D33AA2 /* MapViewControllerDelegate.swift */,
 				D4DEAADE2487D3B000D33AA2 /* MapViewControllerProtocol.swift */,
@@ -394,7 +402,7 @@
 				D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */,
 				D45C505324883D8800A3D857 /* TrainLocationPin.swift */,
 			);
-			path = Map;
+			path = MapView;
 			sourceTree = "<group>";
 		};
 		D4DEAAE62487D9E000D33AA2 /* Extensions */ = {
