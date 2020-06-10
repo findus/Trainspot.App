@@ -284,14 +284,14 @@
 			path = TrainList;
 			sourceTree = "<group>";
 		};
-		D46B6B6024912ACB00AF77F6 /* Conroller */ = {
+		D46B6B6024912ACB00AF77F6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */,
 				D45C506624892C8200A3D857 /* TrainLocationTripAnimationTimeController.swift */,
 				D4270ABB248BDEAE0022A6BB /* TrainLocationTripByTimeFrameController.swift */,
 			);
-			path = Conroller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		D46B6B6124912BD800AF77F6 /* UI */ = {
@@ -303,10 +303,20 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		D46B6B6224912C5F00AF77F6 /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				D45C505E2488F22700A3D857 /* data2 */,
+				D45C50642489266600A3D857 /* trip_test */,
+				D4EA3D65248803DC003D7469 /* hafas_test_json.json */,
+			);
+			path = MockData;
+			sourceTree = "<group>";
+		};
 		D4AF20022488259C0075F327 /* LocationController */ = {
 			isa = PBXGroup;
 			children = (
-				D46B6B6024912ACB00AF77F6 /* Conroller */,
+				D46B6B6024912ACB00AF77F6 /* Controller */,
 				D45C506D248938F400A3D857 /* Protocol */,
 				D45C506C248938EA00A3D857 /* Proxy */,
 			);
@@ -345,6 +355,7 @@
 		D4DEAABB2487AC1900D33AA2 = {
 			isa = PBXGroup;
 			children = (
+				D46B6B6224912C5F00AF77F6 /* MockData */,
 				D46292C6248C4662006E638F /* LocationManagerTests */,
 				D4DEAAC62487AC1900D33AA2 /* LocationManagerTest */,
 				D4EA3D5C24880387003D7469 /* LocationManagerTestUITests */,
@@ -372,13 +383,10 @@
 				D4C22BF1248EA05200FB7120 /* Networking */,
 				D4AF5161248D2E2600C9D7BE /* Formatting */,
 				D4270AAF248A71540022A6BB /* Logging */,
-				D45C505E2488F22700A3D857 /* data2 */,
 				D45C50582488E6F200A3D857 /* Provider */,
 				D45C50552488E25100A3D857 /* AppConstants */,
 				D4AF200524882A250075F327 /* Model */,
 				D4AF20022488259C0075F327 /* LocationController */,
-				D4EA3D65248803DC003D7469 /* hafas_test_json.json */,
-				D4DEAAEB2487DA3B00D33AA2 /* Location */,
 				D4DEAAE62487D9E000D33AA2 /* Extensions */,
 				D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */,
 				D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */,
@@ -387,7 +395,6 @@
 				D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */,
 				D4DEAAD22487AC1E00D33AA2 /* LaunchScreen.storyboard */,
 				D4DEAAD52487AC1E00D33AA2 /* Info.plist */,
-				D45C50642489266600A3D857 /* trip_test */,
 			);
 			path = LocationManagerTest;
 			sourceTree = "<group>";
@@ -412,13 +419,6 @@
 				D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		D4DEAAEB2487DA3B00D33AA2 /* Location */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Location;
 			sourceTree = "<group>";
 		};
 		D4EA3D5C24880387003D7469 /* LocationManagerTestUITests */ = {
