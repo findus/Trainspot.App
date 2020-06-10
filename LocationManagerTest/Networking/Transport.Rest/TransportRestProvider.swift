@@ -21,6 +21,9 @@ class TransportRestProvider {
 
     var journeys: Set<Journey> = []
     var trips: Array<HafasTrip> = []
+    
+    
+    var stream: AnyCancellable? = nil
 
     typealias TripData = TimeFrameTrip
     
@@ -35,58 +38,69 @@ class TransportRestProvider {
     func setDeleate(delegate: TrainDataProviderDelegate) {
         self.delegate = delegate
     }
+    
+    func streamOfJourneys(output: [Publishers.Merge<AnyPublisher<Array<HafasJourney>, AFError>,AnyPublisher<Array<HafasJourney>, AFError>>.Output]) -> Set<HafasJourney> {
+        return Set(output.flatMap({$0})).filter({ ["nationalExp","nationalExpress", "national", "regionalExp", "regional"].contains($0.line.product) })
+    }
      
     func update() {
         
-        let _ = fetchDepartures(forStation: "8000049")
-        .merge(with: fetchArrivals(forStation: "8000049"))
+        let departures = fetchDepartures(forStation: "8000049")
+        let arrivals = fetchArrivals(forStation: "8000049")
+        
+        let cancellable = Publishers.Merge(departures, arrivals)
         .collect()
-        .map({ ( output : [Publishers.MergeMany<Future<Array<HafasJourney>, AFError>>.Output]) -> Set<HafasJourney> in
-            Set<HafasJourney>(Array(output.joined())).filter({ ["nationalExp","nationalExpress", "national", "regionalExp", "regional"].contains($0.line.product) })
-        })
-        .flatMap({ (journeys: Set<HafasJourney>) -> Future<Array<HafasTrip>, AFError> in
-                let futures = self.generateTripFutures(fromJourneys: journeys)
-                return self.fetch(trips: futures)
-        })
-        .receive(on: RunLoop.main)
-        .sink(receiveCompletion: { (result) in
-            switch result {
-            case .failure(let error):
-                Log.error(error)
-            case .finished:
-                Log.info(result)
-            }
+        .map(streamOfJourneys)
+        .flatMap({ (journeys: Set<HafasJourney>) -> AnyPublisher<Array<HafasTrip>, AFError> in
+            return Publishers.Sequence(sequence:  self.generateTripPublishers(fromJourneys: journeys)).flatMap { $0 }.collect().eraseToAnyPublisher()
+        }).receive(on: RunLoop.main).sink(receiveCompletion: { (result) in
+                    switch result {
+                    case .failure(let error):
+                        Log.error(error)
+                    case .finished:
+                        Log.info(result)
+                    }
             }) { (trips) in
                 self.trips = trips
-                self.delegate?.onTripsUpdated()
+                        self.delegate?.onTripsUpdated()
         }
+        
+        self.stream = cancellable
+
     }
     
-    private func generateTripFutures(fromJourneys journeys: Set<HafasJourney>) -> Array<Future<HafasTrip, AFError>> {
-        return Array(journeys).map { (journey) -> Future<HafasTrip, AFError> in
+    class sub : Subscriber {
+
+        func receive(subscription: Subscription) {
+            Log.info(subscription)
+        }
+        
+        func receive(_ input: Array<Array<HafasTrip>>) -> Subscribers.Demand {
+            fatalError()
+        }
+        
+        func receive(completion: Subscribers.Completion<AFError>) {
+            Log.info(completion)
+        }
+        
+        
+        typealias Input = Array<Array<HafasTrip>>
+        typealias Failure = AFError
+        
+        
+    }
+    
+    private func generateTripPublishers(fromJourneys journeys: Set<HafasJourney>) -> Array<AnyPublisher<HafasTrip, AFError>> {
+        let d : Array<AnyPublisher<HafasTrip, AFError>> =  Array(journeys).map( { (journey) -> AnyPublisher<HafasTrip, AFError> in
             self.fetchTrip(forJourney: journey)
-        }
+        })
+        return d
     }
     
-    private func fetch(trips fromFutures: Array<Future<HafasTrip, AFError>>) -> Future<Array<HafasTrip>, AFError> {
-        return Future { (completion) in
-            let _ = Publishers.MergeMany(fromFutures).collect().receive(on: RunLoop.current).sink(receiveCompletion: {(result) in
-                switch result {
-                case .failure(let error):
-                    completion(.failure(error))
-                case .finished:
-                    Log.info(result)
-                }
-            }) { (trips: Array<HafasTrip>) in
-                completion(.success(trips))
-            }
-        }
-    }
-    
-    
+
     // MARK: - Network code
     
-    private func fetchDepartures(forStation id: String) -> Future<Array<HafasJourney>, AFError> {
+    private func fetchDepartures(forStation id: String) -> AnyPublisher<Array<HafasJourney>, AFError> {
         
         let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
         
@@ -99,22 +113,10 @@ class TransportRestProvider {
             "duration" : "60"
         ]
         
-        return Future<Array<HafasJourney>, AFError> { (completion) in
-            AF.request("\(self.SERVER)/stations/\(id)/departures", parameters: parameters, headers: headers ).responseDecodable(of: Array<HafasJourney>.self, decoder: self.decoder) { (response) in
-                switch response.result {
-                case .success(let journeys):
-                    Log.info("Fetched \(journeys.count) departures")
-                    Log.trace("\(journeys)")
-                    completion(.success(journeys))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-        }
-        
+        return AF.request("\(self.SERVER)/stations/\(id)/departures", parameters: parameters, headers: headers ).publishDecodable(type: Array<HafasJourney>.self,  decoder: self.decoder).value().receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
     
-    private func fetchArrivals(forStation id: String) -> Future<Array<HafasJourney>, AFError> {
+    private func fetchArrivals(forStation id: String) -> AnyPublisher<Array<HafasJourney>, AFError> {
         
         let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
         
@@ -127,22 +129,11 @@ class TransportRestProvider {
             "duration" : "60"
         ]
         
-        return Future<Array<HafasJourney>, AFError> { (completion) in
-            AF.request("\(self.SERVER)/stations/\(id)/arrivals", parameters: parameters, headers: headers ).responseDecodable(of: Array<HafasJourney>.self, decoder: self.decoder) { (response) in
-                switch response.result {
-                case .success(let journeys):
-                    Log.info("Fetched \(journeys.count) arrivals")
-                    Log.trace("\(journeys)")
-                    completion(.success(journeys))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-        }
+        return AF.request("\(self.SERVER)/stations/\(id)/arrivals", parameters: parameters, headers: headers ).publishDecodable(type: Array<HafasJourney>.self, decoder: self.decoder).value().receive(on: DispatchQueue.main).eraseToAnyPublisher()
         
     }
     
-    private func fetchTrip(forJourney journey: HafasJourney) -> Future<HafasTrip, AFError> {
+    private func fetchTrip(forJourney journey: HafasJourney) ->  AnyPublisher<HafasTrip, AFError> {
          
          let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
          
@@ -152,18 +143,6 @@ class TransportRestProvider {
          ]
         
         let urlParameters = URLComponents(string: "\(SERVER)/trips/\(journey.tripId.replacingOccurrences(of: "|", with: "%7C"))")!
-         
-         return Future<HafasTrip, AFError> { (completion) in
-            AF.request(urlParameters.url!, parameters: parameters, headers: headers ).responseDecodable(of: HafasTrip.self, decoder: self.decoder) { (response) in
-                 switch response.result {
-                 case .success(let value):
-                     completion(.success(value))
-                 case .failure(let error):
-                    Log.debug(error)
-                    completion(.failure(error))
-                 }
-             }
-         }
-         
+        return AF.request(urlParameters.url!, parameters: parameters, headers: headers).publishDecodable(type: HafasTrip.self, decoder: self.decoder).value().receive(on: DispatchQueue.main).eraseToAnyPublisher()
      }
 }

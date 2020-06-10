@@ -23,7 +23,6 @@
 		D45C50572488E27400A3D857 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C50562488E27400A3D857 /* AppConstants.swift */; };
 		D45C505A2488E70A00A3D857 /* TrainDataProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C50592488E70A00A3D857 /* TrainDataProviderProtocol.swift */; };
 		D45C505D2488E8CB00A3D857 /* MockTrainDataRadarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505C2488E8CB00A3D857 /* MockTrainDataRadarProvider.swift */; };
-		D45C505F2488F22800A3D857 /* data2 in Resources */ = {isa = PBXBuildFile; fileRef = D45C505E2488F22700A3D857 /* data2 */; };
 		D45C506124891B9100A3D857 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506024891B9100A3D857 /* Trip.swift */; };
 		D45C506324891D1400A3D857 /* MockTrainDataJourneyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506224891D1400A3D857 /* MockTrainDataJourneyProvider.swift */; };
 		D45C50652489266600A3D857 /* trip_test in Resources */ = {isa = PBXBuildFile; fileRef = D45C50642489266600A3D857 /* trip_test */; };
@@ -543,7 +542,6 @@
 				D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */,
 				D4270AB9248BAD170022A6BB /* TrainView.xib in Resources */,
 				D4DEAAD12487AC1E00D33AA2 /* Assets.xcassets in Resources */,
-				D45C505F2488F22800A3D857 /* data2 in Resources */,
 				D4EA3D66248803DC003D7469 /* hafas_test_json.json in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
 				D45C50652489266600A3D857 /* trip_test in Resources */,
