@@ -284,14 +284,22 @@
 			path = TrainList;
 			sourceTree = "<group>";
 		};
-		D4AF20022488259C0075F327 /* LocationController */ = {
+		D46B6B6024912ACB00AF77F6 /* Conroller */ = {
 			isa = PBXGroup;
 			children = (
-				D45C506D248938F400A3D857 /* Protocol */,
-				D45C506C248938EA00A3D857 /* Proxy */,
 				D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */,
 				D45C506624892C8200A3D857 /* TrainLocationTripAnimationTimeController.swift */,
 				D4270ABB248BDEAE0022A6BB /* TrainLocationTripByTimeFrameController.swift */,
+			);
+			path = Conroller;
+			sourceTree = "<group>";
+		};
+		D4AF20022488259C0075F327 /* LocationController */ = {
+			isa = PBXGroup;
+			children = (
+				D46B6B6024912ACB00AF77F6 /* Conroller */,
+				D45C506D248938F400A3D857 /* Protocol */,
+				D45C506C248938EA00A3D857 /* Proxy */,
 			);
 			path = LocationController;
 			sourceTree = "<group>";

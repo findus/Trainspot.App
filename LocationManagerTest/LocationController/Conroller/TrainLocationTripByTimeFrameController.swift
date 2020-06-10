@@ -155,7 +155,7 @@ extension TrainLocationTripByTimeFrameController {
         if start.timeIntervalSince(now) >= 0 || end.timeIntervalSince(now) <= 0 {
             Log.warning("Trip \(trip.name) is not in bounds!")
             if start.timeIntervalSince(now) >= 0 {
-                Log.warning("[\(formatter.string(from: trip.departure))....[\(formatter.string(from: end))]..................\(formatter.string(from: start))")
+                Log.warning("[\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]..................\(formatter.string(from: start))")
             } else {
                 Log.warning("\(formatter.string(from: start))..................[\(formatter.string(from: trip.departure)).....\(formatter.string(from: end))]")
             }

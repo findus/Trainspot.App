@@ -90,8 +90,8 @@ class TransportRestProvider {
         
         let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
         
-        let now = Int(Date().addingTimeInterval(-2700).timeIntervalSince1970)
-        let test = Date().addingTimeInterval(-2700)
+        let now = Int(Date().addingTimeInterval(0).timeIntervalSince1970)
+        let test = Date().addingTimeInterval(0)
         Log.info("Fetching departures at \(test) to \(Date().addingTimeInterval(60*15))")
         //TODO time based on distance/time to station
         let parameters = [
@@ -118,7 +118,7 @@ class TransportRestProvider {
         
         let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
         
-        let now = Int(Date().addingTimeInterval(2700).timeIntervalSince1970)
+        let now = Int(Date().addingTimeInterval(0).timeIntervalSince1970)
         Log.info("Fetching arrivals at \(now) to \(Date().addingTimeInterval(60*15))")
         //TODO time based on distance/time to station
         
