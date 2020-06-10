@@ -15,6 +15,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapContainerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet var statusView: StatusView!
     
     let locationManager = CLLocationManager()
     var mapViewController: MapViewController?
@@ -59,6 +60,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func computeNewAngle(with newAngle: CGFloat) -> CGFloat {
         let origHeading = self.pinnedLocationBearing - newAngle.toRadians
         return origHeading
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+        }
     }
     
     override func viewDidLoad() {

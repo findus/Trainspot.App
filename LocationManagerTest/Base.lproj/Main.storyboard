@@ -50,6 +50,7 @@
                     <connections>
                         <outlet property="imageView" destination="vCU-ZU-3hG" id="f3L-tZ-QA3"/>
                         <outlet property="mapContainerView" destination="g8L-X6-Uqn" id="a17-A3-U7V"/>
+                        <outlet property="statusView" destination="8bC-Xf-vdC" id="KMX-G4-2aB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
