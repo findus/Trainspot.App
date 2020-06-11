@@ -163,8 +163,9 @@ extension ViewController {
     private func setStatusView(withTrip trip: Trip, andData data: TripData) {
         
         let name = trip.name
-        let time = data.state.get()
+        let time = "( 🚂 \(trip.destination) ) " + data.state.get()
         let distance = String(Int(data.location?.distance(from: self.lastLocation!) ?? 0 ))+String(" Meter")
+        
         
         self.statusView.setValues(forName: name, andTime: time, andDistance: distance)
     }

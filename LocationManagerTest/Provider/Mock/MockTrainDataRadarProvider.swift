@@ -51,7 +51,7 @@ class MockTrainDataRadarProvider : TrainDataProviderProtocol {
                 let name = json["line"]["name"]
                 
                 //TODO parse id
-                return RadarTrip(withDeparture: Date(), andName: name.stringValue, andLines: coords, isType: "radar", andId: "e")
+                return RadarTrip(withDeparture: Date(), andName: name.stringValue, andLines: coords, isType: "radar", andId: "e", withDestination: "-")
         }
         
         return trips

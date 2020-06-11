@@ -54,6 +54,9 @@ struct Timeline {
 }
 
 class JourneyTrip: Trip, Hashable {
+   
+    var destination: String
+    
     var tripId: String
 
     var atStation: Bool = false
@@ -68,13 +71,14 @@ class JourneyTrip: Trip, Hashable {
         
     var counter = 0
     
-    public init(withDeparture time: Date, andName name: String, andTimeline timeline: Timeline, andPolyline line: Array<MapEntity>, andID id: String) {
+    public init(withDeparture time: Date, andName name: String, andTimeline timeline: Timeline, andPolyline line: Array<MapEntity>, andID id: String, andDestination destination: String) {
         self.departure = time
         self.polyline = line
         self.name = name
         self.journey = nil
         self.timeline = timeline
         self.tripId = id
+        self.destination = destination
     }
     
     func positionAtTime(date: Date) {

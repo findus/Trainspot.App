@@ -24,13 +24,16 @@ class RadarTrip: Trip {
     
     let type: String
     
-    public init(withDeparture time: Date, andName name: String, andLines line: Array<MapEntity>, isType type: String, andId id: String) {
+    let destination: String
+    
+    public init(withDeparture time: Date, andName name: String, andLines line: Array<MapEntity>, isType type: String, andId id: String, withDestination destination: String) {
         self.departure = time
         self.polyline = line
         self.name = name
         self.journey = nil
         self.type = type
         self.tripId = id
+        self.destination = destination
     }
     
     /**

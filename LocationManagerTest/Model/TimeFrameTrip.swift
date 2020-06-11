@@ -16,18 +16,20 @@ class TimeFrameTrip: Trip, Hashable {
     var journey: Journey?
     var polyline: Array<MapEntity>
     var locationArray: Array<Feature>
+    var destination: String
  
     let name: String
             
     var counter = 0
     
-    public init(withDeparture time: Date, andName name: String, andPolyline line: Array<MapEntity>, andLocationMapping mapping: Array<Feature>, andID id: String) {
+    public init(withDeparture time: Date, andName name: String, andPolyline line: Array<MapEntity>, andLocationMapping mapping: Array<Feature>, andID id: String, andDestination destination: String) {
         self.departure = time
         self.polyline = line
         self.name = name
         self.journey = nil
         self.locationArray = mapping
         self.tripId = id
+        self.destination = destination
     }
     
     func positionAtTime(date: Date) {
