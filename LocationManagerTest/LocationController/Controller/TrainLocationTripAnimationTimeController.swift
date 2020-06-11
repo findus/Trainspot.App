@@ -63,7 +63,7 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
         
         let (loc, array, d) = self.findApproximateTrainLocation(forTrip: trip, andDate: date)!
         let location = CLLocation(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
-        let tripData = TripData(location: location, state: .Driving, nextStop: "hell")
+        let tripData = TripData(location: location, state: .Driving, nextStop: "hell", arrival: -1)
         self.delegate?.trainPositionUpdated(forTrip: trip, withData: tripData, withDuration: 0)
         let position = trip.timeline.line.firstIndex(where: {$0.coords == array.coords})!
         if position > 0 {
@@ -78,7 +78,7 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
     private func startNewAnimation(forTrip trip: JourneyTrip, toPosition position: CLLocation, withDuration duration: TimeInterval, andArrayPosition pos: Int) {
         Log.debug("New Animation for: ", trip.name, "Duration: ", duration, "Seconds")
         self.trips[trip.name]?.1.invalidate()
-        let tripData = TripData(location: position, state: .Driving, nextStop: "hell")
+        let tripData = TripData(location: position, state: .Driving, nextStop: "hell", arrival: -1)
         self.delegate?.trainPositionUpdated(forTrip: trip, withData: tripData, withDuration: duration)
         self.trips[trip.name] = (trip ,Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(expired), userInfo: (trip.name, pos), repeats: true))
     }
@@ -90,6 +90,10 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
         }
         
         trips.forEach { self.register(trip: $0); self.delegate?.drawPolyLine(forTrip: $0) }
+    }
+    
+    func setCurrentLocation(location: CLLocation) {
+        fatalError("Not yet implemented")
     }
     
     func pause() {
@@ -136,6 +140,10 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
     
     func setDataProvider(withProvider provider: TripProvider<JourneyTrip>) {
         self.dataProvider = provider
+    }
+    
+    func getArrivalInSeconds(forTrip trip: T, loc: CLLocation) -> TimeInterval? {
+        fatalError("Not yet implemented")
     }
 
 }

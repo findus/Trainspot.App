@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class TrainLocationRadarController: TrainLocationProtocol {
 
@@ -26,7 +27,7 @@ class TrainLocationRadarController: TrainLocationProtocol {
     
     func register(trip: T) {
         self.trips.append(trip)
-        let data = TripData(location: trip.polyline[0].location, state: .Driving, nextStop: "hell")
+        let data = TripData(location: trip.polyline[0].location, state: .Driving, nextStop: "hell", arrival: -1)
         self.delegate?.trainPositionUpdated(forTrip: trip, withData: data, withDuration: 0)
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             self.updateTrip(trip: trip)
@@ -44,8 +45,12 @@ class TrainLocationRadarController: TrainLocationProtocol {
         guard let arrayPosition = trip.currentTrainPosition() else {
             return
         }
-        let tripData = TripData(location: trip.polyline[arrayPosition].location, state: .Driving, nextStop: "hell")
+        let tripData = TripData(location: trip.polyline[arrayPosition].location, state: .Driving, nextStop: "hell", arrival: -1)
         self.delegate?.trainPositionUpdated(forTrip: trip, withData: tripData, withDuration: DURATION)
+    }
+    
+    func setCurrentLocation(location: CLLocation) {
+        fatalError("Not yet implemented")
     }
     
     func remove(trip: RadarTrip) {
@@ -72,4 +77,6 @@ class TrainLocationRadarController: TrainLocationProtocol {
     func setDataProvider(withProvider provider: TripProvider<RadarTrip>) {
         self.dataProvider = provider
     }
+    
+    
 }

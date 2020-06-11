@@ -17,10 +17,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var statusView: StatusView!
     
-    let locationManager = CLLocationManager()
     var mapViewController: MapViewController?
     let manager = TrainLocationProxy.shared
     var tripIdToUpdateLocation: String?
+    
+    var tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
     
     let tripProvider = MockTrainDataJourneyProvider.init()
     
@@ -64,19 +65,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.delegate = self
-        locationManager.startUpdatingHeading()
-        locationManager.startUpdatingLocation()
-        
+ 
         self.mapViewController?.delegate = self
         self.manager.delegate?.append(self)
+        
+        
+        UserLocationController.shared.register(delegate: self)
         
         // Start and append different controller instances
         let radarLocationController = TrainLocationRadarController()
         let tripLocationController = TrainLocationTripAnimationTimeController()
-        let tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
+        tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
         
         //tripLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataJourneyProvider()))
         
@@ -111,6 +110,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else { return }
         lastLocation = currentLocation
+        self.tripTimeFrameLocationController.setCurrentLocation(location: currentLocation)
     }
 
 }
@@ -165,8 +165,9 @@ extension ViewController {
         let name = trip.name
         let time = "( 🚂 \(trip.destination) ) " + data.state.get()
         let distance = String(Int(data.location?.distance(from: self.lastLocation!) ?? 0 ))+String(" Meter")
+        let arrTime = String(Int(data.arrival)) + " Seconds"
         
         
-        self.statusView.setValues(forName: name, andTime: time, andDistance: distance)
+        self.statusView.setValues(forName: name, andTime: time, andDistance: distance,andArrivalTime: arrTime)
     }
 }

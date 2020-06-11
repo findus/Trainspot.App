@@ -57,7 +57,7 @@ class TimeFrameTrip: Trip, Hashable {
         return self.locationArray[self.shortestDistanceArrayPosition(forUserLocation: loc)].coords.distance(from: loc)
     }
     
-    private func shortestDistanceArrayPosition(forUserLocation loc: CLLocation) -> Int {
+    func shortestDistanceArrayPosition(forUserLocation loc: CLLocation) -> Int {
         let distances = locationArray.map { $0.coords.distance(from: loc) }
 
         var arrayPosition = 0

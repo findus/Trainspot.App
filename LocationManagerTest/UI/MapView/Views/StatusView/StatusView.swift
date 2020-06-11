@@ -20,10 +20,11 @@ class StatusView : UIVisualEffectView {
         super.init(coder: coder)
     }
     
-    public func setValues(forName name: String, andTime time: String, andDistance distance: String) {
+    public func setValues(forName name: String, andTime time: String, andDistance distance: String, andArrivalTime arrTime: String) {
         self.name.text = name
         self.time.text = time
         self.distance.text = distance
+        self.to.text = arrTime
     }
 }
 

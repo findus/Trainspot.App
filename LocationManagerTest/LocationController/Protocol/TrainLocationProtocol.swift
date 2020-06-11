@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol TrainLocationProtocol {
     associatedtype T : Trip
@@ -17,5 +18,6 @@ protocol TrainLocationProtocol {
     func update()
     func pause()
     func setDataProvider(withProvider provider: P)
+    func setCurrentLocation(location: CLLocation)
     var delegate: TrainLocationDelegate? { set get }
 }

@@ -33,6 +33,7 @@ struct TripData {
     let location: CLLocation?
     let state: TrainState
     let nextStop: String?
+    let arrival: TimeInterval
 }
 
 protocol TrainLocationDelegate: NSObject {
