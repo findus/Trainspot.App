@@ -32,9 +32,10 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
             
     func addEntry(entry: MapEntity) {
         entryList.append(entry)
-        let pin = MKPointAnnotation()
+        let pin = TrainAnnotation()
         pin.coordinate = entry.location.coordinate
         pin.title = entry.name
+        pin.tripId = entry.tripId
         markerDict[entry.tripId] = pin
         self.map.addAnnotation(pin)
         
@@ -117,18 +118,20 @@ extension MapViewController: MKMapViewDelegate
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-         guard let annotation = view.annotation else
-               {
-                   return
-               }
-               
-               let name = annotation.title
-               
+        guard let annotation = view.annotation else
+        {
+            return
+        }
+        
+        guard let tripId = (annotation as? TrainAnnotation)?.tripId else {
+            return
+        }
+        
         // TODO pass tripId to Annotation
-               guard let entry = self.entryList.filter({ $0.name == name }).first else {
-                   return
-               }
-              
+        guard let entry = self.entryList.filter({ $0.tripId == tripId }).first else {
+            return
+        }
+        
         (self.parent as! ViewController).tripIdToUpdateLocation = entry.tripId
     }
 

@@ -9,7 +9,8 @@
 import Foundation
 import MapKit
 
-class TrainAnnotationView: UIView {
+class TrainAnnotation: MKPointAnnotation {
     
+    var tripId: String? = nil
     
 }
