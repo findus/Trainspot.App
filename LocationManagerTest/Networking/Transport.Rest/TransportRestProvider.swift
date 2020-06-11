@@ -42,6 +42,17 @@ class TransportRestProvider {
     func streamOfJourneys(output: [Publishers.Merge<AnyPublisher<Array<HafasJourney>, AFError>,AnyPublisher<Array<HafasJourney>, AFError>>.Output]) -> Set<HafasJourney> {
         return Set(output.flatMap({$0})).filter({ ["nationalExp","nationalExpress", "national", "regionalExp", "regional"].contains($0.line.product) })
     }
+    
+    func fetchTripsFromJourneyArray(withJourneys journeys: Set<HafasJourney>) -> AnyPublisher<Array<HafasTrip>, AFError> {
+        Log.info("Fetching Trips for \(journeys.count) journeys")
+        return Publishers.Sequence(sequence:  self.generateTripPublishers(fromJourneys: journeys)).flatMap { $0 }.collect().eraseToAnyPublisher()
+    }
+    
+    private func generateTripPublishers(fromJourneys journeys: Set<HafasJourney>) -> Array<AnyPublisher<HafasTrip, AFError>> {
+        return  Array(journeys).map( { (journey) -> AnyPublisher<HafasTrip, AFError> in
+            self.fetchTrip(forJourney: journey)
+        })
+    }
      
     func update() {
         
@@ -49,52 +60,22 @@ class TransportRestProvider {
         let arrivals = fetchArrivals(forStation: "8000049")
         
         let cancellable = Publishers.Merge(departures, arrivals)
-        .collect()
-        .map(streamOfJourneys)
-        .flatMap({ (journeys: Set<HafasJourney>) -> AnyPublisher<Array<HafasTrip>, AFError> in
-            return Publishers.Sequence(sequence:  self.generateTripPublishers(fromJourneys: journeys)).flatMap { $0 }.collect().eraseToAnyPublisher()
-        }).receive(on: RunLoop.main).sink(receiveCompletion: { (result) in
-                    switch result {
-                    case .failure(let error):
-                        Log.error(error)
-                    case .finished:
-                        Log.info(result)
-                    }
+            .collect()
+            .map(streamOfJourneys)
+            .flatMap(fetchTripsFromJourneyArray)
+            .receive(on: RunLoop.main).sink(receiveCompletion: { (result) in
+                switch result {
+                case .failure(let error):
+                    Log.error(error)
+                case .finished:
+                    Log.info(result)
+                }
             }) { (trips) in
                 self.trips = trips
-                        self.delegate?.onTripsUpdated()
+                self.delegate?.onTripsUpdated()
         }
         
         self.stream = cancellable
-
-    }
-    
-    class sub : Subscriber {
-
-        func receive(subscription: Subscription) {
-            Log.info(subscription)
-        }
-        
-        func receive(_ input: Array<Array<HafasTrip>>) -> Subscribers.Demand {
-            fatalError()
-        }
-        
-        func receive(completion: Subscribers.Completion<AFError>) {
-            Log.info(completion)
-        }
-        
-        
-        typealias Input = Array<Array<HafasTrip>>
-        typealias Failure = AFError
-        
-        
-    }
-    
-    private func generateTripPublishers(fromJourneys journeys: Set<HafasJourney>) -> Array<AnyPublisher<HafasTrip, AFError>> {
-        let d : Array<AnyPublisher<HafasTrip, AFError>> =  Array(journeys).map( { (journey) -> AnyPublisher<HafasTrip, AFError> in
-            self.fetchTrip(forJourney: journey)
-        })
-        return d
     }
     
 
