@@ -139,12 +139,6 @@ extension ViewController: TrainLocationDelegate {
     
     func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
         
-        guard let location = data.location?.coordinate else {
-            return
-        }
-        
-        self.mapViewController?.updateTrainLocation(forId: trip.tripId, withLabel: trip.name, toLocation: location, withDuration: duration)
-        
         if trip.tripId == self.tripIdToUpdateLocation {
             
             self.setStatusView(withTrip: trip, andData: data)
@@ -154,6 +148,12 @@ extension ViewController: TrainLocationDelegate {
                 self.pinnedLocation = data.location
             }, completion: nil)
         }
+        
+        guard let location = data.location?.coordinate else {
+            return
+        }
+        
+        self.mapViewController?.updateTrainLocation(forId: trip.tripId, withLabel: trip.name, toLocation: location, withDuration: duration)
         
     }
 }
