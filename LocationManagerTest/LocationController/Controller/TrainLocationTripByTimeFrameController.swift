@@ -105,8 +105,7 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
                     var tripData: TripData
                     if let currentLocation = self.currentUserLocation {
                         let time = self.getArrivalInSeconds(forTrip: trip, userPos: currentLocation, trainPos: data.2)
-                        let remaining = (time ?? data.3) - data.3
-                        tripData = TripData(location: data.0, state: data.1, nextStop: "hell", arrival: remaining)
+                        tripData = TripData(location: data.0, state: data.1, nextStop: "hell", arrival: time ?? -1 )
                     } else {
                         tripData = TripData(location: data.0, state: data.1, nextStop: "hell", arrival: -1)
                     }
