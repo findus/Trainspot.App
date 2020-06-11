@@ -147,7 +147,11 @@ extension ViewController: TrainLocationDelegate {
         self.mapViewController?.updateTrainLocation(forId: trip.tripId, withLabel: trip.name, toLocation: data.location.coordinate, withDuration: duration)
         
         if trip.tripId == self.tripIdToUpdateLocation {
-            self.pinnedLocation = data.location
+            
+            UIView.animate(withDuration: duration, delay: 0, options: .curveLinear, animations: {
+                // Update annotation coordinate to be the destination coordinate
+                self.pinnedLocation = data.location
+            }, completion: nil)
         }
         
         if let lastLocation = self.lastLocation  {

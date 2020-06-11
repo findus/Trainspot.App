@@ -39,11 +39,11 @@ class TransportRestProvider {
         self.delegate = delegate
     }
     
-    func streamOfJourneys(output: [Publishers.Merge<AnyPublisher<Array<HafasJourney>, AFError>,AnyPublisher<Array<HafasJourney>, AFError>>.Output]) -> Set<HafasJourney> {
+    private func streamOfJourneys(output: [Publishers.Merge<AnyPublisher<Array<HafasJourney>, AFError>,AnyPublisher<Array<HafasJourney>, AFError>>.Output]) -> Set<HafasJourney> {
         return Set(output.flatMap({$0})).filter({ ["nationalExp","nationalExpress", "national", "regionalExp", "regional"].contains($0.line.product) })
     }
     
-    func fetchTripsFromJourneyArray(withJourneys journeys: Set<HafasJourney>) -> AnyPublisher<Array<HafasTrip>, AFError> {
+    private func fetchTripsFromJourneyArray(withJourneys journeys: Set<HafasJourney>) -> AnyPublisher<Array<HafasTrip>, AFError> {
         Log.info("Fetching Trips for \(journeys.count) journeys")
         return Publishers.Sequence(sequence:  self.generateTripPublishers(fromJourneys: journeys)).flatMap { $0 }.collect().eraseToAnyPublisher()
     }
