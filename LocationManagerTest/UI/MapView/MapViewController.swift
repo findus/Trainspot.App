@@ -51,7 +51,11 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
     }
     
     func deleteEntry(withName: String, andLabel: String) {
-        
+        guard let annotation = self.markerDict[withName] else {
+            Log.warning(" \(andLabel) Could not remove Annottation")
+            return
+        }
+        self.map.removeAnnotation(annotation)
     }
     
     func removeAllEntries() {
