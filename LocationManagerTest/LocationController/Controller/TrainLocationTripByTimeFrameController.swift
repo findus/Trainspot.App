@@ -79,11 +79,17 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         //Currently only on top of polyline point, might be off if user is between points that ar far away
         let arr = trip.shortestDistanceArrayPosition(forUserLocation: userPos)
         if trainPos > arr {
-            Log.trace("\(trip.tripId) passed")
             return nil
         }
         
-        return trip.locationArray[trainPos...arr].map({($0.durationToNext ?? 0)}).reduce(0,+)
+        guard let nextStop = trip.locationArray[arr...].enumerated().first(where: { $0.element is StopOver && ($0.element as? StopOver)?.arrival != nil }) else {
+            return nil
+        }
+        Log.info(trip.name, trip.destination, (nextStop.element as! StopOver).name)
+
+        let a = (nextStop.element as! StopOver).arrival!
+        let offset = trip.locationArray[arr...(arr+nextStop.offset)].map({$0.durationToNext!}).reduce(0,+)
+        return a.addingTimeInterval(-offset).timeIntervalSince(Date())
     }
     
     func setCurrentLocation(location: CLLocation) {
@@ -179,7 +185,7 @@ extension TrainLocationTripByTimeFrameController {
     
     private func isTripInBounds(trip: TimeFrameTrip) -> TrainState {
         let start = trip.departure.addingTimeInterval(-2700)
-        let end = trip.locationArray.last?.departure ?? Date.init(timeIntervalSince1970: 0)
+        let end = (trip.locationArray.last! as! StopOver).arrival ?? Date.init(timeIntervalSince1970: 0)
         let now = Date()
         
         let formatter = DateFormatter()

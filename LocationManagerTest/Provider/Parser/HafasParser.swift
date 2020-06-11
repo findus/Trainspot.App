@@ -82,6 +82,14 @@ class HafasParser {
                 }
             }
             
+            if (line.last is StopOver) == false {
+                Log.warning("\(trip.line.name) Last Entry is not a StopOver")
+            }
+            
+            if (line.first is StopOver) == false {
+                Log.warning("\(trip.line.name) First Entry is not a StopOver")
+            }
+            
             Log.info("Generate Animation Data for: \(tripName)")
             let animationData = generateAnimationData(fromFeatures: line)
             
@@ -171,7 +179,7 @@ class HafasParser {
             
         }
         
-        let animationData = sections.map { (s) -> [AnimationData] in
+        var animationData = sections.map { (s) -> [AnimationData] in
             let distancePerSecond = s.distancePerSecond()
             return s.distances.enumerated().map { (i,singleDistance) -> AnimationData in
                 if i == 0 {
@@ -184,8 +192,11 @@ class HafasParser {
             }
             
         }
-
-        return Array(animationData.joined())
+        
+        var merged = Array(animationData.joined())
+        //Append dummy Data for last Feature Stop
+        merged.append(AnimationData(vehicleState: .Stopping, duration: 0))
+        return merged
     }
             
     public static  func loadJourneyTrip(fromHAFASTrips: Array<HafasTrip>) -> Array<JourneyTrip> {
