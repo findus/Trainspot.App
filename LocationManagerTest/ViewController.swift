@@ -138,11 +138,16 @@ extension ViewController: TrainLocationDelegate {
     }
     
     func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
-        self.mapViewController?.updateTrainLocation(forId: trip.tripId, withLabel: trip.name, toLocation: data.location.coordinate, withDuration: duration)
+        
+        guard let location = data.location?.coordinate else {
+            return
+        }
+        
+        self.mapViewController?.updateTrainLocation(forId: trip.tripId, withLabel: trip.name, toLocation: location, withDuration: duration)
         
         if trip.tripId == self.tripIdToUpdateLocation {
             
-            self.statusView.setValues(forName: trip.name, andTime: data.state.get(), andDistance: String(Int(data.location.distance(from: self.lastLocation!)))+String(" Meter"))
+            self.setStatusView(withTrip: trip, andData: data)
             
             UIView.animate(withDuration: duration, delay: 0, options: .curveLinear, animations: {
                 // Update annotation coordinate to be the destination coordinate
@@ -150,8 +155,17 @@ extension ViewController: TrainLocationDelegate {
             }, completion: nil)
         }
         
-        if let lastLocation = self.lastLocation  {
-            //Log.info(trip.name , ": Position:", position)
-        }
+    }
+}
+
+extension ViewController {
+    
+    private func setStatusView(withTrip trip: Trip, andData data: TripData) {
+        
+        let name = trip.name
+        let time = data.state.get()
+        let distance = String(Int(data.location?.distance(from: self.lastLocation!) ?? 0 ))+String(" Meter")
+        
+        self.statusView.setValues(forName: name, andTime: time, andDistance: distance)
     }
 }

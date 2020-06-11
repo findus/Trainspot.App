@@ -24,15 +24,15 @@ enum TrainState {
         case .Driving:
             return "Driving"
         case .Stopped(let date):
-            return "Stopped for \(date.timeIntervalSince(Date()))s"
+            return "Stopped for \(Int(date.timeIntervalSince(Date())))s"
         }
     }
 }
 
 struct TripData {
-    let location: CLLocation
+    let location: CLLocation?
     let state: TrainState
-    let nextStop: String
+    let nextStop: String?
 }
 
 protocol TrainLocationDelegate: NSObject {

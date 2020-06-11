@@ -59,6 +59,12 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         self.start()
     }
     
+    func remove(trip: TimeFrameTrip, reason: TrainState) {
+        let data = TripData(location: nil, state: reason, nextStop: nil)
+        self.delegate?.trainPositionUpdated(forTrip: trip, withData: data, withDuration: 1)
+        self.remove(trip: trip)
+    }
+    
     func start() {
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(onTick), userInfo: nil, repeats: true)
     }
@@ -69,17 +75,19 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     
     @objc func onTick(timer: Timer) {
         self.trips.forEach { (trip) in
-            if isTripInBounds(trip: trip) {
+            switch self.isTripInBounds(trip: trip) {
+            case .Driving, .Stopped(_):
                 if let data = self.getTrainLocation(forTrip: trip, atDate: Date()) {
                     let tripData = TripData(location: data.0, state: data.1, nextStop: "hell")
                     self.delegate?.trainPositionUpdated(forTrip: trip, withData: tripData, withDuration: 1)
                 } else {
                     Log.info("Gonna remove Trip \(trip) from set, because time is invalid")
-                     self.remove(trip: trip)
+                    self.remove(trip: trip, reason: .Ended)
                 }
-            } else {
-                Log.info("Gonna remove Trip \(trip) from set, because time is invalid")
-                self.remove(trip: trip)
+            case .Ended:
+                self.remove(trip: trip, reason: .Ended)
+            case .WaitForStart:
+                self.remove(trip: trip, reason: .WaitForStart)
             }
         }
     }
@@ -144,7 +152,7 @@ extension TrainLocationTripByTimeFrameController: TrainDataProviderDelegate {
 
 extension TrainLocationTripByTimeFrameController {
     
-    private func isTripInBounds(trip: TimeFrameTrip) -> Bool {
+    private func isTripInBounds(trip: TimeFrameTrip) -> TrainState {
         let start = trip.departure.addingTimeInterval(-2700)
         let end = trip.locationArray.last?.departure ?? Date.init(timeIntervalSince1970: 0)
         let now = Date()
@@ -153,15 +161,17 @@ extension TrainLocationTripByTimeFrameController {
         formatter.dateFormat = "dd.mm.yyyy HH:mm"
         
         if start.timeIntervalSince(now) >= 0 || end.timeIntervalSince(now) <= 0 {
-            Log.warning("Trip \(trip.name) is not in bounds!")
             if start.timeIntervalSince(now) >= 0 {
+                Log.warning("Trip \(trip.name) is in future")
                 Log.warning("[\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]..................\(formatter.string(from: start))")
+                return TrainState.WaitForStart
             } else {
+                Log.warning("Trip \(trip.name) is in past")
                 Log.warning("\(formatter.string(from: start))..................[\(formatter.string(from: trip.departure)).....\(formatter.string(from: end))]")
+                return TrainState.Ended
             }
-            return false
         }
-        return true
+        return TrainState.Driving
     }
     
     func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> (CLLocation, TrainState)? {
