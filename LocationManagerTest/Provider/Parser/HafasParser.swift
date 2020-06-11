@@ -22,7 +22,11 @@ class HafasParser {
         
         let tripName = trip.line.name
         let stops = trip.stopovers
-        let polyline = trip.polyline.features
+        guard let polyline = trip.polyline?.features else {
+            let error = "[\(tripName)] Has no Polyline"
+            Log.error(error)
+            throw AnimationCalculationError.PolyLineNotFound(message: error)
+        }
         
         guard let date = trip.departure else {
             let error = "[\(tripName)] Could not parse departure date"
@@ -102,6 +106,7 @@ class HafasParser {
     enum AnimationCalculationError: Error {
         case NoDurationFound(message : String)
         case DepartureDateNotFound(message : String)
+        case PolyLineNotFound(message: String)
     }
     
     /**
@@ -188,7 +193,12 @@ class HafasParser {
         let trips = fromHAFASTrips.compactMap({ (trip) -> JourneyTrip? in
             let name = trip.line.name
             
-            let coords = trip.polyline.features.map { MapEntity(name: "line", tripId: trip.id, location: CLLocation(latitude: $0.geometry.coordinates[1], longitude: $0.geometry.coordinates[0]))  }
+            guard let polyline =  trip.polyline else {
+                Log.error("\(trip.line.name) has no polyline")
+                return nil
+            }
+            
+            let coords = polyline.features.map { MapEntity(name: "line", tripId: trip.id, location: CLLocation(latitude: $0.geometry.coordinates[1], longitude: $0.geometry.coordinates[0]))  }
             
             guard let tl = try? generateTimeLine(forTrip: trip)  else {
                 Log.error("[\(name)] Parse Error, could not generate Timeline, wil exclude this trip")
@@ -206,7 +216,14 @@ class HafasParser {
     public static func loadTimeFrameTrip(fromHafasTrips array: Array<HafasTrip>) -> Array<TimeFrameTrip> {
         
         array.compactMap({ (trip) -> TimeFrameTrip? in
-            let coords = trip.polyline.features.map { MapEntity(name: "line", tripId: trip.id, location: CLLocation(latitude: $0.geometry.coordinates[1], longitude: $0.geometry.coordinates[0]))  }
+            
+            guard let polyline =  trip.polyline else {
+                Log.error("\(trip.line.name) has no polyline")
+                return nil
+            }
+            
+            let coords = polyline.features.map { MapEntity(name: "line", tripId: trip.id, location: CLLocation(latitude: $0.geometry.coordinates[1], longitude: $0.geometry.coordinates[0]))  }
+            
             do {
                 let timeline = try generateTimeLine(forTrip: trip)
                 let locationBasedFeatures = try getFeaturesWithDates(forFeatures: timeline.line, andAnimationData: timeline.animationData, forTrip: trip)

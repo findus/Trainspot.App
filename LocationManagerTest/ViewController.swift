@@ -62,11 +62,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         return origHeading
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.async {
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -96,7 +91,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         tripTimeFrameLocationController.fetchServer()
         
         self.imageView.isHidden = true
-
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -147,6 +141,8 @@ extension ViewController: TrainLocationDelegate {
         self.mapViewController?.updateTrainLocation(forId: trip.tripId, withLabel: trip.name, toLocation: data.location.coordinate, withDuration: duration)
         
         if trip.tripId == self.tripIdToUpdateLocation {
+            
+            self.statusView.setValues(forName: trip.name, andTime: data.state.get(), andDistance: String(Int(data.location.distance(from: self.lastLocation!)))+String(" Meter"))
             
             UIView.animate(withDuration: duration, delay: 0, options: .curveLinear, animations: {
                 // Update annotation coordinate to be the destination coordinate

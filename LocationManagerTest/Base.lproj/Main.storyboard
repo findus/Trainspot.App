@@ -22,27 +22,28 @@
                                 </connections>
                             </containerView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.north.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vCU-ZU-3hG">
-                                <rect key="frame" x="20" y="526" width="374" height="191.5"/>
+                                <rect key="frame" x="20" y="465.5" width="374" height="191.5"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebN-Sl-0IC" userLabel="SelectedView">
-                                <rect key="frame" x="8" y="738" width="400" height="69"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebN-Sl-0IC" userLabel="SelectedView" customClass="StatusView" customModule="LocationManagerTest" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="687.5" width="414" height="125.5"/>
+                                <accessibility key="accessibilityConfiguration" identifier="StatusView" label="StatusView"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="ebN-Sl-0IC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="5Md-f5-I3N"/>
+                            <constraint firstItem="ebN-Sl-0IC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5Md-f5-I3N"/>
                             <constraint firstItem="vCU-ZU-3hG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="AIn-gD-Lns"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vCU-ZU-3hG" secondAttribute="trailing" constant="20" id="Cgf-UH-iZK"/>
                             <constraint firstItem="g8L-X6-Uqn" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="FPU-04-csQ"/>
                             <constraint firstItem="g8L-X6-Uqn" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="SiL-7W-NEr"/>
                             <constraint firstItem="vCU-ZU-3hG" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.25" id="WcP-Z5-div"/>
                             <constraint firstItem="g8L-X6-Uqn" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Xb5-0Z-Ka4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ebN-Sl-0IC" secondAttribute="bottom" constant="6" id="ZKw-gA-JMt"/>
-                            <constraint firstItem="ebN-Sl-0IC" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0770089" id="bgR-FU-pB0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ebN-Sl-0IC" secondAttribute="trailing" constant="6" id="ht2-7p-ck5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ebN-Sl-0IC" secondAttribute="bottom" id="ZKw-gA-JMt"/>
+                            <constraint firstItem="ebN-Sl-0IC" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.14" id="bgR-FU-pB0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ebN-Sl-0IC" secondAttribute="trailing" id="ht2-7p-ck5"/>
                             <constraint firstItem="g8L-X6-Uqn" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="iev-Pa-V6o"/>
-                            <constraint firstItem="ebN-Sl-0IC" firstAttribute="top" secondItem="vCU-ZU-3hG" secondAttribute="bottom" constant="20" id="xP7-3Y-jDv"/>
+                            <constraint firstItem="ebN-Sl-0IC" firstAttribute="top" secondItem="vCU-ZU-3hG" secondAttribute="bottom" constant="30" id="xP7-3Y-jDv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -50,7 +51,7 @@
                     <connections>
                         <outlet property="imageView" destination="vCU-ZU-3hG" id="f3L-tZ-QA3"/>
                         <outlet property="mapContainerView" destination="g8L-X6-Uqn" id="a17-A3-U7V"/>
-                        <outlet property="statusView" destination="8bC-Xf-vdC" id="KMX-G4-2aB"/>
+                        <outlet property="statusView" destination="ebN-Sl-0IC" id="75Q-ZG-XAa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
