@@ -47,7 +47,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="ZVL-Ji-bya"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="ZVL-Ji-bya"/>
                     <connections>
                         <outlet property="imageView" destination="vCU-ZU-3hG" id="f3L-tZ-QA3"/>
                         <outlet property="mapContainerView" destination="g8L-X6-Uqn" id="a17-A3-U7V"/>
@@ -125,11 +125,40 @@
                             <outlet property="delegate" destination="1fa-wT-uYc" id="bT5-4G-hgy"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Status Board" id="dur-Ku-Wqm"/>
+                    <tabBarItem key="tabBarItem" title="Status Board" image="tray" catalog="system" id="dur-Ku-Wqm"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPk-VZ-nnL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="659" y="74"/>
+            <point key="canvasLocation" x="-413" y="370"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="2wa-Lg-eAq">
+            <objects>
+                <tableViewController id="O1h-9j-mgB" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jbJ-qM-Glz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="AEp-f5-YWj">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AEp-f5-YWj" id="q1Z-bH-lSA">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="O1h-9j-mgB" id="Nal-Z2-xo1"/>
+                            <outlet property="delegate" destination="O1h-9j-mgB" id="o7d-8Y-ABQ"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="Otu-6T-2YV"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4v5-yC-LkX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="878" y="130"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hCe-6c-J3B">
@@ -143,6 +172,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" destinationCreationSelector="Map" id="fKI-W5-JBX"/>
                         <segue destination="1fa-wT-uYc" kind="relationship" relationship="viewControllers" destinationCreationSelector="List" id="1hK-UI-7cK"/>
+                        <segue destination="O1h-9j-mgB" kind="relationship" relationship="viewControllers" id="8MR-dw-TBO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uL-wl-1bZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -180,6 +210,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gear" catalog="system" width="128" height="119"/>
         <image name="location.north.fill" catalog="system" width="108" height="128"/>
+        <image name="map" catalog="system" width="128" height="113"/>
+        <image name="tray" catalog="system" width="128" height="88"/>
     </resources>
 </document>
