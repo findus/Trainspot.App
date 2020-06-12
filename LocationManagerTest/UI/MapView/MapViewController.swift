@@ -128,8 +128,24 @@ extension MapViewController: MKMapViewDelegate
         annotationView?.centerOffset = CGPoint(x: 25, y: -20)
         annotationView?.canShowCallout = true
         annotationView?.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure)
-       // annotationView?.image = UIImage(named: "ice")
         (annotationView as! MKTrainAnnotationView).label.text = an.title
+        switch an.title! {
+        case let str where str.lowercased().contains("eno"):
+            (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "enno")
+        case let str where str.lowercased().contains("erx"):
+            (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "erixx")
+        case let str where str.lowercased().contains("wfb"):
+            (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "westalenbahn")
+        case let str where str.lowercased().contains("ice"):
+            (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "ice")
+        case let str where str.lowercased().contains("ic "):
+            (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "ic")
+        case let str where str.lowercased().contains("rb") || str.lowercased().contains("re"):
+            (annotationView as! MKTrainAnnotationView).icon.image = UIImage(named: "westfalenbahn")
+        default:
+            (annotationView as! MKTrainAnnotationView).icon.image = UIImage(named: "westfalenbahn")
+
+        }
 
         return annotationView
     }

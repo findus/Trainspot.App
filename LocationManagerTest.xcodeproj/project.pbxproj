@@ -47,12 +47,12 @@
 		D4BCAF8F2493C151000B40D8 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF8E2493C151000B40D8 /* Collection.swift */; };
 		D4BCAF922493D221000B40D8 /* MKTrainAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF912493D220000B40D8 /* MKTrainAnnotationView.swift */; };
 		D4BCAF942493FD42000B40D8 /* MKTrainAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */; };
+		D4BCAF98249428F2000B40D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */; };
 		D4C22BF0248E9D1700FB7120 /* HafasDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
 		D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
 		D4DEAACC2487AC1900D33AA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAACB2487AC1900D33AA2 /* ViewController.swift */; };
 		D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAACD2487AC1900D33AA2 /* Main.storyboard */; };
-		D4DEAAD12487AC1E00D33AA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */; };
 		D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD22487AC1E00D33AA2 /* LaunchScreen.storyboard */; };
 		D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAADB2487D1AF00D33AA2 /* MapViewControllerDelegate.swift */; };
 		D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAADE2487D3B000D33AA2 /* MapViewControllerProtocol.swift */; };
@@ -613,12 +613,12 @@
 			files = (
 				D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */,
 				D4270AB9248BAD170022A6BB /* TrainView.xib in Resources */,
-				D4DEAAD12487AC1E00D33AA2 /* Assets.xcassets in Resources */,
 				D4EA3D66248803DC003D7469 /* hafas_test_json.json in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
 				D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */,
 				D45C50652489266600A3D857 /* trip_test in Resources */,
 				D4BCAF942493FD42000B40D8 /* MKTrainAnnotationView.xib in Resources */,
+				D4BCAF98249428F2000B40D8 /* Assets.xcassets in Resources */,
 				D4BCAF8B2493A9BD000B40D8 /* FormerScheduledArrivalDeparture in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
