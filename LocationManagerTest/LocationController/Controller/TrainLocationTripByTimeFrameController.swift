@@ -100,7 +100,7 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         }
         
         if arrayPosTrain + 1 < arrayPosUser {
-            return currentTrainLoc.distance(from: nextSection.coords) + trip.locationArray[arrayPosTrain...arrayPosUser].map({$0.distanceToNext}).reduce(0, +)
+            return currentTrainLoc.distance(from: nextSection.coords) + trip.locationArray[arrayPosTrain + 1...arrayPosUser].map({$0.distanceToNext}).reduce(0, +)
         } else {
             return -1.0
         }
