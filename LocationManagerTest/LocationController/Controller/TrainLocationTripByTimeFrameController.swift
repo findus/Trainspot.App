@@ -78,14 +78,13 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     func getArrivalInSeconds(forTrip trip: T, userPos: CLLocation, trainPos: Int) -> TimeInterval? {
         //Currently only on top of polyline point, might be off if user is between points that ar far away
         let arr = trip.shortestDistanceArrayPosition(forUserLocation: userPos)
-        if trainPos > arr {
-            return nil
-        }
-        
+
+        /**
+         Tries to get the next stop facing from the users position, fetches the time of next arrivals and substracts the time that is needed to get there
+         */
         guard let nextStop = trip.locationArray[arr...].enumerated().first(where: { $0.element is StopOver && ($0.element as? StopOver)?.arrival != nil }) else {
             return nil
         }
-        Log.info(trip.name, trip.destination, (nextStop.element as! StopOver).name)
 
         let a = (nextStop.element as! StopOver).arrival!
         let offset = trip.locationArray[arr...(arr+nextStop.offset)].map({$0.durationToNext!}).reduce(0,+)
