@@ -68,10 +68,12 @@ class JourneyTrip: Trip, Hashable {
     let name: String
     
     let journey: Journey?
+    
+    let delay: Int?
         
     var counter = 0
     
-    public init(withDeparture time: Date, andName name: String, andTimeline timeline: Timeline, andPolyline line: Array<MapEntity>, andID id: String, andDestination destination: String) {
+    public init(withDeparture time: Date, andName name: String, andTimeline timeline: Timeline, andPolyline line: Array<MapEntity>, andID id: String, andDestination destination: String, andDelay delay: Int?) {
         self.departure = time
         self.polyline = line
         self.name = name
@@ -79,6 +81,7 @@ class JourneyTrip: Trip, Hashable {
         self.timeline = timeline
         self.tripId = id
         self.destination = destination
+        self.delay = delay
     }
     
     func positionAtTime(date: Date) {

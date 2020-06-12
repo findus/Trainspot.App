@@ -19,10 +19,11 @@ class TimeFrameTrip: Trip, Hashable {
     var destination: String
  
     let name: String
+    let delay: Int?
             
     var counter = 0
     
-    public init(withDeparture time: Date, andName name: String, andPolyline line: Array<MapEntity>, andLocationMapping mapping: Array<Feature>, andID id: String, andDestination destination: String) {
+    public init(withDeparture time: Date, andName name: String, andPolyline line: Array<MapEntity>, andLocationMapping mapping: Array<Feature>, andID id: String, andDestination destination: String, andDelay delay: Int?) {
         self.departure = time
         self.polyline = line
         self.name = name
@@ -30,6 +31,7 @@ class TimeFrameTrip: Trip, Hashable {
         self.locationArray = mapping
         self.tripId = id
         self.destination = destination
+        self.delay = delay
     }
     
     func positionAtTime(date: Date) {

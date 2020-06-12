@@ -25,6 +25,8 @@ protocol Trip {
     
     var destination: String { get }
     
+    var delay: Int? { get }
+    
     /**
      Checks, if the train is heading towards the user, or still passed the location
      */

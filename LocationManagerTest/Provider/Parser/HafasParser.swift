@@ -216,7 +216,7 @@ class HafasParser {
                 return nil
             }
             
-            return JourneyTrip(withDeparture: tl.departure, andName: tl.name, andTimeline: tl , andPolyline: coords, andID: trip.id,andDestination: trip.destination.name)
+            return JourneyTrip(withDeparture: tl.departure, andName: tl.name, andTimeline: tl , andPolyline: coords, andID: trip.id,andDestination: trip.destination.name, andDelay: trip.arrivalDelay)
         })
         
         return trips
@@ -238,7 +238,7 @@ class HafasParser {
             do {
                 let timeline = try generateTimeLine(forTrip: trip)
                 let locationBasedFeatures = try getFeaturesWithDates(forFeatures: timeline.line, andAnimationData: timeline.animationData, forTrip: trip)
-                return TimeFrameTrip(withDeparture: timeline.departure, andName: timeline.name, andPolyline: coords,andLocationMapping: locationBasedFeatures, andID: trip.id, andDestination: trip.destination.name)
+                return TimeFrameTrip(withDeparture: timeline.departure, andName: timeline.name, andPolyline: coords,andLocationMapping: locationBasedFeatures, andID: trip.id, andDestination: trip.destination.name, andDelay: trip.arrivalDelay)
             } catch {
                 Log.error(error.localizedDescription)
                 return nil

@@ -35,7 +35,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4b-kd-h4l" userLabel="Name">
                                                     <rect key="frame" x="0.0" y="0.0" width="183.5" height="174.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -56,9 +56,9 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYy-wg-15f" userLabel="x">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYy-wg-15f" userLabel="delay">
                                                     <rect key="frame" x="367.5" y="0.0" width="183.5" height="174.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -93,6 +93,7 @@
             </view>
             <blurEffect style="regular"/>
             <connections>
+                <outlet property="delay" destination="mYy-wg-15f" id="kI3-J7-jhw"/>
                 <outlet property="distance" destination="Nc9-jG-dvq" id="q23-6y-hq9"/>
                 <outlet property="name" destination="J4b-kd-h4l" id="uTc-Ti-344"/>
                 <outlet property="time" destination="R0E-Za-YX5" id="k6i-lw-pt5"/>

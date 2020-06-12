@@ -55,7 +55,7 @@ public struct HafasTrip: Decodable {
     let destination: HafasStop
     let departure: Date?
     let arrival: Date?
-   //let arrivalDelay: Int
+    let arrivalDelay: Int?
     let polyline: HafasFeatureCollection?
     let line: HafasLine
    //let direction: String

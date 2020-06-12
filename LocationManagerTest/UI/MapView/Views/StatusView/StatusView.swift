@@ -15,16 +15,33 @@ class StatusView : UIVisualEffectView {
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var to: UILabel!
-        
+    @IBOutlet weak var delay: UILabel!
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    public func setValues(forName name: String, andTime time: String, andDistance distance: String, andArrivalTime arrTime: String) {
+    public func setValues(forName name: String, andDestination destination: String, andDistance distance: String, andArrivalTime arrTime: Int, andDelay delay: Int) {
         self.name.text = name
-        self.time.text = time
+        self.time.text = destination
         self.distance.text = distance
-        self.to.text = arrTime
+        let timeFractions = secondsToHoursMinutesSeconds(seconds: arrTime)
+        self.to.text = String(format: "%d:%d:%d", timeFractions.0, timeFractions.1,timeFractions.2)
+        if delay > 0 {
+            self.delay.layer.cornerRadius=8.0;
+            self.delay.clipsToBounds = true;
+            self.delay.backgroundColor = .red
+            self.delay.text = "+"+String(Int(delay / 60))
+        }
+        else {
+            self.delay.text = String(delay)
+            self.delay.backgroundColor = nil
+        }
+
+    }
+    
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+      return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
 }
 

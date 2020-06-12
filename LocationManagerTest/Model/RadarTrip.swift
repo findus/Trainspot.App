@@ -11,6 +11,8 @@ import CoreLocation
 
 class RadarTrip: Trip {
    
+    var delay: Int?
+   
     var tripId: String
    
     let departure: Date
