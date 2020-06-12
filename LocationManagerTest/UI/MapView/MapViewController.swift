@@ -125,7 +125,8 @@ extension MapViewController: MKMapViewDelegate
             return  nil
         }
         
-        annotationView?.centerOffset = CGPoint(x: 25, y: -20)
+        (annotationView as! MKTrainAnnotationView).positionDot.layer.cornerRadius = 2
+        annotationView?.centerOffset = CGPoint(x: (annotationView?.frame.width)! / 2, y: -(annotationView?.frame.height)! / 2)
         annotationView?.canShowCallout = true
         annotationView?.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure)
         (annotationView as! MKTrainAnnotationView).label.text = an.title

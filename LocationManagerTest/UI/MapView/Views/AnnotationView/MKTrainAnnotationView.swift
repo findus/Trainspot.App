@@ -13,7 +13,7 @@ class MKTrainAnnotationView: MKAnnotationView {
 
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var label: UILabel!
-    
+    @IBOutlet var positionDot: MKTrainAnnotationView!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
