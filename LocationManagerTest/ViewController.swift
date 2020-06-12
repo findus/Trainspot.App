@@ -164,7 +164,7 @@ extension ViewController {
         
         let name = trip.name
         let destination = "( 🚂 \(trip.destination) ) " + data.state.get()
-        let distance = String(Int(data.location?.distance(from: self.lastLocation!) ?? 0 ))+String(" Meter")
+        let distance = String(Int((data.distance ?? 0.0)))+String(" Meter")
         let arrTime = Int(data.arrival)
         let delay = trip.delay ?? 0
         

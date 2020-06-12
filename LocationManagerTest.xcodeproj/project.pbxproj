@@ -44,6 +44,7 @@
 		D4BCAF862492479C000B40D8 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF852492479C000B40D8 /* UIView.swift */; };
 		D4BCAF892492D1F9000B40D8 /* UserLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF882492D1F8000B40D8 /* UserLocationController.swift */; };
 		D4BCAF8B2493A9BD000B40D8 /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
+		D4BCAF8F2493C151000B40D8 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF8E2493C151000B40D8 /* Collection.swift */; };
 		D4C22BF0248E9D1700FB7120 /* HafasDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
 		D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
@@ -121,6 +122,7 @@
 		D4BCAF852492479C000B40D8 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		D4BCAF882492D1F8000B40D8 /* UserLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationController.swift; sourceTree = "<group>"; };
 		D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */ = {isa = PBXFileReference; lastKnownFileType = text; path = FormerScheduledArrivalDeparture; sourceTree = "<group>"; };
+		D4BCAF8E2493C151000B40D8 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasDTOs.swift; sourceTree = "<group>"; };
 		D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 		D4DEAABB2487AC1900D33AA2 = {
 			isa = PBXGroup;
 			children = (
+				D4BCAF8E2493C151000B40D8 /* Collection.swift */,
 				D46B6B6224912C5F00AF77F6 /* MockData */,
 				D46292C6248C4662006E638F /* LocationManagerTests */,
 				D4DEAAC62487AC1900D33AA2 /* LocationManagerTest */,
@@ -740,6 +743,7 @@
 				D45C506924892CC900A3D857 /* TrainLocationProxy.swift in Sources */,
 				D4DEAAEA2487DA1D00D33AA2 /* Math+Extension.swift in Sources */,
 				D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */,
+				D4BCAF8F2493C151000B40D8 /* Collection.swift in Sources */,
 				D4AF5163248D2E3800C9D7BE /* DateUtils.swift in Sources */,
 				D45C505024882C3C00A3D857 /* TrainLocationDelegate.swift in Sources */,
 				D4BCAF862492479C000B40D8 /* UIView.swift in Sources */,

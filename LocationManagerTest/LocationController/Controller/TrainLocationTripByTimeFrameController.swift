@@ -75,20 +75,35 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         self.timer?.invalidate()
     }
     
-    func getArrivalInSeconds(forTrip trip: T, userPos: CLLocation, trainPos: Int) -> TimeInterval? {
-        //Currently only on top of polyline point, might be off if user is between points that ar far away
-        let arr = trip.shortestDistanceArrayPosition(forUserLocation: userPos)
-
+    func getArrivalInSeconds(forTrip trip: T, userPosInArray: Int, trainPos: Int) -> TimeInterval? {
         /**
          Tries to get the next stop facing from the users position, fetches the time of next arrivals and substracts the time that is needed to get there
          */
-        guard let nextStop = trip.locationArray[arr...].enumerated().first(where: { $0.element is StopOver && ($0.element as? StopOver)?.arrival != nil }) else {
+        guard let nextStop = trip.locationArray[userPosInArray...].enumerated().first(where: { $0.element is StopOver && ($0.element as? StopOver)?.arrival != nil }) else {
             return nil
         }
-
+        
         let a = (nextStop.element as! StopOver).arrival!
-        let offset = trip.locationArray[arr...(arr+nextStop.offset)].map({$0.durationToNext!}).reduce(0,+)
+        let offset = trip.locationArray[userPosInArray...(userPosInArray+nextStop.offset)].map({$0.durationToNext!}).reduce(0,+)
         return a.addingTimeInterval(-offset).timeIntervalSince(Date())
+    }
+    
+    /**
+     Calculates the Current Distance, of the train from the user.
+     */
+    private func getDistance(forTrip trip: T, arrayPosTrain: Int, arrayPosUser: Int, currentTrainLoc: CLLocation) -> Double {
+        /**
+         We need this, because the train could have already traveled a certain amount on this polyline. That why the current line is omitted and the current location distance to the next segment gets calculated
+         **/
+        guard let nextSection = trip.locationArray[exist: arrayPosTrain + 1] else {
+            return -1
+        }
+        
+        if arrayPosTrain + 1 < arrayPosUser {
+            return currentTrainLoc.distance(from: nextSection.coords) + trip.locationArray[arrayPosTrain...arrayPosUser].map({$0.distanceToNext}).reduce(0, +)
+        } else {
+            return -1.0
+        }
     }
     
     func setCurrentLocation(location: CLLocation) {
@@ -103,8 +118,11 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
                     
                     var tripData: TripData
                     if let currentLocation = self.currentUserLocation {
-                        let time = self.getArrivalInSeconds(forTrip: trip, userPos: currentLocation, trainPos: data.2)
-                        tripData = TripData(location: data.0, state: data.1, nextStop: "hell", arrival: time ?? -1 )
+                        //Currently only on top of polyline point, might be off if user is between points that ar far away
+                        let userPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: currentLocation)
+                        let time = self.getArrivalInSeconds(forTrip: trip, userPosInArray: userPosInArray, trainPos: data.2)
+                        let distance = self.getDistance(forTrip: trip, arrayPosTrain: data.2, arrayPosUser: userPosInArray, currentTrainLoc: data.0)
+                        tripData = TripData(location: data.0, state: data.1, nextStop: "hell", arrival: time ?? -1, distance: distance )
                     } else {
                         tripData = TripData(location: data.0, state: data.1, nextStop: "hell", arrival: -1)
                     }

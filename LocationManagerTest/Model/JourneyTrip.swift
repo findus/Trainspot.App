@@ -13,9 +13,11 @@ protocol Feature {
     var coords: CLLocation { get set }
     var departure: Date? { get set }
     var durationToNext: Double? { get set }
+    var distanceToNext: Double { get set }
 }
 
 struct Path: Feature {
+    var distanceToNext: Double
     var durationToNext: Double?
     
     var departure: Date?
@@ -26,6 +28,7 @@ struct Path: Feature {
 }
 
 struct StopOver: Feature {
+    var distanceToNext: Double
     var durationToNext: Double?
 
     var name: String

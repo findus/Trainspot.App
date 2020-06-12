@@ -75,10 +75,10 @@ class HafasParser {
                         arrival = departure
                     }
                     
-                    return StopOver(name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure)
+                    return StopOver(distanceToNext: -2, name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure)
                                
                 } else {
-                    return Path(coords: CLLocation(latitude: lat, longitude: lon))
+                    return Path(distanceToNext: -2, coords: CLLocation(latitude: lat, longitude: lon))
                 }
             }
             
@@ -121,19 +121,25 @@ class HafasParser {
      Returns an Array of features where every feature has the needed duration to the next Feature and the current location
      */
     public static func getFeaturesWithDates(forFeatures features: Array<Feature>, andAnimationData animationData: Array<AnimationData>, forTrip trip: HafasTrip) throws -> Array<Feature> {
-        try zip(features, animationData).reduce([Feature]()) { (prev, tuple) -> Array<Feature> in
+        try zip(features, animationData).enumerated().reduce([Feature]()) { (prev, tuple) -> Array<Feature> in
             var newArray = prev
-            let (newFeature, animationData) = tuple
+            let (offset,(currentFeature, animationData)) = tuple
+            
+            var distance = 0.0
+            if let nextFeature = features[exist: offset+1]  {
+                distance = currentFeature.coords.distance(from: nextFeature.coords)
+            }
+            
             if let last = prev.last {
                 let lastDate = last.departure
                 
-                if newFeature is StopOver {
-                    let stop = newFeature as! StopOver
+                if currentFeature is StopOver {
+                    let stop = currentFeature as! StopOver
                     var st: StopOver? = nil
                     if newArray.isEmpty {
-                        st = StopOver(name: stop.name, coords: stop.coords, arrival: Date().addingTimeInterval(-2700), departure: stop.departure)
+                        st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: Date().addingTimeInterval(-2700), departure: stop.departure)
                     } else {
-                        st = StopOver(name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)
+                        st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)
                     }
     
                     st!.durationToNext = animationData.duration
@@ -144,13 +150,13 @@ class HafasParser {
                         let errormsg = "[\(trip.line.name)] Could not find the duration from \(last.coords)"
                         throw AnimationCalculationError.NoDurationFound(message: errormsg)
                     }
-                    let path = Path(durationToNext: animationData.duration, departure: lastDate!.addingTimeInterval(durationToNext), coords: newFeature.coords, lastBeforeStop: false)
+                    let path = Path(distanceToNext: distance, durationToNext: animationData.duration, departure: lastDate!.addingTimeInterval(durationToNext), coords: currentFeature.coords, lastBeforeStop: false)
                     newArray.append(path)
                     return newArray
                 }
             } else {
-                let stop = newFeature as! StopOver
-                var st = StopOver(name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)
+                let stop = currentFeature as! StopOver
+                var st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)
                 st.durationToNext = animationData.duration
                 newArray.append(st)
                 return newArray
