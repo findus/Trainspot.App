@@ -26,7 +26,7 @@ class StatusView : UIVisualEffectView {
         self.time.text = destination
         self.distance.text = distance
         let timeFractions = secondsToHoursMinutesSeconds(seconds: arrTime)
-        self.to.text = String(format: "%d:%d:%d", timeFractions.0, timeFractions.1,timeFractions.2)
+        self.to.text = String(format: "%@%d:%d:%d",timeFractions.3 ? "- " : "", timeFractions.0, timeFractions.1,timeFractions.2)
         if delay > 0 {
             self.delay.layer.cornerRadius=8.0;
             self.delay.clipsToBounds = true;
@@ -40,8 +40,13 @@ class StatusView : UIVisualEffectView {
 
     }
     
-    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-      return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int, Bool) {
+        if seconds > 0 {
+            return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60, false)
+            
+        } else {
+            return ((seconds / 3600) * -1 , ((seconds % 3600) / 60) * -1, ((seconds % 3600) % 60) * -1, true)
+        }
     }
 }
 
