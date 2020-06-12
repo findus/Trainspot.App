@@ -45,6 +45,8 @@
 		D4BCAF892492D1F9000B40D8 /* UserLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF882492D1F8000B40D8 /* UserLocationController.swift */; };
 		D4BCAF8B2493A9BD000B40D8 /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
 		D4BCAF8F2493C151000B40D8 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF8E2493C151000B40D8 /* Collection.swift */; };
+		D4BCAF922493D221000B40D8 /* MKTrainAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF912493D220000B40D8 /* MKTrainAnnotationView.swift */; };
+		D4BCAF942493FD42000B40D8 /* MKTrainAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */; };
 		D4C22BF0248E9D1700FB7120 /* HafasDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
 		D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
@@ -123,6 +125,8 @@
 		D4BCAF882492D1F8000B40D8 /* UserLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationController.swift; sourceTree = "<group>"; };
 		D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */ = {isa = PBXFileReference; lastKnownFileType = text; path = FormerScheduledArrivalDeparture; sourceTree = "<group>"; };
 		D4BCAF8E2493C151000B40D8 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		D4BCAF912493D220000B40D8 /* MKTrainAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKTrainAnnotationView.swift; sourceTree = "<group>"; };
+		D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MKTrainAnnotationView.xib; sourceTree = "<group>"; };
 		D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasDTOs.swift; sourceTree = "<group>"; };
 		D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 		D4270AB5248BACBE0022A6BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D4BCAF902493D1C6000B40D8 /* AnnotationView */,
 				D46B6B6424912CD900AF77F6 /* StatusView */,
 				D46B6B6324912CC700AF77F6 /* Annotation */,
 			);
@@ -380,6 +385,15 @@
 				D4BCAF882492D1F8000B40D8 /* UserLocationController.swift */,
 			);
 			path = UserLocation;
+			sourceTree = "<group>";
+		};
+		D4BCAF902493D1C6000B40D8 /* AnnotationView */ = {
+			isa = PBXGroup;
+			children = (
+				D4BCAF912493D220000B40D8 /* MKTrainAnnotationView.swift */,
+				D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */,
+			);
+			path = AnnotationView;
 			sourceTree = "<group>";
 		};
 		D4C22BF1248EA05200FB7120 /* Networking */ = {
@@ -604,6 +618,7 @@
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
 				D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */,
 				D45C50652489266600A3D857 /* trip_test in Resources */,
+				D4BCAF942493FD42000B40D8 /* MKTrainAnnotationView.xib in Resources */,
 				D4BCAF8B2493A9BD000B40D8 /* FormerScheduledArrivalDeparture in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -737,6 +752,7 @@
 				D4270ABE248BDF5C0022A6BB /* TimeFrameTrip.swift in Sources */,
 				D4270AC0248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift in Sources */,
 				D45C506324891D1400A3D857 /* MockTrainDataJourneyProvider.swift in Sources */,
+				D4BCAF922493D221000B40D8 /* MKTrainAnnotationView.swift in Sources */,
 				D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */,
 				D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */,
 				D45C5075248A51EB00A3D857 /* TripProvider.swift in Sources */,

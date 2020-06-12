@@ -114,9 +114,22 @@ extension MapViewController: MKMapViewDelegate
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
     {
-        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "annotationView")
-        annotationView.canShowCallout = true
-        annotationView.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure)
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView")
+        
+        if annotationView == nil {
+            annotationView = MKTrainAnnotationView.loadViewFromNib()
+        }
+        
+        guard let an = (annotation as? TrainAnnotation) else {
+            return  nil
+        }
+        
+        annotationView?.centerOffset = CGPoint(x: 25, y: -20)
+        annotationView?.canShowCallout = true
+        annotationView?.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure)
+       // annotationView?.image = UIImage(named: "ice")
+        (annotationView as! MKTrainAnnotationView).label.text = an.title
 
         return annotationView
     }
