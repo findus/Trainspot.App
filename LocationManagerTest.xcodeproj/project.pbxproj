@@ -55,7 +55,6 @@
 		D4B636C5249581AF00996744 /* Math+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B636C4249581AF00996744 /* Math+Extension.swift */; };
 		D4B636CD249583D000996744 /* TripVisualizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B636CC249583D000996744 /* TripVisualizerTests.swift */; };
 		D4B636CF249583D000996744 /* TripVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; };
-		D4B636D52495840300996744 /* LocationManagerTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46292CD248C468B006E638F /* LocationManagerTestTests.swift */; };
 		D4B636D72495840A00996744 /* TimeFrameControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */; };
 		D4BCAF81249137DD000B40D8 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF80249137DD000B40D8 /* StatusView.swift */; };
 		D4BCAF892492D1F9000B40D8 /* UserLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF882492D1F8000B40D8 /* UserLocationController.swift */; };
@@ -180,7 +179,6 @@
 		D45C507024893F4900A3D857 /* RadarTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarTrip.swift; sourceTree = "<group>"; };
 		D45C50722489414C00A3D857 /* JourneyTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyTrip.swift; sourceTree = "<group>"; };
 		D45C5074248A51EA00A3D857 /* TripProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProvider.swift; sourceTree = "<group>"; };
-		D46292CD248C468B006E638F /* LocationManagerTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerTestTests.swift; sourceTree = "<group>"; };
 		D46B6B59248EB28A00AF77F6 /* NetworkTrainDataTimeFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTrainDataTimeFrameProvider.swift; sourceTree = "<group>"; };
 		D46B6B5C2490195100AF77F6 /* TrainViewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewList.swift; sourceTree = "<group>"; };
 		D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainOverviewCell.swift; sourceTree = "<group>"; };
@@ -360,7 +358,6 @@
 		D46292CC248C468B006E638F /* LocationManagerTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				D46292CD248C468B006E638F /* LocationManagerTestTests.swift */,
 				D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */,
 			);
 			path = LocationManagerTestTests;
@@ -942,7 +939,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4B636D52495840300996744 /* LocationManagerTestTests.swift in Sources */,
 				D4B636D72495840A00996744 /* TimeFrameControllerTests.swift in Sources */,
 				D4B636CD249583D000996744 /* TripVisualizerTests.swift in Sources */,
 			);
