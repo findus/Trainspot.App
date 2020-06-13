@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TrainDataProviderProtocol {
+public protocol TrainDataProviderProtocol {
     associatedtype TripData
     func getAllTrips() -> Array<TripData>
     func update() -> Void
@@ -16,6 +16,6 @@ protocol TrainDataProviderProtocol {
 }
 
 //TODO Somehow pass the associated trip type as argument, but currently not sure how to realize this
-protocol TrainDataProviderDelegate {
+public protocol TrainDataProviderDelegate {
     func onTripsUpdated()
 }

@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 extension CLLocation {
-    func bearingToLocationRadian(_ destinationLocation: CLLocation) -> CGFloat {
+    public func bearingToLocationRadian(_ destinationLocation: CLLocation) -> CGFloat {
         let lat1 = self.coordinate.latitude.toRadians
         let lon1 = self.coordinate.longitude.toRadians
         
@@ -26,12 +26,12 @@ extension CLLocation {
         return CGFloat(radiansBearing)
     }
     
-    func bearingToLocationDegrees(destinationLocation: CLLocation) -> CGFloat {
+    public func bearingToLocationDegrees(destinationLocation: CLLocation) -> CGFloat {
         return bearingToLocationRadian(destinationLocation).toDegrees
         
     }
     
-    func midPoint(withLocation location: CLLocation) -> CLLocation {
+    public func midPoint(withLocation location: CLLocation) -> CLLocation {
         var c1 = CLLocationCoordinate2D()
         var c2 = CLLocationCoordinate2D()
         

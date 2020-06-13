@@ -9,14 +9,16 @@
 import Foundation
 
 // https://www.swiftbysundell.com/articles/time-traveling-in-swift-unit-tests/
-class TimeTraveler {
-    var date = Date()
+public class TimeTraveler {
+    public var date = Date()
+    
+    public init(){}
 
-    func travel(by timeInterval: TimeInterval) {
+    public func travel(by timeInterval: TimeInterval) {
         date = date.addingTimeInterval(timeInterval)
     }
 
-    func generateDate() -> Date {
+    public func generateDate() -> Date {
         return date
     }
 }

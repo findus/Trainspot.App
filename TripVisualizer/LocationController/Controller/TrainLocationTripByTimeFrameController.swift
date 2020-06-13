@@ -8,20 +8,19 @@
 
 import Foundation
 import CoreLocation
-import Log
 
 /**
  This class controls trips, that have no direct binding from locations and times, for example if you download a timetable
  This Controller tries to calculate proper animations for a trip
  */
-class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
+public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     
     private let dateGenerator: () -> Date
 
-    typealias T = TimeFrameTrip
-    typealias P = TripProvider<T>
+    public typealias T = TimeFrameTrip
+    public typealias P = TripProvider<T>
 
-    weak var delegate: TrainLocationDelegate?
+    public weak var delegate: TrainLocationDelegate?
     
     private var currentUserLocation: CLLocation?
         
@@ -37,32 +36,34 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     
     var i : Double = 0
     
-    init(dateGenerator: @escaping () -> Date = Date.init) {
+    public init(dateGenerator: @escaping () -> Date = Date.init) {
         self.dateGenerator = dateGenerator
     }
     
-    func remove(trip: TimeFrameTrip) {
+    public func remove(trip: TimeFrameTrip) {
         self.timer?.invalidate()
         self.trips.remove(trip)
         self.delegate?.removeTripFromMap(forTrip: trip)
         self.start()
     }
     
-    func remove(trip: TimeFrameTrip, reason: TrainState) {
+    public func remove(trip: TimeFrameTrip, reason: TrainState) {
         let data = TripData(location: nil, state: reason, arrival: -1)
         self.delegate?.trainPositionUpdated(forTrip: trip, withData: data, withDuration: 1)
         self.remove(trip: trip)
     }
     
-    func start() {
+    public func start() {
+        Log.info("Timeframe Controller started")
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(onTick), userInfo: nil, repeats: true)
     }
     
-    func pause() {
+    public func pause() {
+        Log.info("Timeframe Controller paused")
         self.timer?.invalidate()
     }
     
-    func getArrivalInSeconds(forTrip trip: T, userPosInArray: Int, trainPos: Int) -> TimeInterval? {
+    public func getArrivalInSeconds(forTrip trip: T, userPosInArray: Int, trainPos: Int) -> TimeInterval? {
         /**
          Tries to get the next stop facing from the users position, fetches the time of next arrivals and substracts the time that is needed to get there
          */
@@ -100,7 +101,7 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         }
     }
     
-    func setCurrentLocation(location: CLLocation) {
+    public func setCurrentLocation(location: CLLocation) {
         self.currentUserLocation = location
     }
     
@@ -133,11 +134,11 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         }
     }
     
-    func fetchServer() {
+    public func fetchServer() {
         self.dataProvider?.update()
     }
 
-    func update() {
+    public func update() {
         
         //Stop timer while updating entries
         self.timer?.invalidate()
@@ -169,11 +170,11 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         trips.forEach { self.delegate?.drawPolyLine(forTrip: $0) }
     }
     
-    func register(trip: T) {
+    public func register(trip: T) {
         self.trips.insert(trip)
     }
     
-    func setDataProvider(withProvider provider: TripProvider<TimeFrameTrip>) {
+    public func setDataProvider(withProvider provider: TripProvider<TimeFrameTrip>) {
         self.dataProvider = provider
         self.dataProvider?.setDeleate(delegate: self)
     }
@@ -183,7 +184,7 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
 //Mark: -- Update Handling
 
 extension TrainLocationTripByTimeFrameController: TrainDataProviderDelegate {
-    func onTripsUpdated() {
+    public func onTripsUpdated() {
         Log.info("Trips got updated")
         self.update()
     }
@@ -201,8 +202,8 @@ extension TrainLocationTripByTimeFrameController {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy HH:mm"
         
-        if start.timeIntervalSince(now) >= 0 || end.timeIntervalSince(now) <= 0 {
-            if start.timeIntervalSince(now) >= 0 {
+        if start.timeIntervalSince(now) > 0 || end.timeIntervalSince(now) < 0 {
+            if start.timeIntervalSince(now) > 0 {
                 Log.warning("Trip \(trip.name) is in future, Now: \(formatter.string(from: now))...........Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]")
                 return TrainState.WaitForStart
             } else {

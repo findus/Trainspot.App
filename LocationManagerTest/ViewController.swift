@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import SwiftyJSON
+import TripVisualizer
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
 

@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class TrainLocationProxy: NSObject {
+public class TrainLocationProxy: NSObject {
     
     //var controllers: Array<TrainLocationProtocol> = []
     public var delegate: Array<TrainLocationDelegate>? = Array.init()
@@ -20,7 +20,7 @@ class TrainLocationProxy: NSObject {
         
     }
     
-    func register<T: TrainLocationProtocol>(controller: T) {
+    public func register<T: TrainLocationProtocol>(controller: T) {
         print("Registered \(String(describing: controller.self)) as a TrainLocation Controller")
         var ctrl = controller
         ctrl.delegate = self
@@ -29,16 +29,16 @@ class TrainLocationProxy: NSObject {
         controller.start()
     }
     
-    func updateAll() {
+    public func updateAll() {
         
     }
     
-    func addListener(listener: TrainLocationDelegate) {
+    public func addListener(listener: TrainLocationDelegate) {
         Log.debug("Added Listener \(listener.id) to Proxy")
         self.delegate?.append(listener)
     }
     
-    func removeLitener(listener: TrainLocationDelegate) {
+    public func removeLitener(listener: TrainLocationDelegate) {
         Log.debug("Removed Listener \(listener.id) to Proxy")
         self.delegate?.removeAll(where: { $0.id == listener.id } )
     }
@@ -46,19 +46,19 @@ class TrainLocationProxy: NSObject {
 }
 
 extension TrainLocationProxy : TrainLocationDelegate {
-    var id: String {
+    public var id: String {
         return "LocationProxy"
     }
     
-    func removeTripFromMap(forTrip trip: Trip) {
+    public func removeTripFromMap(forTrip trip: Trip) {
         self.delegate?.forEach( { delegate in delegate.removeTripFromMap(forTrip: trip) })
     }
     
-    func drawPolyLine(forTrip: Trip) {
+    public func drawPolyLine(forTrip: Trip) {
         self.delegate?.forEach( { delegate in delegate.drawPolyLine(forTrip: forTrip) })
     }
     
-    func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
+    public func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
         self.delegate?.forEach( { delegate in delegate.trainPositionUpdated(forTrip: trip, withData: data, withDuration: duration) })
     }
 }

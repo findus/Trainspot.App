@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MKTrainAnnotationView: MKAnnotationView {
+public class MKTrainAnnotationView: MKAnnotationView {
 
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet var positionDot: MKTrainAnnotationView!

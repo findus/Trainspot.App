@@ -9,24 +9,26 @@
 import Foundation
 import SwiftyJSON
 
-class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
+public class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
    
-    var delegate: TrainDataProviderDelegate? = nil
+    public var delegate: TrainDataProviderDelegate? = nil
     
-    typealias TripData = JourneyTrip
+    public typealias TripData = JourneyTrip
     
-    func getAllTrips() -> Array<JourneyTrip> {
+    public init(){}
+    
+    public func getAllTrips() -> Array<JourneyTrip> {
 //        guard let json = loadJSON(), let journeyTrips = HafasParser.loadJourneyTrip(fromJSON: json) else {
 //            return []
 //        }
         return []
     }
     
-    func update() {
+    public func update() {
         
     }
     
-    func setDeleate(delegate: TrainDataProviderDelegate) {
+    public func setDeleate(delegate: TrainDataProviderDelegate) {
 
     }
     

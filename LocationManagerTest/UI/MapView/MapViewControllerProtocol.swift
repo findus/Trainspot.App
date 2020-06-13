@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import TripVisualizer
 
 protocol MapViewControllerProtocol: NSObject {
     func addEntry(entry: MapEntity)

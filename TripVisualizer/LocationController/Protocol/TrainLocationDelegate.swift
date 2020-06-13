@@ -9,13 +9,13 @@
 import Foundation
 import CoreLocation
 
-enum TrainState {
+public enum TrainState {
     case WaitForStart
     case Ended
     case Stopped(Date)
     case Driving(String?)
     
-    func get() -> String {
+    public func get() -> String {
         switch self {
         case .WaitForStart:
             return "Wait for Start"
@@ -29,14 +29,14 @@ enum TrainState {
     }
 }
 
-struct TripData {
-    let location: CLLocation?
-    let state: TrainState
-    let arrival: TimeInterval
-    var distance: Double?
+public struct TripData {
+    public let location: CLLocation?
+    public let state: TrainState
+    public let arrival: TimeInterval
+    public var distance: Double?
 }
 
-protocol TrainLocationDelegate: NSObject {
+public protocol TrainLocationDelegate: NSObject {
     var id: String { get }
     func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) -> Void
     func removeTripFromMap(forTrip trip: Trip) -> Void

@@ -5,30 +5,29 @@
 //  Created by Philipp Hentschel on 05.06.20.
 //  Copyright © 2020 Philipp Hentschel. All rights reserved.
 //
-
 //https://medium.com/@vhart/a-swift-walk-through-type-erasure-12fbe3827a10
 import Foundation
 
-class TripProvider<T> : TrainDataProviderProtocol {
+public class TripProvider<T> : TrainDataProviderProtocol {
     
     var trips: Array<T> = []
     
     private let providerBox: BaseTrainDataProvider<T>
         
-    init<P: TrainDataProviderProtocol>(_ provider: P) where P.TripData == T {
+    public init<P: TrainDataProviderProtocol>(_ provider: P) where P.TripData == T {
         let box = TrainDataProviderBox(concreteProvider: provider)
         self.providerBox = box
     }
     
-    func getAllTrips() -> Array<T> {
+    public func getAllTrips() -> Array<T> {
         return self.providerBox.getAllTrips()
     }
     
-    func update() {
+    public func update() {
         self.providerBox.update()
     }
     
-    func setDeleate(delegate: TrainDataProviderDelegate) {
+    public func setDeleate(delegate: TrainDataProviderDelegate) {
         self.providerBox.setDeleate(delegate: delegate)
     }
 

@@ -9,8 +9,14 @@
 import UIKit
 import CoreLocation
 
-struct MapEntity {
-    var name: String
-    var tripId: String
-    var location: CLLocation
+public struct MapEntity {
+    public var name: String
+    public var tripId: String
+    public var location: CLLocation
+    
+    public init(name: String, tripId: String, location: CLLocation) {
+        self.name = name
+        self.tripId = tripId
+        self.location = location
+    }
 }

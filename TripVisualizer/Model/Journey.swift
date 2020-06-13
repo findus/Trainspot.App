@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-struct Journey: Hashable {
+public struct Journey: Hashable {
     var from_id: String    
     var from: String
     var to: String
@@ -17,11 +17,11 @@ struct Journey: Hashable {
     var when: Date
     var name: String
     
-    var hashValue: Int {
+    public var hashValue: Int {
         return tripID.hashValue
     }
     
-    static func == (lhs: Journey, rhs: Journey) -> Bool {
+    public static func == (lhs: Journey, rhs: Journey) -> Bool {
         return lhs.tripID == rhs.tripID
     }
     

@@ -10,11 +10,6 @@ target 'LocationManagerTest' do
   pod 'Log'
   pod 'Alamofire', '~> 5.2'
   
-  
-  target 'LocationManagerTestUITests' do
-    # Pods for testing
-  end
-
 end
 
 target 'LocationManagerTestMock' do
@@ -29,3 +24,14 @@ target 'LocationManagerTestMock' do
 
 end
 
+target 'TripVisualizer' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for LocationManagerTest
+  pod 'SwiftyJSON', '~> 4.0'
+  pod 'Log'
+  pod 'Alamofire', '~> 5.2'
+
+
+end

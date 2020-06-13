@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-protocol Trip {
+public protocol Trip {
     
     var tripId: String { get set }
        

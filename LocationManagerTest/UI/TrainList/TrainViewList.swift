@@ -8,14 +8,15 @@
 
 import UIKit
 import CoreLocation
+import TripVisualizer
 
-class TrainViewList: UITableViewController {
+public class TrainViewList: UITableViewController {
     
     private let trainLocationProxy = TrainLocationProxy.shared
     private var trips : Array<Trip> = Array.init()
     private var tripData: Dictionary<String, TripData> = Dictionary.init()
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
@@ -28,18 +29,18 @@ class TrainViewList: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    public override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return self.trips.count
     }
 
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "trainOverviewCell", for: indexPath) as! TrainOverviewCell
 
         // Configure the cell...
@@ -100,11 +101,11 @@ class TrainViewList: UITableViewController {
 }
 
 extension TrainViewList: TrainLocationDelegate {
-    var id: String {
+    public var id: String {
         "StatusOverViewTableView"
     }
     
-    func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
+    public func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
         if !self.trips.contains(where: { $0.tripId == trip.tripId }) {
             self.trips.append(trip)
             self.tripData[trip.tripId] = data
@@ -112,12 +113,12 @@ extension TrainViewList: TrainLocationDelegate {
         }
     }
     
-    func removeTripFromMap(forTrip trip: Trip) {
+    public func removeTripFromMap(forTrip trip: Trip) {
         self.trips.removeAll(where: { $0.tripId == trip.tripId })
         self.tableView.reloadData()
     }
     
-    func drawPolyLine(forTrip: Trip) {
+    public func drawPolyLine(forTrip: Trip) {
         
     }
 

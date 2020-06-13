@@ -12,7 +12,7 @@ import UIKit
 // https://dev.to/ingun37/file-s-owner-is-not-for-uiview-3n9g
 extension UIView {
     
-    static func loadViewFromNib() -> Self {
+    public static func loadViewFromNib() -> Self {
        guard let name = ("\(self)".split{$0 == "."}.map(String.init)).last else {
            fatalError("Could not figure out nibName")
        }

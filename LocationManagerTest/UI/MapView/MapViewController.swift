@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import TripVisualizer
 
 class MapViewController: UIViewController, MapViewControllerProtocol {
 

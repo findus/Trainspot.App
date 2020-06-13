@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-protocol Feature {
+public protocol Feature {
     var coords: CLLocation { get set }
     var departure: Date? { get set }
     var durationToNext: Double? { get set }
@@ -49,30 +49,30 @@ struct AnimationData {
     var duration: Double
 }
 
-struct Timeline {
+public struct Timeline {
     var name: String
     var line: Array<Feature>
     var animationData: Array<AnimationData>
     var departure: Date
 }
 
-class JourneyTrip: Trip, Hashable {
+public class JourneyTrip: Trip, Hashable {
    
-    var destination: String
+    public var destination: String
     
-    var tripId: String
+    public var tripId: String
 
-    var atStation: Bool = false
+    public var atStation: Bool = false
    
-    var polyline: Array<MapEntity>
+    public var polyline: Array<MapEntity>
  
-    let departure: Date
-    let timeline: Timeline
-    let name: String
+    public let departure: Date
+    public let timeline: Timeline
+    public let name: String
     
-    let journey: Journey?
+    public let journey: Journey?
     
-    let delay: Int?
+    public let delay: Int?
         
     var counter = 0
     
@@ -94,7 +94,7 @@ class JourneyTrip: Trip, Hashable {
     /**
      Checks, if the train is heading towards the user, or still passed the location
      */
-    func isParting(forUserLocation loc: CLLocation) -> Bool {
+    public func isParting(forUserLocation loc: CLLocation) -> Bool {
 //        let shortestPosition = self.shortestDistanceArrayPosition(forUserLocation: loc)
 //        let trainPosition = self.currentTrainPosition()
 //
@@ -108,7 +108,7 @@ class JourneyTrip: Trip, Hashable {
     /*
      Gets tracks shortest distance to the user, so that we can calulcate the approximate arrival of the train
      */
-    func shorttestDistanceToTrack(forUserLocation loc : CLLocation) -> Double {
+    public func shorttestDistanceToTrack(forUserLocation loc : CLLocation) -> Double {
         //return line[self.shortestDistanceArrayPosition(forUserLocation: loc)].location.distance(from: loc)
         return 0.0
     }
@@ -130,7 +130,7 @@ class JourneyTrip: Trip, Hashable {
     /**
      Returns the current position of the train, which is the nth position inside the array, returns empty if array bounds are exceeded
      */
-    func currentTrainPosition() -> Int? {
+    public func currentTrainPosition() -> Int? {
         counter+=1
         return counter
     }
@@ -138,11 +138,11 @@ class JourneyTrip: Trip, Hashable {
 }
 
 extension JourneyTrip {
-    static func == (lhs: JourneyTrip, rhs: JourneyTrip) -> Bool {
+    public static func == (lhs: JourneyTrip, rhs: JourneyTrip) -> Bool {
         return lhs.name == rhs.name
     }
     
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(self.name)
     }
 }

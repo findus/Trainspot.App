@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-protocol TrainLocationProtocol {
+public protocol TrainLocationProtocol {
     associatedtype T : Trip
     associatedtype P
     func remove(trip :T)

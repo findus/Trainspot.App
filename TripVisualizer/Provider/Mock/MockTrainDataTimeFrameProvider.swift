@@ -9,30 +9,30 @@
 import Foundation
 import SwiftyJSON
 
-class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
+public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
    
     var delegate: TrainDataProviderDelegate? = nil
 
-    typealias TripData = TimeFrameTrip
+    public typealias TripData = TimeFrameTrip
     
     let decoder = JSONDecoder()
       
-    init() {
+    public init() {
         decoder.dateDecodingStrategy = .formatted(getDateFormatter())
     }
        
-    func getAllTrips() -> Array<TimeFrameTrip> {
+    public func getAllTrips() -> Array<TimeFrameTrip> {
         guard let trip = self.loadTrip() else {
                 return []
         }
         return HafasParser.loadTimeFrameTrip(fromHafasTrips: [trip])
     }
     
-    func update() {
+    public func update() {
         self.delegate?.onTripsUpdated()
     }
     
-    func setDeleate(delegate: TrainDataProviderDelegate) {
+    public func setDeleate(delegate: TrainDataProviderDelegate) {
         self.delegate = delegate
     }
     

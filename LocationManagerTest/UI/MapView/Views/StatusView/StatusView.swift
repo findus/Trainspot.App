@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import TripVisualizer
 
 class StatusView : UIVisualEffectView {
     
