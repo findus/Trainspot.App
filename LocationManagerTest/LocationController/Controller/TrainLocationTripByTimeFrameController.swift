@@ -203,21 +203,19 @@ extension TrainLocationTripByTimeFrameController: TrainDataProviderDelegate {
 extension TrainLocationTripByTimeFrameController {
     
     private func isTripInBounds(trip: TimeFrameTrip) -> TrainState {
-        let start = trip.departure.addingTimeInterval(-2700)
+        let start = trip.departure
         let end = (trip.locationArray.last! as! StopOver).arrival ?? Date.init(timeIntervalSince1970: 0)
         let now = Date()
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.mm.yyyy HH:mm"
+        formatter.dateFormat = "dd.MM.yyyy HH:mm"
         
         if start.timeIntervalSince(now) >= 0 || end.timeIntervalSince(now) <= 0 {
             if start.timeIntervalSince(now) >= 0 {
-                Log.warning("Trip \(trip.name) is in future")
-                Log.warning("[\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]..................\(formatter.string(from: start))")
+                Log.warning("Trip \(trip.name) is in future, Now: \(formatter.string(from: now))...........Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]")
                 return TrainState.WaitForStart
             } else {
-                Log.warning("Trip \(trip.name) is in past")
-                Log.warning("\(formatter.string(from: start))..................[\(formatter.string(from: trip.departure)).....\(formatter.string(from: end))]")
+                Log.warning("Trip \(trip.name) is in past, Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))].............Now: \(formatter.string(from: now))")
                 return TrainState.Ended
             }
         }

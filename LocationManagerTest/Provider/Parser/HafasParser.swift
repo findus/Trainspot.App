@@ -90,7 +90,7 @@ class HafasParser {
                 Log.warning("\(trip.line.name) First Entry is not a StopOver")
             }
             
-            Log.info("Generate Animation Data for: \(tripName)")
+            Log.debug("Generate Animation Data for: \(tripName)")
             let animationData = generateAnimationData(fromFeatures: line)
             
             return Timeline(name: tripName, line: line, animationData: animationData ,departure: date)
