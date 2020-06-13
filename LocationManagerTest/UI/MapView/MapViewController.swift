@@ -126,10 +126,10 @@ extension MapViewController: MKMapViewDelegate
         }
         
         (annotationView as! MKTrainAnnotationView).positionDot.layer.cornerRadius = 2
-        annotationView?.centerOffset = CGPoint(x: (annotationView?.frame.width)! / 2, y: -(annotationView?.frame.height)! / 2)
+        annotationView?.centerOffset = CGPoint(x: 0, y: (-(annotationView?.frame.height)! / 2) + 2)
         annotationView?.canShowCallout = true
         annotationView?.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure)
-        (annotationView as! MKTrainAnnotationView).label.text = an.title
+        
         switch an.title! {
         case let str where str.lowercased().contains("eno"):
             (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "enno")
@@ -145,7 +145,7 @@ extension MapViewController: MKMapViewDelegate
             (annotationView as! MKTrainAnnotationView).icon.image = UIImage(named: "westfalenbahn")
         default:
             (annotationView as! MKTrainAnnotationView).icon.image = UIImage(named: "westfalenbahn")
-
+            
         }
 
         return annotationView
