@@ -36,22 +36,7 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     var i : Double = 0
     
     init() {
-        var dateComponents = DateComponents()
-        dateComponents.year = 2020
-        dateComponents.month = 6
-        dateComponents.day = 4
-        dateComponents.hour = 14
-        dateComponents.minute = 54
-        dateComponents.second = 00
-        
-        // Create date from components
-        let userCalendar = Calendar.current // user calendar
-        datestack.append(userCalendar.date(from: dateComponents)!)
-        
-        dateComponents.minute = 54
-        dateComponents.second = 10
-        
-        datestack.append(userCalendar.date(from: dateComponents)!)
+
     }
     
     func remove(trip: TimeFrameTrip) {
@@ -62,7 +47,7 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     }
     
     func remove(trip: TimeFrameTrip, reason: TrainState) {
-        let data = TripData(location: nil, state: reason, nextStop: nil, arrival: -1)
+        let data = TripData(location: nil, state: reason, arrival: -1)
         self.delegate?.trainPositionUpdated(forTrip: trip, withData: data, withDuration: 1)
         self.remove(trip: trip)
     }
@@ -123,11 +108,11 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
                     if let currentLocation = self.currentUserLocation {
                         //Currently only on top of polyline point, might be off if user is between points that ar far away
                         let userPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: currentLocation)
-                        let time = self.getArrivalInSeconds(forTrip: trip, userPosInArray: userPosInArray, trainPos: data.2)
-                        let distance = self.getDistance(forTrip: trip, arrayPosTrain: data.2, arrayPosUser: userPosInArray, currentTrainLoc: data.0)
-                        tripData = TripData(location: data.0, state: data.1, nextStop: "hell", arrival: time ?? -1, distance: distance )
+                        let time = self.getArrivalInSeconds(forTrip: trip, userPosInArray: userPosInArray, trainPos: data.arrayPostition)
+                        let distance = self.getDistance(forTrip: trip, arrayPosTrain: data.arrayPostition, arrayPosUser: userPosInArray, currentTrainLoc: data.currentLocation)
+                        tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: time ?? -1, distance: distance )
                     } else {
-                        tripData = TripData(location: data.0, state: data.1, nextStop: "hell", arrival: -1)
+                        tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: -1)
                     }
                     self.delegate?.trainPositionUpdated(forTrip: trip, withData: tripData, withDuration: 1)
                 } else {
@@ -219,10 +204,10 @@ extension TrainLocationTripByTimeFrameController {
                 return TrainState.Ended
             }
         }
-        return TrainState.Driving
+        return TrainState.Driving(nil)
     }
     
-    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> (CLLocation, TrainState, Int, Double)? {
+    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> (currentLocation: CLLocation, trainState: TrainState, arrayPostition: Int, secondsInsideSection: Double)? {
         guard let loc = zip(trip.locationArray.enumerated(),trip.locationArray.dropFirst())
             .first(where: { (arg0, next) -> Bool in
                 let (_, this) = arg0
@@ -251,6 +236,7 @@ extension TrainLocationTripByTimeFrameController {
                     return this.departure!.timeIntervalSince(date) <= 0 && next.departure!.timeIntervalSince(date) > 0
                 }
             }) else {
+                // "Error" handling, if train journey has not started, or has already ended
                 if trip.locationArray.first!.departure!.timeIntervalSince(Date()) <= 900 {
                     return (trip.locationArray.first!.coords, .WaitForStart, 0, 0)
                 } else {
@@ -263,7 +249,6 @@ extension TrainLocationTripByTimeFrameController {
         let location = loc.0.element
         
         // Check if currently stopping
-        
         if location is StopOver {
             let stopover = (location as! StopOver)
             if stopover.arrival?.timeIntervalSince(date) ?? 1 <= 0 && stopover.departure!.timeIntervalSince(date) > 0 {
@@ -272,6 +257,7 @@ extension TrainLocationTripByTimeFrameController {
             }
         }
         
+        // Calculate relative Position between to Points
         let wholeDuration = location.durationToNext!
         let departure = location.departure!
        
@@ -285,6 +271,13 @@ extension TrainLocationTripByTimeFrameController {
         let newLat = startCoords.latitude + ((endCoords.latitude - startCoords.latitude) * ratio)
         let newLon = startCoords.longitude + ((endCoords.longitude - startCoords.longitude) * ratio)
         
-        return (CLLocation(latitude: newLat, longitude: newLon), .Driving, loc.0.offset, secondsIntoSection)
+        // Get next Stop
+        
+        if let nextStopOver = (trip.locationArray[loc.0.offset...].first(where: {$0 is StopOver}) as? StopOver)?.name {
+            return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nextStopOver), loc.0.offset, secondsIntoSection)
+        } else {
+            return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nil), loc.0.offset, secondsIntoSection)
+        }
+        
     }
 }

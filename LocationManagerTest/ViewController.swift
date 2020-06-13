@@ -172,6 +172,12 @@ extension ViewController {
         let arrTime = Int(data.arrival)
         let delay = trip.delay ?? 0
         
-        self.statusView.setValues(forName: name, andDestination: destination, andDistance: distance,andArrivalTime: arrTime, andDelay: delay)
+        switch data.state {
+        case .Driving(let nextStop):
+            self.statusView.setValues(forName: name, andDestination: destination, andDistance: distance,andArrivalTime: arrTime, andDelay: delay, andNextStop: nextStop)
+        case _:
+            self.statusView.setValues(forName: name, andDestination: destination, andDistance: distance,andArrivalTime: arrTime, andDelay: delay, andNextStop: nil)
+        }
+        
     }
 }

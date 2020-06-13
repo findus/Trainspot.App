@@ -118,7 +118,7 @@ class HafasParser {
     }
     
     /**
-     Returns an Array of features where every feature has the needed duration to the next Feature and the current location
+     Returns an Array of features where every feature has the needed duration and distance to the next Feature and the current location
      */
     public static func getFeaturesWithDates(forFeatures features: Array<Feature>, andAnimationData animationData: Array<AnimationData>, forTrip trip: HafasTrip) throws -> Array<Feature> {
         try zip(features, animationData).enumerated().reduce([Feature]()) { (prev, tuple) -> Array<Feature> in
@@ -137,6 +137,7 @@ class HafasParser {
                     let stop = currentFeature as! StopOver
                     var st: StopOver? = nil
                     if newArray.isEmpty {
+                        // First StopOver, set grace period so that trains that will start in x minutes wont get removed immediately, needs to be global and in user prefs
                         st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: Date().addingTimeInterval(-2700), departure: stop.departure)
                     } else {
                         st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)

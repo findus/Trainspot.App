@@ -13,7 +13,7 @@ enum TrainState {
     case WaitForStart
     case Ended
     case Stopped(Date)
-    case Driving
+    case Driving(String?)
     
     func get() -> String {
         switch self {
@@ -21,8 +21,8 @@ enum TrainState {
             return "Wait for Start"
         case .Ended:
             return "Ended"
-        case .Driving:
-            return "Driving"
+        case .Driving(let nextStop):
+            return "\(nextStop ?? "")"
         case .Stopped(let date):
             return "Stopped for \(Int(date.timeIntervalSince(Date())))s"
         }
@@ -32,7 +32,6 @@ enum TrainState {
 struct TripData {
     let location: CLLocation?
     let state: TrainState
-    let nextStop: String?
     let arrival: TimeInterval
     var distance: Double?
 }
