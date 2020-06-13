@@ -9,7 +9,7 @@
 import Foundation
 
 import XCTest
-import TripVisualizer
+@testable import TripVisualizer
 
 class MockDelegate: NSObject, TrainLocationDelegate {
     var id = "MockDelegate"

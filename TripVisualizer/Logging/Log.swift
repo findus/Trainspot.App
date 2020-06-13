@@ -9,7 +9,7 @@
 import Foundation
 import Log
 
-let Log = Logger(formatter: .detailed, theme: .none, minLevel: .info)
+let Log = Logger(formatter: .detailed, theme: .none, minLevel: .trace)
 
 extension Themes {
     static let tomorrowNight = Theme(

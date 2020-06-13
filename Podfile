@@ -32,6 +32,7 @@ target 'TripVisualizer' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Log'
   pod 'Alamofire', '~> 5.2'
+  target 'TripVisualizerTests'
 
 
 end

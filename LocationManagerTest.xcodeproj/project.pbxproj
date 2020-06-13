@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		6482A3F6A76FEE136EF6A8E0 /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5365E4E3521906AFAF6FC8DE /* Pods_LocationManagerTest.framework */; };
+		6B1B9E19D94D21CC18C6261D /* Pods_TripVisualizer_TripVisualizerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3776240CD7AE557E5C0746D /* Pods_TripVisualizer_TripVisualizerTests.framework */; };
 		7DA1CE2BA67AAB134FF3ED80 /* Pods_LocationManagerTestMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */; };
 		D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */; };
 		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
 		D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5C2490195100AF77F6 /* TrainViewList.swift */; };
 		D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */; };
 		D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46B6B6524912CF200AF77F6 /* StatusView.xib */; };
+		D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
+		D4A30E44249588C800B2684C /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
+		D4A30E4524958ABD00B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
+		D4A30E4624958ABF00B2684C /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
+		D4A30E4724958BBE00B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
+		D4A30E4824958BBE00B2684C /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
+		D4A30E4924958D8400B2684C /* Pods_TripVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE971961D8B30E4623E11A7 /* Pods_TripVisualizer.framework */; };
 		D4B636902495785B00996744 /* TripVisualizer.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B6368E2495785B00996744 /* TripVisualizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4B636932495785B00996744 /* TripVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; };
 		D4B636942495785B00996744 /* TripVisualizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -58,7 +66,6 @@
 		D4B636D72495840A00996744 /* TimeFrameControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */; };
 		D4BCAF81249137DD000B40D8 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF80249137DD000B40D8 /* StatusView.swift */; };
 		D4BCAF892492D1F9000B40D8 /* UserLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF882492D1F8000B40D8 /* UserLocationController.swift */; };
-		D4BCAF8B2493A9BD000B40D8 /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
 		D4BCAF922493D221000B40D8 /* MKTrainAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF912493D220000B40D8 /* MKTrainAnnotationView.swift */; };
 		D4BCAF942493FD42000B40D8 /* MKTrainAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */; };
 		D4BCAF98249428F2000B40D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */; };
@@ -75,14 +82,12 @@
 		D4BCAFBB24953752000B40D8 /* TrainAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */; };
 		D4BCAFC224953752000B40D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
 		D4BCAFC424953752000B40D8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */; };
-		D4BCAFC624953752000B40D8 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		D4BCAFC624953752000B40D8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		D4BCAFC824953752000B40D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD22487AC1E00D33AA2 /* LaunchScreen.storyboard */; };
 		D4BCAFCA24953752000B40D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAACD2487AC1900D33AA2 /* Main.storyboard */; };
 		D4BCAFCB24953752000B40D8 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46B6B6524912CF200AF77F6 /* StatusView.xib */; };
 		D4BCAFCD24953752000B40D8 /* MKTrainAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */; };
 		D4BCAFCE24953752000B40D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */; };
-		D4BCAFCF24953752000B40D8 /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
-		D4BCAFD72495405D000B40D8 /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
 		D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
 		D4DEAACC2487AC1900D33AA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAACB2487AC1900D33AA2 /* ViewController.swift */; };
@@ -91,7 +96,6 @@
 		D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAADB2487D1AF00D33AA2 /* MapViewControllerDelegate.swift */; };
 		D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAADE2487D3B000D33AA2 /* MapViewControllerProtocol.swift */; };
 		D4DEAAE52487D55A00D33AA2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */; };
-		F08FE6DF344E32C6E3B9765A /* Pods_TripVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE971961D8B30E4623E11A7 /* Pods_TripVisualizer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,8 +158,11 @@
 		4B5C1FF62A107403676159D6 /* Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTestMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5365E4E3521906AFAF6FC8DE /* Pods_LocationManagerTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B427BD1F731A047911996C0 /* Pods-TripVisualizer-TripVisualizerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripVisualizer-TripVisualizerTests.debug.xcconfig"; path = "Target Support Files/Pods-TripVisualizer-TripVisualizerTests/Pods-TripVisualizer-TripVisualizerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81DAC181B364BA2179336F19 /* Pods-LocationManagerTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest.release.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest.release.xcconfig"; sourceTree = "<group>"; };
 		868231B0BE70D1D916ACE15C /* Pods-LocationManagerTestMock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTestMock.release.xcconfig"; path = "Target Support Files/Pods-LocationManagerTestMock/Pods-LocationManagerTestMock.release.xcconfig"; sourceTree = "<group>"; };
+		A3776240CD7AE557E5C0746D /* Pods_TripVisualizer_TripVisualizerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripVisualizer_TripVisualizerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEF0F792121E2DDB173CA7FB /* Pods-TripVisualizer-TripVisualizerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripVisualizer-TripVisualizerTests.release.xcconfig"; path = "Target Support Files/Pods-TripVisualizer-TripVisualizerTests/Pods-TripVisualizer-TripVisualizerTests.release.xcconfig"; sourceTree = "<group>"; };
 		BFEFB2F185F1EDB86D47F583 /* Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C9F695FFD0C5E5330F7BDCBB /* Pods-TripVisualizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripVisualizer.release.xcconfig"; path = "Target Support Files/Pods-TripVisualizer/Pods-TripVisualizer.release.xcconfig"; sourceTree = "<group>"; };
 		CA58623486AD971F4C4A0665 /* Pods-LocationManagerTestMock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTestMock.debug.xcconfig"; path = "Target Support Files/Pods-LocationManagerTestMock/Pods-LocationManagerTestMock.debug.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +190,7 @@
 		D46B6B5C2490195100AF77F6 /* TrainViewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewList.swift; sourceTree = "<group>"; };
 		D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainOverviewCell.swift; sourceTree = "<group>"; };
 		D46B6B6524912CF200AF77F6 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
+		D4A30E4C24958DC200B2684C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationRadarController.swift; sourceTree = "<group>"; };
 		D4AF5162248D2E3800C9D7BE /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
@@ -230,7 +238,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F08FE6DF344E32C6E3B9765A /* Pods_TripVisualizer.framework in Frameworks */,
+				D4A30E4924958D8400B2684C /* Pods_TripVisualizer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4B636CF249583D000996744 /* TripVisualizer.framework in Frameworks */,
+				6B1B9E19D94D21CC18C6261D /* Pods_TripVisualizer_TripVisualizerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,7 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4BCAFC624953752000B40D8 /* (null) in Frameworks */,
+				D4BCAFC624953752000B40D8 /* BuildFile in Frameworks */,
 				6482A3F6A76FEE136EF6A8E0 /* Pods_LocationManagerTest.framework in Frameworks */,
 				D4B636B724957B7F00996744 /* TripVisualizer.framework in Frameworks */,
 			);
@@ -268,10 +277,12 @@
 		AAA8BBA48C41B9BBD430AD08 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4A30E4C24958DC200B2684C /* Alamofire.framework */,
 				D88A323A8CEDD0164D46A0FF /* Pods_LocationManagerTest_LocationManagerTestUITests.framework */,
 				50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */,
 				5365E4E3521906AFAF6FC8DE /* Pods_LocationManagerTest.framework */,
 				ECE971961D8B30E4623E11A7 /* Pods_TripVisualizer.framework */,
+				A3776240CD7AE557E5C0746D /* Pods_TripVisualizer_TripVisualizerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -353,14 +364,6 @@
 			children = (
 			);
 			path = LocationManagerTests;
-			sourceTree = "<group>";
-		};
-		D46292CC248C468B006E638F /* LocationManagerTestTests */ = {
-			isa = PBXGroup;
-			children = (
-				D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */,
-			);
-			path = LocationManagerTestTests;
 			sourceTree = "<group>";
 		};
 		D46292D6248D17F6006E638F /* Transport.Rest */ = {
@@ -494,6 +497,8 @@
 		D4B636CB249583D000996744 /* TripVisualizerTests */ = {
 			isa = PBXGroup;
 			children = (
+				D46B6B6224912C5F00AF77F6 /* MockData */,
+				D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */,
 				D4B636CC249583D000996744 /* TripVisualizerTests.swift */,
 				D4B636CE249583D000996744 /* Info.plist */,
 			);
@@ -536,10 +541,8 @@
 		D4DEAABB2487AC1900D33AA2 = {
 			isa = PBXGroup;
 			children = (
-				D46B6B6224912C5F00AF77F6 /* MockData */,
 				D46292C6248C4662006E638F /* LocationManagerTests */,
 				D4DEAAC62487AC1900D33AA2 /* LocationManagerTest */,
-				D46292CC248C468B006E638F /* LocationManagerTestTests */,
 				D4B6368D2495785B00996744 /* TripVisualizer */,
 				D4B636CB249583D000996744 /* TripVisualizerTests */,
 				D4DEAAC52487AC1900D33AA2 /* Products */,
@@ -611,6 +614,8 @@
 				868231B0BE70D1D916ACE15C /* Pods-LocationManagerTestMock.release.xcconfig */,
 				E8A73967518AF11B9EF423BE /* Pods-TripVisualizer.debug.xcconfig */,
 				C9F695FFD0C5E5330F7BDCBB /* Pods-TripVisualizer.release.xcconfig */,
+				7B427BD1F731A047911996C0 /* Pods-TripVisualizer-TripVisualizerTests.debug.xcconfig */,
+				AEF0F792121E2DDB173CA7FB /* Pods-TripVisualizer-TripVisualizerTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -652,9 +657,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4B636D2249583D000996744 /* Build configuration list for PBXNativeTarget "TripVisualizerTests" */;
 			buildPhases = (
+				FBC70161E1CA59D353DDB1EB /* [CP] Check Pods Manifest.lock */,
 				D4B636C6249583D000996744 /* Sources */,
 				D4B636C7249583D000996744 /* Frameworks */,
 				D4B636C8249583D000996744 /* Resources */,
+				CA6CC9A1847787A1AEFF66BE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -756,6 +763,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A30E4724958BBE00B2684C /* FormerScheduledArrivalDeparture in Resources */,
+				D4A30E4824958BBE00B2684C /* wfb_trip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,6 +772,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */,
+				D4A30E44249588C800B2684C /* wfb_trip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,7 +786,6 @@
 				D4BCAFCB24953752000B40D8 /* StatusView.xib in Resources */,
 				D4BCAFCD24953752000B40D8 /* MKTrainAnnotationView.xib in Resources */,
 				D4BCAFCE24953752000B40D8 /* Assets.xcassets in Resources */,
-				D4BCAFCF24953752000B40D8 /* FormerScheduledArrivalDeparture in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,11 +795,11 @@
 			files = (
 				D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
+				D4A30E4524958ABD00B2684C /* FormerScheduledArrivalDeparture in Resources */,
 				D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */,
+				D4A30E4624958ABF00B2684C /* wfb_trip in Resources */,
 				D4BCAF942493FD42000B40D8 /* MKTrainAnnotationView.xib in Resources */,
-				D4BCAFD72495405D000B40D8 /* wfb_trip in Resources */,
 				D4BCAF98249428F2000B40D8 /* Assets.xcassets in Resources */,
-				D4BCAF8B2493A9BD000B40D8 /* FormerScheduledArrivalDeparture in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,6 +867,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CA6CC9A1847787A1AEFF66BE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TripVisualizer-TripVisualizerTests/Pods-TripVisualizer-TripVisualizerTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TripVisualizer-TripVisualizerTests/Pods-TripVisualizer-TripVisualizerTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TripVisualizer-TripVisualizerTests/Pods-TripVisualizer-TripVisualizerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D4BCAF9A24953752000B40D8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -894,6 +921,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FBC70161E1CA59D353DDB1EB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TripVisualizer-TripVisualizerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1093,6 +1142,7 @@
 		};
 		D4B636D3249583D000996744 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B427BD1F731A047911996C0 /* Pods-TripVisualizer-TripVisualizerTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 682WVA5N96;
@@ -1111,6 +1161,7 @@
 		};
 		D4B636D4249583D000996744 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEF0F792121E2DDB173CA7FB /* Pods-TripVisualizer-TripVisualizerTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 682WVA5N96;
