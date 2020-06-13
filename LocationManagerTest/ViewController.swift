@@ -67,6 +67,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         tripTimeFrameLocationController.fetchServer()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.statusView.startTimer()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
@@ -164,20 +168,7 @@ extension ViewController: TrainLocationDelegate {
 
 extension ViewController {
     
-    private func setStatusView(withTrip trip: Trip, andData data: TripData) {
-        
-        let name = trip.name
-        let destination = "( 🚂 \(trip.destination) ) " + data.state.get()
-        let distance = String(Int((data.distance ?? 0.0)))+String(" Meter")
-        let arrTime = Int(data.arrival)
-        let delay = trip.delay ?? 0
-        
-        switch data.state {
-        case .Driving(let nextStop):
-            self.statusView.setValues(forName: name, andDestination: destination, andDistance: distance,andArrivalTime: arrTime, andDelay: delay, andNextStop: nextStop)
-        case _:
-            self.statusView.setValues(forName: name, andDestination: destination, andDistance: distance,andArrivalTime: arrTime, andDelay: delay, andNextStop: nil)
-        }
-        
+    private func setStatusView(withTrip trip: Trip, andData data: TripData) {        
+        self.statusView.setStatus(forTrip: trip, andData: data)
     }
 }

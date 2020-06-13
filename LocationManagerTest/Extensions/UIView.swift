@@ -56,9 +56,10 @@ extension UIView {
             }
             
             replaced.addConstraints(newConstraints)
-            
+                        
             return replaced
         }
+        
         return self
     }
     

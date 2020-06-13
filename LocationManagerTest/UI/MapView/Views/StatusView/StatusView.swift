@@ -11,28 +11,63 @@ import UIKit
 
 class StatusView : UIVisualEffectView {
     
-    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var lineName: UILabel!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var to: UILabel!
     @IBOutlet weak var delay: UILabel!
     private var showsDestination: Bool = false
     
-    private var destination: String = ""
-    private var nextStop: String? = ""
+    private var destination: String = "" {
+        didSet {
+            if !self.showsDestination {
+                self.to.text = destination
+            }
+        }
+    }
+    
+    private var journeyInfo: String? = "" {
+        didSet {
+            if self.showsDestination {
+                self.to.text = journeyInfo
+            }
+        }
+    }
+    
+    var counter = 0
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    public func setValues(forName name: String, andDestination destination: String, andDistance distance: String, andArrivalTime arrTime: Int, andDelay delay: Int, andNextStop nextStop: String?) {
-        self.name.text = name
-        self.destination = name
-        self.nextStop = nextStop
-        self.time.text = destination
-        self.distance.text = distance
-        let timeFractions = secondsToHoursMinutesSeconds(seconds: arrTime)
-        self.to.text = String(format: "%@%d:%d:%d",timeFractions.3 ? "- " : "", timeFractions.0, timeFractions.1,timeFractions.2)
+    public func startTimer() {
+        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(crossOverAnimation), userInfo: nil, repeats: true)
+    }
+    
+    public func setStatus(forTrip trip: Trip, andData data: TripData) {
+        
+        self.journeyInfo = {
+            switch data.state {
+            case .Driving(let nextStop):
+                return "Next Stop: \(nextStop ?? "Hell")"
+            case .WaitForStart:
+                return "Waiting for Start"
+            case .Stopped(let date):
+                return "Departs in \(Int(date.timeIntervalSince(Date())))s"
+            case .Ended:
+                return "Ended"
+            default:
+                return nil
+            }
+        }()
+
+        let delay = trip.delay ?? 0
+        
+        self.lineName.text = trip.name
+        self.destination = "To: \(trip.destination)"
+        self.distance.text = String(Int((data.distance ?? 0.0)))+String(" Meter")
+        let timeFractions = secondsToHoursMinutesSeconds(seconds: Int(data.arrival))
+        self.time.text = String(format: "%@%02d:%02d:%02d",timeFractions.3 ? "- " : "", timeFractions.0, timeFractions.1,timeFractions.2)
         if delay > 0 {
             self.delay.layer.cornerRadius=8.0;
             self.delay.clipsToBounds = true;
@@ -46,16 +81,13 @@ class StatusView : UIVisualEffectView {
 
     }
     
-    override class func awakeFromNib() {
-        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(crossOverAnimation), userInfo: nil, repeats: true)
-    }
-    
     @objc private func crossOverAnimation() {
-        UIView.transition(with: self.name,
-             duration: 0.25,
+        
+        UIView.transition(with: self.to,
+             duration: 0.5,
               options: .transitionCrossDissolve,
            animations: {
-            self.name.text = !self.showsDestination && self.nextStop != nil ? self.nextStop : self.destination
+            self.to.text = !self.showsDestination && self.journeyInfo != nil ? self.journeyInfo : self.destination
             self.showsDestination = !self.showsDestination
         }, completion: nil)
     }
@@ -67,5 +99,18 @@ class StatusView : UIVisualEffectView {
         } else {
             return ((seconds / 3600) * -1 , ((seconds % 3600) / 60) * -1, ((seconds % 3600) % 60) * -1, true)
         }
+    }
+}
+// https://stackoverflow.com/questions/33632266/animate-text-change-of-uilabel/33705634
+// Usage: insert view.pushTransition right before changing content
+extension UIView {
+    func pushTransition(_ duration:CFTimeInterval) {
+        let animation:CATransition = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+            CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.push
+        animation.subtype = CATransitionSubtype.fromTop
+        animation.duration = duration
+        layer.add(animation, forKey: CATransitionType.push.rawValue)
     }
 }
