@@ -15,6 +15,8 @@ import Log
  This Controller tries to calculate proper animations for a trip
  */
 class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
+    
+    private let dateGenerator: () -> Date
 
     typealias T = TimeFrameTrip
     typealias P = TripProvider<T>
@@ -35,8 +37,8 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     
     var i : Double = 0
     
-    init() {
-
+    init(dateGenerator: @escaping () -> Date = Date.init) {
+        self.dateGenerator = dateGenerator
     }
     
     func remove(trip: TimeFrameTrip) {
@@ -70,7 +72,7 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         
         let a = (nextStop.element as! StopOver).arrival!
         let offset = trip.locationArray[userPosInArray...(userPosInArray+nextStop.offset)].map({$0.durationToNext!}).reduce(0,+)
-        return a.addingTimeInterval(-offset).timeIntervalSince(Date())
+        return a.addingTimeInterval(-offset).timeIntervalSince(self.dateGenerator())
     }
     
     /**
@@ -104,7 +106,7 @@ class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         self.trips.forEach { (trip) in
             switch self.isTripInBounds(trip: trip) {
             case .Driving, .Stopped(_):
-                if let data = self.getTrainLocation(forTrip: trip, atDate: Date()) {
+                if let data = self.getTrainLocation(forTrip: trip, atDate: self.dateGenerator()) {
                     
                     var tripData: TripData
                     if let currentLocation = self.currentUserLocation {
@@ -192,7 +194,7 @@ extension TrainLocationTripByTimeFrameController {
     private func isTripInBounds(trip: TimeFrameTrip) -> TrainState {
         let start = trip.departure
         let end = (trip.locationArray.last! as! StopOver).arrival ?? Date.init(timeIntervalSince1970: 0)
-        let now = Date()
+        let now = self.dateGenerator()
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy HH:mm"
@@ -239,7 +241,7 @@ extension TrainLocationTripByTimeFrameController {
                 }
             }) else {
                 // "Error" handling, if train journey has not started, or has already ended
-                if trip.locationArray.first!.departure!.timeIntervalSince(Date()) <= 900 {
+                if trip.locationArray.first!.departure!.timeIntervalSince(self.dateGenerator()) <= 900 {
                     return (trip.locationArray.first!.coords, .WaitForStart, 0, 0)
                 } else {
                     Log.error("Error finding a location for Trip \(trip.name) at \(date)")
