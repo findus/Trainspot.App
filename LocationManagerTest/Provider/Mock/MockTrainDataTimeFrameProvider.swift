@@ -15,29 +15,39 @@ class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
 
     typealias TripData = TimeFrameTrip
     
+    let decoder = JSONDecoder()
+      
+    init() {
+        decoder.dateDecodingStrategy = .formatted(getDateFormatter())
+    }
+       
     func getAllTrips() -> Array<TimeFrameTrip> {
-//        guard let json = loadJSON(), let journeyTrips = HafasParser.loadTimeFrameTrip(fromJSON: json) else {
-//            return []
-//        }
-        return []
+        guard let trip = self.loadTrip() else {
+                return []
+        }
+        return HafasParser.loadTimeFrameTrip(fromHafasTrips: [trip])
     }
     
     func update() {
-        
+        self.delegate?.onTripsUpdated()
     }
     
     func setDeleate(delegate: TrainDataProviderDelegate) {
-        
+        self.delegate = delegate
     }
     
-    private func loadJSON() -> JSON? {
+    private func loadTrip() -> HafasTrip? {
         guard
-            let filePath = Bundle(for: type(of: self)).path(forResource: "trip_test", ofType: ""),
-            let wf_trip_data = NSData(contentsOfFile: filePath) else {
+            let filePath = Bundle(for: type(of: self)).path(forResource: "wfb_trip", ofType: ""),
+            let trip = try? Data(contentsOf: URL(fileURLWithPath: filePath))
+            else {
                 return nil
         }
-        
-        return try! JSON(data: wf_trip_data as Data)
-        
+        do {
+            return try decoder.decode(HafasTrip.self, from: trip)
+        } catch {
+            Log.error(error)
+        }
+        return nil
     }
 }

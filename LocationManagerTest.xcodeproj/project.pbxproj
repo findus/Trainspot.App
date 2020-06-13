@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,7 +24,6 @@
 		D45C505D2488E8CB00A3D857 /* MockTrainDataRadarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505C2488E8CB00A3D857 /* MockTrainDataRadarProvider.swift */; };
 		D45C506124891B9100A3D857 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506024891B9100A3D857 /* Trip.swift */; };
 		D45C506324891D1400A3D857 /* MockTrainDataJourneyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506224891D1400A3D857 /* MockTrainDataJourneyProvider.swift */; };
-		D45C50652489266600A3D857 /* trip_test in Resources */ = {isa = PBXBuildFile; fileRef = D45C50642489266600A3D857 /* trip_test */; };
 		D45C506924892CC900A3D857 /* TrainLocationProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506824892CC900A3D857 /* TrainLocationProxy.swift */; };
 		D45C506E2489396200A3D857 /* TrainLocationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506A24892FB200A3D857 /* TrainLocationProtocol.swift */; };
 		D45C507124893F4900A3D857 /* RadarTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C507024893F4900A3D857 /* RadarTrip.swift */; };
@@ -90,13 +89,12 @@
 		D4BCAFC424953752000B40D8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */; };
 		D4BCAFC624953752000B40D8 /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C18627021B7A5948ABF56FD /* Pods_LocationManagerTest.framework */; };
 		D4BCAFC824953752000B40D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD22487AC1E00D33AA2 /* LaunchScreen.storyboard */; };
-		D4BCAFC924953752000B40D8 /* hafas_test_json.json in Resources */ = {isa = PBXBuildFile; fileRef = D4EA3D65248803DC003D7469 /* hafas_test_json.json */; };
 		D4BCAFCA24953752000B40D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAACD2487AC1900D33AA2 /* Main.storyboard */; };
 		D4BCAFCB24953752000B40D8 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46B6B6524912CF200AF77F6 /* StatusView.xib */; };
-		D4BCAFCC24953752000B40D8 /* trip_test in Resources */ = {isa = PBXBuildFile; fileRef = D45C50642489266600A3D857 /* trip_test */; };
 		D4BCAFCD24953752000B40D8 /* MKTrainAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */; };
 		D4BCAFCE24953752000B40D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */; };
 		D4BCAFCF24953752000B40D8 /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
+		D4BCAFD72495405D000B40D8 /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
 		D4C22BF0248E9D1700FB7120 /* HafasDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
 		D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
@@ -110,8 +108,6 @@
 		D4DEAAE82487D9F100D33AA2 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE72487D9F100D33AA2 /* CLLocation+Extension.swift */; };
 		D4DEAAEA2487DA1D00D33AA2 /* Math+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */; };
 		D4EA3D5E24880387003D7469 /* LocationManagerTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA3D5D24880387003D7469 /* LocationManagerTestUITests.swift */; };
-		D4EA3D66248803DC003D7469 /* hafas_test_json.json in Resources */ = {isa = PBXBuildFile; fileRef = D4EA3D65248803DC003D7469 /* hafas_test_json.json */; };
-		D4EA3D672488063E003D7469 /* hafas_test_json.json in Resources */ = {isa = PBXBuildFile; fileRef = D4EA3D65248803DC003D7469 /* hafas_test_json.json */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,10 +144,8 @@
 		D45C50562488E27400A3D857 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		D45C50592488E70A00A3D857 /* TrainDataProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainDataProviderProtocol.swift; sourceTree = "<group>"; };
 		D45C505C2488E8CB00A3D857 /* MockTrainDataRadarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrainDataRadarProvider.swift; sourceTree = "<group>"; };
-		D45C505E2488F22700A3D857 /* data2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data2; sourceTree = "<group>"; };
 		D45C506024891B9100A3D857 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		D45C506224891D1400A3D857 /* MockTrainDataJourneyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrainDataJourneyProvider.swift; sourceTree = "<group>"; };
-		D45C50642489266600A3D857 /* trip_test */ = {isa = PBXFileReference; lastKnownFileType = text; path = trip_test; sourceTree = "<group>"; };
 		D45C506624892C8200A3D857 /* TrainLocationTripAnimationTimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationTripAnimationTimeController.swift; sourceTree = "<group>"; };
 		D45C506824892CC900A3D857 /* TrainLocationProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationProxy.swift; sourceTree = "<group>"; };
 		D45C506A24892FB200A3D857 /* TrainLocationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationProtocol.swift; sourceTree = "<group>"; };
@@ -177,6 +171,7 @@
 		D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MKTrainAnnotationView.xib; sourceTree = "<group>"; };
 		D4BCAFD424953752000B40D8 /* LocationManagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4BCAFD524953752000B40D8 /* LocationManagerTestMock copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LocationManagerTestMock copy-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/LocationManagerTestMock copy-Info.plist"; sourceTree = "<absolute>"; };
+		D4BCAFD62495405D000B40D8 /* wfb_trip */ = {isa = PBXFileReference; lastKnownFileType = text; path = wfb_trip; sourceTree = "<group>"; };
 		D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasDTOs.swift; sourceTree = "<group>"; };
 		D4DEAAC42487AC1900D33AA2 /* LocationManagerTestMock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTestMock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -195,7 +190,6 @@
 		D4EA3D5B24880387003D7469 /* LocationManagerTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationManagerTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4EA3D5D24880387003D7469 /* LocationManagerTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerTestUITests.swift; sourceTree = "<group>"; };
 		D4EA3D5F24880387003D7469 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4EA3D65248803DC003D7469 /* hafas_test_json.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hafas_test_json.json; sourceTree = "<group>"; };
 		D7742B9CD2F560923E7F2079 /* Pods-LocationManagerTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest.debug.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest.debug.xcconfig"; sourceTree = "<group>"; };
 		D88A323A8CEDD0164D46A0FF /* Pods_LocationManagerTest_LocationManagerTestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTest_LocationManagerTestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -380,10 +374,8 @@
 		D46B6B6224912C5F00AF77F6 /* MockData */ = {
 			isa = PBXGroup;
 			children = (
-				D45C505E2488F22700A3D857 /* data2 */,
-				D45C50642489266600A3D857 /* trip_test */,
-				D4EA3D65248803DC003D7469 /* hafas_test_json.json */,
 				D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */,
+				D4BCAFD62495405D000B40D8 /* wfb_trip */,
 			);
 			path = MockData;
 			sourceTree = "<group>";
@@ -691,10 +683,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4BCAFC824953752000B40D8 /* LaunchScreen.storyboard in Resources */,
-				D4BCAFC924953752000B40D8 /* hafas_test_json.json in Resources */,
 				D4BCAFCA24953752000B40D8 /* Main.storyboard in Resources */,
 				D4BCAFCB24953752000B40D8 /* StatusView.xib in Resources */,
-				D4BCAFCC24953752000B40D8 /* trip_test in Resources */,
 				D4BCAFCD24953752000B40D8 /* MKTrainAnnotationView.xib in Resources */,
 				D4BCAFCE24953752000B40D8 /* Assets.xcassets in Resources */,
 				D4BCAFCF24953752000B40D8 /* FormerScheduledArrivalDeparture in Resources */,
@@ -706,11 +696,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */,
-				D4EA3D66248803DC003D7469 /* hafas_test_json.json in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
 				D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */,
-				D45C50652489266600A3D857 /* trip_test in Resources */,
 				D4BCAF942493FD42000B40D8 /* MKTrainAnnotationView.xib in Resources */,
+				D4BCAFD72495405D000B40D8 /* wfb_trip in Resources */,
 				D4BCAF98249428F2000B40D8 /* Assets.xcassets in Resources */,
 				D4BCAF8B2493A9BD000B40D8 /* FormerScheduledArrivalDeparture in Resources */,
 			);
@@ -720,7 +709,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4EA3D672488063E003D7469 /* hafas_test_json.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
