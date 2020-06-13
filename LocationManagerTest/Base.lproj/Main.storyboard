@@ -29,6 +29,16 @@
                                 <rect key="frame" x="0.0" y="687.5" width="414" height="125.5"/>
                                 <accessibility key="accessibilityConfiguration" identifier="StatusView" label="StatusView"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zt-eN-IwD">
+                                <rect key="frame" x="0.0" y="657.5" width="51" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cON-kT-qYu"/>
+                                </constraints>
+                                <state key="normal" title="Update"/>
+                                <connections>
+                                    <action selector="onUpdateButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DXg-0c-46Q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -36,8 +46,10 @@
                             <constraint firstItem="vCU-ZU-3hG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="AIn-gD-Lns"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vCU-ZU-3hG" secondAttribute="trailing" constant="20" id="Cgf-UH-iZK"/>
                             <constraint firstItem="g8L-X6-Uqn" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="FPU-04-csQ"/>
+                            <constraint firstItem="5zt-eN-IwD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JU9-t8-ldJ"/>
                             <constraint firstItem="g8L-X6-Uqn" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="SiL-7W-NEr"/>
                             <constraint firstItem="vCU-ZU-3hG" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.25" id="WcP-Z5-div"/>
+                            <constraint firstItem="ebN-Sl-0IC" firstAttribute="top" secondItem="5zt-eN-IwD" secondAttribute="bottom" id="WyF-83-l0A"/>
                             <constraint firstItem="g8L-X6-Uqn" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Xb5-0Z-Ka4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ebN-Sl-0IC" secondAttribute="bottom" id="ZKw-gA-JMt"/>
                             <constraint firstItem="ebN-Sl-0IC" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.14" id="bgR-FU-pB0"/>

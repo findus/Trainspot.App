@@ -12,7 +12,6 @@
 		D4270AB1248A71620022A6BB /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB0248A71620022A6BB /* File.swift */; };
 		D4270AB4248A8F770022A6BB /* HafasParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB3248A8F770022A6BB /* HafasParser.swift */; };
 		D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */; };
-		D4270AB9248BAD170022A6BB /* TrainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4270AB8248BAD170022A6BB /* TrainView.xib */; };
 		D4270ABA248BDE550022A6BB /* TrainLocationTripAnimationTimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506624892C8200A3D857 /* TrainLocationTripAnimationTimeController.swift */; };
 		D4270ABC248BDEAE0022A6BB /* TrainLocationTripByTimeFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABB248BDEAE0022A6BB /* TrainLocationTripByTimeFrameController.swift */; };
 		D4270ABE248BDF5C0022A6BB /* TimeFrameTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABD248BDF5C0022A6BB /* TimeFrameTrip.swift */; };
@@ -90,7 +89,6 @@
 		D4270AB0248A71620022A6BB /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		D4270AB3248A8F770022A6BB /* HafasParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasParser.swift; sourceTree = "<group>"; };
 		D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainAnnotation.swift; sourceTree = "<group>"; };
-		D4270AB8248BAD170022A6BB /* TrainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainView.xib; sourceTree = "<group>"; };
 		D4270ABB248BDEAE0022A6BB /* TrainLocationTripByTimeFrameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationTripByTimeFrameController.swift; sourceTree = "<group>"; };
 		D4270ABD248BDF5C0022A6BB /* TimeFrameTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrameTrip.swift; sourceTree = "<group>"; };
 		D4270ABF248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrainDataTimeFrameProvider.swift; sourceTree = "<group>"; };
@@ -334,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */,
-				D4270AB8248BAD170022A6BB /* TrainView.xib */,
 			);
 			path = Annotation;
 			sourceTree = "<group>";
@@ -612,7 +609,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */,
-				D4270AB9248BAD170022A6BB /* TrainView.xib in Resources */,
 				D4EA3D66248803DC003D7469 /* hafas_test_json.json in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
 				D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */,

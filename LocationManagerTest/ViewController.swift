@@ -63,6 +63,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         return origHeading
     }
     
+    @IBAction func onUpdateButtonPressed(_ sender: UIButton) {
+        tripTimeFrameLocationController.fetchServer()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
