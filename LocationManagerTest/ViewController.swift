@@ -67,10 +67,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         tripTimeFrameLocationController.fetchServer()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.statusView.startTimer()
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
  
@@ -98,6 +95,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         tripTimeFrameLocationController.fetchServer()
         
         self.imageView.isHidden = true
+        
+        self.statusView.startTimer()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
