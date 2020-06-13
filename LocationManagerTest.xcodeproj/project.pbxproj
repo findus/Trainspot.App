@@ -56,7 +56,6 @@
 		D4B636CD249583D000996744 /* TripVisualizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B636CC249583D000996744 /* TripVisualizerTests.swift */; };
 		D4B636CF249583D000996744 /* TripVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; };
 		D4B636D52495840300996744 /* LocationManagerTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46292CD248C468B006E638F /* LocationManagerTestTests.swift */; };
-		D4B636D62495840600996744 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D46292CF248C468B006E638F /* Info.plist */; };
 		D4B636D72495840A00996744 /* TimeFrameControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */; };
 		D4BCAF81249137DD000B40D8 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF80249137DD000B40D8 /* StatusView.swift */; };
 		D4BCAF892492D1F9000B40D8 /* UserLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF882492D1F8000B40D8 /* UserLocationController.swift */; };
@@ -182,7 +181,6 @@
 		D45C50722489414C00A3D857 /* JourneyTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyTrip.swift; sourceTree = "<group>"; };
 		D45C5074248A51EA00A3D857 /* TripProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProvider.swift; sourceTree = "<group>"; };
 		D46292CD248C468B006E638F /* LocationManagerTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerTestTests.swift; sourceTree = "<group>"; };
-		D46292CF248C468B006E638F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D46B6B59248EB28A00AF77F6 /* NetworkTrainDataTimeFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTrainDataTimeFrameProvider.swift; sourceTree = "<group>"; };
 		D46B6B5C2490195100AF77F6 /* TrainViewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewList.swift; sourceTree = "<group>"; };
 		D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainOverviewCell.swift; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationRadarController.swift; sourceTree = "<group>"; };
 		D4AF5162248D2E3800C9D7BE /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
-		D4B636862495500D00996744 /* LocationManagerTestTests copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LocationManagerTestTests copy-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/LocationManagerTestTests copy-Info.plist"; sourceTree = "<absolute>"; };
 		D4B6368C2495785B00996744 /* TripVisualizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TripVisualizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B6368E2495785B00996744 /* TripVisualizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripVisualizer.h; sourceTree = "<group>"; };
 		D4B6368F2495785B00996744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -206,7 +203,6 @@
 		D4BCAF912493D220000B40D8 /* MKTrainAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKTrainAnnotationView.swift; sourceTree = "<group>"; };
 		D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MKTrainAnnotationView.xib; sourceTree = "<group>"; };
 		D4BCAFD424953752000B40D8 /* LocationManagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4BCAFD524953752000B40D8 /* LocationManagerTestMock copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LocationManagerTestMock copy-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/LocationManagerTestMock copy-Info.plist"; sourceTree = "<absolute>"; };
 		D4BCAFD62495405D000B40D8 /* wfb_trip */ = {isa = PBXFileReference; lastKnownFileType = text; path = wfb_trip; sourceTree = "<group>"; };
 		D4BCAFD924954391000B40D8 /* TimeTraveler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTraveler.swift; sourceTree = "<group>"; };
 		D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrameControllerTests.swift; sourceTree = "<group>"; };
@@ -365,7 +361,6 @@
 			isa = PBXGroup;
 			children = (
 				D46292CD248C468B006E638F /* LocationManagerTestTests.swift */,
-				D46292CF248C468B006E638F /* Info.plist */,
 				D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */,
 			);
 			path = LocationManagerTestTests;
@@ -553,8 +548,6 @@
 				D4DEAAC52487AC1900D33AA2 /* Products */,
 				DE099E028417340F4470B39B /* Pods */,
 				AAA8BBA48C41B9BBD430AD08 /* Frameworks */,
-				D4BCAFD524953752000B40D8 /* LocationManagerTestMock copy-Info.plist */,
-				D4B636862495500D00996744 /* LocationManagerTestTests copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -578,8 +571,8 @@
 				D45C50552488E25100A3D857 /* AppConstants */,
 				D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */,
 				D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */,
-				D4DEAACB2487AC1900D33AA2 /* ViewController.swift */,
 				D4DEAACD2487AC1900D33AA2 /* Main.storyboard */,
+				D4DEAACB2487AC1900D33AA2 /* ViewController.swift */,
 				D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */,
 				D4DEAAD22487AC1E00D33AA2 /* LaunchScreen.storyboard */,
 				D4DEAAD52487AC1E00D33AA2 /* Info.plist */,
@@ -773,7 +766,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4B636D62495840600996744 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
