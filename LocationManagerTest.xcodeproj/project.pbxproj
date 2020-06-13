@@ -47,6 +47,56 @@
 		D4BCAF922493D221000B40D8 /* MKTrainAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF912493D220000B40D8 /* MKTrainAnnotationView.swift */; };
 		D4BCAF942493FD42000B40D8 /* MKTrainAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */; };
 		D4BCAF98249428F2000B40D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */; };
+		D4BCAF9C24953752000B40D8 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB0248A71620022A6BB /* File.swift */; };
+		D4BCAF9D24953752000B40D8 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
+		D4BCAF9E24953752000B40D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAACB2487AC1900D33AA2 /* ViewController.swift */; };
+		D4BCAF9F24953752000B40D8 /* TrainLocationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506A24892FB200A3D857 /* TrainLocationProtocol.swift */; };
+		D4BCAFA024953752000B40D8 /* RadarTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C507024893F4900A3D857 /* RadarTrip.swift */; };
+		D4BCAFA124953752000B40D8 /* MapEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE02487D3E900D33AA2 /* MapEntity.swift */; };
+		D4BCAFA224953752000B40D8 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF80249137DD000B40D8 /* StatusView.swift */; };
+		D4BCAFA324953752000B40D8 /* MockTrainDataRadarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505C2488E8CB00A3D857 /* MockTrainDataRadarProvider.swift */; };
+		D4BCAFA424953752000B40D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
+		D4BCAFA524953752000B40D8 /* TrainDataProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C50592488E70A00A3D857 /* TrainDataProviderProtocol.swift */; };
+		D4BCAFA624953752000B40D8 /* JourneyTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C50722489414C00A3D857 /* JourneyTrip.swift */; };
+		D4BCAFA724953752000B40D8 /* TrainLocationTripByTimeFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABB248BDEAE0022A6BB /* TrainLocationTripByTimeFrameController.swift */; };
+		D4BCAFA824953752000B40D8 /* MapViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAADB2487D1AF00D33AA2 /* MapViewControllerDelegate.swift */; };
+		D4BCAFA924953752000B40D8 /* HafasDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */; };
+		D4BCAFAA24953752000B40D8 /* NetworkTrainDataTimeFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B59248EB28A00AF77F6 /* NetworkTrainDataTimeFrameProvider.swift */; };
+		D4BCAFAB24953752000B40D8 /* TransportRestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AC6248C439B0022A6BB /* TransportRestProvider.swift */; };
+		D4BCAFAC24953752000B40D8 /* UserLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF882492D1F8000B40D8 /* UserLocationController.swift */; };
+		D4BCAFAD24953752000B40D8 /* TrainLocationRadarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */; };
+		D4BCAFAE24953752000B40D8 /* TrainLocationTripAnimationTimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506624892C8200A3D857 /* TrainLocationTripAnimationTimeController.swift */; };
+		D4BCAFAF24953752000B40D8 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF20002488239D0075F327 /* Journey.swift */; };
+		D4BCAFB024953752000B40D8 /* HafasParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB3248A8F770022A6BB /* HafasParser.swift */; };
+		D4BCAFB124953752000B40D8 /* MapViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAADE2487D3B000D33AA2 /* MapViewControllerProtocol.swift */; };
+		D4BCAFB224953752000B40D8 /* TimeFrameTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABD248BDF5C0022A6BB /* TimeFrameTrip.swift */; };
+		D4BCAFB324953752000B40D8 /* MockTrainDataTimeFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABF248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift */; };
+		D4BCAFB424953752000B40D8 /* MockTrainDataJourneyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506224891D1400A3D857 /* MockTrainDataJourneyProvider.swift */; };
+		D4BCAFB524953752000B40D8 /* MKTrainAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF912493D220000B40D8 /* MKTrainAnnotationView.swift */; };
+		D4BCAFB624953752000B40D8 /* TrainOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */; };
+		D4BCAFB724953752000B40D8 /* TrainViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5C2490195100AF77F6 /* TrainViewList.swift */; };
+		D4BCAFB824953752000B40D8 /* TripProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C5074248A51EA00A3D857 /* TripProvider.swift */; };
+		D4BCAFB924953752000B40D8 /* TrainLocationProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506824892CC900A3D857 /* TrainLocationProxy.swift */; };
+		D4BCAFBA24953752000B40D8 /* Math+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */; };
+		D4BCAFBB24953752000B40D8 /* TrainAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */; };
+		D4BCAFBC24953752000B40D8 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF8E2493C151000B40D8 /* Collection.swift */; };
+		D4BCAFBD24953752000B40D8 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF5162248D2E3800C9D7BE /* DateUtils.swift */; };
+		D4BCAFBE24953752000B40D8 /* TrainLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */; };
+		D4BCAFBF24953752000B40D8 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF852492479C000B40D8 /* UIView.swift */; };
+		D4BCAFC024953752000B40D8 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE72487D9F100D33AA2 /* CLLocation+Extension.swift */; };
+		D4BCAFC124953752000B40D8 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C50562488E27400A3D857 /* AppConstants.swift */; };
+		D4BCAFC224953752000B40D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
+		D4BCAFC324953752000B40D8 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506024891B9100A3D857 /* Trip.swift */; };
+		D4BCAFC424953752000B40D8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */; };
+		D4BCAFC624953752000B40D8 /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C18627021B7A5948ABF56FD /* Pods_LocationManagerTest.framework */; };
+		D4BCAFC824953752000B40D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD22487AC1E00D33AA2 /* LaunchScreen.storyboard */; };
+		D4BCAFC924953752000B40D8 /* hafas_test_json.json in Resources */ = {isa = PBXBuildFile; fileRef = D4EA3D65248803DC003D7469 /* hafas_test_json.json */; };
+		D4BCAFCA24953752000B40D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAACD2487AC1900D33AA2 /* Main.storyboard */; };
+		D4BCAFCB24953752000B40D8 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46B6B6524912CF200AF77F6 /* StatusView.xib */; };
+		D4BCAFCC24953752000B40D8 /* trip_test in Resources */ = {isa = PBXBuildFile; fileRef = D45C50642489266600A3D857 /* trip_test */; };
+		D4BCAFCD24953752000B40D8 /* MKTrainAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */; };
+		D4BCAFCE24953752000B40D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */; };
+		D4BCAFCF24953752000B40D8 /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
 		D4C22BF0248E9D1700FB7120 /* HafasDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
 		D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
@@ -125,8 +175,10 @@
 		D4BCAF8E2493C151000B40D8 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		D4BCAF912493D220000B40D8 /* MKTrainAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKTrainAnnotationView.swift; sourceTree = "<group>"; };
 		D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MKTrainAnnotationView.xib; sourceTree = "<group>"; };
+		D4BCAFD424953752000B40D8 /* LocationManagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4BCAFD524953752000B40D8 /* LocationManagerTestMock copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LocationManagerTestMock copy-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/LocationManagerTestMock copy-Info.plist"; sourceTree = "<absolute>"; };
 		D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasDTOs.swift; sourceTree = "<group>"; };
-		D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4DEAAC42487AC1900D33AA2 /* LocationManagerTestMock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTestMock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D4DEAACB2487AC1900D33AA2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +205,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BCAFC524953752000B40D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4BCAFC624953752000B40D8 /* Pods_LocationManagerTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,15 +473,17 @@
 				D4DEAAC52487AC1900D33AA2 /* Products */,
 				DE099E028417340F4470B39B /* Pods */,
 				AAA8BBA48C41B9BBD430AD08 /* Frameworks */,
+				D4BCAFD524953752000B40D8 /* LocationManagerTestMock copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
 		D4DEAAC52487AC1900D33AA2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */,
+				D4DEAAC42487AC1900D33AA2 /* LocationManagerTestMock.app */,
 				D4EA3D5B24880387003D7469 /* LocationManagerTestUITests.xctest */,
 				D46292CB248C468B006E638F /* LocationManagerTestTests.xctest */,
+				D4BCAFD424953752000B40D8 /* LocationManagerTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -514,9 +576,28 @@
 			productReference = D46292CB248C468B006E638F /* LocationManagerTestTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D4DEAAC32487AC1900D33AA2 /* LocationManagerTest */ = {
+		D4BCAF9924953752000B40D8 /* LocationManagerTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4DEAAD82487AC1E00D33AA2 /* Build configuration list for PBXNativeTarget "LocationManagerTest" */;
+			buildConfigurationList = D4BCAFD124953752000B40D8 /* Build configuration list for PBXNativeTarget "LocationManagerTest" */;
+			buildPhases = (
+				D4BCAF9A24953752000B40D8 /* [CP] Check Pods Manifest.lock */,
+				D4BCAF9B24953752000B40D8 /* Sources */,
+				D4BCAFC524953752000B40D8 /* Frameworks */,
+				D4BCAFC724953752000B40D8 /* Resources */,
+				D4BCAFD024953752000B40D8 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LocationManagerTest;
+			productName = LocationManagerTest;
+			productReference = D4BCAFD424953752000B40D8 /* LocationManagerTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D4DEAAC32487AC1900D33AA2 /* LocationManagerTestMock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4DEAAD82487AC1E00D33AA2 /* Build configuration list for PBXNativeTarget "LocationManagerTestMock" */;
 			buildPhases = (
 				8A6B4ECA5B7D7941FE614C69 /* [CP] Check Pods Manifest.lock */,
 				D4DEAAC02487AC1900D33AA2 /* Sources */,
@@ -528,9 +609,9 @@
 			);
 			dependencies = (
 			);
-			name = LocationManagerTest;
+			name = LocationManagerTestMock;
 			productName = LocationManagerTest;
-			productReference = D4DEAAC42487AC1900D33AA2 /* LocationManagerTest.app */;
+			productReference = D4DEAAC42487AC1900D33AA2 /* LocationManagerTestMock.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D4EA3D5A24880387003D7469 /* LocationManagerTestUITests */ = {
@@ -589,9 +670,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D4DEAAC32487AC1900D33AA2 /* LocationManagerTest */,
+				D4DEAAC32487AC1900D33AA2 /* LocationManagerTestMock */,
 				D4EA3D5A24880387003D7469 /* LocationManagerTestUITests */,
 				D46292CA248C468B006E638F /* LocationManagerTestTests */,
+				D4BCAF9924953752000B40D8 /* LocationManagerTest */,
 			);
 		};
 /* End PBXProject section */
@@ -601,6 +683,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BCAFC724953752000B40D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4BCAFC824953752000B40D8 /* LaunchScreen.storyboard in Resources */,
+				D4BCAFC924953752000B40D8 /* hafas_test_json.json in Resources */,
+				D4BCAFCA24953752000B40D8 /* Main.storyboard in Resources */,
+				D4BCAFCB24953752000B40D8 /* StatusView.xib in Resources */,
+				D4BCAFCC24953752000B40D8 /* trip_test in Resources */,
+				D4BCAFCD24953752000B40D8 /* MKTrainAnnotationView.xib in Resources */,
+				D4BCAFCE24953752000B40D8 /* Assets.xcassets in Resources */,
+				D4BCAFCF24953752000B40D8 /* FormerScheduledArrivalDeparture in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +805,45 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D4BCAF9A24953752000B40D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LocationManagerTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4BCAFD024953752000B40D8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -716,6 +852,54 @@
 			buildActionMask = 2147483647;
 			files = (
 				D46292CE248C468B006E638F /* LocationManagerTestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BCAF9B24953752000B40D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4BCAF9C24953752000B40D8 /* File.swift in Sources */,
+				D4BCAF9D24953752000B40D8 /* TrainLocationPin.swift in Sources */,
+				D4BCAF9E24953752000B40D8 /* ViewController.swift in Sources */,
+				D4BCAF9F24953752000B40D8 /* TrainLocationProtocol.swift in Sources */,
+				D4BCAFA024953752000B40D8 /* RadarTrip.swift in Sources */,
+				D4BCAFA124953752000B40D8 /* MapEntity.swift in Sources */,
+				D4BCAFA224953752000B40D8 /* StatusView.swift in Sources */,
+				D4BCAFA324953752000B40D8 /* MockTrainDataRadarProvider.swift in Sources */,
+				D4BCAFA424953752000B40D8 /* AppDelegate.swift in Sources */,
+				D4BCAFA524953752000B40D8 /* TrainDataProviderProtocol.swift in Sources */,
+				D4BCAFA624953752000B40D8 /* JourneyTrip.swift in Sources */,
+				D4BCAFA724953752000B40D8 /* TrainLocationTripByTimeFrameController.swift in Sources */,
+				D4BCAFA824953752000B40D8 /* MapViewControllerDelegate.swift in Sources */,
+				D4BCAFA924953752000B40D8 /* HafasDTOs.swift in Sources */,
+				D4BCAFAA24953752000B40D8 /* NetworkTrainDataTimeFrameProvider.swift in Sources */,
+				D4BCAFAB24953752000B40D8 /* TransportRestProvider.swift in Sources */,
+				D4BCAFAC24953752000B40D8 /* UserLocationController.swift in Sources */,
+				D4BCAFAD24953752000B40D8 /* TrainLocationRadarController.swift in Sources */,
+				D4BCAFAE24953752000B40D8 /* TrainLocationTripAnimationTimeController.swift in Sources */,
+				D4BCAFAF24953752000B40D8 /* Journey.swift in Sources */,
+				D4BCAFB024953752000B40D8 /* HafasParser.swift in Sources */,
+				D4BCAFB124953752000B40D8 /* MapViewControllerProtocol.swift in Sources */,
+				D4BCAFB224953752000B40D8 /* TimeFrameTrip.swift in Sources */,
+				D4BCAFB324953752000B40D8 /* MockTrainDataTimeFrameProvider.swift in Sources */,
+				D4BCAFB424953752000B40D8 /* MockTrainDataJourneyProvider.swift in Sources */,
+				D4BCAFB524953752000B40D8 /* MKTrainAnnotationView.swift in Sources */,
+				D4BCAFB624953752000B40D8 /* TrainOverviewCell.swift in Sources */,
+				D4BCAFB724953752000B40D8 /* TrainViewList.swift in Sources */,
+				D4BCAFB824953752000B40D8 /* TripProvider.swift in Sources */,
+				D4BCAFB924953752000B40D8 /* TrainLocationProxy.swift in Sources */,
+				D4BCAFBA24953752000B40D8 /* Math+Extension.swift in Sources */,
+				D4BCAFBB24953752000B40D8 /* TrainAnnotation.swift in Sources */,
+				D4BCAFBC24953752000B40D8 /* Collection.swift in Sources */,
+				D4BCAFBD24953752000B40D8 /* DateUtils.swift in Sources */,
+				D4BCAFBE24953752000B40D8 /* TrainLocationDelegate.swift in Sources */,
+				D4BCAFBF24953752000B40D8 /* UIView.swift in Sources */,
+				D4BCAFC024953752000B40D8 /* CLLocation+Extension.swift in Sources */,
+				D4BCAFC124953752000B40D8 /* AppConstants.swift in Sources */,
+				D4BCAFC224953752000B40D8 /* SceneDelegate.swift in Sources */,
+				D4BCAFC324953752000B40D8 /* Trip.swift in Sources */,
+				D4BCAFC424953752000B40D8 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,12 +965,12 @@
 /* Begin PBXTargetDependency section */
 		D46292D1248C468B006E638F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D4DEAAC32487AC1900D33AA2 /* LocationManagerTest */;
+			target = D4DEAAC32487AC1900D33AA2 /* LocationManagerTestMock */;
 			targetProxy = D46292D0248C468B006E638F /* PBXContainerItemProxy */;
 		};
 		D4EA3D6124880387003D7469 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D4DEAAC32487AC1900D33AA2 /* LocationManagerTest */;
+			target = D4DEAAC32487AC1900D33AA2 /* LocationManagerTestMock */;
 			targetProxy = D4EA3D6024880387003D7469 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -853,6 +1037,45 @@
 			};
 			name = Release;
 		};
+		D4BCAFD224953752000B40D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7742B9CD2F560923E7F2079 /* Pods-LocationManagerTest.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 682WVA5N96;
+				INFOPLIST_FILE = "LocationManagerTestMock copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D4BCAFD324953752000B40D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81DAC181B364BA2179336F19 /* Pods-LocationManagerTest.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 682WVA5N96;
+				INFOPLIST_FILE = "LocationManagerTestMock copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D4DEAAD62487AC1E00D33AA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -909,6 +1132,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -981,6 +1205,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MOCK";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1059,6 +1284,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		D4BCAFD124953752000B40D8 /* Build configuration list for PBXNativeTarget "LocationManagerTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4BCAFD224953752000B40D8 /* Debug */,
+				D4BCAFD324953752000B40D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D4DEAABF2487AC1900D33AA2 /* Build configuration list for PBXProject "LocationManagerTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1068,7 +1302,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4DEAAD82487AC1E00D33AA2 /* Build configuration list for PBXNativeTarget "LocationManagerTest" */ = {
+		D4DEAAD82487AC1E00D33AA2 /* Build configuration list for PBXNativeTarget "LocationManagerTestMock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4DEAAD92487AC1E00D33AA2 /* Debug */,

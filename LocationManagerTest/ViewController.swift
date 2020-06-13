@@ -73,28 +73,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
  
         self.mapViewController?.delegate = self
         self.manager.delegate?.append(self)
-        
+        self.imageView.isHidden = true
+
         
         UserLocationController.shared.register(delegate: self)
         
-        // Start and append different controller instances
-        let radarLocationController = TrainLocationRadarController()
-        let tripLocationController = TrainLocationTripAnimationTimeController()
+
+        
         tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
+    
         
-        //tripLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataJourneyProvider()))
-        
+        #if MOCK
+        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider()))
+        #else
         tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(NetworkTrainDataTimeFrameProvider()))
-        
-        //tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(TransportRestProvider()))
-      
-        // self.manager.register(controller: radarLocationController)
-        //self.manager.register(controller: tripLocationController)
+        #endif
+
         self.manager.register(controller: tripTimeFrameLocationController)
         
         tripTimeFrameLocationController.fetchServer()
-        
-        self.imageView.isHidden = true
         
         self.statusView.startTimer()
     }
