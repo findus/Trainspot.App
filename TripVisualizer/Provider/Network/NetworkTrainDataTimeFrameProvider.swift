@@ -10,31 +10,31 @@ import Foundation
 
 import SwiftyJSON
 
-class NetworkTrainDataTimeFrameProvider: TrainDataProviderProtocol, TrainDataProviderDelegate {
+public class NetworkTrainDataTimeFrameProvider: TrainDataProviderProtocol, TrainDataProviderDelegate {
     
     var delegate: TrainDataProviderDelegate? = nil
     let networkService = TransportRestProvider()
 
-    typealias TripData = TimeFrameTrip
+    public typealias TripData = TimeFrameTrip
     
-    init() {
+    public init() {
         self.networkService.delegate = self
     }
     
-    func getAllTrips() -> Array<TimeFrameTrip> {
+    public func getAllTrips() -> Array<TimeFrameTrip> {
         let trips = self.networkService.getAllTrips()
         return HafasParser.loadTimeFrameTrip(fromHafasTrips: trips)
     }
     
-    func update() {
+    public func update() {
         self.networkService.update()
     }
     
-    func setDeleate(delegate: TrainDataProviderDelegate) {
+    public func setDeleate(delegate: TrainDataProviderDelegate) {
         self.delegate = delegate
     }
     
-    func onTripsUpdated() {
+    public func onTripsUpdated() {
         self.delegate?.onTripsUpdated()
     }
 }
