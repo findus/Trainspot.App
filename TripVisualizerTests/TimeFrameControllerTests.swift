@@ -44,7 +44,7 @@ class TimeFrameControllerTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        let delegate = MockDelegate()
+        self.delegate = MockDelegate()
         
         self.dataProvider = MockTrainDataTimeFrameProvider()
         controller = TrainLocationTripByTimeFrameController(dateGenerator: timeProvider.generateDate)
@@ -60,6 +60,7 @@ class TimeFrameControllerTests: XCTestCase {
         self.initialTrip = trip
     }
     
+    
     func testMinPosition() {
         guard let journeyStart = self.initialTrip?.departure else {
             XCTFail("Could not get departure date")
@@ -71,7 +72,11 @@ class TimeFrameControllerTests: XCTestCase {
         controller.start()
         wait(for: [self.delegate.updated], timeout: 10)
         controller.pause()
-        XCTAssertEqual(delegate.updatedArray.first?.data.state.get(), "Lehrte")
+        guard let (trip: Trip, data, duration: Double) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+        XCTAssertEqual(data.state.get(), "Lehrte")
     }
 
 }

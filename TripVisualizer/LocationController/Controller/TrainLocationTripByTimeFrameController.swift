@@ -279,8 +279,7 @@ extension TrainLocationTripByTimeFrameController {
         let newLon = startCoords.longitude + ((endCoords.longitude - startCoords.longitude) * ratio)
         
         // Get next Stop
-        
-        if let nextStopOver = (trip.locationArray[loc.0.offset...].first(where: {$0 is StopOver}) as? StopOver)?.name {
+        if let nextStopOver = (trip.locationArray[loc.0.offset...].dropFirst().first(where: {$0 is StopOver}) as? StopOver)?.name {
             return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nextStopOver), loc.0.offset, secondsIntoSection)
         } else {
             return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nil), loc.0.offset, secondsIntoSection)
