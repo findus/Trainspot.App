@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 import XCTest
 @testable import TripVisualizer
@@ -50,6 +51,7 @@ class TimeFrameControllerTests: XCTestCase {
         controller = TrainLocationTripByTimeFrameController(dateGenerator: timeProvider.generateDate)
         controller.setDataProvider(withProvider: TripProvider(dataProvider))
         controller.delegate = delegate
+        controller.setCurrentLocation(location: CLLocation(latitude: 1, longitude: 1))
         self.dataProvider.update()
         
         guard let trip = dataProvider.getAllTrips().first else {
@@ -59,9 +61,10 @@ class TimeFrameControllerTests: XCTestCase {
         
         self.initialTrip = trip
     }
-    
-    
-    func testMinPosition() {
+   
+    //MARK:-- Trip Staring
+ 
+    func testCorrectTripStateBeginning() {
         guard let journeyStart = self.initialTrip?.departure else {
             XCTFail("Could not get departure date")
             return
@@ -72,11 +75,195 @@ class TimeFrameControllerTests: XCTestCase {
         controller.start()
         wait(for: [self.delegate.updated], timeout: 10)
         controller.pause()
-        guard let (trip: Trip, data, duration: Double) = delegate.updatedArray.first else {
+        guard let (_, data, _) = delegate.updatedArray.first else {
             XCTFail("No trip data available")
             return
         }
         XCTAssertEqual(data.state.get(), "Lehrte")
+    }
+    
+    func testCorrectTripStateBeforeBeginning() {
+        guard let journeyStart = self.initialTrip?.departure else {
+            XCTFail("Could not get departure date")
+            return
+        }
+        
+        self.timeProvider.date = journeyStart.addingTimeInterval(-1)
+        
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        guard let (_, data, _) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+        XCTAssertEqual(data.state.get(), "Wait for Start")
+    }
+    
+    //MARK:-- Trip Ending
+    
+    func testCorrectTripStateEnding() {
+        guard let journeyEnd = (self.initialTrip?.locationArray.last as? StopOver)?.arrival else {
+            XCTFail("Could not get arrival stopover")
+            return
+        }
+        
+        self.timeProvider.date = journeyEnd
+        
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        guard let (_, data, _) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+        XCTAssertEqual(data.state.get(), "Ended")
+    }
+    
+    func testCorrectTripStateBeforeEnding() {
+        guard let journeyEnd = (self.initialTrip?.locationArray.last as? StopOver)?.arrival else {
+            XCTFail("Could not get arrival stopover")
+            return
+        }
+        
+        self.timeProvider.date = journeyEnd.addingTimeInterval(-1)
+        
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        guard let (_, data, _) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+        XCTAssertEqual(data.state.get(), "Braunschweig Hbf")
+    }
+    
+    func testCorrectTripStateAfterEnding() {
+        guard let journeyEnd = (self.initialTrip?.locationArray.last as? StopOver)?.arrival else {
+            XCTFail("Could not get arrival stopover")
+            return
+        }
+        
+        self.timeProvider.date = journeyEnd.addingTimeInterval(1)
+        
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        guard let (_, data, _) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+        XCTAssertEqual(data.state.get(), "Ended")
+    }
+    
+    //MARK:-- Stopping
+    
+    func testCorrectTripStateBeforeStop() {
+        //2020-06-12T16:34:0
+        var components = DateComponents()
+        components.second = 0
+        components.hour = 16
+        components.minute = 34
+        components.day = 12
+        components.month = 6
+        components.year = 2020
+        guard let date = Calendar.current.date(from: components) else {
+            XCTFail("Could not parse date")
+            return
+        }
+
+        self.timeProvider.date = date.addingTimeInterval(-1)
+        
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        guard let (_, data, _) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+        
+        XCTAssertEqual(data.state.get(), "Hämelerwald")
+    }
+    
+    func testCorrectTripStateAtStop() {
+        //2020-06-12T16:34:0
+        var components = DateComponents()
+        components.second = 0
+        components.hour = 16
+        components.minute = 34
+        components.day = 12
+        components.month = 6
+        components.year = 2020
+        guard let date = Calendar.current.date(from: components) else {
+            XCTFail("Could not parse date")
+            return
+        }
+
+        self.timeProvider.date = date
+        
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        guard let (_, data, _) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+        
+        XCTAssertTrue(data.state.get().contains("Stopped for"))
+    }
+    
+    func testCorrectTripStateAtStopEnding() {
+        //2020-06-12T16:34:0
+        var components = DateComponents()
+        components.second = 0
+        components.hour = 16
+        components.minute = 34
+        components.day = 12
+        components.month = 6
+        components.year = 2020
+        guard let date = Calendar.current.date(from: components) else {
+            XCTFail("Could not parse date")
+            return
+        }
+
+        self.timeProvider.date = date.addingTimeInterval(59)
+        
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        guard let (_, data, _) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+        
+        XCTAssertTrue(data.state.get().contains("Stopped for"))
+    }
+    
+    func testCorrectTripStateAtStopEnded() {
+        //2020-06-12T16:34:0
+        var components = DateComponents()
+        components.second = 0
+        components.hour = 16
+        components.minute = 34
+        components.day = 12
+        components.month = 6
+        components.year = 2020
+        guard let date = Calendar.current.date(from: components) else {
+            XCTFail("Could not parse date")
+            return
+        }
+
+        self.timeProvider.date = date.addingTimeInterval(60)
+        
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        guard let (_, data, _) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+        
+        XCTAssertEqual(data.state.get(),"Vöhrum")
     }
 
 }

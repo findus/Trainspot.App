@@ -218,6 +218,7 @@ extension TrainLocationTripByTimeFrameController {
         guard let loc = zip(trip.locationArray.enumerated(),trip.locationArray.dropFirst())
             .first(where: { (arg0, next) -> Bool in
                 let (_, this) = arg0
+                
                 if this is Path && next is StopOver {
                     /**
                      Map Against Arrival Data:
@@ -243,6 +244,10 @@ extension TrainLocationTripByTimeFrameController {
                     return this.departure!.timeIntervalSince(date) <= 0 && next.departure!.timeIntervalSince(date) > 0
                 }
             }) else {
+                //If Journey has ended
+                if ((trip.locationArray.last as? StopOver)?.arrival ?? Date(timeIntervalSince1970: 0)).timeIntervalSince(date) <= 0 {
+                    return (trip.locationArray.last!.coords, .Ended, 0, 0)
+                }
                 // "Error" handling, if train journey has not started, or has already ended
                 if trip.locationArray.first!.departure!.timeIntervalSince(self.dateGenerator()) <= 900 {
                     return (trip.locationArray.first!.coords, .WaitForStart, 0, 0)

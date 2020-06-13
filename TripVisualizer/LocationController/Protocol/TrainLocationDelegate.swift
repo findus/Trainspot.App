@@ -24,6 +24,7 @@ public enum TrainState {
         case .Driving(let nextStop):
             return "\(nextStop ?? "")"
         case .Stopped(let date):
+            //TODO timetravel
             return "Stopped for \(Int(date.timeIntervalSince(Date())))s"
         }
     }
