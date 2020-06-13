@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D9A5BA8B53D35DD8B97C3D1 /* Pods_LocationManagerTest_LocationManagerTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88A323A8CEDD0164D46A0FF /* Pods_LocationManagerTest_LocationManagerTestUITests.framework */; };
-		8773188A96BE89EE7890D60C /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C18627021B7A5948ABF56FD /* Pods_LocationManagerTest.framework */; };
+		6482A3F6A76FEE136EF6A8E0 /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5365E4E3521906AFAF6FC8DE /* Pods_LocationManagerTest.framework */; };
+		7DA1CE2BA67AAB134FF3ED80 /* Pods_LocationManagerTestMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */; };
 		D4270AB1248A71620022A6BB /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB0248A71620022A6BB /* File.swift */; };
 		D4270AB4248A8F770022A6BB /* HafasParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB3248A8F770022A6BB /* HafasParser.swift */; };
 		D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */; };
@@ -38,6 +39,8 @@
 		D4AF20012488239D0075F327 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF20002488239D0075F327 /* Journey.swift */; };
 		D4AF2004248825B20075F327 /* TrainLocationRadarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */; };
 		D4AF5163248D2E3800C9D7BE /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF5162248D2E3800C9D7BE /* DateUtils.swift */; };
+		D4B6367E2495500D00996744 /* TimeFrameControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */; };
+		D4B6367F2495500D00996744 /* LocationManagerTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46292CD248C468B006E638F /* LocationManagerTestTests.swift */; };
 		D4BCAF81249137DD000B40D8 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF80249137DD000B40D8 /* StatusView.swift */; };
 		D4BCAF862492479C000B40D8 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF852492479C000B40D8 /* UIView.swift */; };
 		D4BCAF892492D1F9000B40D8 /* UserLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF882492D1F8000B40D8 /* UserLocationController.swift */; };
@@ -87,7 +90,7 @@
 		D4BCAFC224953752000B40D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
 		D4BCAFC324953752000B40D8 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506024891B9100A3D857 /* Trip.swift */; };
 		D4BCAFC424953752000B40D8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */; };
-		D4BCAFC624953752000B40D8 /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C18627021B7A5948ABF56FD /* Pods_LocationManagerTest.framework */; };
+		D4BCAFC624953752000B40D8 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		D4BCAFC824953752000B40D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD22487AC1E00D33AA2 /* LaunchScreen.storyboard */; };
 		D4BCAFCA24953752000B40D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAACD2487AC1900D33AA2 /* Main.storyboard */; };
 		D4BCAFCB24953752000B40D8 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46B6B6524912CF200AF77F6 /* StatusView.xib */; };
@@ -96,6 +99,7 @@
 		D4BCAFCF24953752000B40D8 /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
 		D4BCAFD72495405D000B40D8 /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
 		D4BCAFDB249543C8000B40D8 /* TimeTraveler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAFD924954391000B40D8 /* TimeTraveler.swift */; };
+		D4BCAFDD24954979000B40D8 /* TimeFrameControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */; };
 		D4C22BF0248E9D1700FB7120 /* HafasDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
 		D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
@@ -119,6 +123,13 @@
 			remoteGlobalIDString = D4DEAAC32487AC1900D33AA2;
 			remoteInfo = LocationManagerTest;
 		};
+		D4B6367C2495500D00996744 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4DEAABC2487AC1900D33AA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4DEAAC32487AC1900D33AA2;
+			remoteInfo = LocationManagerTest;
+		};
 		D4EA3D6024880387003D7469 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D4DEAABC2487AC1900D33AA2 /* Project object */;
@@ -129,10 +140,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1C18627021B7A5948ABF56FD /* Pods_LocationManagerTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B5C1FF62A107403676159D6 /* Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTestMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5365E4E3521906AFAF6FC8DE /* Pods_LocationManagerTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81DAC181B364BA2179336F19 /* Pods-LocationManagerTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest.release.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest.release.xcconfig"; sourceTree = "<group>"; };
+		868231B0BE70D1D916ACE15C /* Pods-LocationManagerTestMock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTestMock.release.xcconfig"; path = "Target Support Files/Pods-LocationManagerTestMock/Pods-LocationManagerTestMock.release.xcconfig"; sourceTree = "<group>"; };
 		BFEFB2F185F1EDB86D47F583 /* Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CA58623486AD971F4C4A0665 /* Pods-LocationManagerTestMock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTestMock.debug.xcconfig"; path = "Target Support Files/Pods-LocationManagerTestMock/Pods-LocationManagerTestMock.debug.xcconfig"; sourceTree = "<group>"; };
 		D4270AB0248A71620022A6BB /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		D4270AB3248A8F770022A6BB /* HafasParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasParser.swift; sourceTree = "<group>"; };
 		D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainAnnotation.swift; sourceTree = "<group>"; };
@@ -163,6 +177,8 @@
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationRadarController.swift; sourceTree = "<group>"; };
 		D4AF5162248D2E3800C9D7BE /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		D4B636852495500D00996744 /* LocationManagerTestTestsMock.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationManagerTestTestsMock.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B636862495500D00996744 /* LocationManagerTestTests copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LocationManagerTestTests copy-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/LocationManagerTestTests copy-Info.plist"; sourceTree = "<absolute>"; };
 		D4BCAF80249137DD000B40D8 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		D4BCAF852492479C000B40D8 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		D4BCAF882492D1F8000B40D8 /* UserLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationController.swift; sourceTree = "<group>"; };
@@ -174,6 +190,7 @@
 		D4BCAFD524953752000B40D8 /* LocationManagerTestMock copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LocationManagerTestMock copy-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/LocationManagerTestMock copy-Info.plist"; sourceTree = "<absolute>"; };
 		D4BCAFD62495405D000B40D8 /* wfb_trip */ = {isa = PBXFileReference; lastKnownFileType = text; path = wfb_trip; sourceTree = "<group>"; };
 		D4BCAFD924954391000B40D8 /* TimeTraveler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTraveler.swift; sourceTree = "<group>"; };
+		D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrameControllerTests.swift; sourceTree = "<group>"; };
 		D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasDTOs.swift; sourceTree = "<group>"; };
 		D4DEAAC42487AC1900D33AA2 /* LocationManagerTestMock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerTestMock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,11 +221,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D4B636802495500D00996744 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4BCAFC524953752000B40D8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4BCAFC624953752000B40D8 /* Pods_LocationManagerTest.framework in Frameworks */,
+				D4BCAFC624953752000B40D8 /* (null) in Frameworks */,
+				6482A3F6A76FEE136EF6A8E0 /* Pods_LocationManagerTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8773188A96BE89EE7890D60C /* Pods_LocationManagerTest.framework in Frameworks */,
+				7DA1CE2BA67AAB134FF3ED80 /* Pods_LocationManagerTestMock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,8 +259,9 @@
 		AAA8BBA48C41B9BBD430AD08 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1C18627021B7A5948ABF56FD /* Pods_LocationManagerTest.framework */,
 				D88A323A8CEDD0164D46A0FF /* Pods_LocationManagerTest_LocationManagerTestUITests.framework */,
+				50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */,
+				5365E4E3521906AFAF6FC8DE /* Pods_LocationManagerTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -325,6 +351,7 @@
 			children = (
 				D46292CD248C468B006E638F /* LocationManagerTestTests.swift */,
 				D46292CF248C468B006E638F /* Info.plist */,
+				D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */,
 			);
 			path = LocationManagerTestTests;
 			sourceTree = "<group>";
@@ -476,6 +503,7 @@
 				DE099E028417340F4470B39B /* Pods */,
 				AAA8BBA48C41B9BBD430AD08 /* Frameworks */,
 				D4BCAFD524953752000B40D8 /* LocationManagerTestMock copy-Info.plist */,
+				D4B636862495500D00996744 /* LocationManagerTestTests copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -486,6 +514,7 @@
 				D4EA3D5B24880387003D7469 /* LocationManagerTestUITests.xctest */,
 				D46292CB248C468B006E638F /* LocationManagerTestTests.xctest */,
 				D4BCAFD424953752000B40D8 /* LocationManagerTest.app */,
+				D4B636852495500D00996744 /* LocationManagerTestTestsMock.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -554,6 +583,8 @@
 				81DAC181B364BA2179336F19 /* Pods-LocationManagerTest.release.xcconfig */,
 				4B5C1FF62A107403676159D6 /* Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig */,
 				BFEFB2F185F1EDB86D47F583 /* Pods-LocationManagerTest-LocationManagerTestUITests.release.xcconfig */,
+				CA58623486AD971F4C4A0665 /* Pods-LocationManagerTestMock.debug.xcconfig */,
+				868231B0BE70D1D916ACE15C /* Pods-LocationManagerTestMock.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -577,6 +608,24 @@
 			name = LocationManagerTestTests;
 			productName = LocationManagerTestTests;
 			productReference = D46292CB248C468B006E638F /* LocationManagerTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D4B6367A2495500D00996744 /* LocationManagerTestTestsMock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4B636822495500D00996744 /* Build configuration list for PBXNativeTarget "LocationManagerTestTestsMock" */;
+			buildPhases = (
+				D4B6367D2495500D00996744 /* Sources */,
+				D4B636802495500D00996744 /* Frameworks */,
+				D4B636812495500D00996744 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4B6367B2495500D00996744 /* PBXTargetDependency */,
+			);
+			name = LocationManagerTestTestsMock;
+			productName = LocationManagerTestTests;
+			productReference = D4B636852495500D00996744 /* LocationManagerTestTestsMock.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		D4BCAF9924953752000B40D8 /* LocationManagerTest */ = {
@@ -651,6 +700,9 @@
 						CreatedOnToolsVersion = 11.5;
 						TestTargetID = D4DEAAC32487AC1900D33AA2;
 					};
+					D4B6367A2495500D00996744 = {
+						TestTargetID = D4DEAAC32487AC1900D33AA2;
+					};
 					D4DEAAC32487AC1900D33AA2 = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -677,12 +729,20 @@
 				D4EA3D5A24880387003D7469 /* LocationManagerTestUITests */,
 				D46292CA248C468B006E638F /* LocationManagerTestTests */,
 				D4BCAF9924953752000B40D8 /* LocationManagerTest */,
+				D4B6367A2495500D00996744 /* LocationManagerTestTestsMock */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D46292C9248C468B006E638F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4B636812495500D00996744 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -754,15 +814,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTestMock/Pods-LocationManagerTestMock-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTestMock/Pods-LocationManagerTestMock-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTest/Pods-LocationManagerTest-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocationManagerTestMock/Pods-LocationManagerTestMock-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		39FBF593B2FDE805B7700A02 /* [CP] Embed Pods Frameworks */ = {
@@ -797,7 +857,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LocationManagerTest-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-LocationManagerTestMock-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -850,7 +910,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4BCAFDD24954979000B40D8 /* TimeFrameControllerTests.swift in Sources */,
 				D46292CE248C468B006E638F /* LocationManagerTestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4B6367D2495500D00996744 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4B6367E2495500D00996744 /* TimeFrameControllerTests.swift in Sources */,
+				D4B6367F2495500D00996744 /* LocationManagerTestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -968,6 +1038,11 @@
 			target = D4DEAAC32487AC1900D33AA2 /* LocationManagerTestMock */;
 			targetProxy = D46292D0248C468B006E638F /* PBXContainerItemProxy */;
 		};
+		D4B6367B2495500D00996744 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4DEAAC32487AC1900D33AA2 /* LocationManagerTestMock */;
+			targetProxy = D4B6367C2495500D00996744 /* PBXContainerItemProxy */;
+		};
 		D4EA3D6124880387003D7469 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D4DEAAC32487AC1900D33AA2 /* LocationManagerTestMock */;
@@ -1034,6 +1109,48 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocationManagerTest.app/LocationManagerTest";
+			};
+			name = Release;
+		};
+		D4B636832495500D00996744 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 682WVA5N96;
+				INFOPLIST_FILE = "LocationManagerTestTests copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocationManagerTestMock.app/LocationManagerTestMock";
+			};
+			name = Debug;
+		};
+		D4B636842495500D00996744 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 682WVA5N96;
+				INFOPLIST_FILE = "LocationManagerTestTests copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocationManagerTestMock.app/LocationManagerTestMock";
 			};
 			name = Release;
 		};
@@ -1193,7 +1310,7 @@
 		};
 		D4DEAAD92487AC1E00D33AA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7742B9CD2F560923E7F2079 /* Pods-LocationManagerTest.debug.xcconfig */;
+			baseConfigurationReference = CA58623486AD971F4C4A0665 /* Pods-LocationManagerTestMock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1213,7 +1330,7 @@
 		};
 		D4DEAADA2487AC1E00D33AA2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81DAC181B364BA2179336F19 /* Pods-LocationManagerTest.release.xcconfig */;
+			baseConfigurationReference = 868231B0BE70D1D916ACE15C /* Pods-LocationManagerTestMock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1280,6 +1397,15 @@
 			buildConfigurations = (
 				D46292D3248C468B006E638F /* Debug */,
 				D46292D4248C468B006E638F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4B636822495500D00996744 /* Build configuration list for PBXNativeTarget "LocationManagerTestTestsMock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4B636832495500D00996744 /* Debug */,
+				D4B636842495500D00996744 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

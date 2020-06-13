@@ -1,19 +1,29 @@
 //
-//  LocationManagerTestTests.swift
+//  TimeFrameControllerTests.swift
 //  LocationManagerTestTests
 //
-//  Created by Philipp Hentschel on 06.06.20.
+//  Created by Philipp Hentschel on 13.06.20.
 //  Copyright © 2020 Philipp Hentschel. All rights reserved.
 //
+
+import Foundation
 
 import XCTest
 
 @testable import LocationManagerTestMock
 
-class LocationManagerTestTests: XCTestCase {
+class TimeFrameControllerTests: XCTestCase {
 
+    var controller = TrainLocationTripByTimeFrameController()
+    var dataProvider = MockTrainDataTimeFrameProvider()
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        self.dataProvider = MockTrainDataTimeFrameProvider()
+        controller = TrainLocationTripByTimeFrameController()
+        controller.setDataProvider(withProvider: TripProvider(dataProvider))
+        
+        self.dataProvider.update()
     }
 
     override func tearDownWithError() throws {
@@ -32,11 +42,8 @@ class LocationManagerTestTests: XCTestCase {
         }
     }
     
-    func testDownloads() {
-        let t = TransportRestProvider()
-        t.update()
-        let exp = XCTestExpectation()
-        let await = wait(for: [exp], timeout: 10)
+    func testMinPosition() {
+        print(controller.trips)
     }
 
 }

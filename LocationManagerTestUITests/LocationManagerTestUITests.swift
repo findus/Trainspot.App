@@ -41,7 +41,7 @@ class LocationManagerTestUITests: XCTestCase {
         
         let json = try! JSON(data: data as Data)
         //let coords = json[0]["polyline"]["features"].arrayValue.map { MapEntity(name: "lol", tripId: <#String#>, location: CLLocation(latitude: $0["geometry"]["coordinates"][0].doubleValue, longitude: $0["geometry"]["coordinates"][1].doubleValue ))  }
-        print(coords)
+        //print(coords)
         
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

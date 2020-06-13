@@ -84,13 +84,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         #if MOCK
         var components = DateComponents()
-        components.hour = 16
-        components.minute = 20
+        components.second = 50
+        components.hour = 17
+        components.minute = 00
         components.day = 12
         components.month = 6
         components.year = 2020
         let date = Calendar.current.date(from: components)
         let traveler = TimeTraveler()
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (timer) in
+            traveler.travel(by: 1)
+        }
         traveler.date = date!
         tripTimeFrameLocationController = TrainLocationTripByTimeFrameController(dateGenerator: traveler.generateDate)
         tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider()))
