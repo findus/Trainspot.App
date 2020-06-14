@@ -105,7 +105,7 @@ class TimeFrameControllerTests: XCTestCase {
             XCTFail("No trip data available")
             return
         }
-        XCTAssertEqual(data.state.get(), "Wait for Start")
+        XCTAssertEqual(data.state.get(), "Departs in 1s")
     }
     
     //MARK:-- Trip Ending
@@ -434,7 +434,72 @@ class TimeFrameControllerTests: XCTestCase {
      }
 
      print(data.arrival)
-     XCTAssertEqual(data.state.get(),"Wait for Start")
+     XCTAssertEqual(data.state.get(),"Departs in 100s")
+    }
+    
+    func testGracePeriodBeforeStart1s() {
+        
+     self.dataProvider.setTrip(withName: "wfb_trip_bielefeld")
+     self.dataProvider.update()
+     self.reloadTrips()
+     
+     guard let initialTrip = self.initialTrip else {
+         XCTFail("Failed to get trip")
+         return
+     }
+     
+     self.controller.setCurrentLocation(location: initialTrip.locationArray.first!.coords)
+             
+     guard let journeyStart = self.initialTrip?.departure else {
+         XCTFail("Could not get departure date")
+         return
+     }
+     
+        self.timeProvider.date = journeyStart.addingTimeInterval(-1)
+     
+     controller.start()
+     wait(for: [self.delegate.updated], timeout: 10)
+     controller.pause()
+     guard let (_, data, _) = delegate.updatedArray.first else {
+         XCTFail("No trip data available")
+         return
+     }
+
+     print(data.arrival)
+     XCTAssertEqual(data.state.get(),"Departs in 1s")
+    }
+    
+    func testGracePeriodBeforeStartTooLate() {
+        
+     self.dataProvider.setTrip(withName: "wfb_trip_bielefeld")
+     self.dataProvider.update()
+     self.reloadTrips()
+        self.controller.GRACE_PERIOD = 1
+     
+     guard let initialTrip = self.initialTrip else {
+         XCTFail("Failed to get trip")
+         return
+     }
+     
+     self.controller.setCurrentLocation(location: initialTrip.locationArray.first!.coords)
+             
+     guard let journeyStart = self.initialTrip?.departure else {
+         XCTFail("Could not get departure date")
+         return
+     }
+     
+        self.timeProvider.date = journeyStart.addingTimeInterval(-2)
+     
+     controller.start()
+     wait(for: [self.delegate.updated], timeout: 10)
+     controller.pause()
+     guard let (_, data, _) = delegate.updatedArray.first else {
+         XCTFail("No trip data available")
+         return
+     }
+
+     print(data.arrival)
+        XCTAssertEqual(data.state.get(), "Departs to late")
     }
 
 }

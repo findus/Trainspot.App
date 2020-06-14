@@ -15,6 +15,8 @@ import CoreLocation
  */
 public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     
+    var GRACE_PERIOD = 900.0
+    
     private let dateGenerator: () -> Date
 
     public typealias T = TimeFrameTrip
@@ -63,7 +65,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         self.timer?.invalidate()
     }
     
-    public func getArrivalInSeconds(forTrip trip: T, userPosInArray: Int, trainPos: Int) -> TimeInterval? {
+    public func getArrivalInSeconds(forTrip trip: T, userPosInArray: Int, trainPos: Int, secondsToDeparture: Double) -> TimeInterval? {
         /**
          Tries to get the next stop facing from the users position, fetches the time of next arrivals and substracts the time that is needed to get there
          */
@@ -80,7 +82,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
          **/
         let missingStepsToFirstStop = (userPosInArray)
         let offset = trip.locationArray[userPosInArray...(missingStepsToFirstStop+nextStop.offset)].dropLast().map({$0.durationToNext!}).reduce(0,+)
-        return nextStopDate.addingTimeInterval(-offset).timeIntervalSince(self.dateGenerator())
+        return nextStopDate.addingTimeInterval(-offset).timeIntervalSince(self.dateGenerator()) + secondsToDeparture
     }
     
     /**
@@ -115,14 +117,15 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     @objc func onTick(timer: Timer) {
         self.trips.forEach { (trip) in
             switch self.isTripInBounds(trip: trip) {
-            case .Driving, .Stopped(_):
+            case .Driving, .Stopped(_), .WaitForStart(_):
                 if let data = self.getTrainLocation(forTrip: trip, atDate: self.dateGenerator()) {
                     
                     var tripData: TripData
                     if let currentLocation = self.currentUserLocation {
                         //Currently only on top of polyline point, might be off if user is between points that ar far away
                         let userPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: currentLocation)
-                        let time = self.getArrivalInSeconds(forTrip: trip, userPosInArray: userPosInArray, trainPos: data.arrayPostition)
+                        let timeTilDeparture = trip.departure.timeIntervalSince(self.dateGenerator())
+                        let time = self.getArrivalInSeconds(forTrip: trip, userPosInArray: userPosInArray, trainPos: data.arrayPostition, secondsToDeparture: timeTilDeparture > 0 ? timeTilDeparture : 0)
                         let distance = self.getDistance(forTrip: trip, arrayPosTrain: data.arrayPostition, arrayPosUser: userPosInArray, currentTrainLoc: data.currentLocation)
                         tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: time ?? -1, distance: distance )
                     } else {
@@ -135,9 +138,8 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
                 }
             case .Ended:
                 self.remove(trip: trip, reason: .Ended)
-            case .WaitForStart:
-                //TODO honor grace period (15 minutes before start or dynamic user pref)
-                self.remove(trip: trip, reason: .WaitForStart)
+            case .DepartsToLate:
+                self.remove(trip: trip, reason: .DepartsToLate)
             }
         }
     }
@@ -211,9 +213,13 @@ extension TrainLocationTripByTimeFrameController {
         formatter.dateFormat = "dd.MM.yyyy HH:mm"
         
         if start.timeIntervalSince(now) > 0 || end.timeIntervalSince(now) < 0 {
-            if start.timeIntervalSince(now) > 0 {
+            if start.timeIntervalSince(now) > GRACE_PERIOD {
+                Log.warning("Trip \(trip.name) departure date exceeds grace period, Now: \(formatter.string(from: now))...........Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]")
+                return TrainState.DepartsToLate
+            }
+            else if start.timeIntervalSince(now) > 0 {
                 Log.debug("Trip \(trip.name) is in future, Now: \(formatter.string(from: now))...........Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]")
-                return TrainState.WaitForStart
+                return TrainState.WaitForStart(start.timeIntervalSince(now))
             } else {
                 Log.warning("Trip \(trip.name) is in past, Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))].............Now: \(formatter.string(from: now))")
                 return TrainState.Ended
@@ -223,6 +229,12 @@ extension TrainLocationTripByTimeFrameController {
     }
     
     func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> (currentLocation: CLLocation, trainState: TrainState, arrayPostition: Int, secondsInsideSection: Double)? {
+        
+        //Trip did not start yet:
+        if trip.departure.timeIntervalSince(date) > 0 {
+            return (trip.locationArray.first!.coords, .WaitForStart(trip.departure.timeIntervalSince(date)), 0, 0)
+        }
+        
         guard let loc = zip(trip.locationArray.enumerated(),trip.locationArray.dropFirst())
             .first(where: { (arg0, next) -> Bool in
                 let (_, this) = arg0

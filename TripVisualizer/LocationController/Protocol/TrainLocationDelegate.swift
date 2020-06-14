@@ -10,15 +10,16 @@ import Foundation
 import CoreLocation
 
 public enum TrainState {
-    case WaitForStart
+    case DepartsToLate
+    case WaitForStart(TimeInterval)
     case Ended
     case Stopped(Date)
     case Driving(String?)
     
     public func get() -> String {
         switch self {
-        case .WaitForStart:
-            return "Wait for Start"
+        case .WaitForStart(let seconds):
+            return "Departs in \(Int(seconds))s"
         case .Ended:
             return "Ended"
         case .Driving(let nextStop):
@@ -26,6 +27,8 @@ public enum TrainState {
         case .Stopped(let date):
             //TODO timetravel
             return "Stopped for \(Int(date.timeIntervalSince(Date())))s"
+        case .DepartsToLate:
+            return "Departs to late"
         }
     }
 }
