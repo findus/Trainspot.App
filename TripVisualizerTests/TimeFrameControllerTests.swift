@@ -295,7 +295,7 @@ class TimeFrameControllerTests: XCTestCase {
         XCTAssertEqual(data.state.get(),"Vöhrum")
     }
     
-    //MARK: -- Trip Start
+    //MARK: -- Arrival Time
     
     /*
      |__T__*______|
@@ -399,5 +399,42 @@ class TimeFrameControllerTests: XCTestCase {
         XCTAssertEqual(data.arrival, 0)
         XCTAssertEqual(data.state.get(),"Ended")
        }
+    
+    //MARK: - Grace Period Starting
+    
+    /**
+     Up to a user-configurable, certain point, trains that are about to depart should also be displayed in their respective starting locations
+     */
+    func testGracePeriodBeforeStart() {
+        
+     self.dataProvider.setTrip(withName: "wfb_trip_bielefeld")
+     self.dataProvider.update()
+     self.reloadTrips()
+     
+     guard let initialTrip = self.initialTrip else {
+         XCTFail("Failed to get trip")
+         return
+     }
+     
+     self.controller.setCurrentLocation(location: initialTrip.locationArray.first!.coords)
+             
+     guard let journeyStart = self.initialTrip?.departure else {
+         XCTFail("Could not get departure date")
+         return
+     }
+     
+        self.timeProvider.date = journeyStart.addingTimeInterval(-100)
+     
+     controller.start()
+     wait(for: [self.delegate.updated], timeout: 10)
+     controller.pause()
+     guard let (_, data, _) = delegate.updatedArray.first else {
+         XCTFail("No trip data available")
+         return
+     }
+
+     print(data.arrival)
+     XCTAssertEqual(data.state.get(),"Wait for Start")
+    }
 
 }
