@@ -108,9 +108,9 @@ extension TrainViewList: TrainLocationDelegate {
     public func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
         if !self.trips.contains(where: { $0.tripId == trip.tripId }) {
             self.trips.append(trip)
-            self.tripData[trip.tripId] = data
-            self.tableView.reloadData()
         }
+        self.tripData[trip.tripId] = data
+        self.tableView.reloadData()
     }
     
     public func removeTripFromMap(forTrip trip: Trip) {
