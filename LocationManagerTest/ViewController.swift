@@ -85,15 +85,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         #if MOCK
         var components = DateComponents()
-        components.second = 50
-        components.hour = 17
-        components.minute = 00
+        components.second = 00
+        components.hour = 16
+        components.minute = 02
         components.day = 12
         components.month = 6
         components.year = 2020
         let date = Calendar.current.date(from: components)
         let traveler = TimeTraveler()
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (timer) in
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
             traveler.travel(by: 1)
         }
         traveler.date = date!

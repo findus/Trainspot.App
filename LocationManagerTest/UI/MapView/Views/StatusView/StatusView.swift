@@ -51,8 +51,9 @@ class StatusView : UIVisualEffectView {
             switch data.state {
             case .Driving(let nextStop):
                 return "Next Stop: \(nextStop ?? "Hell")"
-            case .WaitForStart:
-                return "Waiting for Start"
+            case .WaitForStart(let start):
+                let formatted = secondsToHoursMinutesSeconds(seconds: Int(start))
+                return "Departs in \(String(format: "%02d:%02d:%02d",formatted.0, formatted.1, formatted.2))"
             case .Stopped(let date):
                 return "Departs in \(Int(date.timeIntervalSince(Date())))s"
             case .Ended:
