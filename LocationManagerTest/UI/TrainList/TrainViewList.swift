@@ -48,6 +48,7 @@ public class TrainViewList: UITableViewController {
         //cell.arrival.text = self.trips[indexPath.row].ar
         //cell.distance.text = self.trips[indexPath.row].shorttestDistanceToTrack(forUserLocation: <#T##CLLocation#>)
         cell.status.text = self.tripData[self.trips[indexPath.row].tripId]?.state.get()
+        cell.arrival.text = String(Int(self.tripData[self.trips[indexPath.row].tripId]?.arrival ?? 0.0))
         
         return cell
     }
@@ -111,6 +112,10 @@ extension TrainViewList: TrainLocationDelegate {
         }
         self.tripData[trip.tripId] = data
         self.tableView.reloadData()
+        
+        self.trips = self.trips.sorted { (t1, t2) -> Bool in
+            self.tripData[t1.tripId]?.arrival ?? 0.0 <  self.tripData[t2.tripId]?.arrival ?? 0.0
+        }
     }
     
     public func removeTripFromMap(forTrip trip: Trip) {
