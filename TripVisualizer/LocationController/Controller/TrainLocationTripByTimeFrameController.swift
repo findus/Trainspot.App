@@ -212,7 +212,7 @@ extension TrainLocationTripByTimeFrameController {
         
         if start.timeIntervalSince(now) > 0 || end.timeIntervalSince(now) < 0 {
             if start.timeIntervalSince(now) > 0 {
-                Log.warning("Trip \(trip.name) is in future, Now: \(formatter.string(from: now))...........Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]")
+                Log.debug("Trip \(trip.name) is in future, Now: \(formatter.string(from: now))...........Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]")
                 return TrainState.WaitForStart
             } else {
                 Log.warning("Trip \(trip.name) is in past, Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))].............Now: \(formatter.string(from: now))")
@@ -255,10 +255,6 @@ extension TrainLocationTripByTimeFrameController {
                 //If Journey has ended
                 if ((trip.locationArray.last as? StopOver)?.arrival ?? Date(timeIntervalSince1970: 0)).timeIntervalSince(date) <= 0 {
                     return (trip.locationArray.last!.coords, .Ended, 0, 0)
-                }
-                // "Error" handling, if train journey has not started, or has already ended
-                if trip.locationArray.first!.departure!.timeIntervalSince(self.dateGenerator()) <= 900 {
-                    return (trip.locationArray.first!.coords, .WaitForStart, 0, 0)
                 } else {
                     Log.error("Error finding a location for Trip \(trip.name) at \(date)")
                     return nil
