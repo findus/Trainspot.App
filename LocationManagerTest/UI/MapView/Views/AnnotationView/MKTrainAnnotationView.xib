@@ -12,6 +12,17 @@
             <rect key="frame" x="0.0" y="0.0" width="71" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8Aj-Nt-y4N">
+                    <rect key="frame" x="18" y="9" width="35.5" height="17.5"/>
+                    <color key="backgroundColor" red="0.54931392766497456" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6M-Gx-a05">
                     <rect key="frame" x="33" y="35" width="5" height="5"/>
                     <color key="backgroundColor" red="0.88930629258817784" green="0.87759938117321779" blue="0.89812024111675126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -28,9 +39,13 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="8Aj-Nt-y4N" firstAttribute="centerY" secondItem="fOi-gV-pt1" secondAttribute="centerY" id="9fs-yg-FlA"/>
                 <constraint firstItem="E6M-Gx-a05" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="S7T-kx-pDE"/>
+                <constraint firstItem="8Aj-Nt-y4N" firstAttribute="height" secondItem="fOi-gV-pt1" secondAttribute="height" multiplier="0.5" id="ccH-o9-v7y"/>
                 <constraint firstItem="fOi-gV-pt1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cql-bY-ola"/>
                 <constraint firstAttribute="bottom" secondItem="E6M-Gx-a05" secondAttribute="bottom" id="ctj-DQ-Vob"/>
+                <constraint firstItem="8Aj-Nt-y4N" firstAttribute="width" secondItem="fOi-gV-pt1" secondAttribute="width" multiplier="0.5" id="jlb-Bg-AAa"/>
+                <constraint firstItem="8Aj-Nt-y4N" firstAttribute="centerX" secondItem="fOi-gV-pt1" secondAttribute="centerX" id="t9C-Q7-1qu"/>
                 <constraint firstAttribute="bottom" secondItem="fOi-gV-pt1" secondAttribute="bottom" constant="5" id="tch-Ua-kGY"/>
                 <constraint firstAttribute="trailing" secondItem="fOi-gV-pt1" secondAttribute="trailing" id="yh6-Aa-BnA"/>
                 <constraint firstItem="fOi-gV-pt1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zgk-Lb-1cb"/>
@@ -38,6 +53,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="icon" destination="fOi-gV-pt1" id="CiQ-9H-nHu"/>
+                <outlet property="label" destination="8Aj-Nt-y4N" id="yty-cD-nYl"/>
                 <outlet property="positionDot" destination="E6M-Gx-a05" id="G2V-X8-gkE"/>
             </connections>
             <point key="canvasLocation" x="-51.449275362318843" y="-76.339285714285708"/>

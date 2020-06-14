@@ -131,6 +131,10 @@ extension MapViewController: MKMapViewDelegate
         annotationView?.canShowCallout = true
         annotationView?.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure)
         
+        (annotationView as! MKTrainAnnotationView).icon.isHidden = false
+        (annotationView as! MKTrainAnnotationView).label.isHidden = true
+        (annotationView as! MKTrainAnnotationView).label.layer.masksToBounds = true
+        
         switch an.title! {
         case let str where str.lowercased().contains("eno"):
             (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "enno")
@@ -143,10 +147,13 @@ extension MapViewController: MKMapViewDelegate
         case let str where str.lowercased().contains("ic "):
             (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "ic")
         case let str where str.lowercased().contains("rb") || str.lowercased().contains("re"):
-            (annotationView as! MKTrainAnnotationView).icon.image = UIImage(named: "westfalenbahn")
+            (annotationView as! MKTrainAnnotationView).icon.isHidden = true
+            (annotationView as! MKTrainAnnotationView).label.isHidden = false
+            (annotationView as! MKTrainAnnotationView).label.text = an.title
         default:
-            (annotationView as! MKTrainAnnotationView).icon.image = UIImage(named: "westfalenbahn")
-            
+            (annotationView as! MKTrainAnnotationView).icon.isHidden = true
+            (annotationView as! MKTrainAnnotationView).label.isHidden = false
+            (annotationView as! MKTrainAnnotationView).label.text = an.title
         }
 
         return annotationView
