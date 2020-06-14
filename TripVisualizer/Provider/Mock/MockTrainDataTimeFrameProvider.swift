@@ -10,6 +10,8 @@ import Foundation
 import SwiftyJSON
 
 public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
+    
+    var tripFile: String = "wfb_trip"
    
     var delegate: TrainDataProviderDelegate? = nil
 
@@ -36,9 +38,13 @@ public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
         self.delegate = delegate
     }
     
+    public func setTrip(withName name: String) {
+        self.tripFile = name
+    }
+    
     private func loadTrip() -> HafasTrip? {
         guard
-            let filePath = Bundle(for: type(of: self)).path(forResource: "wfb_trip", ofType: ""),
+            let filePath = Bundle(for: type(of: self)).path(forResource: self.tripFile, ofType: ""),
             let trip = try? Data(contentsOf: URL(fileURLWithPath: filePath))
             else {
                 return nil

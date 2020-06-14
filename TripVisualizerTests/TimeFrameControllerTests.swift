@@ -52,8 +52,10 @@ class TimeFrameControllerTests: XCTestCase {
         controller.setDataProvider(withProvider: TripProvider(dataProvider))
         controller.delegate = delegate
         controller.setCurrentLocation(location: CLLocation(latitude: 1, longitude: 1))
-        self.dataProvider.update()
         
+    }
+    
+    private func reloadTrips() {
         guard let trip = dataProvider.getAllTrips().first else {
             XCTFail("Trip could not be loaded")
             return
@@ -65,6 +67,9 @@ class TimeFrameControllerTests: XCTestCase {
     //MARK:-- Trip Staring
  
     func testCorrectTripStateBeginning() {
+        self.dataProvider.update()
+        self.reloadTrips()
+        
         guard let journeyStart = self.initialTrip?.departure else {
             XCTFail("Could not get departure date")
             return
@@ -83,6 +88,9 @@ class TimeFrameControllerTests: XCTestCase {
     }
     
     func testCorrectTripStateBeforeBeginning() {
+        self.dataProvider.update()
+        self.reloadTrips()
+        
         guard let journeyStart = self.initialTrip?.departure else {
             XCTFail("Could not get departure date")
             return
@@ -103,6 +111,9 @@ class TimeFrameControllerTests: XCTestCase {
     //MARK:-- Trip Ending
     
     func testCorrectTripStateEnding() {
+        self.dataProvider.update()
+        self.reloadTrips()
+        
         guard let journeyEnd = (self.initialTrip?.locationArray.last as? StopOver)?.arrival else {
             XCTFail("Could not get arrival stopover")
             return
@@ -121,6 +132,9 @@ class TimeFrameControllerTests: XCTestCase {
     }
     
     func testCorrectTripStateBeforeEnding() {
+        self.dataProvider.update()
+        self.reloadTrips()
+        
         guard let journeyEnd = (self.initialTrip?.locationArray.last as? StopOver)?.arrival else {
             XCTFail("Could not get arrival stopover")
             return
@@ -139,6 +153,9 @@ class TimeFrameControllerTests: XCTestCase {
     }
     
     func testCorrectTripStateAfterEnding() {
+        self.dataProvider.update()
+        self.reloadTrips()
+        
         guard let journeyEnd = (self.initialTrip?.locationArray.last as? StopOver)?.arrival else {
             XCTFail("Could not get arrival stopover")
             return
@@ -159,6 +176,9 @@ class TimeFrameControllerTests: XCTestCase {
     //MARK:-- Stopping
     
     func testCorrectTripStateBeforeStop() {
+        self.dataProvider.update()
+        self.reloadTrips()
+        
         //2020-06-12T16:34:0
         var components = DateComponents()
         components.second = 0
@@ -186,6 +206,9 @@ class TimeFrameControllerTests: XCTestCase {
     }
     
     func testCorrectTripStateAtStop() {
+        self.dataProvider.update()
+        self.reloadTrips()
+        
         //2020-06-12T16:34:0
         var components = DateComponents()
         components.second = 0
@@ -213,6 +236,9 @@ class TimeFrameControllerTests: XCTestCase {
     }
     
     func testCorrectTripStateAtStopEnding() {
+        self.dataProvider.update()
+        self.reloadTrips()
+        
         //2020-06-12T16:34:0
         var components = DateComponents()
         components.second = 0
@@ -240,6 +266,9 @@ class TimeFrameControllerTests: XCTestCase {
     }
     
     func testCorrectTripStateAtStopEnded() {
+        self.dataProvider.update()
+        self.reloadTrips()
+        
         //2020-06-12T16:34:0
         var components = DateComponents()
         components.second = 0
@@ -264,6 +293,35 @@ class TimeFrameControllerTests: XCTestCase {
         }
         
         XCTAssertEqual(data.state.get(),"Vöhrum")
+    }
+    
+    //MARK: -- Trip Start Distance
+    
+    func testTripArrivalTimeOnStart() {
+        
+        self.controller.setCurrentLocation(location: CLLocation(latitude: 52.243616, longitude: 10.514395))
+        self.dataProvider.setTrip(withName: "wfb_trip_bielefeld")
+        self.dataProvider.update()
+        self.reloadTrips()
+                
+        guard let journeyStart = self.initialTrip?.departure else {
+            XCTFail("Could not get departure date")
+            return
+        }
+        
+        self.timeProvider.date = journeyStart.addingTimeInterval(60)
+        
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        guard let (_, data, _) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+
+        print(data.arrival)
+        XCTAssertTrue(data.arrival ?? -1.0 > 0.0)
+        XCTAssertEqual(data.state.get(),"Vechelde")
     }
 
 }

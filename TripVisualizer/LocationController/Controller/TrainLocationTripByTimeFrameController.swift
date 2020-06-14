@@ -71,9 +71,16 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
             return nil
         }
         
-        let a = (nextStop.element as! StopOver).arrival!
-        let offset = trip.locationArray[userPosInArray...(userPosInArray+nextStop.offset)].map({$0.durationToNext!}).reduce(0,+)
-        return a.addingTimeInterval(-offset).timeIntervalSince(self.dateGenerator())
+        let nextStopDate = (nextStop.element as! StopOver).arrival!
+        
+        /**
+         The upper array slice returns the first stop-array-location with an offset, based on the user position, we have to add this offset to the next calculation
+         Example: User is on ArrayPosition 16, next stop is on ArrayPosition 54, the offset of the slice is +16 = Offset of First stop is (54-16) = 38
+         Also we have to omit the stopover, otherwise we would calculate the needed time to tne next point after the first stopover
+         **/
+        let missingStepsToFirstStop = (userPosInArray)
+        let offset = trip.locationArray[userPosInArray...(missingStepsToFirstStop+nextStop.offset)].dropLast().map({$0.durationToNext!}).reduce(0,+)
+        return nextStopDate.addingTimeInterval(-offset).timeIntervalSince(self.dateGenerator())
     }
     
     /**
@@ -129,6 +136,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
             case .Ended:
                 self.remove(trip: trip, reason: .Ended)
             case .WaitForStart:
+                //TODO honor grace period (15 minutes before start or dynamic user pref)
                 self.remove(trip: trip, reason: .WaitForStart)
             }
         }
