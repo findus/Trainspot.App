@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="trainOverviewCell2" id="VVB-zw-cWT" customClass="TrainOverviewCell" customModule="LocationManagerTest" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VVB-zw-cWT" id="ffE-Hf-ZrL">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="center" horizontalCompressionResistancePriority="1000" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NTN-af-Tqx">
+                        <rect key="frame" x="0.0" y="0.0" width="248.5" height="44"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Train Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bdM-dd-uhH" userLabel="Train Name" customClass="PaddingLabel" customModule="LocationManagerTest" customModuleProvider="target">
+                                <rect key="frame" x="8" y="13" width="78" height="18"/>
+                                <color key="backgroundColor" red="0.71851205579999999" green="0.1144746656" blue="0.11936212810000001" alpha="0.81860017119999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vog-Hx-8hI" userLabel="Arrival In">
+                                <rect key="frame" x="105" y="12" width="66.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cz-Bg-tSm" userLabel="Status">
+                                <rect key="frame" x="191" y="12" width="49.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYh-hi-FEn">
+                        <rect key="frame" x="248.5" y="0.0" width="165.5" height="44"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="mYh-hi-FEn" secondAttribute="bottom" id="14A-j7-Yzs"/>
+                    <constraint firstAttribute="bottom" secondItem="NTN-af-Tqx" secondAttribute="bottom" id="4qO-Pw-s3A"/>
+                    <constraint firstItem="mYh-hi-FEn" firstAttribute="leading" secondItem="NTN-af-Tqx" secondAttribute="trailing" id="B3t-ti-TG1"/>
+                    <constraint firstItem="NTN-af-Tqx" firstAttribute="leading" secondItem="ffE-Hf-ZrL" secondAttribute="leading" id="GOo-Az-df6"/>
+                    <constraint firstItem="NTN-af-Tqx" firstAttribute="width" secondItem="ffE-Hf-ZrL" secondAttribute="width" multiplier="0.6" id="HDj-kK-x4h"/>
+                    <constraint firstAttribute="trailing" secondItem="mYh-hi-FEn" secondAttribute="trailing" id="lcx-e2-Dgv"/>
+                    <constraint firstItem="NTN-af-Tqx" firstAttribute="top" secondItem="ffE-Hf-ZrL" secondAttribute="top" id="sD5-jS-hnk"/>
+                    <constraint firstItem="mYh-hi-FEn" firstAttribute="top" secondItem="ffE-Hf-ZrL" secondAttribute="top" id="wg1-JB-rcr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="arrival" destination="vog-Hx-8hI" id="uUR-gt-6PI"/>
+                <outlet property="name" destination="bdM-dd-uhH" id="Uy8-BD-3PD"/>
+                <outlet property="status" destination="9Cz-Bg-tSm" id="DnU-yI-GBf"/>
+            </connections>
+            <point key="canvasLocation" x="-565" y="153"/>
+        </tableViewCell>
+    </objects>
+</document>

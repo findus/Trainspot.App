@@ -89,13 +89,4 @@ class StatusView : UIStackView {
             self.showsDestination = !self.showsDestination
         }, completion: nil)
     }
-    
-    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int, Bool) {
-        if seconds > 0 {
-            return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60, false)
-            
-        } else {
-            return ((seconds / 3600) * -1 , ((seconds % 3600) / 60) * -1, ((seconds % 3600) % 60) * -1, true)
-        }
-    }
 }

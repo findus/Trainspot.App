@@ -16,15 +16,8 @@ class TrainOverviewCell: UITableViewCell {
     @IBOutlet weak var arrival: UILabel!
     @IBOutlet weak var distance: UILabel!
     
+    
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+        self.name.layer.cornerRadius = 8.0
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

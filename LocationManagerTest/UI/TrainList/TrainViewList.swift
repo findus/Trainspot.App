@@ -25,6 +25,8 @@ public class TrainViewList: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         trainLocationProxy.addListener(listener: self)
+        tableView.register(UINib(nibName: "TrainOverViewCell", bundle: nil), forCellReuseIdentifier: "trainOverviewCell2")
+    
     }
 
     // MARK: - Table view data source
@@ -41,63 +43,37 @@ public class TrainViewList: UITableViewController {
 
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "trainOverviewCell", for: indexPath) as! TrainOverviewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "trainOverviewCell2", for: indexPath) as! TrainOverviewCell
 
+        guard let currentTripData = self.tripData[self.trips[indexPath.row].tripId] else {
+            return cell
+        }
         // Configure the cell...
         cell.name.text = self.trips[indexPath.row].name
         //cell.arrival.text = self.trips[indexPath.row].ar
         //cell.distance.text = self.trips[indexPath.row].shorttestDistanceToTrack(forUserLocation: <#T##CLLocation#>)
-        cell.status.text = self.tripData[self.trips[indexPath.row].tripId]?.state.get()
-        cell.arrival.text = String(Int(self.tripData[self.trips[indexPath.row].tripId]?.arrival ?? 0.0))
+        cell.status.text = currentTripData.state.get()
+        
+        cell.name.layer.cornerRadius = 10
+        
+        let timeFractions = secondsToHoursMinutesSeconds(seconds: Int(currentTripData.arrival))
+        cell.arrival.text = String(format: "%@%02d:%02d:%02d",timeFractions.3 ? "- " : "", timeFractions.0, timeFractions.1,timeFractions.2)
+        
+        switch currentTripData.state {
+        case .Ended:
+            cell.status.text = "💤"
+        case .Driving(_):
+            cell.status.text = "🛤"
+        case .Stopped(_):
+            cell.status.text = "⏸"
+        case .WaitForStart(_):
+            cell.status.text = "⏰"
+        default:
+            cell.status.text = "❓"
+        }
         
         return cell
     }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

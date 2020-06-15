@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		178090BF2498153600DBC0B6 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178090BE2498153600DBC0B6 /* Convenience.swift */; };
+		178090C02498153600DBC0B6 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178090BE2498153600DBC0B6 /* Convenience.swift */; };
+		178090C32498182300DBC0B6 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178090C22498182300DBC0B6 /* PaddingLabel.swift */; };
+		178090C42498182300DBC0B6 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178090C22498182300DBC0B6 /* PaddingLabel.swift */; };
+		178090C624981C9D00DBC0B6 /* TrainOverViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178090C524981C9D00DBC0B6 /* TrainOverViewCell.xib */; };
+		178090C724981C9D00DBC0B6 /* TrainOverViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178090C524981C9D00DBC0B6 /* TrainOverViewCell.xib */; };
 		6482A3F6A76FEE136EF6A8E0 /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5365E4E3521906AFAF6FC8DE /* Pods_LocationManagerTest.framework */; };
 		6B1B9E19D94D21CC18C6261D /* Pods_TripVisualizer_TripVisualizerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3776240CD7AE557E5C0746D /* Pods_TripVisualizer_TripVisualizerTests.framework */; };
 		7DA1CE2BA67AAB134FF3ED80 /* Pods_LocationManagerTestMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */; };
@@ -157,6 +163,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		178090BE2498153600DBC0B6 /* Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
+		178090C22498182300DBC0B6 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		178090C524981C9D00DBC0B6 /* TrainOverViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainOverViewCell.xib; sourceTree = "<group>"; };
 		4B5C1FF62A107403676159D6 /* Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTestMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5365E4E3521906AFAF6FC8DE /* Pods_LocationManagerTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -277,6 +286,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		178090BD2498152300DBC0B6 /* Convenience */ = {
+			isa = PBXGroup;
+			children = (
+				178090BE2498153600DBC0B6 /* Convenience.swift */,
+			);
+			path = Convenience;
+			sourceTree = "<group>";
+		};
+		178090C12498180800DBC0B6 /* Custom Components */ = {
+			isa = PBXGroup;
+			children = (
+				178090C22498182300DBC0B6 /* PaddingLabel.swift */,
+			);
+			path = "Custom Components";
+			sourceTree = "<group>";
+		};
 		AAA8BBA48C41B9BBD430AD08 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +408,7 @@
 			children = (
 				D46B6B5C2490195100AF77F6 /* TrainViewList.swift */,
 				D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */,
+				178090C524981C9D00DBC0B6 /* TrainOverViewCell.xib */,
 			);
 			path = TrainList;
 			sourceTree = "<group>";
@@ -400,6 +426,7 @@
 		D46B6B6124912BD800AF77F6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				178090C12498180800DBC0B6 /* Custom Components */,
 				D46B6B5B2490191900AF77F6 /* TrainList */,
 				D4DEAADD2487D1DB00D33AA2 /* MapView */,
 			);
@@ -561,6 +588,7 @@
 		D4DEAAC62487AC1900D33AA2 /* LocationManagerTest */ = {
 			isa = PBXGroup;
 			children = (
+				178090BD2498152300DBC0B6 /* Convenience */,
 				D4B636BF24957C5600996744 /* Extensions */,
 				D4BCAF872492D1E5000B40D8 /* UserLocation */,
 				D46B6B6124912BD800AF77F6 /* UI */,
@@ -780,6 +808,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4BCAFC824953752000B40D8 /* LaunchScreen.storyboard in Resources */,
+				178090C724981C9D00DBC0B6 /* TrainOverViewCell.xib in Resources */,
 				D4BCAFCA24953752000B40D8 /* Main.storyboard in Resources */,
 				D4BCAFCB24953752000B40D8 /* StatusView.xib in Resources */,
 				D4BCAFCD24953752000B40D8 /* MKTrainAnnotationView.xib in Resources */,
@@ -794,6 +823,7 @@
 				D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
 				D4A30E4524958ABD00B2684C /* FormerScheduledArrivalDeparture in Resources */,
+				178090C624981C9D00DBC0B6 /* TrainOverViewCell.xib in Resources */,
 				D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */,
 				D4A30E4624958ABF00B2684C /* wfb_trip in Resources */,
 				D4BCAF942493FD42000B40D8 /* MKTrainAnnotationView.xib in Resources */,
@@ -1004,7 +1034,9 @@
 				D4BCAFB124953752000B40D8 /* MapViewControllerProtocol.swift in Sources */,
 				D4BCAFB524953752000B40D8 /* MKTrainAnnotationView.swift in Sources */,
 				D4B636C2249580EB00996744 /* Math+Extension.swift in Sources */,
+				178090C02498153600DBC0B6 /* Convenience.swift in Sources */,
 				D4B636C124957DBF00996744 /* Log.swift in Sources */,
+				178090C42498182300DBC0B6 /* PaddingLabel.swift in Sources */,
 				D4BCAFB624953752000B40D8 /* TrainOverviewCell.swift in Sources */,
 				D4BCAFB724953752000B40D8 /* TrainViewList.swift in Sources */,
 				D4BCAFBB24953752000B40D8 /* TrainAnnotation.swift in Sources */,
@@ -1026,7 +1058,9 @@
 				D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */,
 				D4BCAF922493D221000B40D8 /* MKTrainAnnotationView.swift in Sources */,
 				D4B636C3249580EB00996744 /* Math+Extension.swift in Sources */,
+				178090BF2498153600DBC0B6 /* Convenience.swift in Sources */,
 				D4B636C024957DBE00996744 /* Log.swift in Sources */,
+				178090C32498182300DBC0B6 /* PaddingLabel.swift in Sources */,
 				D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */,
 				D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */,
 				D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */,
