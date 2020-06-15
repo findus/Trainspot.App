@@ -20,12 +20,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var loadingIndicatorHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomView: UIVisualEffectView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var activiyIndicatorWrapper: UIView!
     
     // Status View Cache values
     var initialConstraintValue = CGFloat(0)
     var triggeredUpdate: Bool = false
     var isStillPulling = false
-
+    
+    let generator = UINotificationFeedbackGenerator()
     
     
     var mapViewController: MapViewController?
@@ -73,11 +75,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let origHeading = self.pinnedLocationBearing - newAngle.toRadians
         return origHeading
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        tripTimeFrameLocationController.fetchServer()
-    }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,6 +120,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         gesture.delegate = self
         self.loadingIndicator.isHidden = true
         self.loadingIndicatorHeightConstraint.constant = 0
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.tripTimeFrameLocationController.fetchServer()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -170,8 +171,6 @@ extension ViewController: UIGestureRecognizerDelegate {
             
         } else {
             if abs(transform.y) >= 200 && !triggeredUpdate && !isStillPulling {
-                let generator = UINotificationFeedbackGenerator()
-                generator.notificationOccurred(.success)
                 triggeredUpdate = true
                 self.isStillPulling = true
                 self.loadingIndicator.isHidden = false
@@ -224,16 +223,21 @@ extension ViewController: TrainLocationDelegate {
         UIView.animate(withDuration: 0.25) {
             self.loadingIndicatorHeightConstraint.constant = 40
             self.view.layoutIfNeeded()
+            self.generator.notificationOccurred(.success)
         }
     }
     
     public func onUpdateEnded() {
         self.triggeredUpdate = false
         self.loadingIndicator.isHidden = true
+        generator.notificationOccurred(.success)
+        self.activiyIndicatorWrapper.backgroundColor = #colorLiteral(red: 0.1996439938, green: 0.690910533, blue: 0.4016630921, alpha: 0.759765625)
         
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: 0.25, animations: {
             self.loadingIndicatorHeightConstraint.constant = 0
             self.view.layoutIfNeeded()
+        }) { (_) in
+            self.activiyIndicatorWrapper.backgroundColor = .clear
         }
     }
 }
