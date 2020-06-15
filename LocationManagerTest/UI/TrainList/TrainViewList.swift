@@ -50,8 +50,6 @@ public class TrainViewList: UITableViewController {
         }
         // Configure the cell...
         cell.name.text = self.trips[indexPath.row].name
-        //cell.arrival.text = self.trips[indexPath.row].ar
-        //cell.distance.text = self.trips[indexPath.row].shorttestDistanceToTrack(forUserLocation: <#T##CLLocation#>)
         cell.status.text = currentTripData.state.get()
         
         cell.name.layer.cornerRadius = 10
@@ -70,6 +68,23 @@ public class TrainViewList: UITableViewController {
             cell.status.text = "⏰"
         default:
             cell.status.text = "❓"
+        }
+        
+       switch cell.name.text! {
+        case let str where str.lowercased().contains("eno"):
+            cell.name.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        case let str where str.lowercased().contains("erx"):
+            cell.name.backgroundColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
+        case let str where str.lowercased().contains("wfb"):
+            cell.name.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        case let str where str.lowercased().contains("ice"):
+            cell.name.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        case let str where str.lowercased().contains("ic "):
+            cell.name.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        case let str where str.lowercased().contains("rb") || str.lowercased().contains("re"):
+            cell.name.backgroundColor = #colorLiteral(red: 0.7185120558, green: 0.1144746656, blue: 0.1193621281, alpha: 0.8186001712)
+        default:
+            cell.name.backgroundColor = .clear
         }
         
         return cell
