@@ -88,11 +88,6 @@ extension MapViewController {
         let startPoint = pin?.coordinate
         let endPoint = location
         
-        let startLoc = CLLocation(latitude: startPoint!.latitude, longitude: startPoint!.longitude)
-        let endLoc = CLLocation(latitude: endPoint.latitude, longitude: endPoint.longitude)
-        
-        let x = startLoc.distance(from: endLoc)
-
         UIView.animate(withDuration: duration, delay: 0, options: .curveLinear, animations: {
            // Update annotation coordinate to be the destination coordinate
             pin!.coordinate = endPoint
