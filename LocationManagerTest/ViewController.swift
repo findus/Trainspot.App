@@ -221,7 +221,9 @@ extension ViewController: TrainLocationDelegate {
     public func onUpdateStarted() {
         self.loadingIndicator.isHidden = false
         UIView.animate(withDuration: 0.25) {
-            self.loadingIndicatorHeightConstraint.constant = 40
+            if self.loadingIndicatorHeightConstraint.constant == 0 {
+                self.loadingIndicatorHeightConstraint.constant = 40
+            }
             self.view.layoutIfNeeded()
             self.generator.notificationOccurred(.success)
         }
