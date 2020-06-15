@@ -102,6 +102,7 @@ public class TrainViewList: UITableViewController {
 }
 
 extension TrainViewList: TrainLocationDelegate {
+    
     public var id: String {
         "StatusOverViewTableView"
     }
@@ -124,6 +125,14 @@ extension TrainViewList: TrainLocationDelegate {
     }
     
     public func drawPolyLine(forTrip: Trip) {
+        
+    }
+    
+    public func onUpdateStarted() {
+        
+    }
+    
+    public func onUpdateEnded() {
         
     }
 

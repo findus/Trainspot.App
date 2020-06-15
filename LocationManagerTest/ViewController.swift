@@ -24,6 +24,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     // Status View Cache values
     var initialConstraintValue = CGFloat(0)
     var triggeredUpdate: Bool = false
+    var isStillPulling = false
+
     
     
     var mapViewController: MapViewController?
@@ -72,16 +74,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         return origHeading
     }
     
-    @IBAction func onUpdateButtonPressed(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.25) {
-            self.loadingIndicatorHeightConstraint.constant = 50
-            self.view.layoutIfNeeded()
-        }
-        tripTimeFrameLocationController.fetchServer()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
-        self.initialConstraintValue =  self.bottomView.center.y
+        tripTimeFrameLocationController.fetchServer()
     }
     
 
@@ -114,9 +108,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         #endif
 
         self.manager.register(controller: tripTimeFrameLocationController)
-        
-        tripTimeFrameLocationController.fetchServer()
-        
+                
         self.statusView.startTimer()
         self.bottomView.layer.shadowOpacity = 0.7
         self.bottomView.layer.shadowOffset = CGSize(width: 3, height: 3)
@@ -171,16 +163,19 @@ extension ViewController: UIGestureRecognizerDelegate {
         
         if gesture.state == .ended {
             UIView.animate(withDuration: 0.25) {
-                self.loadingIndicatorHeightConstraint.constant = 40
+                self.loadingIndicatorHeightConstraint.constant = self.triggeredUpdate ? 40 : 0
                 self.view.layoutIfNeeded()
+                self.isStillPulling = false
             }
             
         } else {
-            if abs(transform.y) >= 200 && !triggeredUpdate {
+            if abs(transform.y) >= 200 && !triggeredUpdate && !isStillPulling {
                 let generator = UINotificationFeedbackGenerator()
                 generator.notificationOccurred(.success)
                 triggeredUpdate = true
+                self.isStillPulling = true
                 self.loadingIndicator.isHidden = false
+                tripTimeFrameLocationController.fetchServer()
             }
             // Just a fance curve to slowly slow down animation speed while panning
             self.loadingIndicatorHeightConstraint.constant = transform.y > 0 ? 0: 9*(pow(abs(transform.y), 0.5)) + initialConstraintValue
@@ -220,6 +215,26 @@ extension ViewController: TrainLocationDelegate {
         
         self.mapViewController?.updateTrainLocation(forId: trip.tripId, withLabel: trip.name, toLocation: location, withDuration: duration)
         
+    }
+    
+    //  Update
+    
+    public func onUpdateStarted() {
+        self.loadingIndicator.isHidden = false
+        UIView.animate(withDuration: 0.25) {
+            self.loadingIndicatorHeightConstraint.constant = 40
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    public func onUpdateEnded() {
+        self.triggeredUpdate = false
+        self.loadingIndicator.isHidden = true
+        
+        UIView.animate(withDuration: 0.25) {
+            self.loadingIndicatorHeightConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }
     }
 }
 

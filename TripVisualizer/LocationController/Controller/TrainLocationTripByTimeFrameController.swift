@@ -151,6 +151,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     }
     
     public func fetchServer() {
+        self.delegate?.onUpdateStarted()
         self.dataProvider?.update()
     }
 
@@ -203,6 +204,7 @@ extension TrainLocationTripByTimeFrameController: TrainDataProviderDelegate {
     public func onTripsUpdated() {
         Log.info("Trips got updated")
         self.update()
+        self.delegate?.onUpdateEnded()
     }
 }
 

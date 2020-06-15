@@ -45,4 +45,6 @@ public protocol TrainLocationDelegate: NSObject {
     func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) -> Void
     func removeTripFromMap(forTrip trip: Trip) -> Void
     func drawPolyLine(forTrip: Trip) -> Void
+    func onUpdateStarted()
+    func onUpdateEnded()
 }

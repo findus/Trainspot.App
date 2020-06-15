@@ -31,7 +31,9 @@ public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
     }
     
     public func update() {
-        self.delegate?.onTripsUpdated()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.delegate?.onTripsUpdated()
+        }
     }
     
     public func setDeleate(delegate: TrainDataProviderDelegate) {

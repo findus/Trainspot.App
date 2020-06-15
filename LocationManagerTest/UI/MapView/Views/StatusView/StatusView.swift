@@ -19,7 +19,7 @@ class StatusView : UIStackView {
     @IBOutlet weak var delay: UILabel!
     private var showsDestination: Bool = false
     
-    private var destination: String = "" {
+    private var destination: String = "-" {
         didSet {
             if !self.showsDestination {
                 self.to.text = destination
@@ -27,7 +27,7 @@ class StatusView : UIStackView {
         }
     }
     
-    private var journeyInfo: String? = "" {
+    private var journeyInfo: String? = "-" {
         didSet {
             if self.showsDestination {
                 self.to.text = journeyInfo

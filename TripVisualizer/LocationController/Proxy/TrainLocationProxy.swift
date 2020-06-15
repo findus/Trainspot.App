@@ -11,7 +11,6 @@ import CoreLocation
 
 public class TrainLocationProxy: NSObject {
     
-    //var controllers: Array<TrainLocationProtocol> = []
     public var delegate: Array<TrainLocationDelegate>? = Array.init()
     
     public static let shared = TrainLocationProxy()
@@ -46,6 +45,7 @@ public class TrainLocationProxy: NSObject {
 }
 
 extension TrainLocationProxy : TrainLocationDelegate {
+   
     public var id: String {
         return "LocationProxy"
     }
@@ -60,5 +60,13 @@ extension TrainLocationProxy : TrainLocationDelegate {
     
     public func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
         self.delegate?.forEach( { delegate in delegate.trainPositionUpdated(forTrip: trip, withData: data, withDuration: duration) })
+    }
+    
+    public func onUpdateStarted() {
+        self.delegate?.forEach( { delegate in delegate.onUpdateStarted() })
+    }
+    
+    public func onUpdateEnded() {
+        self.delegate?.forEach( { delegate in delegate.onUpdateEnded()})
     }
 }
