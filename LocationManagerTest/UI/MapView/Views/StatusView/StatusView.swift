@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import TripVisualizer
 
-class StatusView : UIVisualEffectView {
+class StatusView : UIStackView {
     
     @IBOutlet weak var lineName: UILabel!
     @IBOutlet weak var time: UILabel!
@@ -36,10 +36,6 @@ class StatusView : UIVisualEffectView {
     }
     
     var counter = 0
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
     
     public func startTimer() {
         Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(crossOverAnimation), userInfo: nil, repeats: true)

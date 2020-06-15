@@ -17,6 +17,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mapContainerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var statusView: StatusView!
+    @IBOutlet weak var loadingIndicatorHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomView: UIVisualEffectView!
+    
     
     var mapViewController: MapViewController?
     let manager = TrainLocationProxy.shared
@@ -65,6 +68,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func onUpdateButtonPressed(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.25) {
+            self.loadingIndicatorHeightConstraint.constant = 50
+            self.view.layoutIfNeeded()
+        }
         tripTimeFrameLocationController.fetchServer()
     }
     
@@ -87,7 +94,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         var components = DateComponents()
         components.second = 00
         components.hour = 16
-        components.minute = 02
+        components.minute = 20
         components.day = 12
         components.month = 6
         components.year = 2020
@@ -156,6 +163,11 @@ extension ViewController: TrainLocationDelegate {
     }
     
     func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
+        
+        UIView.animate(withDuration: 0.25) {
+            self.loadingIndicatorHeightConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }
         
         if trip.tripId == self.tripIdToUpdateLocation {
             

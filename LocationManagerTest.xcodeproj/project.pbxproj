@@ -11,7 +11,6 @@
 		6B1B9E19D94D21CC18C6261D /* Pods_TripVisualizer_TripVisualizerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3776240CD7AE557E5C0746D /* Pods_TripVisualizer_TripVisualizerTests.framework */; };
 		7DA1CE2BA67AAB134FF3ED80 /* Pods_LocationManagerTestMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */; };
 		D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */; };
-		D431C40024959FAA00199742 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D431C3FF24959FAA00199742 /* Default-568h@2x.png */; };
 		D431C40224963BBE00199742 /* wfb_trip_bielefeld in Resources */ = {isa = PBXBuildFile; fileRef = D431C40124963BBE00199742 /* wfb_trip_bielefeld */; };
 		D431C40324963FC000199742 /* wfb_trip_bielefeld in Resources */ = {isa = PBXBuildFile; fileRef = D431C40124963BBE00199742 /* wfb_trip_bielefeld */; };
 		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
@@ -176,7 +175,6 @@
 		D4270ABD248BDF5C0022A6BB /* TimeFrameTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrameTrip.swift; sourceTree = "<group>"; };
 		D4270ABF248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrainDataTimeFrameProvider.swift; sourceTree = "<group>"; };
 		D4270AC6248C439B0022A6BB /* TransportRestProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportRestProvider.swift; sourceTree = "<group>"; };
-		D431C3FF24959FAA00199742 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D431C40124963BBE00199742 /* wfb_trip_bielefeld */ = {isa = PBXFileReference; lastKnownFileType = text; path = wfb_trip_bielefeld; sourceTree = "<group>"; };
 		D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationDelegate.swift; sourceTree = "<group>"; };
 		D45C505324883D8800A3D857 /* TrainLocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationPin.swift; sourceTree = "<group>"; };
@@ -540,7 +538,6 @@
 		D4DEAABB2487AC1900D33AA2 = {
 			isa = PBXGroup;
 			children = (
-				D431C3FF24959FAA00199742 /* Default-568h@2x.png */,
 				D4DEAAC62487AC1900D33AA2 /* LocationManagerTest */,
 				D4B6368D2495785B00996744 /* TripVisualizer */,
 				D4B636CB249583D000996744 /* TripVisualizerTests */,
@@ -787,7 +784,6 @@
 				D4BCAFCB24953752000B40D8 /* StatusView.xib in Resources */,
 				D4BCAFCD24953752000B40D8 /* MKTrainAnnotationView.xib in Resources */,
 				D4BCAFCE24953752000B40D8 /* Assets.xcassets in Resources */,
-				D431C40024959FAA00199742 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1337,7 +1333,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTest;
+				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTestMock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MOCK";
 				SWIFT_VERSION = 5.0;
@@ -1358,7 +1354,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTest;
+				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.LocationManagerTestMock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
