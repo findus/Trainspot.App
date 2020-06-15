@@ -37,6 +37,11 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="190"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
+                                                    <view contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ebN-Sl-0IC" userLabel="SelectedView" customClass="StatusView" customModule="LocationManagerTest" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="StatusView" label="StatusView"/>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MY9-G4-ofa" userLabel="Acitivity Indicator">
                                                         <rect key="frame" x="0.0" y="150" width="414" height="40"/>
                                                         <subviews>
@@ -45,7 +50,7 @@
                                                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                             </activityIndicatorView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="5G6-wQ-oIY"/>
                                                             <constraint firstAttribute="trailing" secondItem="fHC-sf-lZG" secondAttribute="trailing" id="Vds-az-Ebw"/>
@@ -53,11 +58,8 @@
                                                             <constraint firstItem="fHC-sf-lZG" firstAttribute="top" secondItem="MY9-G4-ofa" secondAttribute="top" constant="3" id="dEa-gN-g19"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ebN-Sl-0IC" userLabel="SelectedView" customClass="StatusView" customModule="LocationManagerTest" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
-                                                        <accessibility key="accessibilityConfiguration" identifier="StatusView" label="StatusView"/>
-                                                    </view>
                                                 </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="ebN-Sl-0IC" firstAttribute="top" secondItem="iTR-Rt-8KY" secondAttribute="top" id="1ln-v3-Ke8"/>
                                                     <constraint firstAttribute="trailing" secondItem="MY9-G4-ofa" secondAttribute="trailing" id="Gan-jS-hOa"/>
@@ -68,11 +70,13 @@
                                                     <constraint firstAttribute="bottom" secondItem="MY9-G4-ofa" secondAttribute="bottom" id="eSQ-bl-xdy"/>
                                                 </constraints>
                                             </view>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <vibrancyEffect>
                                                 <blurEffect style="regular"/>
                                             </vibrancyEffect>
                                         </visualEffectView>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="tSQ-4O-Trk" firstAttribute="leading" secondItem="kqV-4S-dwJ" secondAttribute="leading" id="06t-p2-CK8"/>
                                         <constraint firstItem="tSQ-4O-Trk" firstAttribute="top" secondItem="kqV-4S-dwJ" secondAttribute="top" id="KWX-Nw-Cle"/>
@@ -80,6 +84,7 @@
                                         <constraint firstAttribute="bottom" secondItem="tSQ-4O-Trk" secondAttribute="bottom" id="w7l-pY-wat"/>
                                     </constraints>
                                 </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zt-eN-IwD">
@@ -116,6 +121,7 @@
                     <connections>
                         <outlet property="bottomView" destination="kjn-qY-bhp" id="MSo-es-f1b"/>
                         <outlet property="imageView" destination="vCU-ZU-3hG" id="f3L-tZ-QA3"/>
+                        <outlet property="loadingIndicator" destination="fHC-sf-lZG" id="uFh-bf-jUt"/>
                         <outlet property="loadingIndicatorHeightConstraint" destination="5G6-wQ-oIY" id="ff6-pC-gsW"/>
                         <outlet property="mapContainerView" destination="g8L-X6-Uqn" id="a17-A3-U7V"/>
                         <outlet property="statusView" destination="ebN-Sl-0IC" id="75Q-ZG-XAa"/>

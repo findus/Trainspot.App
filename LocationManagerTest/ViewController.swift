@@ -19,6 +19,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var statusView: StatusView!
     @IBOutlet weak var loadingIndicatorHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomView: UIVisualEffectView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
+    // Status View Cache values
+    var initialConstraintValue = CGFloat(0)
+    var triggeredUpdate: Bool = false
     
     
     var mapViewController: MapViewController?
@@ -75,21 +80,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         tripTimeFrameLocationController.fetchServer()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.initialConstraintValue =  self.bottomView.center.y
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
  
-        self.mapViewController?.delegate = self
         self.manager.delegate?.append(self)
         self.imageView.isHidden = true
 
-        
         UserLocationController.shared.register(delegate: self)
-        
-
-        
-    
-        
+         
         #if MOCK
         var components = DateComponents()
         components.second = 00
@@ -115,6 +118,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         tripTimeFrameLocationController.fetchServer()
         
         self.statusView.startTimer()
+        self.bottomView.layer.shadowOpacity = 0.7
+        self.bottomView.layer.shadowOffset = CGSize(width: 3, height: 3)
+        self.bottomView.layer.shadowRadius = 15.0
+        self.bottomView.layer.shadowColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+        
+        // Pan reload gesture
+        
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(self.dragged(gesture:)))
+        
+        self.bottomView.addGestureRecognizer(gesture)
+        gesture.delegate = self
+        self.loadingIndicator.isHidden = true
+        self.loadingIndicatorHeightConstraint.constant = 0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -137,15 +153,39 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         lastLocation = currentLocation
         self.tripTimeFrameLocationController.setCurrentLocation(location: currentLocation)
     }
+    
+    
 
 }
 
-extension ViewController: MapViewControllerDelegate {
-    func userPressedAt(location: CLLocation) {
-//        self.mapViewController?.removeAllEntries()
-//        self.pinnedLocation = location
-//        self.mapViewController?.addEntry(entry: MapEntity(name: "test", location: location))
-
+extension ViewController: UIGestureRecognizerDelegate {
+    
+    
+    @objc func dragged(gesture: UIPanGestureRecognizer) {
+        
+        let transform = gesture.translation(in: self.bottomView)
+        
+        if gesture.state == .began {
+            initialConstraintValue = self.loadingIndicatorHeightConstraint.constant
+        }
+        
+        if gesture.state == .ended {
+            UIView.animate(withDuration: 0.25) {
+                self.loadingIndicatorHeightConstraint.constant = 40
+                self.view.layoutIfNeeded()
+            }
+            
+        } else {
+            if abs(transform.y) >= 200 && !triggeredUpdate {
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.success)
+                triggeredUpdate = true
+                self.loadingIndicator.isHidden = false
+            }
+            // Just a fance curve to slowly slow down animation speed while panning
+            self.loadingIndicatorHeightConstraint.constant = transform.y > 0 ? 0: 9*(pow(abs(transform.y), 0.5)) + initialConstraintValue
+        }
+       
     }
 }
 
@@ -163,11 +203,6 @@ extension ViewController: TrainLocationDelegate {
     }
     
     func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
-        
-        UIView.animate(withDuration: 0.25) {
-            self.loadingIndicatorHeightConstraint.constant = 0
-            self.view.layoutIfNeeded()
-        }
         
         if trip.tripId == self.tripIdToUpdateLocation {
             

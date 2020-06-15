@@ -99,16 +99,3 @@ class StatusView : UIStackView {
         }
     }
 }
-// https://stackoverflow.com/questions/33632266/animate-text-change-of-uilabel/33705634
-// Usage: insert view.pushTransition right before changing content
-extension UIView {
-    func pushTransition(_ duration:CFTimeInterval) {
-        let animation:CATransition = CATransition()
-        animation.timingFunction = CAMediaTimingFunction(name:
-            CAMediaTimingFunctionName.easeInEaseOut)
-        animation.type = CATransitionType.push
-        animation.subtype = CATransitionSubtype.fromTop
-        animation.duration = duration
-        layer.add(animation, forKey: CATransitionType.push.rawValue)
-    }
-}
