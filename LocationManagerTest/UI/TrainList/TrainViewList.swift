@@ -28,6 +28,11 @@ public class TrainViewList: UITableViewController {
         tableView.register(UINib(nibName: "TrainOverViewCell", bundle: nil), forCellReuseIdentifier: "trainOverviewCell2")
     
     }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 
@@ -44,50 +49,7 @@ public class TrainViewList: UITableViewController {
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "trainOverviewCell2", for: indexPath) as! TrainOverviewCell
-
-        guard let currentTripData = self.tripData[self.trips[indexPath.row].tripId] else {
-            return cell
-        }
-        // Configure the cell...
-        cell.name.text = self.trips[indexPath.row].name
-        cell.status.text = currentTripData.state.get()
-        
-        cell.name.layer.cornerRadius = 10
-        
-        let timeFractions = secondsToHoursMinutesSeconds(seconds: Int(currentTripData.arrival))
-        cell.arrival.text = String(format: "%@%02d:%02d:%02d",timeFractions.3 ? "- " : "", timeFractions.0, timeFractions.1,timeFractions.2)
-        
-        switch currentTripData.state {
-        case .Ended:
-            cell.status.text = "💤"
-        case .Driving(_):
-            cell.status.text = "🛤"
-        case .Stopped(_):
-            cell.status.text = "⏸"
-        case .WaitForStart(_):
-            cell.status.text = "⏰"
-        default:
-            cell.status.text = "❓"
-        }
-        
-       switch cell.name.text! {
-        case let str where str.lowercased().contains("eno"):
-            cell.name.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
-        case let str where str.lowercased().contains("erx"):
-            cell.name.backgroundColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
-        case let str where str.lowercased().contains("wfb"):
-            cell.name.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        case let str where str.lowercased().contains("ice"):
-            cell.name.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        case let str where str.lowercased().contains("ic "):
-            cell.name.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        case let str where str.lowercased().contains("rb") || str.lowercased().contains("re"):
-            cell.name.backgroundColor = #colorLiteral(red: 0.7185120558, green: 0.1144746656, blue: 0.1193621281, alpha: 0.8186001712)
-        default:
-            cell.name.backgroundColor = .clear
-        }
-        
-        return cell
+        return self.updateCell(withIndexPath: indexPath) ?? cell
     }
 
 }
@@ -103,10 +65,18 @@ extension TrainViewList: TrainLocationDelegate {
             self.trips.append(trip)
         }
         self.tripData[trip.tripId] = data
-        self.tableView.reloadData()
         
         self.trips = self.trips.sorted { (t1, t2) -> Bool in
             self.tripData[t1.tripId]?.arrival ?? 0.0 <  self.tripData[t2.tripId]?.arrival ?? 0.0
+        }
+        
+        if self.tableView.visibleCells.count == 0 || self.trips.count != self.tableView.visibleCells.count {
+            self.tableView.reloadData()
+            return
+        }
+        
+        if let offset = self.trips.enumerated().filter({$0.element.tripId == trip.tripId}).first?.offset {
+            self.updateCell(withIndexPath: IndexPath(row: offset, section: 0))
         }
     }
     
@@ -125,6 +95,80 @@ extension TrainViewList: TrainLocationDelegate {
     
     public func onUpdateEnded() {
         
+    }
+    
+    private func updateCell(withIndexPath path: IndexPath, andCell cell: TrainOverviewCell? = nil) -> TrainOverviewCell? {
+        let idx = path
+        
+        if let cell = cell ?? tableView.cellForRow(at: path) as? TrainOverviewCell {
+            
+            guard let currentTripData = self.tripData[self.trips[idx.row].tripId] else {
+                return nil
+            }
+            
+            // Configure the cell...
+            cell.name.text = self.trips[idx.row].name
+            cell.status.text = currentTripData.state.get()
+            
+            cell.name.layer.cornerRadius = 10
+            
+            let timeFractions = secondsToHoursMinutesSeconds(seconds: Int(currentTripData.arrival))
+            cell.arrival.text = String(format: "%@%02d:%02d:%02d",timeFractions.3 ? "- " : "", timeFractions.0, timeFractions.1,timeFractions.2)
+            
+            switch currentTripData.state {
+            case .Ended:
+                cell.status.text = "💤"
+            case .Driving(_):
+                cell.status.text = "🛤"
+            case .Stopped(_):
+                cell.status.text = "⏸"
+            case .WaitForStart(_):
+                cell.status.text = "⏰"
+            default:
+                cell.status.text = "❓"
+            }
+            
+            switch cell.name.text! {
+            case let str where str.lowercased().contains("eno"):
+                cell.name.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+            case let str where str.lowercased().contains("erx"):
+                cell.name.backgroundColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
+            case let str where str.lowercased().contains("wfb"):
+                cell.name.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+            case let str where str.lowercased().contains("ice"):
+                cell.name.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.3318062339, blue: 0.2944166345, alpha: 1)
+            case let str where str.lowercased().contains("ic "):
+                cell.name.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            case let str where str.lowercased().contains("rb") || str.lowercased().contains("re"):
+                cell.name.backgroundColor = #colorLiteral(red: 0.7185120558, green: 0.1144746656, blue: 0.1193621281, alpha: 0.8186001712)
+            default:
+                cell.name.backgroundColor = .clear
+            }
+            
+            let info: String = {
+                switch currentTripData.state {
+                case .Driving(let nextStop):
+                    return "Next Stop: \(nextStop ?? "Hell")"
+                case .WaitForStart(let start):
+                    let formatted = secondsToHoursMinutesSeconds(seconds: Int(start))
+                    return "Departs in \(String(format: "%02d:%02d:%02d",formatted.0, formatted.1, formatted.2))"
+                case .Stopped(let date):
+                    return "Departs in \(Int(date.timeIntervalSince(Date())))s"
+                case .Ended:
+                    return "Ended"
+                default:
+                    return ""
+                }
+            }()
+            cell.counter -= 1
+            if cell.counter == 0 {
+                cell.counter = 5
+                cell.info.text = info + " To: \(self.trips[idx.row].destination)"
+                cell.info.restartLabel()
+            }
+        }
+        
+        return cell
     }
 
 }

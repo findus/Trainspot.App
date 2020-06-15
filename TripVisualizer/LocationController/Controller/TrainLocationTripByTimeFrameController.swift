@@ -15,7 +15,7 @@ import CoreLocation
  */
 public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     
-    var GRACE_PERIOD = 900.0
+    var GRACE_PERIOD = 1800.0
     
     private let dateGenerator: () -> Date
 

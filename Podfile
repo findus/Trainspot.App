@@ -9,6 +9,7 @@ target 'LocationManagerTest' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Log'
   pod 'Alamofire', '~> 5.2'
+  pod 'MarqueeLabel'
   
 end
 
@@ -20,7 +21,7 @@ target 'LocationManagerTestMock' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Log'
   pod 'Alamofire', '~> 5.2'
-
+  pod 'MarqueeLabel'
 
 end
 

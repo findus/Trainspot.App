@@ -1,24 +1,28 @@
 PODS:
   - Alamofire (5.2.1)
   - Log (2.0)
+  - MarqueeLabel (4.0.2)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Log
+  - MarqueeLabel
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Log
+    - MarqueeLabel
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   Log: 73fab10e8b88f15cef5f322b12c9be87cf19ee6e
+  MarqueeLabel: f762aa681ae201f66c1d511858b171f75d83013a
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: daca079c3e4e87856f88ebfbd7558f141ea24eb9
+PODFILE CHECKSUM: 4918f538795d8ba5c4fe70585533ab20940ed0cc
 
 COCOAPODS: 1.8.4
