@@ -18,6 +18,6 @@ class TrainOverviewCell: UITableViewCell {
     
     
     override func awakeFromNib() {
-        self.name.layer.cornerRadius = 8.0
+        self.name.layer.cornerRadius = 8
     }
 }
