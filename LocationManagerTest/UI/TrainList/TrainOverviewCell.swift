@@ -25,7 +25,7 @@ class TrainOverviewCell: UITableViewCell {
         }
     }
     
-    var counter = 1
+    var tripId: String = ""
     
     override func awakeFromNib() {
         self.name.layer.cornerRadius = 8
