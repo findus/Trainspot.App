@@ -91,7 +91,7 @@ class TransportRestProvider {
         //TODO time based on distance/time to station
         let parameters = [
             "when" : String(now),
-            "duration" : "60"
+            "duration" : "45"
         ]
         
         return AF.request("\(self.SERVER)/stations/\(id)/departures", parameters: parameters, headers: headers ).publishDecodable(type: Array<HafasJourney>.self,  decoder: self.decoder).value().receive(on: DispatchQueue.main).eraseToAnyPublisher()
@@ -107,7 +107,7 @@ class TransportRestProvider {
         
         let parameters = [
             "when" : String(now),
-            "duration" : "60"
+            "duration" : "45"
         ]
         
         return AF.request("\(self.SERVER)/stations/\(id)/arrivals", parameters: parameters, headers: headers ).publishDecodable(type: Array<HafasJourney>.self, decoder: self.decoder).value().receive(on: DispatchQueue.main).eraseToAnyPublisher()
