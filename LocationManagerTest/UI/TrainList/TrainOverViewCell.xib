@@ -15,11 +15,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="center" horizontalCompressionResistancePriority="1000" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NTN-af-Tqx">
-                        <rect key="frame" x="0.0" y="0.0" width="256.5" height="44"/>
+                    <stackView opaque="NO" contentMode="center" horizontalCompressionResistancePriority="1000" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NTN-af-Tqx">
+                        <rect key="frame" x="0.0" y="0.0" width="174" height="44"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Train Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bdM-dd-uhH" userLabel="Train Name" customClass="PaddingLabel" customModule="LocationManagerTest" customModuleProvider="target">
-                                <rect key="frame" x="8" y="13" width="102.5" height="18"/>
+                                <rect key="frame" x="8" y="13" width="78" height="18"/>
                                 <color key="backgroundColor" red="0.71851205579999999" green="0.1144746656" blue="0.11936212810000001" alpha="0.81860017119999995" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -39,14 +39,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Arrival in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vog-Hx-8hI" userLabel="Arrival In">
-                                <rect key="frame" x="115.5" y="12" width="78.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cz-Bg-tSm" userLabel="Status">
-                                <rect key="frame" x="199" y="12" width="49.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival in" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vog-Hx-8hI" userLabel="Arrival In">
+                                <rect key="frame" x="88" y="12" width="78" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -57,8 +51,17 @@
                         </constraints>
                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYh-hi-FEn" userLabel="Info" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                        <rect key="frame" x="256.5" y="0.0" width="157.5" height="44"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYh-hi-FEn" userLabel="Info">
+                        <rect key="frame" x="205" y="0.0" width="230" height="44"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😬" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cz-Bg-tSm" userLabel="Status">
+                        <rect key="frame" x="174" y="0.0" width="30" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="FiJ-BW-taS"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -67,10 +70,13 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="mYh-hi-FEn" secondAttribute="bottom" id="14A-j7-Yzs"/>
                     <constraint firstAttribute="bottom" secondItem="NTN-af-Tqx" secondAttribute="bottom" id="4qO-Pw-s3A"/>
-                    <constraint firstItem="mYh-hi-FEn" firstAttribute="leading" secondItem="NTN-af-Tqx" secondAttribute="trailing" id="B3t-ti-TG1"/>
                     <constraint firstItem="NTN-af-Tqx" firstAttribute="leading" secondItem="ffE-Hf-ZrL" secondAttribute="leading" id="GOo-Az-df6"/>
-                    <constraint firstItem="NTN-af-Tqx" firstAttribute="width" secondItem="ffE-Hf-ZrL" secondAttribute="width" multiplier="0.62" id="HDj-kK-x4h"/>
+                    <constraint firstItem="NTN-af-Tqx" firstAttribute="width" secondItem="ffE-Hf-ZrL" secondAttribute="width" multiplier="0.4" id="HDj-kK-x4h"/>
+                    <constraint firstItem="9Cz-Bg-tSm" firstAttribute="top" secondItem="ffE-Hf-ZrL" secondAttribute="top" id="N41-UI-wfv"/>
+                    <constraint firstItem="9Cz-Bg-tSm" firstAttribute="leading" secondItem="NTN-af-Tqx" secondAttribute="trailing" id="Pst-xy-7qs"/>
+                    <constraint firstItem="mYh-hi-FEn" firstAttribute="leading" secondItem="9Cz-Bg-tSm" secondAttribute="trailing" constant="1" id="eLW-6p-Hsm"/>
                     <constraint firstAttribute="trailing" secondItem="mYh-hi-FEn" secondAttribute="trailing" id="lcx-e2-Dgv"/>
+                    <constraint firstAttribute="bottom" secondItem="9Cz-Bg-tSm" secondAttribute="bottom" id="nm4-iF-UKf"/>
                     <constraint firstItem="NTN-af-Tqx" firstAttribute="top" secondItem="ffE-Hf-ZrL" secondAttribute="top" id="sD5-jS-hnk"/>
                     <constraint firstItem="mYh-hi-FEn" firstAttribute="top" secondItem="ffE-Hf-ZrL" secondAttribute="top" id="wg1-JB-rcr"/>
                 </constraints>
@@ -81,7 +87,7 @@
                 <outlet property="name" destination="bdM-dd-uhH" id="Uy8-BD-3PD"/>
                 <outlet property="status" destination="9Cz-Bg-tSm" id="DnU-yI-GBf"/>
             </connections>
-            <point key="canvasLocation" x="-565" y="153"/>
+            <point key="canvasLocation" x="-565.21739130434787" y="152.67857142857142"/>
         </tableViewCell>
     </objects>
 </document>

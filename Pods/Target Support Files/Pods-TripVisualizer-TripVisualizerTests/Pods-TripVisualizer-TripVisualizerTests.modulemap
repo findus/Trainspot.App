@@ -1,0 +1,6 @@
+framework module Pods_TripVisualizer_TripVisualizerTests {
+  umbrella header "Pods-TripVisualizer-TripVisualizerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

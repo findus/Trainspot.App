@@ -49,7 +49,7 @@ public class TrainViewList: UITableViewController {
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "trainOverviewCell2", for: indexPath) as! TrainOverviewCell
-        return self.updateCell(withIndexPath: indexPath) ?? cell
+        return self.updateCell(withIndexPath: indexPath, andCell: cell) ?? cell
     }
 
 }
@@ -70,7 +70,7 @@ extension TrainViewList: TrainLocationDelegate {
             self.tripData[t1.tripId]?.arrival ?? 0.0 <  self.tripData[t2.tripId]?.arrival ?? 0.0
         }
         
-        if self.tableView.visibleCells.count == 0 || self.trips.count != self.tableView.visibleCells.count {
+        if self.tableView.visibleCells.count == 0  {
             self.tableView.reloadData()
             return
         }
@@ -113,7 +113,7 @@ extension TrainViewList: TrainLocationDelegate {
             cell.name.layer.cornerRadius = 10
             
             let timeFractions = secondsToHoursMinutesSeconds(seconds: Int(currentTripData.arrival))
-            cell.arrival.text = String(format: "%@%02d:%02d:%02d",timeFractions.3 ? "- " : "", timeFractions.0, timeFractions.1,timeFractions.2)
+            cell.arrival.text = String(format: "%@%02d:%02d",timeFractions.3 ? "- " : "", timeFractions.1,timeFractions.2)
             
             switch currentTripData.state {
             case .Ended:
@@ -148,24 +148,19 @@ extension TrainViewList: TrainLocationDelegate {
             let info: String = {
                 switch currentTripData.state {
                 case .Driving(let nextStop):
-                    return "Next Stop: \(nextStop ?? "Hell")"
+                    return "\(nextStop ?? "Hell")"
                 case .WaitForStart(let start):
                     let formatted = secondsToHoursMinutesSeconds(seconds: Int(start))
-                    return "Departs in \(String(format: "%02d:%02d:%02d",formatted.0, formatted.1, formatted.2))"
-                case .Stopped(let date):
-                    return "Departs in \(Int(date.timeIntervalSince(Date())))s"
+                    return "\(String(format: "%02d:%02d", formatted.1, formatted.2))"
+                case .Stopped(let date, let stop):
+                    return "\(Int(date.timeIntervalSince(Date())))s \(stop)"
                 case .Ended:
                     return "Ended"
                 default:
                     return ""
                 }
             }()
-            cell.counter -= 1
-            if cell.counter == 0 {
-                cell.counter = 5
-                cell.info.text = info + " To: \(self.trips[idx.row].destination)"
-                cell.info.restartLabel()
-            }
+            cell.info.text = info
         }
         
         return cell

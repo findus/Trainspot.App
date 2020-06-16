@@ -13,7 +13,7 @@ public enum TrainState {
     case DepartsToLate
     case WaitForStart(TimeInterval)
     case Ended
-    case Stopped(Date)
+    case Stopped(Date,String)
     case Driving(String?)
     
     public func get() -> String {
@@ -24,9 +24,9 @@ public enum TrainState {
             return "Ended"
         case .Driving(let nextStop):
             return "\(nextStop ?? "")"
-        case .Stopped(let date):
+        case .Stopped(let date, let station):
             //TODO timetravel
-            return "Stopped for \(Int(date.timeIntervalSince(Date())))s"
+            return "Stopped for \(Int(date.timeIntervalSince(Date())))s at \(station)"
         case .DepartsToLate:
             return "Departs to late"
         }

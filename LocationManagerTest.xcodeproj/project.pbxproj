@@ -13,6 +13,8 @@
 		178090C42498182300DBC0B6 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178090C22498182300DBC0B6 /* PaddingLabel.swift */; };
 		178090C624981C9D00DBC0B6 /* TrainOverViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178090C524981C9D00DBC0B6 /* TrainOverViewCell.xib */; };
 		178090C724981C9D00DBC0B6 /* TrainOverViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178090C524981C9D00DBC0B6 /* TrainOverViewCell.xib */; };
+		17B0E4BA2498E61300FAF26B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0E4B92498E61300FAF26B /* Fonts.swift */; };
+		17B0E4BB2498E61300FAF26B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0E4B92498E61300FAF26B /* Fonts.swift */; };
 		6482A3F6A76FEE136EF6A8E0 /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5365E4E3521906AFAF6FC8DE /* Pods_LocationManagerTest.framework */; };
 		6B1B9E19D94D21CC18C6261D /* Pods_TripVisualizer_TripVisualizerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3776240CD7AE557E5C0746D /* Pods_TripVisualizer_TripVisualizerTests.framework */; };
 		7DA1CE2BA67AAB134FF3ED80 /* Pods_LocationManagerTestMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */; };
@@ -166,6 +168,7 @@
 		178090BE2498153600DBC0B6 /* Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
 		178090C22498182300DBC0B6 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		178090C524981C9D00DBC0B6 /* TrainOverViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainOverViewCell.xib; sourceTree = "<group>"; };
+		17B0E4B92498E61300FAF26B /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		4B5C1FF62A107403676159D6 /* Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTestMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5365E4E3521906AFAF6FC8DE /* Pods_LocationManagerTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -514,6 +517,7 @@
 			children = (
 				D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */,
 				D4BCAF852492479C000B40D8 /* UIView.swift */,
+				17B0E4B92498E61300FAF26B /* Fonts.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1041,6 +1045,7 @@
 				D4BCAFB724953752000B40D8 /* TrainViewList.swift in Sources */,
 				D4BCAFBB24953752000B40D8 /* TrainAnnotation.swift in Sources */,
 				D4BCAFC224953752000B40D8 /* SceneDelegate.swift in Sources */,
+				17B0E4BB2498E61300FAF26B /* Fonts.swift in Sources */,
 				D4BCAFC424953752000B40D8 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1065,6 +1070,7 @@
 				D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */,
 				D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */,
 				D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */,
+				17B0E4BA2498E61300FAF26B /* Fonts.swift in Sources */,
 				D4DEAAE52487D55A00D33AA2 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
