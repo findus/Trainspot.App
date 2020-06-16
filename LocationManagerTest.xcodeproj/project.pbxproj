@@ -1124,6 +1124,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D7742B9CD2F560923E7F2079 /* Pods-LocationManagerTest.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1131,6 +1133,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/LocationManagerTest/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.locationmanager;
 				PRODUCT_NAME = LocationManagerTest;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1139,12 +1142,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81DAC181B364BA2179336F19 /* Pods-LocationManagerTest.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				INFOPLIST_FILE = "$(SRCROOT)/LocationManagerTest/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.locationmanager;
 				PRODUCT_NAME = LocationManagerTest;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

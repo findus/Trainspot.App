@@ -40,12 +40,14 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         markerDict[entry.tripId] = pin
         self.map.addAnnotation(pin)
         
-        let region = MKCoordinateRegion(center: self.map.userLocation.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
-        self.centerCamera(atRegion: region)
     }
     
-    func centerCamera(atRegion region: MKCoordinateRegion) {
+    func centerCamera(atTrip trip: Trip) {
+        let coords = self.entryList.filter({ $0.tripId == trip.tripId}).first!.location.coordinate
+        let region = MKCoordinateRegion(center: coords, latitudinalMeters: 10000, longitudinalMeters: 10000)
         map.setRegion(region, animated: true)
+        let annotation = self.markerDict[trip.tripId]
+        self.map.selectAnnotation(annotation!, animated: true)
     }
     
     func drawLine(entries: Array<MapEntity>) {

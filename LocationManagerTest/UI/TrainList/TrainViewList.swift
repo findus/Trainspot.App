@@ -9,7 +9,6 @@
 import UIKit
 import CoreLocation
 import TripVisualizer
-import MapKit
 
 public class TrainViewList: UITableViewController {
     
@@ -62,10 +61,8 @@ public class TrainViewList: UITableViewController {
         let x = self.tabBarController?.customizableViewControllers![0].children[0] as! MapViewController
         self.tabBarController?.selectedIndex = 0
         let d = self.trips[indexPath.row]
-        let dd = self.tripData[d.tripId]!.location!.coordinate
-        let region =
-            MKCoordinateRegion(center: dd, latitudinalMeters: 10000, longitudinalMeters: 10000)
-        x.centerCamera(atRegion: region)
+
+        x.centerCamera(atTrip: d)
     }
 
 }
