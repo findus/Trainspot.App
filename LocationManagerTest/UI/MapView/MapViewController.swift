@@ -41,9 +41,12 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         self.map.addAnnotation(pin)
         
         let region = MKCoordinateRegion(center: self.map.userLocation.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
-        map.setRegion(region, animated: true)
+        self.centerCamera(atRegion: region)
     }
     
+    func centerCamera(atRegion region: MKCoordinateRegion) {
+        map.setRegion(region, animated: true)
+    }
     
     func drawLine(entries: Array<MapEntity>) {
         let coords = entries.map { $0.location.coordinate }
