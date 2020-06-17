@@ -1,5 +1,0 @@
-${PODS_ROOT}/Target Support Files/Pods-LocationManagerTestMock/Pods-LocationManagerTestMock-frameworks.sh
-${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
-${BUILT_PRODUCTS_DIR}/Log/Log.framework
-${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework
-${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
