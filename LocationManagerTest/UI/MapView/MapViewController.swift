@@ -180,7 +180,12 @@ extension MapViewController: MKMapViewDelegate
             return
         }
         
-        (self.parent as! ViewController).tripIdToUpdateLocation = entry.tripId
+        SwiftEventBus.post("selectTripOnMap",sender: entry.tripId)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+       
+        SwiftEventBus.post("deSelectTripOnMap")
     }
 
 }

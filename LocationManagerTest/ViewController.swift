@@ -11,6 +11,7 @@ import CoreLocation
 import MapKit
 import SwiftyJSON
 import TripVisualizer
+import SwiftEventBus
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -21,30 +22,53 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var bottomView: UIVisualEffectView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var activiyIndicatorWrapper: UIView!
+    @IBOutlet weak var statusViewWrapper: UIVisualEffectView!
+
+    @IBOutlet var proportionalHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet var statusContainerView: UIView!
+    
+    private var initialConstraintValue = CGFloat(0)
     
     // Status View Cache values
-    var initialConstraintValue = CGFloat(0)
-    var triggeredUpdate: Bool = false
-    var isStillPulling = false
+    private var triggeredUpdate: Bool = false
+    private var isStillPulling = false
     
-    let generator = UINotificationFeedbackGenerator()
+    private let generator = UINotificationFeedbackGenerator()
     
     
-    var mapViewController: MapViewController?
-    let manager = TrainLocationProxy.shared
-    var tripIdToUpdateLocation: String?
+    private var mapViewController: MapViewController?
+    private let manager = TrainLocationProxy.shared
     
-    var tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
+    private var tripIdToUpdateLocation: String? {
+        didSet {
+            if tripIdToUpdateLocation != nil {
+                UIView.animate(withDuration: 0.25) {
+                    self.statusView.isHidden = false
+                    self.proportionalHeightConstraint.constant = 0
+                    self.view.layoutIfNeeded()
+                }
+            } else {
+                UIView.animate(withDuration: 0.25) {
+                    self.statusView.isHidden = true
+                    self.proportionalHeightConstraint.constant = -200
+                    self.view.layoutIfNeeded()
+                }
+            }
+        }
+    }
     
-    let tripProvider = MockTrainDataJourneyProvider.init()
+    private var tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
     
-    var lastLocation: CLLocation? {
+    private let tripProvider = MockTrainDataJourneyProvider.init()
+    
+    private var lastLocation: CLLocation? {
         didSet {
             self.calcBearing()
         }
     }
     
-    var pinnedLocation: CLLocation? {
+    private var pinnedLocation: CLLocation? {
         didSet {
             self.calcBearing()
             
@@ -56,13 +80,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    var heading: CGFloat? {
+    private var heading: CGFloat? {
         didSet {
             self.calcBearing()
         }
     }
     
-    var pinnedLocationBearing: CGFloat {
+    private var pinnedLocationBearing: CGFloat {
         return lastLocation?.bearingToLocationRadian(self.pinnedLocation ?? CLLocation()) ?? 0
     }
      
@@ -121,9 +145,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.loadingIndicator.isHidden = true
         self.loadingIndicatorHeightConstraint.constant = 0
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             self.tripTimeFrameLocationController.fetchServer()
+            self.toggleStatusView()
         }
+        
+        self.proportionalHeightConstraint.isActive = true
+        
+        self.statusView.isHidden = true
+        self.proportionalHeightConstraint.constant = -200
+
+        self.setupBus()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -147,7 +179,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.tripTimeFrameLocationController.setCurrentLocation(location: currentLocation)
     }
     
-    
+    private func toggleStatusView() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.proportionalHeightConstraint.constant = -200
+            self.view.layoutIfNeeded()
+            
+            self.statusView.isHidden = true
+
+        })
+    }
 
 }
 
@@ -190,6 +230,9 @@ extension ViewController: TrainLocationDelegate {
     
     func removeTripFromMap(forTrip trip: Trip) {
         self.mapViewController?.deleteEntry(withName: trip.tripId, andLabel: trip.name)
+        if trip.tripId == self.tripIdToUpdateLocation {
+            self.tripIdToUpdateLocation = nil
+        }
     }
     
     func drawPolyLine(forTrip: Trip) {
@@ -249,4 +292,22 @@ extension ViewController {
     private func setStatusView(withTrip trip: Trip, andData data: TripData) {        
         self.statusView.setStatus(forTrip: trip, andData: data)
     }
+}
+
+
+
+extension ViewController {
+    
+    private func setupBus() {
+        SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { (notification) in
+            if let id = notification?.object as? String {
+                self.tripIdToUpdateLocation = id
+            }
+        }
+        
+        SwiftEventBus.onMainThread(self, name: "deSelectTripOnMap") { (notification) in
+            self.tripIdToUpdateLocation = nil
+        }
+    }
+    
 }
