@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MarqueeLabel
 
 class TrainOverviewCell: UITableViewCell {
 
