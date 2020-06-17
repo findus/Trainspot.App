@@ -227,10 +227,10 @@
             </objects>
             <point key="canvasLocation" x="568" y="328"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tabbar View Controller-->
         <scene sceneID="hCe-6c-J3B">
             <objects>
-                <tabBarController id="eiO-9N-ueo" sceneMemberID="viewController">
+                <tabBarController id="eiO-9N-ueo" customClass="MainTabbarViewController" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Ar-Rr-b0M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

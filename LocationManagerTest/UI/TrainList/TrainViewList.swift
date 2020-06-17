@@ -59,7 +59,10 @@ public class TrainViewList: UITableViewController {
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let trip = self.trips[exist: indexPath.row] {
-            SwiftEventBus.post("selectTripOnMap", sender: trip.tripId)
+            SwiftEventBus.post("selectTab", sender: 0)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                SwiftEventBus.post("selectTripOnMap", sender: trip.tripId)
+            }
         }
     }
 

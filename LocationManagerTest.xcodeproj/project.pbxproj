@@ -15,6 +15,8 @@
 		178090C724981C9D00DBC0B6 /* TrainOverViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178090C524981C9D00DBC0B6 /* TrainOverViewCell.xib */; };
 		178CCC18249A3C140096ED35 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178CCC17249A3C140096ED35 /* Collection.swift */; };
 		178CCC19249A3C140096ED35 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178CCC17249A3C140096ED35 /* Collection.swift */; };
+		178CCC1C249A3D840096ED35 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178CCC1B249A3D840096ED35 /* MainTabbarViewController.swift */; };
+		178CCC1D249A3D840096ED35 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178CCC1B249A3D840096ED35 /* MainTabbarViewController.swift */; };
 		17B0E4BA2498E61300FAF26B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0E4B92498E61300FAF26B /* Fonts.swift */; };
 		17B0E4BB2498E61300FAF26B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0E4B92498E61300FAF26B /* Fonts.swift */; };
 		6482A3F6A76FEE136EF6A8E0 /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5365E4E3521906AFAF6FC8DE /* Pods_LocationManagerTest.framework */; };
@@ -171,6 +173,7 @@
 		178090C22498182300DBC0B6 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		178090C524981C9D00DBC0B6 /* TrainOverViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainOverViewCell.xib; sourceTree = "<group>"; };
 		178CCC17249A3C140096ED35 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		178CCC1B249A3D840096ED35 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		17B0E4B92498E61300FAF26B /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		4B5C1FF62A107403676159D6 /* Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTestMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -308,6 +311,14 @@
 			path = "Custom Components";
 			sourceTree = "<group>";
 		};
+		178CCC1A249A3D730096ED35 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				178CCC1B249A3D840096ED35 /* MainTabbarViewController.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
 		AAA8BBA48C41B9BBD430AD08 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,6 +443,7 @@
 		D46B6B6124912BD800AF77F6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				178CCC1A249A3D730096ED35 /* Tabbar */,
 				178090C12498180800DBC0B6 /* Custom Components */,
 				D46B6B5B2490191900AF77F6 /* TrainList */,
 				D4DEAADD2487D1DB00D33AA2 /* MapView */,
@@ -1038,6 +1050,7 @@
 				D4BCAFA224953752000B40D8 /* StatusView.swift in Sources */,
 				D4BCAFA424953752000B40D8 /* AppDelegate.swift in Sources */,
 				D4BCAFA824953752000B40D8 /* MapViewControllerDelegate.swift in Sources */,
+				178CCC1D249A3D840096ED35 /* MainTabbarViewController.swift in Sources */,
 				D4BCAFAC24953752000B40D8 /* UserLocationController.swift in Sources */,
 				D4BCAFB124953752000B40D8 /* MapViewControllerProtocol.swift in Sources */,
 				178CCC19249A3C140096ED35 /* Collection.swift in Sources */,
@@ -1064,6 +1077,7 @@
 				D4BCAF81249137DD000B40D8 /* StatusView.swift in Sources */,
 				D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */,
 				D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */,
+				178CCC1C249A3D840096ED35 /* MainTabbarViewController.swift in Sources */,
 				D4BCAF892492D1F9000B40D8 /* UserLocationController.swift in Sources */,
 				D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */,
 				178CCC18249A3C140096ED35 /* Collection.swift in Sources */,

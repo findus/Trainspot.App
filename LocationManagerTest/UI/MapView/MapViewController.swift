@@ -30,6 +30,8 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         
         map.delegate = self;
         
+        self.setupEventBusListener()
+        
     }
             
     func addEntry(entry: MapEntity) {
