@@ -43,7 +43,7 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
     }
     
     func centerCamera(atTrip trip: Trip) {
-        let coords = self.entryList.filter({ $0.tripId == trip.tripId}).first!.location.coordinate
+        let coords = self.markerDict[trip.tripId]!.coordinate
         let region = MKCoordinateRegion(center: coords, latitudinalMeters: 10000, longitudinalMeters: 10000)
         map.setRegion(region, animated: true)
         let annotation = self.markerDict[trip.tripId]
