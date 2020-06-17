@@ -13,6 +13,8 @@
 		178090C42498182300DBC0B6 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178090C22498182300DBC0B6 /* PaddingLabel.swift */; };
 		178090C624981C9D00DBC0B6 /* TrainOverViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178090C524981C9D00DBC0B6 /* TrainOverViewCell.xib */; };
 		178090C724981C9D00DBC0B6 /* TrainOverViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178090C524981C9D00DBC0B6 /* TrainOverViewCell.xib */; };
+		178CCC18249A3C140096ED35 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178CCC17249A3C140096ED35 /* Collection.swift */; };
+		178CCC19249A3C140096ED35 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178CCC17249A3C140096ED35 /* Collection.swift */; };
 		17B0E4BA2498E61300FAF26B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0E4B92498E61300FAF26B /* Fonts.swift */; };
 		17B0E4BB2498E61300FAF26B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0E4B92498E61300FAF26B /* Fonts.swift */; };
 		6482A3F6A76FEE136EF6A8E0 /* Pods_LocationManagerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5365E4E3521906AFAF6FC8DE /* Pods_LocationManagerTest.framework */; };
@@ -168,6 +170,7 @@
 		178090BE2498153600DBC0B6 /* Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
 		178090C22498182300DBC0B6 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		178090C524981C9D00DBC0B6 /* TrainOverViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrainOverViewCell.xib; sourceTree = "<group>"; };
+		178CCC17249A3C140096ED35 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		17B0E4B92498E61300FAF26B /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		4B5C1FF62A107403676159D6 /* Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; path = "Target Support Files/Pods-LocationManagerTest-LocationManagerTestUITests/Pods-LocationManagerTest-LocationManagerTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		50241BED09F9D11B4EB3990C /* Pods_LocationManagerTestMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationManagerTestMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -518,6 +521,7 @@
 				D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */,
 				D4BCAF852492479C000B40D8 /* UIView.swift */,
 				17B0E4B92498E61300FAF26B /* Fonts.swift */,
+				178CCC17249A3C140096ED35 /* Collection.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1036,6 +1040,7 @@
 				D4BCAFA824953752000B40D8 /* MapViewControllerDelegate.swift in Sources */,
 				D4BCAFAC24953752000B40D8 /* UserLocationController.swift in Sources */,
 				D4BCAFB124953752000B40D8 /* MapViewControllerProtocol.swift in Sources */,
+				178CCC19249A3C140096ED35 /* Collection.swift in Sources */,
 				D4BCAFB524953752000B40D8 /* MKTrainAnnotationView.swift in Sources */,
 				D4B636C2249580EB00996744 /* Math+Extension.swift in Sources */,
 				178090C02498153600DBC0B6 /* Convenience.swift in Sources */,
@@ -1061,6 +1066,7 @@
 				D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */,
 				D4BCAF892492D1F9000B40D8 /* UserLocationController.swift in Sources */,
 				D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */,
+				178CCC18249A3C140096ED35 /* Collection.swift in Sources */,
 				D4BCAF922493D221000B40D8 /* MKTrainAnnotationView.swift in Sources */,
 				D4B636C3249580EB00996744 /* Math+Extension.swift in Sources */,
 				178090BF2498153600DBC0B6 /* Convenience.swift in Sources */,

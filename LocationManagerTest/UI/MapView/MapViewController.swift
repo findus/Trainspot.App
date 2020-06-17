@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import TripVisualizer
+import SwiftEventBus
 
 class MapViewController: UIViewController, MapViewControllerProtocol {
 
@@ -42,11 +43,14 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         
     }
     
-    func centerCamera(atTrip trip: Trip) {
-        let coords = self.markerDict[trip.tripId]!.coordinate
+    private func centerCamera(atTripWithId id: String) {
+        let coords = self.markerDict[id]!.coordinate
         let region = MKCoordinateRegion(center: coords, latitudinalMeters: 10000, longitudinalMeters: 10000)
         map.setRegion(region, animated: true)
-        let annotation = self.markerDict[trip.tripId]
+    }
+    
+    private func selectTrip(withId id: String) {
+        let annotation = self.markerDict[id]
         self.map.selectAnnotation(annotation!, animated: true)
     }
     
@@ -177,4 +181,17 @@ extension MapViewController: MKMapViewDelegate
         (self.parent as! ViewController).tripIdToUpdateLocation = entry.tripId
     }
 
+}
+
+//MARK: -- Event Bus Handling
+
+extension MapViewController {
+    private func setupEventBusListener() {
+        SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { notification in
+            if let tripId = notification?.object as? String {
+                self.centerCamera(atTripWithId: tripId)
+                self.selectTrip(withId: tripId)
+            }
+        }
+    }
 }

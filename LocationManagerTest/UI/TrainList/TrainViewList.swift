@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import TripVisualizer
+import SwiftEventBus
 
 public class TrainViewList: UITableViewController {
     
@@ -57,12 +58,9 @@ public class TrainViewList: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO refactor this
-        let x = self.tabBarController?.customizableViewControllers![0].children[0] as! MapViewController
-        self.tabBarController?.selectedIndex = 0
-        let d = self.trips[indexPath.row]
-
-        x.centerCamera(atTrip: d)
+        if let trip = self.trips[exist: indexPath.row] {
+            SwiftEventBus.post("selectTripOnMap", sender: trip.tripId)
+        }
     }
 
 }
