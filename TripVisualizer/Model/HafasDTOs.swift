@@ -43,9 +43,8 @@ struct HafasStopOver: Decodable {
     let stop :HafasStop
     let departure: Date?
     let arrival: Date?
-    
-//    let departureDelay: Int?
-//    let arrivalDelay: Int?
+    //let departureDelay: Int?
+    let arrivalDelay: Int?
 }
 
 
