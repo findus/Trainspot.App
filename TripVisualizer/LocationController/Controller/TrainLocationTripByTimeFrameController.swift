@@ -236,11 +236,11 @@ extension TrainLocationTripByTimeFrameController {
         return TrainState.Driving(nil)
     }
     
-    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> (currentLocation: CLLocation, trainState: TrainState, arrayPostition: Int, secondsInsideSection: Double)? {
+    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> (currentLocation: CLLocation, trainState: TrainState, arrayPostition: Int, secondsInsideSection: Double, delay: Int)? {
         
         //Trip did not start yet:
         if trip.departure.timeIntervalSince(date) > 0 {
-            return (trip.locationArray.first!.coords, .WaitForStart(trip.departure.timeIntervalSince(date)), 0, 0)
+            return (trip.locationArray.first!.coords, .WaitForStart(trip.departure.timeIntervalSince(date)), 0, 0, 0)
         }
         
         guard let loc = zip(trip.locationArray.enumerated(),trip.locationArray.dropFirst())
@@ -274,7 +274,7 @@ extension TrainLocationTripByTimeFrameController {
             }) else {
                 //If Journey has ended
                 if ((trip.locationArray.last as? StopOver)?.arrival ?? Date(timeIntervalSince1970: 0)).timeIntervalSince(date) <= 0 {
-                    return (trip.locationArray.last!.coords, .Ended, 0, 0)
+                    return (trip.locationArray.last!.coords, .Ended, 0, 0, (trip.locationArray.last! as! StopOver).arrivalDelay ?? 0)
                 } else {
                     Log.error("Error finding a location for Trip \(trip.name) at \(date)")
                     return nil
@@ -289,7 +289,7 @@ extension TrainLocationTripByTimeFrameController {
             let stopover = (location as! StopOver)
             if stopover.arrival?.timeIntervalSince(date) ?? 1 <= 0 && stopover.departure!.timeIntervalSince(date) > 0 {
                 Log.debug("[\(trip.name)] Currently idling at: \(stopover.name) til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
-                return (stopover.coords, .Stopped(stopover.departure!, stopover.name), loc.0.offset, 0)
+                return (stopover.coords, .Stopped(stopover.departure!, stopover.name), loc.0.offset, 0, stopover.arrivalDelay ?? 0)
             }
         }
         
@@ -308,10 +308,10 @@ extension TrainLocationTripByTimeFrameController {
         let newLon = startCoords.longitude + ((endCoords.longitude - startCoords.longitude) * ratio)
         
         // Get next Stop
-        if let nextStopOver = (trip.locationArray[loc.0.offset...].dropFirst().first(where: {$0 is StopOver}) as? StopOver)?.name {
-            return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nextStopOver), loc.0.offset, secondsIntoSection)
+        if let nextStopOver = (trip.locationArray[loc.0.offset...].dropFirst().first(where: {$0 is StopOver}) as? StopOver) {
+            return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nextStopOver.name), loc.0.offset, secondsIntoSection, nextStopOver.arrivalDelay ?? 0)
         } else {
-            return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nil), loc.0.offset, secondsIntoSection)
+            return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nil), loc.0.offset, secondsIntoSection, 0)
         }
         
     }

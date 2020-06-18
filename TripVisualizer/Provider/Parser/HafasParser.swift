@@ -140,7 +140,7 @@ class HafasParser {
                         // First StopOver, set grace period so that trains that will start in x minutes wont get removed immediately, needs to be global and in user prefs
                         st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: Date().addingTimeInterval(-2700), departure: stop.departure)
                     } else {
-                        st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)
+                        st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure,arrivalDelay: stop.arrivalDelay)
                     }
     
                     st!.durationToNext = animationData.duration
@@ -157,7 +157,7 @@ class HafasParser {
                 }
             } else {
                 let stop = currentFeature as! StopOver
-                var st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure)
+                var st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure, arrivalDelay:  stop.arrivalDelay)
                 st.durationToNext = animationData.duration
                 newArray.append(st)
                 return newArray
