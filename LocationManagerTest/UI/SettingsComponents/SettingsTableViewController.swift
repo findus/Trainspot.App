@@ -13,6 +13,7 @@ import Log
 class SettingsTableViewController: UITableViewController  {
     
     @IBOutlet weak var distanceSlider: UISlider!
+    @IBOutlet weak var distanceLabel: UILabel!
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -21,7 +22,12 @@ class SettingsTableViewController: UITableViewController  {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
+    
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+        distanceLabel.text = String(Int(sender.value))
 
+    }
+    
 }
 
 // MARK: - Lifecycle
@@ -32,5 +38,15 @@ extension SettingsTableViewController {
         distanceSlider.maximumValue = 100
         distanceSlider.minimumValue = 0
         
+        distanceSlider.value = Float(UserPrefs.getTimeOffset())
+        distanceLabel.text = String(UserPrefs.getTimeOffset())
+        
+        
     }
+}
+
+// MARK: - Time Offset
+
+extension SettingsTableViewController {
+    
 }

@@ -269,6 +269,12 @@ extension TrainLocationTripByTimeFrameController {
                             (this as! StopOver).departure!.timeIntervalSince(date) <= 0 && (next).departure!.timeIntervalSince(date) >= 0
 
                 } else {
+                    
+                    if this.departure == nil {
+                        Log.warning("\(trip.name) | \(trip.tripId): Departure date of a stopover is nil!")
+                        return false
+                    }
+                    
                     return this.departure!.timeIntervalSince(date) <= 0 && next.departure!.timeIntervalSince(date) > 0
                 }
             }) else {

@@ -13,6 +13,15 @@ import XCTest
 @testable import TripVisualizer
 
 class MockDelegate: NSObject, TrainLocationDelegate {
+    
+    func onUpdateStarted() {
+        
+    }
+    
+    func onUpdateEnded() {
+        
+    }
+    
     var id = "MockDelegate"
     
     var updatedArray: Array<(trip: Trip, data: TripData, duration: Double)> = []
