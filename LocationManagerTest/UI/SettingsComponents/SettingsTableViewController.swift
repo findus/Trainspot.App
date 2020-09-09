@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import Log
 
 class SettingsTableViewController: UITableViewController  {
     
@@ -28,7 +28,9 @@ class SettingsTableViewController: UITableViewController  {
 
 extension SettingsTableViewController {
     override func viewDidLoad() {
+        Log.info("Setup setting view...")
         distanceSlider.maximumValue = 100
         distanceSlider.minimumValue = 0
+        
     }
 }

@@ -27,6 +27,7 @@
 		D431C40324963FC000199742 /* wfb_trip_bielefeld in Resources */ = {isa = PBXBuildFile; fileRef = D431C40124963BBE00199742 /* wfb_trip_bielefeld */; };
 		D43705692509877F00A1795F /* DistanceToStationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43705682509877F00A1795F /* DistanceToStationCell.swift */; };
 		D437056C2509883300A1795F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437056B2509883300A1795F /* SettingsTableViewController.swift */; };
+		D437056F2509900400A1795F /* Userprefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437056E2509900400A1795F /* Userprefs.swift */; };
 		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
 		D45D3DA024E0256000496A7C /* WatchExtension WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D45D3D9F24E0256000496A7C /* WatchExtension WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D45D3DAF24E0256800496A7C /* WatchExtension WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D45D3DAE24E0256800496A7C /* WatchExtension WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -236,6 +237,7 @@
 		D431C40124963BBE00199742 /* wfb_trip_bielefeld */ = {isa = PBXFileReference; lastKnownFileType = text; path = wfb_trip_bielefeld; sourceTree = "<group>"; };
 		D43705682509877F00A1795F /* DistanceToStationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceToStationCell.swift; sourceTree = "<group>"; };
 		D437056B2509883300A1795F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		D437056E2509900400A1795F /* Userprefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Userprefs.swift; sourceTree = "<group>"; };
 		D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationDelegate.swift; sourceTree = "<group>"; };
 		D45C505324883D8800A3D857 /* TrainLocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationPin.swift; sourceTree = "<group>"; };
 		D45C50562488E27400A3D857 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
@@ -417,6 +419,14 @@
 				D437056B2509883300A1795F /* SettingsTableViewController.swift */,
 			);
 			path = SettingsComponents;
+			sourceTree = "<group>";
+		};
+		D437056D25098FEB00A1795F /* UserPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				D437056E2509900400A1795F /* Userprefs.swift */,
+			);
+			path = UserPreferences;
 			sourceTree = "<group>";
 		};
 		D45C50552488E25100A3D857 /* AppConstants */ = {
@@ -673,6 +683,7 @@
 		D4DEAAC62487AC1900D33AA2 /* LocationManagerTest */ = {
 			isa = PBXGroup;
 			children = (
+				D437056D25098FEB00A1795F /* UserPreferences */,
 				178090BD2498152300DBC0B6 /* Convenience */,
 				D4B636BF24957C5600996744 /* Extensions */,
 				D4BCAF872492D1E5000B40D8 /* UserLocation */,
@@ -1202,6 +1213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4BCAF9D24953752000B40D8 /* TrainLocationPin.swift in Sources */,
+				D437056F2509900400A1795F /* Userprefs.swift in Sources */,
 				D4BCAF9E24953752000B40D8 /* ViewController.swift in Sources */,
 				D4BCAFA224953752000B40D8 /* StatusView.swift in Sources */,
 				D4BCAFA424953752000B40D8 /* AppDelegate.swift in Sources */,
