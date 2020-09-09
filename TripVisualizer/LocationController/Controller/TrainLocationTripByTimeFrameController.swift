@@ -105,7 +105,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         // Train is still in front of user
         if arrayPosTrain + 1 < arrayPosUser {
             return
-                currentTrainLoc.distance(from: nextSection.coords) // Remeining distance to next Section
+                currentTrainLoc.distance(from: nextSection.coords) // Remaining distance to next Section
                 +
                 trip.locationArray[arrayPosTrain + 1...arrayPosUser].map({$0.distanceToNext}).reduce(0, +) // Sum of all Sections to user
         // Train has passed user
