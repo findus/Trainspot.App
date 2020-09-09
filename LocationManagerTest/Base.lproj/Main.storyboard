@@ -216,7 +216,7 @@
         <!--Settings-->
         <scene sceneID="2wa-Lg-eAq">
             <objects>
-                <tableViewController id="O1h-9j-mgB" sceneMemberID="viewController">
+                <tableViewController id="O1h-9j-mgB" customClass="SettingsTableViewController" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jbJ-qM-Glz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
