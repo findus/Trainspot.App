@@ -145,30 +145,30 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="trainOverviewCell" id="jyA-xI-vxr" customClass="TrainOverviewCell" customModule="LocationManagerTest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44.5"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="37"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jyA-xI-vxr" id="JAM-id-YjI" customClass="TrainOverviewCell" customModule="LocationManagerTest" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="center" horizontalCompressionResistancePriority="1000" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IsF-cj-QCd">
-                                            <rect key="frame" x="0.0" y="0.0" width="227.5" height="44.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="227.5" height="37"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Train Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="39k-gH-bMO" userLabel="Train Name" customClass="PaddingLabel" customModule="LocationManagerTest" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="8.5" width="110" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Train Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="39k-gH-bMO" userLabel="Train Name" customClass="PaddingLabel" customModule="LocationManagerTest" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="9.5" width="78" height="18"/>
                                                     <color key="backgroundColor" red="0.7185120558375635" green="0.11447466555494319" blue="0.11936212813607006" alpha="0.81860017123287676" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Arrival in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPU-0i-H4t" userLabel="Arrival In">
-                                                    <rect key="frame" x="118" y="12" width="66.5" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPU-0i-H4t" userLabel="Arrival In">
+                                                    <rect key="frame" x="95" y="8.5" width="66.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyP-Pc-Md4" userLabel="Status">
-                                                    <rect key="frame" x="184.5" y="12" width="35" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyP-Pc-Md4" userLabel="Status">
+                                                    <rect key="frame" x="170" y="8.5" width="49.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -177,7 +177,7 @@
                                             <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZo-07-bCn">
-                                            <rect key="frame" x="237.5" y="0.0" width="176.5" height="44.5"/>
+                                            <rect key="frame" x="237.5" y="0.0" width="176.5" height="37"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -224,7 +224,7 @@
                         <sections>
                             <tableViewSection headerTitle="Settings" id="9eX-HH-XwL" userLabel="Settings">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="AEp-f5-YWj" userLabel="StationSelectionCell" customClass="DistanceToStationCell" customModule="LocationManagerTest" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="AEp-f5-YWj" userLabel="StationSelection" customClass="DistanceToStationCell" customModule="LocationManagerTest" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AEp-f5-YWj" id="q1Z-bH-lSA">
@@ -245,7 +245,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="123" id="Swp-vt-oxa" userLabel="StationDistanceCell" customClass="DistanceToStationCell" customModule="LocationManagerTest" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="123" id="Swp-vt-oxa" userLabel="TimeOffset" customClass="DistanceToStationCell" customModule="LocationManagerTest" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="105" width="414" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Swp-vt-oxa" id="eE6-mK-7CC">
@@ -254,7 +254,9 @@
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Mfr-bT-SbS" userLabel="DistanceSlider">
                                                     <rect key="frame" x="28" y="21" width="328" height="31"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="offsetSlider"/>
                                                     <connections>
+                                                        <action selector="sliderOnTouchUp:" destination="O1h-9j-mgB" eventType="touchUpInside" id="U9j-uB-3de"/>
                                                         <action selector="sliderValueChanged:" destination="O1h-9j-mgB" eventType="valueChanged" id="JYA-Ul-zzR"/>
                                                     </connections>
                                                 </slider>
@@ -322,8 +324,8 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="Otu-6T-2YV"/>
                     <connections>
-                        <outlet property="distanceLabel" destination="czV-CO-9gO" id="9bF-aV-8ex"/>
-                        <outlet property="distanceSlider" destination="Mfr-bT-SbS" id="v46-e7-gQu"/>
+                        <outlet property="timeOffsetLabel" destination="czV-CO-9gO" id="WhJ-d3-gYR"/>
+                        <outlet property="timeOffsetSlider" destination="Mfr-bT-SbS" id="9wU-R3-g6h"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4v5-yC-LkX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

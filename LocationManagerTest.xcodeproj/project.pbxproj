@@ -107,6 +107,8 @@
 		D4BCAFCB24953752000B40D8 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46B6B6524912CF200AF77F6 /* StatusView.xib */; };
 		D4BCAFCD24953752000B40D8 /* MKTrainAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */; };
 		D4BCAFCE24953752000B40D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */; };
+		D4D91374250A83B600A7DBE0 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437056B2509883300A1795F /* SettingsTableViewController.swift */; };
+		D4D91375250A83C200A7DBE0 /* Userprefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437056E2509900400A1795F /* Userprefs.swift */; };
 		D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */; };
 		D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */; };
 		D4DEAACC2487AC1900D33AA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAACB2487AC1900D33AA2 /* ViewController.swift */; };
@@ -1253,6 +1255,7 @@
 				178CCC18249A3C140096ED35 /* Collection.swift in Sources */,
 				D4BCAF922493D221000B40D8 /* MKTrainAnnotationView.swift in Sources */,
 				D4B636C3249580EB00996744 /* Math+Extension.swift in Sources */,
+				D4D91375250A83C200A7DBE0 /* Userprefs.swift in Sources */,
 				178090BF2498153600DBC0B6 /* Convenience.swift in Sources */,
 				D4B636C024957DBE00996744 /* Log.swift in Sources */,
 				178090C32498182300DBC0B6 /* PaddingLabel.swift in Sources */,
@@ -1262,6 +1265,7 @@
 				D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */,
 				17B0E4BA2498E61300FAF26B /* Fonts.swift in Sources */,
 				D4DEAAE52487D55A00D33AA2 /* MapViewController.swift in Sources */,
+				D4D91374250A83B600A7DBE0 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

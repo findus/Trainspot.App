@@ -12,8 +12,8 @@ import Log
 
 class SettingsTableViewController: UITableViewController  {
     
-    @IBOutlet weak var distanceSlider: UISlider!
-    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var timeOffsetSlider: UISlider!
+    @IBOutlet weak var timeOffsetLabel: UILabel!
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -24,9 +24,20 @@ class SettingsTableViewController: UITableViewController  {
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
-        distanceLabel.text = String(Int(sender.value))
-
+        
+        if sender.accessibilityIdentifier == "offsetSlider" {
+            timeOffsetLabel.text = String(Int(sender.value))
+        }
     }
+    
+    @IBAction func sliderOnTouchUp(_ sender: UISlider) {
+        
+        if sender.accessibilityIdentifier == "offsetSlider" {
+            UserPrefs.setTimeOffset(Int(self.timeOffsetSlider.value))
+        }
+    }
+    
+    
     
 }
 
@@ -35,13 +46,16 @@ class SettingsTableViewController: UITableViewController  {
 extension SettingsTableViewController {
     override func viewDidLoad() {
         Log.info("Setup setting view...")
-        distanceSlider.maximumValue = 100
-        distanceSlider.minimumValue = 0
+        timeOffsetSlider.maximumValue = 100
+        timeOffsetSlider.minimumValue = 0
         
-        distanceSlider.value = Float(UserPrefs.getTimeOffset())
-        distanceLabel.text = String(UserPrefs.getTimeOffset())
-        
-        
+        timeOffsetSlider.value = Float(UserPrefs.getTimeOffset())
+        timeOffsetLabel.text = String(UserPrefs.getTimeOffset())
+    
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

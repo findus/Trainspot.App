@@ -18,5 +18,6 @@ class UserPrefs {
     
     static func setTimeOffset(_ offset: Int) {
         UserDefaults.standard.set(offset, forKey: timeOffset)
+        UserDefaults.standard.synchronize()
     }
 }

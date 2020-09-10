@@ -270,7 +270,7 @@ extension TrainLocationTripByTimeFrameController {
 
                 } else {
                     
-                    if this.departure == nil {
+                    if this.departure == nil || next.departure == nil {
                         Log.warning("\(trip.name) | \(trip.tripId): Departure date of a stopover is nil!")
                         return false
                     }
