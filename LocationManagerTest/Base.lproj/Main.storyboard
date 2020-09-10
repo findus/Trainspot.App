@@ -231,17 +231,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bahnhof" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zro-1G-r8x">
-                                                    <rect key="frame" x="30" y="28" width="354" height="21"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VBf-PW-XD7">
+                                                    <rect key="frame" x="10" y="16.5" width="394" height="44"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </searchBar>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="zro-1G-r8x" secondAttribute="trailing" constant="10" id="E6E-rm-wcs"/>
-                                                <constraint firstItem="zro-1G-r8x" firstAttribute="leading" secondItem="q1Z-bH-lSA" secondAttribute="leadingMargin" constant="10" id="T6e-11-104"/>
-                                                <constraint firstItem="zro-1G-r8x" firstAttribute="centerY" secondItem="q1Z-bH-lSA" secondAttribute="centerY" id="mX0-aH-z87"/>
+                                                <constraint firstItem="VBf-PW-XD7" firstAttribute="height" secondItem="q1Z-bH-lSA" secondAttribute="height" multiplier="0.571429" id="003-Lp-isU"/>
+                                                <constraint firstAttribute="trailing" secondItem="VBf-PW-XD7" secondAttribute="trailing" constant="10" id="EoS-Rr-hZC"/>
+                                                <constraint firstItem="VBf-PW-XD7" firstAttribute="leading" secondItem="q1Z-bH-lSA" secondAttribute="leading" constant="10" id="Tfd-cn-TKx"/>
+                                                <constraint firstItem="VBf-PW-XD7" firstAttribute="centerX" secondItem="q1Z-bH-lSA" secondAttribute="centerX" id="ft2-hE-RaZ"/>
+                                                <constraint firstItem="VBf-PW-XD7" firstAttribute="centerY" secondItem="q1Z-bH-lSA" secondAttribute="centerY" id="vbd-XM-CTR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

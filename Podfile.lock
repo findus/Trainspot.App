@@ -1,12 +1,14 @@
 PODS:
   - Alamofire (5.2.1)
   - Log (2.0)
+  - SwiftCSV (0.5.6)
   - SwiftEventBus (5.0.0)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Log
+  - SwiftCSV
   - SwiftEventBus (from `https://github.com/cesarferreira/SwiftEventBus.git`, tag `5.0.1`)
   - SwiftyJSON (~> 4.0)
 
@@ -14,6 +16,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Log
+    - SwiftCSV
     - SwiftyJSON
 
 EXTERNAL SOURCES:
@@ -29,9 +32,10 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   Log: 73fab10e8b88f15cef5f322b12c9be87cf19ee6e
+  SwiftCSV: efb4a15dd7f2f1212b3d6986f97a3369ff6c5100
   SwiftEventBus: b30f617a6aca5a9336464b4d3f5931034762f2d5
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 6ebf5bf173c00af8b7c77027cd7eb0116e4f06b5
+PODFILE CHECKSUM: 368b00abf7be8b393b9208686d5c92368df7b2ae
 
 COCOAPODS: 1.8.4
