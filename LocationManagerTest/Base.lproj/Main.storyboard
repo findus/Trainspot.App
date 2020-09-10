@@ -231,18 +231,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VBf-PW-XD7">
-                                                    <rect key="frame" x="10" y="16.5" width="394" height="44"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </searchBar>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bahnhof" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyb-ci-8kh">
+                                                    <rect key="frame" x="30" y="27" width="354" height="23"/>
+                                                    <gestureRecognizers/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <gestureRecognizers/>
                                             <constraints>
-                                                <constraint firstItem="VBf-PW-XD7" firstAttribute="height" secondItem="q1Z-bH-lSA" secondAttribute="height" multiplier="0.571429" id="003-Lp-isU"/>
-                                                <constraint firstAttribute="trailing" secondItem="VBf-PW-XD7" secondAttribute="trailing" constant="10" id="EoS-Rr-hZC"/>
-                                                <constraint firstItem="VBf-PW-XD7" firstAttribute="leading" secondItem="q1Z-bH-lSA" secondAttribute="leading" constant="10" id="Tfd-cn-TKx"/>
-                                                <constraint firstItem="VBf-PW-XD7" firstAttribute="centerX" secondItem="q1Z-bH-lSA" secondAttribute="centerX" id="ft2-hE-RaZ"/>
-                                                <constraint firstItem="VBf-PW-XD7" firstAttribute="centerY" secondItem="q1Z-bH-lSA" secondAttribute="centerY" id="vbd-XM-CTR"/>
+                                                <constraint firstItem="xyb-ci-8kh" firstAttribute="leading" secondItem="q1Z-bH-lSA" secondAttribute="leadingMargin" constant="10" id="7wW-2W-zhn"/>
+                                                <constraint firstItem="xyb-ci-8kh" firstAttribute="centerY" secondItem="q1Z-bH-lSA" secondAttribute="centerY" id="BWk-UM-lh7"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="xyb-ci-8kh" secondAttribute="trailing" constant="10" id="JWQ-Cd-s0c"/>
+                                                <constraint firstItem="xyb-ci-8kh" firstAttribute="centerX" secondItem="q1Z-bH-lSA" secondAttribute="centerX" id="R6Y-6G-RW7"/>
                                             </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="NXc-bk-pyK" appends="YES" id="tqI-Zu-4Cf"/>
+                                            </connections>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="123" id="Swp-vt-oxa" userLabel="TimeOffset" customClass="DistanceToStationCell" customModule="LocationManagerTest" customModuleProvider="target">
@@ -324,11 +330,17 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="Otu-6T-2YV"/>
                     <connections>
+                        <outlet property="stationLabel" destination="xyb-ci-8kh" id="VwW-80-OGs"/>
                         <outlet property="timeOffsetLabel" destination="czV-CO-9gO" id="WhJ-d3-gYR"/>
                         <outlet property="timeOffsetSlider" destination="Mfr-bT-SbS" id="9wU-R3-g6h"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4v5-yC-LkX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="NXc-bk-pyK">
+                    <connections>
+                        <action selector="stationLabelTapped:" destination="O1h-9j-mgB" id="7J9-XH-MGn"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="566.66666666666674" y="327.45535714285711"/>
         </scene>

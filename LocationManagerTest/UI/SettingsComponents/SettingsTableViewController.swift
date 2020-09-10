@@ -9,11 +9,14 @@
 import Foundation
 import UIKit
 import Log
+import CSVParser
+import TripVisualizer
 
 class SettingsTableViewController: UITableViewController  {
     
     @IBOutlet weak var timeOffsetSlider: UISlider!
     @IBOutlet weak var timeOffsetLabel: UILabel!
+    @IBOutlet weak var stationLabel: UILabel!
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -37,8 +40,17 @@ class SettingsTableViewController: UITableViewController  {
         }
     }
     
-    
-    
+    @IBAction func stationLabelTapped(_ sender: Any) {
+        let controller = AutoCompleteViewController(nibName: "AutoCompleteViewController", bundle: nil)
+        
+        let content = CsvReader.shared.getAll()
+        controller.delegate = self
+        controller.data = content?.map({ (a) -> String in
+            a.stationName
+        })
+        
+        self.present(controller, animated: true, completion: nil)
+    }
     
 }
 
@@ -53,19 +65,41 @@ extension SettingsTableViewController {
         timeOffsetSlider.value = Float(UserPrefs.getTimeOffset())
         timeOffsetLabel.text = String(UserPrefs.getTimeOffset())
         
+        let stationData = UserPrefs.getSelectedStation()
+        self.stationLabel.text = stationData.name
+        
         self.dismissKey()
-    
+            
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        // Tabbed at Station Selection
+        if indexPath.row == 0 {
+            
+        }
+        
     }
 }
 
-// MARK: - Time Offset
-
-extension SettingsTableViewController {
-    
+extension SettingsTableViewController: AutoCompleteDelegate {
+    func onValueSelected(_ value: String?) {
+        guard let newStationName = value  else {
+            return
+        }
+        
+        Log.info("User selected \(newStationName) as new station")
+        self.stationLabel.text = newStationName
+        
+        guard let data = CsvReader.shared.getStationInfo(withContent: newStationName)?.first?.ibnr else {
+            return
+        }
+        
+        let stationInfo = StationInfo(newStationName, data)
+        
+        UserPrefs.setSelectedStation(stationInfo)
+    }
 }
 
 extension UIViewController {

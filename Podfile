@@ -4,7 +4,6 @@
 
 target 'LocationManagerTest' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
   
   platform :ios, '13.5'
 
@@ -18,7 +17,6 @@ end
 
 target 'LocationManagerTestMock' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
   
   platform :ios, '13.5'
 
@@ -33,7 +31,7 @@ end
 
 target 'TripVisualizer' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+ # use_frameworks!
   
   platform :ios, '13.5'
 
@@ -47,7 +45,7 @@ end
 
 target 'TripVisualizerTests' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+ # use_frameworks!
   
   platform :ios, '13.5'
 
@@ -61,7 +59,7 @@ end
 
 target 'CSVParser' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+ # use_frameworks!
   
   platform :ios, '13.5'
 
@@ -73,7 +71,7 @@ end
 
 target 'CSVParserTests' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+#  use_frameworks!
   
   platform :ios, '13.5'
 

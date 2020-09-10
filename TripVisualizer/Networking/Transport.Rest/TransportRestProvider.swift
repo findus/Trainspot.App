@@ -55,9 +55,9 @@ class TransportRestProvider {
     }
      
     func update() {
-        
-        let departures = fetchDepartures(forStation: "08002549")
-        let arrivals = fetchArrivals(forStation: "08002549")
+        let station = UserPrefs.getSelectedStation()
+        let departures = fetchDepartures(forStation: station.ibnr)
+        let arrivals = fetchArrivals(forStation: station.ibnr)
         
         let cancellable = Publishers.Merge(departures, arrivals)
             .collect()
