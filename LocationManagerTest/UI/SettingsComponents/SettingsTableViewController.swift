@@ -39,6 +39,7 @@ class SettingsTableViewController: UITableViewController  {
     
     
     
+    
 }
 
 // MARK: - Lifecycle
@@ -51,6 +52,8 @@ extension SettingsTableViewController {
         
         timeOffsetSlider.value = Float(UserPrefs.getTimeOffset())
         timeOffsetLabel.text = String(UserPrefs.getTimeOffset())
+        
+        self.dismissKey()
     
     }
     
@@ -62,5 +65,24 @@ extension SettingsTableViewController {
 // MARK: - Time Offset
 
 extension SettingsTableViewController {
+    
+}
+
+extension UIViewController {
+    
+    func dismissKey()
+        
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer( target: self, action: #selector(UIViewController.dismissKeyboard))
+        
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+        
+    }
+    
+    @objc func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
     
 }
