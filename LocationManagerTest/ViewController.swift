@@ -216,7 +216,7 @@ extension ViewController: UIGestureRecognizerDelegate {
                 self.loadingIndicator.isHidden = false
                 tripTimeFrameLocationController.fetchServer()
             }
-            // Just a fance curve to slowly slow down animation speed while panning
+            // Just a fancy curve to slowly slow down animation speed while panning
             self.loadingIndicatorHeightConstraint.constant = transform.y > 0 ? 0: 9*(pow(abs(transform.y), 0.5)) + initialConstraintValue
         }
        
@@ -307,6 +307,10 @@ extension ViewController {
         
         SwiftEventBus.onMainThread(self, name: "deSelectTripOnMap") { (notification) in
             self.tripIdToUpdateLocation = nil
+        }
+        
+        SwiftEventBus.onMainThread(self, name: "UPDATED_STATION") { (notification) in
+            self.tripTimeFrameLocationController.fetchServer()
         }
     }
     

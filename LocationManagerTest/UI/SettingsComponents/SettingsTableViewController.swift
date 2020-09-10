@@ -11,6 +11,7 @@ import UIKit
 import Log
 import CSVParser
 import TripVisualizer
+import SwiftEventBus
 
 class SettingsTableViewController: UITableViewController  {
     
@@ -99,6 +100,7 @@ extension SettingsTableViewController: AutoCompleteDelegate {
         let stationInfo = StationInfo(newStationName, data)
         
         UserPrefs.setSelectedStation(stationInfo)
+        SwiftEventBus.post("UPDATED_STATION")
     }
 }
 
