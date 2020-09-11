@@ -192,7 +192,7 @@
 			containerPortal = D4DEAABC2487AC1900D33AA2 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D4BCAF9924953752000B40D8;
-			remoteInfo = LocationManagerTest;
+			remoteInfo = Trainspot.AppTest;
 		};
 		D4D913BB250A91AE00A7DBE0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -934,7 +934,7 @@
 				D437DD9E250ABF6900ED8909 /* PBXTargetDependency */,
 			);
 			name = Trainspot.App;
-			productName = LocationManagerTest;
+			productName = Trainspot.AppTest;
 			productReference = D4BCAFD424953752000B40D8 /* Trainspot.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -995,7 +995,7 @@
 				D437DD9B250ABF6500ED8909 /* PBXTargetDependency */,
 			);
 			name = Trainspot.AppMock;
-			productName = LocationManagerTest;
+			productName = Trainspot.AppTest;
 			productReference = D4DEAAC42487AC1900D33AA2 /* Trainspot.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -1473,7 +1473,7 @@
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/LocationManagerTest/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Trainspot.App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1495,7 +1495,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 682WVA5N96;
-				INFOPLIST_FILE = "$(SRCROOT)/LocationManagerTest/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Trainspot.AppTest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1857,7 +1857,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 682WVA5N96;
-				INFOPLIST_FILE = LocationManagerTest/Info.plist;
+				INFOPLIST_FILE = Trainspot.AppTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1880,7 +1880,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 682WVA5N96;
-				INFOPLIST_FILE = LocationManagerTest/Info.plist;
+				INFOPLIST_FILE = Trainspot.AppTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
