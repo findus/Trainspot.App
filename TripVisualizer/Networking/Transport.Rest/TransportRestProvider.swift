@@ -83,14 +83,19 @@ class TransportRestProvider {
     
     private func fetchDepartures(forStation id: String) -> AnyPublisher<Array<HafasJourney>, AFError> {
         
-        let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
+        /**
+        Viewer                         Station
+          |____10Minutes_____|
+         Now                           10 Minutes earlier
+         */
         
-        let now = Int(Date().addingTimeInterval(0).timeIntervalSince1970)
-        let test = Date().addingTimeInterval(0)
-        Log.info("Fetching departures at \(test) to \(Date().addingTimeInterval(60*15))")
+        let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
+        let offset = UserPrefs.getTimeOffset()
+        let departureDate = Int(Date().addingTimeInterval(-TimeInterval(offset)).timeIntervalSince1970)
+        Log.info("Fetching departures that will pass viewer at \(departureDate) up to \(Date().addingTimeInterval(60*45))")
         //TODO time based on distance/time to station
         let parameters = [
-            "when" : String(now),
+            "when" : String(departureDate),
             "duration" : "45"
         ]
         
@@ -100,13 +105,13 @@ class TransportRestProvider {
     private func fetchArrivals(forStation id: String) -> AnyPublisher<Array<HafasJourney>, AFError> {
         
         let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
-        
-        let now = Int(Date().addingTimeInterval(0).timeIntervalSince1970)
-        Log.info("Fetching arrivals at \(now) to \(Date().addingTimeInterval(60*15))")
+        let offset = UserPrefs.getTimeOffset()
+        let arrivalDate = Int(Date().addingTimeInterval(TimeInterval(offset)).timeIntervalSince1970)
+        Log.info("Fetching arrivals at \(arrivalDate) to \(Date().addingTimeInterval(60*45))")
         //TODO time based on distance/time to station
         
         let parameters = [
-            "when" : String(now),
+            "when" : String(arrivalDate),
             "duration" : "45"
         ]
         
