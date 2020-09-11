@@ -1,6 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
-
+use_frameworks!
 
 target 'Trainspot.App' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -8,7 +8,6 @@ target 'Trainspot.App' do
   platform :ios, '13.5'
 
   # Pods for LocationManagerTest
-  pod 'SwiftyJSON', '~> 4.0'
   pod 'Log'
   pod 'Alamofire', '~> 5.2'
   pod 'SwiftEventBus', :tag => '5.0.1', :git => 'https://github.com/cesarferreira/SwiftEventBus.git'
@@ -22,7 +21,6 @@ target 'Trainspot.AppMock' do
 
 
   # Pods for LocationManagerTest
-  pod 'SwiftyJSON', '~> 4.0'
   pod 'Log'
   pod 'Alamofire', '~> 5.2'
   pod 'SwiftEventBus', :tag => '5.0.1', :git => 'https://github.com/cesarferreira/SwiftEventBus.git'
@@ -51,7 +49,6 @@ target 'TripVisualizerTests' do
 
 
   # Pods for LocationManagerTest
-  pod 'SwiftyJSON', '~> 4.0'
   pod 'Log'
   pod 'Alamofire', '~> 5.2'
 
@@ -63,10 +60,6 @@ target 'CSVParser' do
   
   platform :ios, '13.5'
 
-
-  # Pods for LocationManagerTest
-  pod "SwiftCSV"
-
 end
 
 target 'CSVParserTests' do
@@ -74,10 +67,6 @@ target 'CSVParserTests' do
 #  use_frameworks!
   
   platform :ios, '13.5'
-
-
-  # Pods for LocationManagerTest
-  pod "SwiftCSV"
-
+  
 end
 

@@ -8,7 +8,6 @@
 
 import Foundation
 
-import SwiftyJSON
 
 public class NetworkTrainDataTimeFrameProvider: TrainDataProviderProtocol, TrainDataProviderDelegate {
     

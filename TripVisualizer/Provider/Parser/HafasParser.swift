@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SwiftyJSON
 import CoreLocation
+import SwiftyJSON
 
 class HafasParser {
     
