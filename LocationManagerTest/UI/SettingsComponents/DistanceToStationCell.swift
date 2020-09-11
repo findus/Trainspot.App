@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Placeholder Cell if additional logic is needed at some time
+ */
 class DistanceToStationCell: UITableViewCell {
 
     override func awakeFromNib() {

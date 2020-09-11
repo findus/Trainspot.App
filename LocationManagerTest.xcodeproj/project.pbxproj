@@ -48,6 +48,7 @@
 		D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46B6B6524912CF200AF77F6 /* StatusView.xib */; };
 		D47E09F4250B93E30068126D /* TrainTrackPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */; };
 		D47E09F5250B93E30068126D /* TrainTrackPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */; };
+		D47E09F7250BB6250068126D /* DistanceToStationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43705682509877F00A1795F /* DistanceToStationCell.swift */; };
 		D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
 		D4A30E44249588C800B2684C /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
 		D4A30E4524958ABD00B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
@@ -93,7 +94,6 @@
 		D4B636C2249580EB00996744 /* Math+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */; };
 		D4B636C3249580EB00996744 /* Math+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */; };
 		D4B636C5249581AF00996744 /* Math+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B636C4249581AF00996744 /* Math+Extension.swift */; };
-		D4B636CD249583D000996744 /* TripVisualizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B636CC249583D000996744 /* TripVisualizerTests.swift */; };
 		D4B636CF249583D000996744 /* TripVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; };
 		D4B636D72495840A00996744 /* TimeFrameControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */; };
 		D4BCAF81249137DD000B40D8 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF80249137DD000B40D8 /* StatusView.swift */; };
@@ -306,7 +306,6 @@
 		D4B6368F2495785B00996744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4B636C4249581AF00996744 /* Math+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Math+Extension.swift"; sourceTree = "<group>"; };
 		D4B636CA249583D000996744 /* TripVisualizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripVisualizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4B636CC249583D000996744 /* TripVisualizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripVisualizerTests.swift; sourceTree = "<group>"; };
 		D4B636CE249583D000996744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4BCAF80249137DD000B40D8 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		D4BCAF852492479C000B40D8 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -482,11 +481,8 @@
 			isa = PBXGroup;
 			children = (
 				D43705682509877F00A1795F /* DistanceToStationCell.swift */,
+				D47E09F6250BB6190068126D /* AutoComplete */,
 				D437056B2509883300A1795F /* SettingsTableViewController.swift */,
-				D437DD8C250AB55200ED8909 /* AutoCompleteViewController.swift */,
-				D437DD92250AB6D400ED8909 /* AutoCompleteViewController.xib */,
-				D437DD95250ABE6E00ED8909 /* BasicCell.xib */,
-				D437DDA0250ACCAB00ED8909 /* AutocompleteDelegate.swift */,
 			);
 			path = SettingsComponents;
 			sourceTree = "<group>";
@@ -628,6 +624,17 @@
 			path = Lines;
 			sourceTree = "<group>";
 		};
+		D47E09F6250BB6190068126D /* AutoComplete */ = {
+			isa = PBXGroup;
+			children = (
+				D437DD8C250AB55200ED8909 /* AutoCompleteViewController.swift */,
+				D437DD92250AB6D400ED8909 /* AutoCompleteViewController.xib */,
+				D437DD95250ABE6E00ED8909 /* BasicCell.xib */,
+				D437DDA0250ACCAB00ED8909 /* AutocompleteDelegate.swift */,
+			);
+			path = AutoComplete;
+			sourceTree = "<group>";
+		};
 		D4AF20022488259C0075F327 /* LocationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -694,7 +701,6 @@
 			children = (
 				D46B6B6224912C5F00AF77F6 /* MockData */,
 				D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */,
-				D4B636CC249583D000996744 /* TripVisualizerTests.swift */,
 				D4B636CE249583D000996744 /* Info.plist */,
 			);
 			path = TripVisualizerTests;
@@ -1311,7 +1317,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4B636D72495840A00996744 /* TimeFrameControllerTests.swift in Sources */,
-				D4B636CD249583D000996744 /* TripVisualizerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1381,6 +1386,7 @@
 				D4B636C3249580EB00996744 /* Math+Extension.swift in Sources */,
 				178090BF2498153600DBC0B6 /* Convenience.swift in Sources */,
 				D4B636C024957DBE00996744 /* Log.swift in Sources */,
+				D47E09F7250BB6250068126D /* DistanceToStationCell.swift in Sources */,
 				178090C32498182300DBC0B6 /* PaddingLabel.swift in Sources */,
 				D437DD8D250AB55200ED8909 /* AutoCompleteViewController.swift in Sources */,
 				D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */,

@@ -8,6 +8,12 @@
 
 import UIKit
 
+/**
+ Really basic Autocompletion viewcontroller, currently only able to handle strings
+ The user is able to search for a specific string with a uisearchbar.
+ A click onto a cell closes the viewcontroller, the selected string gets passed to the
+ parent viewcontroller via a delegate method.
+ */
 class AutoCompleteViewController: UITableViewController {
    
     @IBOutlet weak var searchBar: UISearchBar!
@@ -49,12 +55,10 @@ class AutoCompleteViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return filteredData?.count ?? 0
     }
 
@@ -62,7 +66,6 @@ class AutoCompleteViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath)
 
-        // Configure the cell...
         cell.textLabel?.text = filteredData?[indexPath.row]
 
         return cell
