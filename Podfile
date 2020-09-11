@@ -2,7 +2,7 @@
 # platform :ios, '9.0'
 
 
-target 'LocationManagerTest' do
+target 'Trainspot.App' do
   # Comment the next line if you don't want to use dynamic frameworks
   
   platform :ios, '13.5'
@@ -15,7 +15,7 @@ target 'LocationManagerTest' do
   
 end
 
-target 'LocationManagerTestMock' do
+target 'Trainspot.AppMock' do
   # Comment the next line if you don't want to use dynamic frameworks
   
   platform :ios, '13.5'
