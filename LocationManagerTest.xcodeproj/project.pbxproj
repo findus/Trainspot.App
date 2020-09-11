@@ -46,6 +46,8 @@
 		D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5C2490195100AF77F6 /* TrainViewList.swift */; };
 		D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */; };
 		D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46B6B6524912CF200AF77F6 /* StatusView.xib */; };
+		D47E09F4250B93E30068126D /* TrainTrackPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */; };
+		D47E09F5250B93E30068126D /* TrainTrackPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */; };
 		D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
 		D4A30E44249588C800B2684C /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
 		D4A30E4524958ABD00B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
@@ -294,6 +296,7 @@
 		D46B6B5C2490195100AF77F6 /* TrainViewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewList.swift; sourceTree = "<group>"; };
 		D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainOverviewCell.swift; sourceTree = "<group>"; };
 		D46B6B6524912CF200AF77F6 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
+		D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainTrackPolyline.swift; sourceTree = "<group>"; };
 		D4A30E4C24958DC200B2684C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationRadarController.swift; sourceTree = "<group>"; };
@@ -467,6 +470,7 @@
 		D4270AB5248BACBE0022A6BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D47E09F2250B93C90068126D /* Lines */,
 				D4BCAF902493D1C6000B40D8 /* AnnotationView */,
 				D46B6B6424912CD900AF77F6 /* StatusView */,
 				D46B6B6324912CC700AF77F6 /* Annotation */,
@@ -614,6 +618,14 @@
 				D4BCAF80249137DD000B40D8 /* StatusView.swift */,
 			);
 			path = StatusView;
+			sourceTree = "<group>";
+		};
+		D47E09F2250B93C90068126D /* Lines */ = {
+			isa = PBXGroup;
+			children = (
+				D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */,
+			);
+			path = Lines;
 			sourceTree = "<group>";
 		};
 		D4AF20022488259C0075F327 /* LocationController */ = {
@@ -1330,6 +1342,7 @@
 				D4BCAFBB24953752000B40D8 /* TrainAnnotation.swift in Sources */,
 				D4BCAFC224953752000B40D8 /* SceneDelegate.swift in Sources */,
 				17B0E4BB2498E61300FAF26B /* Fonts.swift in Sources */,
+				D47E09F5250B93E30068126D /* TrainTrackPolyline.swift in Sources */,
 				D4BCAFC424953752000B40D8 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1356,6 +1369,7 @@
 			files = (
 				D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */,
 				D4DEAACC2487AC1900D33AA2 /* ViewController.swift in Sources */,
+				D47E09F4250B93E30068126D /* TrainTrackPolyline.swift in Sources */,
 				D4BCAF81249137DD000B40D8 /* StatusView.swift in Sources */,
 				D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */,
 				D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */,

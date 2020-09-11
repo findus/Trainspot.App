@@ -34,6 +34,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     private var triggeredUpdate: Bool = false
     private var isStillPulling = false
     
+    // Trip Info
+    private var selectedTrip: Trip? {
+        didSet {
+            self.drawHighlightedPolyLineForSelectedTrip()
+        }
+    }
+    
     private let generator = UINotificationFeedbackGenerator()
     
     
@@ -236,7 +243,16 @@ extension ViewController: TrainLocationDelegate {
     }
     
     func drawPolyLine(forTrip: Trip) {
-        self.mapViewController?.drawLine(entries: forTrip.polyline)
+        self.mapViewController?.drawLine(entries: forTrip.polyline, withLineType: .normal)
+    }
+    
+    private func drawHighlightedPolyLineForSelectedTrip() {
+        
+        guard let selectedTrip = self.selectedTrip else {
+            return
+        }
+        
+        self.mapViewController?.drawLine(entries: selectedTrip.polyline, withLineType: .selected)
     }
     
     func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
@@ -289,7 +305,10 @@ extension ViewController: TrainLocationDelegate {
 
 extension ViewController {
     
-    private func setStatusView(withTrip trip: Trip, andData data: TripData) {        
+    private func setStatusView(withTrip trip: Trip, andData data: TripData) {
+        if self.selectedTrip?.tripId != trip.tripId {
+            self.selectedTrip = trip
+        }
         self.statusView.setStatus(forTrip: trip, andData: data)
     }
 }

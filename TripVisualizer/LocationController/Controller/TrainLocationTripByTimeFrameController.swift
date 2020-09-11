@@ -15,6 +15,7 @@ import CoreLocation
  */
 public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     
+    // Seconds that a scheduled train gets displayed before actual departure
     var GRACE_PERIOD = 1800.0
     
     private let dateGenerator: () -> Date

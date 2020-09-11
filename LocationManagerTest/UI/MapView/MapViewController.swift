@@ -11,6 +11,11 @@ import MapKit
 import TripVisualizer
 import SwiftEventBus
 
+enum LineType {
+    case normal
+    case selected
+}
+
 class MapViewController: UIViewController, MapViewControllerProtocol {
 
     
@@ -18,6 +23,9 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
 
     var entryList: Array<MapEntity> = Array()
     var markerDict: Dictionary<String, MKPointAnnotation> = Dictionary.init()
+    var lineDict: Dictionary<String, TrainTrackPolyLine> = Dictionary.init()
+    private var selectedPolyLineTripId: String?
+    
     weak var delegate: MapViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -56,10 +64,32 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         self.map.selectAnnotation(annotation!, animated: true)
     }
     
-    func drawLine(entries: Array<MapEntity>) {
+    func drawLine(entries: Array<MapEntity>, withLineType type: LineType) {
         let coords = entries.map { $0.location.coordinate }
-        let polyline = MKPolyline(coordinates: coords, count: coords.count)
-        self.map.addOverlay(polyline)
+        let polyline = TrainTrackPolyLine(coordinates: coords, count: coords.count)
+        let tripID = entries.first!.tripId
+        
+        polyline.type = type
+                        
+        if type == .selected {
+            guard
+                let oldSelectedPolyLineTripId = self.selectedPolyLineTripId,
+                let oldSelectedTripLine = self.lineDict[oldSelectedPolyLineTripId] else {
+                    
+                return
+            }
+            
+            self.map.removeOverlay(oldSelectedTripLine)
+            oldSelectedTripLine.type = .normal
+            self.map.addOverlay(oldSelectedTripLine)
+            self.map.addOverlay(polyline)
+        } else {
+            self.map.insertOverlay(polyline, at: 0)
+        }
+        
+        selectedPolyLineTripId = tripID
+        self.lineDict[tripID] = polyline
+        
     }
     
     func deleteEntry(withName: String, andLabel: String) {
@@ -68,10 +98,17 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
             return
         }
         self.map.removeAnnotation(annotation)
+        
+        guard let line = self.lineDict[withName] else {
+            Log.warning(" \(andLabel) Could not remove Line")
+            return
+        }
+        self.map.removeOverlay(line)
     }
     
     func removeAllEntries() {
         self.map.removeAnnotations(self.map.annotations)
+        self.map.removeOverlays(self.map.overlays)
     }
     
     @objc func longpress(sender: UIGestureRecognizer) {
@@ -112,9 +149,15 @@ extension MapViewController: MKMapViewDelegate
 {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
 
-        let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-        polylineRenderer.strokeColor = #colorLiteral(red: 0.7667021683, green: 0.7898159898, blue: 0.7819377446, alpha: 1)
-        polylineRenderer.lineWidth = 1
+        let line = overlay as! TrainTrackPolyLine
+        let polylineRenderer = MKPolylineRenderer(overlay: line)
+        if line.type == .some(.selected) {
+            polylineRenderer.strokeColor = #colorLiteral(red: 0.9215893149, green: 0.2225639522, blue: 0.2431446314, alpha: 0.8295162671)
+            polylineRenderer.lineWidth = 2
+        } else {
+            polylineRenderer.strokeColor = #colorLiteral(red: 0.7667021683, green: 0.7898159898, blue: 0.7819377446, alpha: 1)
+            polylineRenderer.lineWidth = 1
+        }
         return polylineRenderer
 
     }
@@ -140,7 +183,7 @@ extension MapViewController: MKMapViewDelegate
         (annotationView as! MKTrainAnnotationView).icon.isHidden = false
         (annotationView as! MKTrainAnnotationView).label.isHidden = true
         (annotationView as! MKTrainAnnotationView).label.layer.masksToBounds = true
-        
+
         switch an.title! {
         case let str where str.lowercased().contains("eno"):
             (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "enno")
