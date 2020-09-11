@@ -99,3 +99,15 @@ extension UIView {
         }
     }
 }
+
+// MARK: - Animated Alpha change
+
+extension UIView {
+    
+    public func animatedAlpha(toValue value: CGFloat) {
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = value
+        }
+    }
+    
+}

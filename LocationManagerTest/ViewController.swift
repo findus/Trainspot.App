@@ -329,6 +329,7 @@ extension ViewController {
         }
         
         SwiftEventBus.onMainThread(self, name: "UpdatedSettings") { (notification) in
+            self.mapViewController?.removeAllEntries()
             self.tripTimeFrameLocationController.fetchServer()
         }
     }

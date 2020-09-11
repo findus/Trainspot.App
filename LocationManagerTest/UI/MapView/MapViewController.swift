@@ -62,6 +62,18 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
     private func selectTrip(withId id: String) {
         let annotation = self.markerDict[id]
         self.map.selectAnnotation(annotation!, animated: true)
+        
+        for annotation in self.map.annotations {
+            let anView = self.map.view(for: annotation) as? MKTrainAnnotationView
+            if let view = anView {
+                if (annotation as? TrainAnnotation)?.tripId != id {
+                    view.animatedAlpha(toValue: 0.2)
+                } else {
+                    view.animatedAlpha(toValue: 1.0)
+                }
+            }
+        }
+        
     }
     
     func drawLine(entries: Array<MapEntity>, withLineType type: LineType) {
@@ -70,24 +82,35 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         let tripID = entries.first!.tripId
         
         polyline.type = type
-                        
+             
+        // Checks if another trip is already hightlighted, if true it redraws the trip with the base color
         if type == .selected {
             guard
                 let oldSelectedPolyLineTripId = self.selectedPolyLineTripId,
                 let oldSelectedTripLine = self.lineDict[oldSelectedPolyLineTripId] else {
                     
-                return
+                    self.map.addOverlay(polyline)
+                    selectedPolyLineTripId = tripID
+                    self.lineDict[tripID] = polyline
+
+                    return
             }
             
-            self.map.removeOverlay(oldSelectedTripLine)
             oldSelectedTripLine.type = .normal
-            self.map.addOverlay(oldSelectedTripLine)
+           
+            if let renderer = self.map.renderer(for: oldSelectedTripLine) as? MKPolylineRenderer {
+                renderer.strokeColor = .white
+                renderer.lineWidth = 1
+                renderer.invalidatePath()
+            }
+            
             self.map.addOverlay(polyline)
+            selectedPolyLineTripId = tripID
+
         } else {
             self.map.insertOverlay(polyline, at: 0)
         }
         
-        selectedPolyLineTripId = tripID
         self.lineDict[tripID] = polyline
         
     }
@@ -109,6 +132,10 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
     func removeAllEntries() {
         self.map.removeAnnotations(self.map.annotations)
         self.map.removeOverlays(self.map.overlays)
+        self.selectedPolyLineTripId = nil
+        self.markerDict = Dictionary.init()
+        self.lineDict = Dictionary.init()
+        self.entryList = Array.init()
     }
     
     @objc func longpress(sender: UIGestureRecognizer) {
@@ -133,7 +160,6 @@ extension MapViewController {
         }
 
         let pin = self.markerDict[entry.tripId]
-        let startPoint = pin?.coordinate
         let endPoint = location
         
         UIView.animate(withDuration: duration, delay: 0, options: .curveLinear, animations: {
@@ -165,7 +191,7 @@ extension MapViewController: MKMapViewDelegate
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
     {
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView")
+        var annotationView: MKTrainAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") as? MKTrainAnnotationView
         
         if annotationView == nil {
             annotationView = MKTrainAnnotationView.loadViewFromNib()
@@ -175,37 +201,45 @@ extension MapViewController: MKMapViewDelegate
             return  nil
         }
         
-        (annotationView as! MKTrainAnnotationView).positionDot.layer.cornerRadius = 2
-        annotationView?.centerOffset = CGPoint(x: 0, y: (-(annotationView?.frame.height)! / 2) + 2)
-        annotationView?.canShowCallout = true
-        annotationView?.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure)
+        guard let view = annotationView else {
+            return nil
+        }
         
-        (annotationView as! MKTrainAnnotationView).icon.isHidden = false
-        (annotationView as! MKTrainAnnotationView).label.isHidden = true
-        (annotationView as! MKTrainAnnotationView).label.layer.masksToBounds = true
+        if self.selectedPolyLineTripId != nil && an.tripId != self.selectedPolyLineTripId! {
+            view.alpha = 0.2
+        }
+        
+        view.positionDot.layer.cornerRadius = 2
+        view.centerOffset = CGPoint(x: 0, y: (-(view.frame.height) / 2) + 2)
+        view.canShowCallout = true
+        view.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure)
+        
+        view.icon.isHidden = false
+        view.label.isHidden = true
+        view.label.layer.masksToBounds = true
 
         switch an.title! {
         case let str where str.lowercased().contains("eno"):
-            (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "enno")
+            view.icon.image = #imageLiteral(resourceName: "enno")
         case let str where str.lowercased().contains("erx"):
-            (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "erixx")
+            view.icon.image = #imageLiteral(resourceName: "erixx")
         case let str where str.lowercased().contains("wfb"):
-            (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "westalenbahn")
+            view.icon.image = #imageLiteral(resourceName: "westalenbahn")
         case let str where str.lowercased().contains("ice"):
-            (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "ice")
+            view.icon.image = #imageLiteral(resourceName: "ice")
         case let str where str.lowercased().contains("ic "):
-            (annotationView as! MKTrainAnnotationView).icon.image = #imageLiteral(resourceName: "ic")
+            view.icon.image = #imageLiteral(resourceName: "ic")
         case let str where str.lowercased().contains("rb") || str.lowercased().contains("re"):
-            (annotationView as! MKTrainAnnotationView).icon.isHidden = true
-            (annotationView as! MKTrainAnnotationView).label.isHidden = false
-            (annotationView as! MKTrainAnnotationView).label.text = an.title
+            view.icon.isHidden = true
+            view.label.isHidden = false
+            view.label.text = an.title
         default:
-            (annotationView as! MKTrainAnnotationView).icon.isHidden = true
-            (annotationView as! MKTrainAnnotationView).label.isHidden = false
-            (annotationView as! MKTrainAnnotationView).label.text = an.title
+            view.icon.isHidden = true
+            view.label.isHidden = false
+            view.label.text = an.title
         }
 
-        return annotationView
+        return view
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
