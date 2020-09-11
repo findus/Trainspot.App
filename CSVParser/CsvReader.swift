@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Really basic csv parser, thats loads the whole file into memory, splits it into substrings and filters the content based on the passed search string
+ */
 public class CsvReader {
     
     public static let shared = CsvReader()

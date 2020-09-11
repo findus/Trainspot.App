@@ -16,7 +16,7 @@ enum LineType {
     case selected
 }
 
-class MapViewController: UIViewController, MapViewControllerProtocol {
+class MapViewController: UIViewController {
 
     
     @IBOutlet weak var map: MKMapView!
@@ -41,17 +41,6 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         self.setupEventBusListener()
         
     }
-            
-    func addEntry(entry: MapEntity) {
-        entryList.append(entry)
-        let pin = TrainAnnotation()
-        pin.coordinate = entry.location.coordinate
-        pin.title = entry.name
-        pin.tripId = entry.tripId
-        markerDict[entry.tripId] = pin
-        self.map.addAnnotation(pin)
-        
-    }
     
     private func centerCamera(atTripWithId id: String) {
         let coords = self.markerDict[id]!.coordinate
@@ -59,10 +48,12 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         map.setRegion(region, animated: true)
     }
     
+    
     private func selectTrip(withId id: String) {
         let annotation = self.markerDict[id]
         self.map.selectAnnotation(annotation!, animated: true)
         
+        //Reduces opacity of any other visible, non selected map annotation
         for annotation in self.map.annotations {
             let anView = self.map.view(for: annotation) as? MKTrainAnnotationView
             if let view = anView {
@@ -76,6 +67,10 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         
     }
     
+    /**
+     Draws a polyline of the passed trip. Based on the type the line will be rendered differently
+     Only one selected line can exists, if another one gets passed to the controller the old one gets redrawn with a normal style
+     */
     func drawLine(entries: Array<MapEntity>, withLineType type: LineType) {
         let coords = entries.map { $0.location.coordinate }
         let polyline = TrainTrackPolyLine(coordinates: coords, count: coords.count)
@@ -115,20 +110,6 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
         
     }
     
-    func deleteEntry(withName: String, andLabel: String) {
-        guard let annotation = self.markerDict[withName] else {
-            Log.warning(" \(andLabel) Could not remove Annottation")
-            return
-        }
-        self.map.removeAnnotation(annotation)
-        
-        guard let line = self.lineDict[withName] else {
-            Log.warning(" \(andLabel) Could not remove Line")
-            return
-        }
-        self.map.removeOverlay(line)
-    }
-    
     func removeAllEntries() {
         self.map.removeAnnotations(self.map.annotations)
         self.map.removeOverlays(self.map.overlays)
@@ -147,8 +128,34 @@ class MapViewController: UIViewController, MapViewControllerProtocol {
     
 }
 
-extension MapViewController {
-   
+// MARK: - MapViewControllerProtocol
+
+extension MapViewController: MapViewControllerProtocol {
+    
+    func deleteEntry(withName: String, andLabel: String) {
+        guard let annotation = self.markerDict[withName] else {
+            Log.warning(" \(andLabel) Could not remove Annottation")
+            return
+        }
+        self.map.removeAnnotation(annotation)
+        
+        guard let line = self.lineDict[withName] else {
+            Log.warning(" \(andLabel) Could not remove Line")
+            return
+        }
+        self.map.removeOverlay(line)
+    }
+    
+    func addEntry(entry: MapEntity) {
+        entryList.append(entry)
+        let pin = TrainAnnotation()
+        pin.coordinate = entry.location.coordinate
+        pin.title = entry.name
+        pin.tripId = entry.tripId
+        markerDict[entry.tripId] = pin
+        self.map.addAnnotation(pin)
+    }
+    
     func updateTrainLocation(forId id: String, withLabel label: String, toLocation location: CLLocationCoordinate2D, withDuration duration: Double) {
         guard let entry = self.entryList.filter({ $0.tripId == id }).first else {
             print("No MapEntry found for \(id), will create entry at location")
@@ -158,18 +165,20 @@ extension MapViewController {
             
             return
         }
-
+        
         let pin = self.markerDict[entry.tripId]
         let endPoint = location
         
         UIView.animate(withDuration: duration, delay: 0, options: .curveLinear, animations: {
-           // Update annotation coordinate to be the destination coordinate
+            // Update annotation coordinate to be the destination coordinate
             pin!.coordinate = endPoint
         }, completion: nil)
         
     }
     
 }
+
+//MARK: - MKMapviewDelegate
 
 extension MapViewController: MKMapViewDelegate
 {
