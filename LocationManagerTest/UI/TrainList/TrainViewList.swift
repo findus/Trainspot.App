@@ -20,11 +20,6 @@ public class TrainViewList: UITableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         trainLocationProxy.addListener(listener: self)
         tableView.register(UINib(nibName: "TrainOverViewCell", bundle: nil), forCellReuseIdentifier: "trainOverviewCell2")
     
@@ -81,6 +76,7 @@ extension TrainViewList: TrainLocationDelegate {
         }
         self.tripData[trip.tripId] = data
         
+        // Sorts the cells based on arrival date
         self.trips = self.trips.sorted { (t1, t2) -> Bool in
             self.tripData[t1.tripId]?.arrival ?? 0.0 <  self.tripData[t2.tripId]?.arrival ?? 0.0
         }
@@ -107,6 +103,9 @@ extension TrainViewList: TrainLocationDelegate {
         
     }
         
+    /**
+     This method updates the content of visible cells without reloading the whole model
+     */
     private func updateCell(withTrip trip: Trip, andTripData tripData: TripData, atCell cell: TrainOverviewCell) -> TrainOverviewCell {
         
         cell.tripId = trip.tripId

@@ -495,13 +495,6 @@
 			path = UserPreferences;
 			sourceTree = "<group>";
 		};
-		D45C50552488E25100A3D857 /* AppConstants */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AppConstants;
-			sourceTree = "<group>";
-		};
 		D45C50582488E6F200A3D857 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
@@ -794,7 +787,6 @@
 				D4B636BF24957C5600996744 /* Extensions */,
 				D4BCAF872492D1E5000B40D8 /* UserLocation */,
 				D46B6B6124912BD800AF77F6 /* UI */,
-				D45C50552488E25100A3D857 /* AppConstants */,
 				D4DEAAC72487AC1900D33AA2 /* AppDelegate.swift */,
 				D4DEAAC92487AC1900D33AA2 /* SceneDelegate.swift */,
 				D4DEAACD2487AC1900D33AA2 /* Main.storyboard */,

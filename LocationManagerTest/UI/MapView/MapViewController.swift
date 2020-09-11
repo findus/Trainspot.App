@@ -24,7 +24,22 @@ class MapViewController: UIViewController {
     var entryList: Array<MapEntity> = Array()
     var markerDict: Dictionary<String, MKPointAnnotation> = Dictionary.init()
     var lineDict: Dictionary<String, TrainTrackPolyLine> = Dictionary.init()
-    private var selectedPolyLineTripId: String?
+    
+    private var selectedPolyLineTripId: String? {
+        didSet {
+            if selectedPolyLineTripId == nil && oldValue != nil {
+                guard let overlay = self.lineDict[oldValue!] else {
+                    return
+                }
+                
+                if let renderer = self.map.renderer(for: overlay) as? MKPolylineRenderer {
+                    renderer.strokeColor = .white
+                    renderer.lineWidth = 1
+                    renderer.invalidatePath()
+                }
+            }
+        }
+    }
     
     weak var delegate: MapViewControllerDelegate?
     
@@ -272,6 +287,9 @@ extension MapViewController: MKMapViewDelegate
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
        
         SwiftEventBus.post("deSelectTripOnMap")
+        
+        self.selectedPolyLineTripId = nil
+        self.resetOpacity()
     }
 
 }
@@ -284,6 +302,15 @@ extension MapViewController {
             if let tripId = notification?.object as? String {
                 self.centerCamera(atTripWithId: tripId)
                 self.selectTrip(withId: tripId)
+            }
+        }
+    }
+    
+    private func resetOpacity() {
+        for annotation in self.map.annotations {
+            let anView = self.map.view(for: annotation) as? MKTrainAnnotationView
+            if let view = anView {
+                view.animatedAlpha(toValue: 1.0)
             }
         }
     }
