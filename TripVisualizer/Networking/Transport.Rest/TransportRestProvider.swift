@@ -59,6 +59,9 @@ class TransportRestProvider {
         let departures = fetchDepartures(forStation: station.ibnr)
         let arrivals = fetchArrivals(forStation: station.ibnr)
         
+        // Cancel old request
+        self.stream?.cancel()
+        
         let cancellable = Publishers.Merge(departures, arrivals)
             .collect()
             .map(streamOfJourneys)

@@ -38,6 +38,7 @@ class SettingsTableViewController: UITableViewController  {
         
         if sender.accessibilityIdentifier == "offsetSlider" {
             UserPrefs.setTimeOffset(Int(self.timeOffsetSlider.value))
+            SwiftEventBus.post("UpdatedSettings")
         }
     }
     
@@ -84,7 +85,10 @@ extension SettingsTableViewController {
     }
 }
 
+// MARK: - Autocomplete Delegate
+
 extension SettingsTableViewController: AutoCompleteDelegate {
+    
     func onValueSelected(_ value: String?) {
         guard let newStationName = value  else {
             return
@@ -94,13 +98,14 @@ extension SettingsTableViewController: AutoCompleteDelegate {
         self.stationLabel.text = newStationName
         
         guard let data = CsvReader.shared.getStationInfo(withContent: newStationName)?.first?.ibnr else {
+            Log.error("Could not find ibnr for station named \(newStationName)")
             return
         }
         
         let stationInfo = StationInfo(newStationName, data)
         
         UserPrefs.setSelectedStation(stationInfo)
-        SwiftEventBus.post("UPDATED_STATION")
+        SwiftEventBus.post("UpdatedSettings")
     }
 }
 

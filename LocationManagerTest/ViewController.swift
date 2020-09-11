@@ -309,7 +309,7 @@ extension ViewController {
             self.tripIdToUpdateLocation = nil
         }
         
-        SwiftEventBus.onMainThread(self, name: "UPDATED_STATION") { (notification) in
+        SwiftEventBus.onMainThread(self, name: "UpdatedSettings") { (notification) in
             self.tripTimeFrameLocationController.fetchServer()
         }
     }
