@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eiO-9N-ueo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eiO-9N-ueo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -10,7 +10,7 @@
         <!--Map-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,7 +46,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ebN-Sl-0IC" userLabel="SelectedView" customClass="StatusView" customModule="LocationManagerTest" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ebN-Sl-0IC" userLabel="SelectedView" customClass="StatusView" customModule="Trainspot_App" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="StatusView" label="StatusView"/>
@@ -138,23 +138,23 @@
         <!--Overview-->
         <scene sceneID="Kd2-Uu-7Vz">
             <objects>
-                <tableViewController title="Overview" id="1fa-wT-uYc" customClass="TrainViewList" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Overview" id="1fa-wT-uYc" customClass="TrainViewList" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jqf-Uk-wot">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="trainOverviewCell" id="jyA-xI-vxr" customClass="TrainOverviewCell" customModule="LocationManagerTest" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="trainOverviewCell" id="jyA-xI-vxr" customClass="TrainOverviewCell" customModule="Trainspot_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="37"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jyA-xI-vxr" id="JAM-id-YjI" customClass="TrainOverviewCell" customModule="LocationManagerTest" customModuleProvider="target">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jyA-xI-vxr" id="JAM-id-YjI" customClass="TrainOverviewCell" customModule="Trainspot_App" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="center" horizontalCompressionResistancePriority="1000" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IsF-cj-QCd">
                                             <rect key="frame" x="0.0" y="0.0" width="227.5" height="37"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Train Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="39k-gH-bMO" userLabel="Train Name" customClass="PaddingLabel" customModule="LocationManagerTest" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Train Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="39k-gH-bMO" userLabel="Train Name" customClass="PaddingLabel" customModule="Trainspot_App" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="9.5" width="78" height="18"/>
                                                     <color key="backgroundColor" red="0.7185120558375635" green="0.11447466555494319" blue="0.11936212813607006" alpha="0.81860017123287676" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -216,7 +216,7 @@
         <!--Settings-->
         <scene sceneID="2wa-Lg-eAq">
             <objects>
-                <tableViewController id="O1h-9j-mgB" customClass="SettingsTableViewController" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="O1h-9j-mgB" customClass="SettingsTableViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jbJ-qM-Glz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -224,7 +224,7 @@
                         <sections>
                             <tableViewSection headerTitle="Settings" id="9eX-HH-XwL" userLabel="Settings">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="AEp-f5-YWj" userLabel="StationSelection" customClass="DistanceToStationCell" customModule="LocationManagerTest" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="AEp-f5-YWj" userLabel="StationSelection" customClass="DistanceToStationCell" customModule="Trainspot_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AEp-f5-YWj" id="q1Z-bH-lSA">
@@ -251,7 +251,7 @@
                                             </connections>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="123" id="Swp-vt-oxa" userLabel="TimeOffset" customClass="DistanceToStationCell" customModule="LocationManagerTest" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="123" id="Swp-vt-oxa" userLabel="TimeOffset" customClass="DistanceToStationCell" customModule="Trainspot_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="105" width="414" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Swp-vt-oxa" id="eE6-mK-7CC">
@@ -259,7 +259,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Mfr-bT-SbS" userLabel="DistanceSlider">
-                                                    <rect key="frame" x="28" y="21" width="328" height="31"/>
+                                                    <rect key="frame" x="28" y="21" width="308" height="31"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="offsetSlider"/>
                                                     <connections>
                                                         <action selector="sliderOnTouchUp:" destination="O1h-9j-mgB" eventType="touchUpInside" id="U9j-uB-3de"/>
@@ -267,9 +267,9 @@
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czV-CO-9gO" userLabel="DistanceLabel">
-                                                    <rect key="frame" x="364" y="25.5" width="40" height="21"/>
+                                                    <rect key="frame" x="344" y="25.5" width="60" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="Lu7-uG-TKd"/>
+                                                        <constraint firstAttribute="width" constant="60" id="Lu7-uG-TKd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -294,8 +294,51 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="Dal-gp-dsN" userLabel="StationDistanceCell" customClass="DistanceToStationCell" customModule="LocationManagerTest" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="228" width="414" height="77"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="123" id="L8u-fI-KnQ" userLabel="Distance" customClass="DistanceToStationCell" customModule="Trainspot_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="228" width="414" height="123"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L8u-fI-KnQ" id="3co-XP-IUx">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="123"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="uio-Qx-ic4" userLabel="DistanceSlider">
+                                                    <rect key="frame" x="28" y="21" width="308" height="31"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="maxDistanceSlider"/>
+                                                    <connections>
+                                                        <action selector="sliderOnTouchUp:" destination="O1h-9j-mgB" eventType="touchUpInside" id="o9X-FX-rWR"/>
+                                                        <action selector="sliderValueChanged:" destination="O1h-9j-mgB" eventType="valueChanged" id="HMq-5q-3rv"/>
+                                                    </connections>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvL-54-7ix" userLabel="DistanceLabel">
+                                                    <rect key="frame" x="344" y="25.5" width="60" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="Jm8-os-2nB"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximale Distanz zur Bahnstrecke in Meter" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0j-rp-cqM">
+                                                    <rect key="frame" x="30" y="61" width="354" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="b0j-rp-cqM" firstAttribute="top" secondItem="uio-Qx-ic4" secondAttribute="bottom" constant="10" id="FpH-5H-UPu"/>
+                                                <constraint firstItem="b0j-rp-cqM" firstAttribute="leading" secondItem="3co-XP-IUx" secondAttribute="leadingMargin" constant="10" id="Koz-Lr-er2"/>
+                                                <constraint firstItem="UvL-54-7ix" firstAttribute="centerY" secondItem="uio-Qx-ic4" secondAttribute="centerY" id="LmE-d2-ool"/>
+                                                <constraint firstItem="UvL-54-7ix" firstAttribute="trailing" secondItem="3co-XP-IUx" secondAttribute="trailingMargin" constant="10" id="Qm5-gh-o1L"/>
+                                                <constraint firstItem="uio-Qx-ic4" firstAttribute="top" secondItem="3co-XP-IUx" secondAttribute="topMargin" constant="10" id="ROw-OO-Nl7"/>
+                                                <constraint firstItem="uio-Qx-ic4" firstAttribute="leading" secondItem="3co-XP-IUx" secondAttribute="leadingMargin" constant="10" id="aoR-jw-7ul"/>
+                                                <constraint firstItem="UvL-54-7ix" firstAttribute="leading" secondItem="uio-Qx-ic4" secondAttribute="trailing" constant="10" id="dVD-SG-L0x"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="b0j-rp-cqM" secondAttribute="trailing" constant="10" id="ymI-LX-RS8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="Dal-gp-dsN" userLabel="StationDistanceCell" customClass="DistanceToStationCell" customModule="Trainspot_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="351" width="414" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dal-gp-dsN" id="Dlx-9Y-uZD">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
@@ -330,6 +373,8 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="Otu-6T-2YV"/>
                     <connections>
+                        <outlet property="macDistanceLabel" destination="UvL-54-7ix" id="erm-xK-Eg1"/>
+                        <outlet property="maxDistanceSlider" destination="uio-Qx-ic4" id="ioc-JP-uza"/>
                         <outlet property="stationLabel" destination="xyb-ci-8kh" id="VwW-80-OGs"/>
                         <outlet property="timeOffsetLabel" destination="czV-CO-9gO" id="WhJ-d3-gYR"/>
                         <outlet property="timeOffsetSlider" destination="Mfr-bT-SbS" id="9wU-R3-g6h"/>
@@ -347,7 +392,7 @@
         <!--Main Tabbar View Controller-->
         <scene sceneID="hCe-6c-J3B">
             <objects>
-                <tabBarController id="eiO-9N-ueo" customClass="MainTabbarViewController" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="eiO-9N-ueo" customClass="MainTabbarViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Ar-Rr-b0M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -366,7 +411,7 @@
         <!--Map-->
         <scene sceneID="mZg-Rd-dTC">
             <objects>
-                <viewController title="Map" id="iqN-KL-GHB" customClass="MapViewController" customModule="LocationManagerTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map" id="iqN-KL-GHB" customClass="MapViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dc8-Zy-txy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -19,6 +19,9 @@ class SettingsTableViewController: UITableViewController  {
     @IBOutlet weak var timeOffsetLabel: UILabel!
     @IBOutlet weak var stationLabel: UILabel!
     
+    @IBOutlet weak var macDistanceLabel: UILabel!
+    @IBOutlet weak var maxDistanceSlider: UISlider!
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -32,12 +35,22 @@ class SettingsTableViewController: UITableViewController  {
         if sender.accessibilityIdentifier == "offsetSlider" {
             timeOffsetLabel.text = String(Int(sender.value))
         }
+        
+        if sender.accessibilityIdentifier == "maxDistanceSlider" {
+            macDistanceLabel.text = String(Int(sender.value))
+        }
+        
     }
     
     @IBAction func sliderOnTouchUp(_ sender: UISlider) {
         
         if sender.accessibilityIdentifier == "offsetSlider" {
             UserPrefs.setTimeOffset(Int(self.timeOffsetSlider.value))
+            SwiftEventBus.post("UpdatedSettings")
+        }
+        
+        if sender.accessibilityIdentifier == "maxDistanceSlider" {
+            UserPrefs.setMaxDistance(Int(self.maxDistanceSlider.value))
             SwiftEventBus.post("UpdatedSettings")
         }
     }
@@ -66,6 +79,12 @@ extension SettingsTableViewController {
         
         timeOffsetSlider.value = Float(UserPrefs.getTimeOffset())
         timeOffsetLabel.text = String(UserPrefs.getTimeOffset())
+        
+        maxDistanceSlider.maximumValue = 9000
+        maxDistanceSlider.minimumValue = 100
+        
+        maxDistanceSlider.value = Float(UserPrefs.getMaxDistance())
+        macDistanceLabel.text = String(UserPrefs.getMaxDistance())
         
         let stationData = UserPrefs.getSelectedStation()
         self.stationLabel.text = stationData.name

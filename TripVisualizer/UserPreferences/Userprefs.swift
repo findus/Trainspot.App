@@ -19,7 +19,24 @@ public struct StationInfo: Codable {
 
 public class UserPrefs {
     
+    private static let maxDistance = "MAX_DISTANCE"
+    
+    public static func getMaxDistance() -> Int {
+        let distance = UserDefaults.standard.integer(forKey: maxDistance)
+        if distance < 100 {
+            return 100
+        } else {
+            return distance
+        }
+    }
+    
+    public static func setMaxDistance(_ offset: Int) {
+        UserDefaults.standard.set(offset, forKey: maxDistance)
+        UserDefaults.standard.synchronize()
+    }
+    
     private static let timeOffset = "TIME_OFFSET"
+
     
     public static func getTimeOffset() -> Int {
         UserDefaults.standard.integer(forKey: timeOffset)
@@ -34,7 +51,7 @@ public class UserPrefs {
     
     public static func getSelectedStation() -> StationInfo {
         guard let data = UserDefaults.standard.data(forKey: selectedStation) else {
-            return StationInfo("Braunschweig", "8000049")
+            return StationInfo("Braunschweig Hbf", "8000049")
         }
         return try! PropertyListDecoder().decode(StationInfo.self, from: data)
     }
