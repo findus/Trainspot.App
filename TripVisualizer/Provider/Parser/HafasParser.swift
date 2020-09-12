@@ -75,7 +75,13 @@ class HafasParser {
                         arrival = departure
                     }
                     
-                    return StopOver(distanceToNext: -2, name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure)
+                    var newstop = StopOver(distanceToNext: -2, name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure)
+                    
+                    if let delay =  stopOver.arrivalDelay  {
+                        newstop.arrivalDelay = delay
+                    }
+                    
+                    return newstop
                                
                 } else {
                     return Path(distanceToNext: -2, coords: CLLocation(latitude: lat, longitude: lon))

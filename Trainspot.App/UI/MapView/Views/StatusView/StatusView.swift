@@ -59,7 +59,7 @@ class StatusView : UIStackView {
             }
         }()
 
-        let delay = trip.delay ?? 0
+        let delay = data.delay
         
         self.lineName.text = trip.name
         self.destination = "To: \(trip.destination)"

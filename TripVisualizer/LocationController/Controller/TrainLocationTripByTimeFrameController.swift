@@ -51,7 +51,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     }
     
     public func remove(trip: TimeFrameTrip, reason: TrainState) {
-        let data = TripData(location: nil, state: reason, arrival: -1)
+        let data = TripData(location: nil, state: reason, arrival: -1, delay: 0)
         self.delegate?.trainPositionUpdated(forTrip: trip, withData: data, withDuration: 1)
         self.remove(trip: trip)
     }
@@ -129,14 +129,14 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
                     
                     var tripData: TripData
                     if let currentLocation = self.currentUserLocation {
-                        //Currently only on top of polyline point, might be off if user is between points that ar far away
+                        //Currently only on top of polyline point, might be off if user is between points that are far away
                         let userPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: currentLocation)
                         let timeTilDeparture = trip.departure.timeIntervalSince(self.dateGenerator())
                         let time = self.getArrivalInSeconds(forTrip: trip, userPosInArray: userPosInArray, trainPos: data.arrayPostition, secondsToDeparture: timeTilDeparture > 0 ? timeTilDeparture : 0)
                         let distance = self.getDistance(forTrip: trip, arrayPosTrain: data.arrayPostition, arrayPosUser: userPosInArray, currentTrainLoc: data.currentLocation)
-                        tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: time ?? -1, distance: distance )
+                        tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: time ?? -1, distance: distance, delay: data.delay )
                     } else {
-                        tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: -1)
+                        tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: -1, delay: data.delay)
                     }
                     self.delegate?.trainPositionUpdated(forTrip: trip, withData: tripData, withDuration: 1)
                 } else {
@@ -183,9 +183,21 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         
         self.trips = remaining.union(new)
         
+        // Filter out trips that are to far away from user
+        if let userPosition = self.currentUserLocation {
+            self.trips = self.trips.filter { (trip) -> Bool in
+                let distance = trip.shorttestDistanceToTrack(forUserLocation: userPosition)
+                if distance > 3000 {
+                    Log.info("[\(trip.name) - \(trip.tripId)] filtered because track too far away from user")
+                }
+                
+                return distance <= 3000
+            }
+        }
+        
         self.start()
         
-        trips.forEach { self.delegate?.drawPolyLine(forTrip: $0) }
+        self.trips.forEach { self.delegate?.drawPolyLine(forTrip: $0) }
     }
     
     public func register(trip: T) {

@@ -38,6 +38,8 @@ public struct TripData {
     public let state: TrainState
     public let arrival: TimeInterval
     public var distance: Double?
+    // Delay on next stopover
+    public var delay: Int
 }
 
 public protocol TrainLocationDelegate: NSObject {
