@@ -60,7 +60,7 @@ class TimeFrameControllerTests: XCTestCase {
         controller = TrainLocationTripByTimeFrameController(dateGenerator: timeProvider.generateDate)
         controller.setDataProvider(withProvider: TripProvider(dataProvider))
         controller.delegate = delegate
-        controller.setCurrentLocation(location: CLLocation(latitude: 1, longitude: 1))
+       // controller.setCurrentLocation(location: CLLocation(latitude: 1, longitude: 1))
         
     }
     
