@@ -10,8 +10,7 @@ import Foundation
 import CoreLocation
 
 /**
- This class controls trips, that have no direct binding from locations and times, for example if you download a timetable
- This Controller tries to calculate proper animations for a trip
+This Controller calculates the approximate train position based on a fixed time. 
  */
 public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     

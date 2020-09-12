@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import Log
 
 public class TrainLocationProxy: NSObject {
     
@@ -20,10 +21,9 @@ public class TrainLocationProxy: NSObject {
     }
     
     public func register<T: TrainLocationProtocol>(controller: T) {
-        print("Registered \(String(describing: controller.self)) as a TrainLocation Controller")
+        Log.info("Registered \(String(describing: controller.self)) as a TrainLocation Controller")
         var ctrl = controller
         ctrl.delegate = self
-        //controllers.append(ctrl)
         controller.update()
         controller.start()
     }

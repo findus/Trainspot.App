@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 
+
 public enum TrainState {
     case DepartsToLate
     case WaitForStart(TimeInterval)
@@ -33,6 +34,9 @@ public enum TrainState {
     }
 }
 
+/**
+Data Object that holds information about the trip at a certain amount of time
+*/
 public struct TripData {
     public let location: CLLocation?
     public let state: TrainState

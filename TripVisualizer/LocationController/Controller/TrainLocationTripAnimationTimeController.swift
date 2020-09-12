@@ -10,9 +10,10 @@ import Foundation
 import CoreLocation
 
 /**
- This class controls trips, that have no direct binding from locations and times, for example if you download a timetable
- This Controller tries to calculate proper animations for a trip
+ First implementation that calculates animation speed between 2 polyline points.
+ Does not work very well and breaks if you zoom the map dont use it
  */
+@available(*, deprecated, message: "Use the Timeframe Controller")
 class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
     
     typealias T = JourneyTrip

@@ -9,6 +9,10 @@
 import Foundation
 import CoreLocation
 
+/**
+ Gets Trips from the Hafas Radar Endpoints and prints them on the map, only availlable for DB Fernverkehr
+ Pretty old and needs further refactoring to make it usable again
+ */
 class TrainLocationRadarController: TrainLocationProtocol {
 
     typealias T = RadarTrip

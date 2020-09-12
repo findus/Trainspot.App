@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Convenience method to check if an entry exists at a specific index of a collection without crashing the app
+ */
 extension Collection where Indices.Iterator.Element == Index {
     subscript (exist index: Index) -> Iterator.Element? {
         return indices.contains(index) ? self[index] : nil
