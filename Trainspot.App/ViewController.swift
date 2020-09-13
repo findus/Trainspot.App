@@ -37,6 +37,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     private var selectedTrip: Trip? {
         didSet {
             self.drawHighlightedPolyLineForSelectedTrip()
+            if selectedTrip != nil {
+                let location = selectedTrip!.nearestTrackPosition(forUserLocation: UserPrefs.getManualLocation())
+                self.mapViewController?.setLineToNearestTrack(forTrackPosition: location, andUserlocation: UserPrefs.getManualLocation().coordinate)
+            }
+            
         }
     }
     
@@ -169,6 +174,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         if UserPrefs.getManualPositionDetermination() {
             self.tripTimeFrameLocationController.setCurrentLocation(location: UserPrefs.getManualLocation())
+            
+            guard let selectedTrip = self.selectedTrip else {
+                return
+            }
+            
+            let location = selectedTrip.nearestTrackPosition(forUserLocation: UserPrefs.getManualLocation())
+            self.mapViewController?.setLineToNearestTrack(forTrackPosition: location, andUserlocation: UserPrefs.getManualLocation().coordinate)
         }
     }
     
@@ -335,6 +347,13 @@ extension ViewController: MapViewControllerDelegate {
         self.generator.notificationOccurred(.success)
         UserPrefs.setManualLocation(location)
         tripTimeFrameLocationController.setCurrentLocation(location: location)
+        
+        guard let selectedTrip = self.selectedTrip else {
+            return
+        }
+        
+        let location = selectedTrip.nearestTrackPosition(forUserLocation: UserPrefs.getManualLocation())
+        self.mapViewController?.setLineToNearestTrack(forTrackPosition: location, andUserlocation: UserPrefs.getManualLocation().coordinate)
     }
 }
 
