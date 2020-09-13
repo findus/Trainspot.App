@@ -12,6 +12,7 @@ import CoreLocation
 public protocol TrainLocationProtocol {
     associatedtype T : Trip
     associatedtype P
+    var uid: UUID { get }
     func remove(trip :T)
     func register(trip :T)
     func start()

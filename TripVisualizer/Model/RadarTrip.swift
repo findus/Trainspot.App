@@ -9,24 +9,24 @@
 import Foundation
 import CoreLocation
 
-class RadarTrip: Trip {
+public class RadarTrip: Trip {
    
-    var delay: Int?
+    public var delay: Int?
    
-    var tripId: String
+    public var tripId: String
    
-    let departure: Date
+    public let departure: Date
     /**
             A line, that represents the trains approximate location for the next 45 Minutes, 61 entries ~every 45 Seconds
      */
-    let polyline: Array<MapEntity>
-    let name: String
+    public let polyline: Array<MapEntity>
+    public let name: String
     
-    let journey: Journey?
+    public let journey: Journey?
     
     let type: String
     
-    let destination: String
+    public let destination: String
     
     public init(withDeparture time: Date, andName name: String, andLines line: Array<MapEntity>, isType type: String, andId id: String, withDestination destination: String) {
         self.departure = time
@@ -41,7 +41,7 @@ class RadarTrip: Trip {
     /**
      Checks, if the train is heading towards the user, or still passed the location
      */
-    func isParting(forUserLocation loc: CLLocation) -> Bool {
+    public func isParting(forUserLocation loc: CLLocation) -> Bool {
         let shortestPosition = self.shortestDistanceArrayPosition(forUserLocation: loc)
         let trainPosition = self.currentTrainPosition()
         
@@ -55,7 +55,7 @@ class RadarTrip: Trip {
     /*
      Gets tracks shortest distance to the user, so that we can calulcate the approximate arrival of the train
      */
-    func shorttestDistanceToTrack(forUserLocation loc : CLLocation) -> Double {
+    public func shorttestDistanceToTrack(forUserLocation loc : CLLocation) -> Double {
         return polyline[self.shortestDistanceArrayPosition(forUserLocation: loc)].location.distance(from: loc)
     }
     
@@ -75,7 +75,7 @@ class RadarTrip: Trip {
     /**
      Returns the current position of the train, which is the nth position inside the array, returns empty if array bounds are exceeded
      */
-    func currentTrainPosition() -> Int? {
+    public func currentTrainPosition() -> Int? {
         let date = self.departure
         let now = Date.init()
         let diff = now.timeIntervalSince(date)

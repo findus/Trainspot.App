@@ -46,8 +46,15 @@ public struct TripData {
     public var delay: Int
 }
 
+/**
+ Protocol with callback methods that a controller emits
+ */
 public protocol TrainLocationDelegate: NSObject {
     var id: String { get }
+    /**
+     Callback that gets triggered inside the Trainlocationcontrollers, most likely by a timer. The callback data includes the train position and additional data to display
+     The trigger interval is configurable inside the controller
+     */
     func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) -> Void
     func removeTripFromMap(forTrip trip: Trip) -> Void
     func drawPolyLine(forTrip: Trip) -> Void

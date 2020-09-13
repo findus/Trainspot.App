@@ -13,23 +13,24 @@ import CoreLocation
  Gets Trips from the Hafas Radar Endpoints and prints them on the map, only availlable for DB Fernverkehr
  Pretty old and needs further refactoring to make it usable again
  */
-class TrainLocationRadarController: TrainLocationProtocol {
+public class TrainLocationRadarController: TrainLocationProtocol {
 
-    typealias T = RadarTrip
-    typealias P = TripProvider<T>
+    public typealias T = RadarTrip
+    public typealias P = TripProvider<T>
     
     var trips: Array<T> = [T]()
     var timer: Timer? = nil
+    public var uid: UUID
     private var dataProvider: TripProvider<T>?
 
-    weak var delegate: TrainLocationDelegate?
+    weak public var delegate: TrainLocationDelegate?
         
-    init() {
-        
+    public init() {
+        self.uid = UUID()
     }
     
     
-    func register(trip: T) {
+    public func register(trip: T) {
         self.trips.append(trip)
         let data = TripData(location: trip.polyline[0].location, state: .Driving(nil), arrival: -1, delay: 0)
         self.delegate?.trainPositionUpdated(forTrip: trip, withData: data, withDuration: 0)
@@ -53,32 +54,32 @@ class TrainLocationRadarController: TrainLocationProtocol {
         self.delegate?.trainPositionUpdated(forTrip: trip, withData: tripData, withDuration: DURATION)
     }
     
-    func setCurrentLocation(location: CLLocation) {
+    public func setCurrentLocation(location: CLLocation) {
         fatalError("Not yet implemented")
     }
     
-    func remove(trip: RadarTrip) {
+    public func remove(trip: RadarTrip) {
         
     }
     
-    func start() {
+    public func start() {
         self.timer = Timer.scheduledTimer(timeInterval: DURATION, target: self, selector: #selector(eventLoop), userInfo: nil, repeats: true)
     }
     
-    func pause() {
+    public func pause() {
         self.timer?.invalidate()
         //TODO recalc animations
         fatalError("Pausing not fully implemented")
     }
     
-    func update() {
+    public func update() {
         guard let trips = dataProvider?.getAllTrips() else {
             return
         }
         self.trips = trips
     }
     
-    func setDataProvider(withProvider provider: TripProvider<RadarTrip>) {
+    public func setDataProvider(withProvider provider: TripProvider<RadarTrip>) {
         self.dataProvider = provider
     }
     

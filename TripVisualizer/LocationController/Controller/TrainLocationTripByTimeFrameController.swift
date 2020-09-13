@@ -23,10 +23,12 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     public typealias P = TripProvider<T>
 
     public weak var delegate: TrainLocationDelegate?
+    public var uid: UUID
     
     private var currentUserLocation: CLLocation?
         
     var trips: Set<TimeFrameTrip> = Set.init()
+    
     private var timer: Timer? {
         didSet {
             oldValue?.invalidate()
@@ -40,6 +42,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     
     public init(dateGenerator: @escaping () -> Date = Date.init) {
         self.dateGenerator = dateGenerator
+        self.uid = UUID()
     }
     
     public func remove(trip: TimeFrameTrip) {

@@ -135,7 +135,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         #endif
 
         self.manager.register(controller: tripTimeFrameLocationController)
-                
+       // self.manager.register(controller: TrainLocationRadarController())
+
+        
         self.statusView.startTimer()
         self.bottomView.layer.shadowOpacity = 0.7
         self.bottomView.layer.shadowOffset = CGSize(width: 3, height: 3)

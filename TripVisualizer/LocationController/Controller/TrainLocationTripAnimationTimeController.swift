@@ -24,6 +24,7 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
     var trips: [String: (JourneyTrip, Timer)] = [:]
     private var timer: Timer? = nil
     private var dataProvider: TripProvider<T>?
+    var uid: UUID
     
     var timers : Array<Timer> = []
     
@@ -46,6 +47,8 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
         dateComponents.second = 0
         
         datestack.append(userCalendar.date(from: dateComponents)!)
+        
+        self.uid = UUID()
     }
     
     func remove(trip: JourneyTrip) {

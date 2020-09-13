@@ -15,7 +15,7 @@ public class TrainLocationProxy: NSObject {
     public var delegate: Array<TrainLocationDelegate>? = Array.init()
     
     public static let shared = TrainLocationProxy()
-    
+        
     private override init() {
         
     }
