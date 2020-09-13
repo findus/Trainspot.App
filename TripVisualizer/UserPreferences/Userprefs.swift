@@ -61,4 +61,15 @@ public class UserPrefs {
         UserDefaults.standard.set(data, forKey: selectedStation)
         UserDefaults.standard.synchronize()
     }
+    
+    private static let _useRealLocation = "USE_USER_SET_LOCATION"
+    
+    public static func getManualPositionDetermination() -> Bool {
+        return UserDefaults.standard.bool(forKey: _useRealLocation)
+    }
+    
+    public static func setManualPositionDetermination(_ useRealLocation: Bool) {
+        UserDefaults.standard.set(useRealLocation, forKey: _useRealLocation)
+        UserDefaults.standard.synchronize()
+    }
 }

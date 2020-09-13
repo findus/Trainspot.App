@@ -363,6 +363,35 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="a6g-8H-4sT" userLabel="Manuelle Positionsbestimmung" customClass="DistanceToStationCell" customModule="Trainspot_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="428" width="414" height="77"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a6g-8H-4sT" id="ORs-o5-CCG">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3b7-hU-XiJ">
+                                                    <rect key="frame" x="30" y="23" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="onLocationSettingsTapped:" destination="O1h-9j-mgB" eventType="touchUpInside" id="80c-1N-fbd"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manuelle Positionsbestimmung" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0M-bd-B89">
+                                                    <rect key="frame" x="89" y="28" width="295" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3b7-hU-XiJ" firstAttribute="leading" secondItem="ORs-o5-CCG" secondAttribute="leadingMargin" constant="10" id="3vr-US-byv"/>
+                                                <constraint firstItem="3b7-hU-XiJ" firstAttribute="centerY" secondItem="ORs-o5-CCG" secondAttribute="centerY" id="EIz-3j-7j5"/>
+                                                <constraint firstItem="M0M-bd-B89" firstAttribute="leading" secondItem="3b7-hU-XiJ" secondAttribute="trailing" constant="10" id="Hxy-CS-oWT"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="M0M-bd-B89" secondAttribute="trailing" constant="10" id="QwS-fb-ngb"/>
+                                                <constraint firstItem="M0M-bd-B89" firstAttribute="centerY" secondItem="ORs-o5-CCG" secondAttribute="centerY" id="VCd-Zk-TzR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -378,6 +407,7 @@
                         <outlet property="stationLabel" destination="xyb-ci-8kh" id="VwW-80-OGs"/>
                         <outlet property="timeOffsetLabel" destination="czV-CO-9gO" id="WhJ-d3-gYR"/>
                         <outlet property="timeOffsetSlider" destination="Mfr-bT-SbS" id="9wU-R3-g6h"/>
+                        <outlet property="useManualPosition" destination="3b7-hU-XiJ" id="luX-1k-s42"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4v5-yC-LkX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -22,12 +22,14 @@ class SettingsTableViewController: UITableViewController  {
     @IBOutlet weak var macDistanceLabel: UILabel!
     @IBOutlet weak var maxDistanceSlider: UISlider!
     
+    @IBOutlet weak var useManualPosition: UISwitch!
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 5
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
@@ -67,6 +69,18 @@ class SettingsTableViewController: UITableViewController  {
         self.present(controller, animated: true, completion: nil)
     }
     
+    @IBAction func onLocationSettingsTapped(_ sender: Any) {
+        
+        UserPrefs.setManualPositionDetermination(self.useManualPosition.isOn)
+        
+        if useManualPosition.isOn {
+            SwiftEventBus.post("useManualPosition", sender: true)
+        } else {
+            SwiftEventBus.post("useManualPosition", sender: false)
+            UserLocationController.shared.reask()
+        }
+        
+    }
 }
 
 // MARK: - Lifecycle
@@ -74,34 +88,36 @@ class SettingsTableViewController: UITableViewController  {
 extension SettingsTableViewController {
     override func viewDidLoad() {
         Log.info("Setup setting view...")
+        
+        //Time offset
         timeOffsetSlider.maximumValue = 100
         timeOffsetSlider.minimumValue = 0
         
         timeOffsetSlider.value = Float(UserPrefs.getTimeOffset())
         timeOffsetLabel.text = String(UserPrefs.getTimeOffset())
         
+        // Max distance
         maxDistanceSlider.maximumValue = 9000
         maxDistanceSlider.minimumValue = 100
         
-        maxDistanceSlider.value = Float(UserPrefs.getMaxDistance())
-        macDistanceLabel.text = String(UserPrefs.getMaxDistance())
-        
+        // StationData
         let stationData = UserPrefs.getSelectedStation()
         self.stationLabel.text = stationData.name
         
         self.dismissKey()
-            
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.maxDistanceSlider.value = Float(UserPrefs.getMaxDistance())
+        self.macDistanceLabel.text = String(UserPrefs.getMaxDistance())
+        self.useManualPosition.isOn = UserPrefs.getManualPositionDetermination()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        
-        // Tabbed at Station Selection
-        if indexPath.row == 0 {
-            
-        }
-        
     }
+    
 }
 
 // MARK: - Autocomplete Delegate

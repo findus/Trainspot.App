@@ -57,6 +57,11 @@ class MapViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // Check if locationmanager is still active
+        self.map.showsUserLocation = !UserPrefs.getManualPositionDetermination()
+    }
+    
     private func centerCamera(atTripWithId id: String) {
         let coords = self.markerDict[id]!.coordinate
         let region = MKCoordinateRegion(center: coords, latitudinalMeters: 10000, longitudinalMeters: 10000)

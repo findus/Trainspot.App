@@ -164,6 +164,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.proportionalHeightConstraint.constant = -200
 
         self.setupBus()
+
+        self.mapViewController?.delegate = self
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -311,6 +313,14 @@ extension ViewController {
             self.selectedTrip = trip
         }
         self.statusView.setStatus(forTrip: trip, andData: data)
+    }
+}
+
+// MARK: - Mapview Controller
+
+extension ViewController: MapViewControllerDelegate {
+    func userPressedAt(location: CLLocation) {
+        tripTimeFrameLocationController.setCurrentLocation(location: location)
     }
 }
 
