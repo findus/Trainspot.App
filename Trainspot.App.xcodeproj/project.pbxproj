@@ -26,7 +26,6 @@
 		B630D4CDAFB2E2D74C4A2DFB /* Pods_Trainspot_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451193504AF1190EE6A7C324 /* Pods_Trainspot_App.framework */; };
 		D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB6248BACD10022A6BB /* TrainAnnotation.swift */; };
 		D431C40224963BBE00199742 /* wfb_trip_bielefeld in Resources */ = {isa = PBXBuildFile; fileRef = D431C40124963BBE00199742 /* wfb_trip_bielefeld */; };
-		D431C40324963FC000199742 /* wfb_trip_bielefeld in Resources */ = {isa = PBXBuildFile; fileRef = D431C40124963BBE00199742 /* wfb_trip_bielefeld */; };
 		D43705692509877F00A1795F /* DistanceToStationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43705682509877F00A1795F /* DistanceToStationCell.swift */; };
 		D437056C2509883300A1795F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437056B2509883300A1795F /* SettingsTableViewController.swift */; };
 		D437DD88250A9F0200ED8909 /* D_Bahnhof_2020_alle.CSV in Resources */ = {isa = PBXBuildFile; fileRef = D4D91379250A8D2C00A7DBE0 /* D_Bahnhof_2020_alle.CSV */; };
@@ -42,8 +41,6 @@
 		D437DDA1250ACCAB00ED8909 /* AutocompleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437DDA0250ACCAB00ED8909 /* AutocompleteDelegate.swift */; };
 		D437DDA2250ACCAB00ED8909 /* AutocompleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437DDA0250ACCAB00ED8909 /* AutocompleteDelegate.swift */; };
 		D437DDA3250AD0E800ED8909 /* Userprefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437056E2509900400A1795F /* Userprefs.swift */; };
-		D43F04CF250D42D200E3A901 /* ice_arrivaldelay in Resources */ = {isa = PBXBuildFile; fileRef = D43F04CE250D42D200E3A901 /* ice_arrivaldelay */; };
-		D43F04D0250D42D200E3A901 /* ice_arrivaldelay in Resources */ = {isa = PBXBuildFile; fileRef = D43F04CE250D42D200E3A901 /* ice_arrivaldelay */; };
 		D43F04D1250D42D200E3A901 /* ice_arrivaldelay in Resources */ = {isa = PBXBuildFile; fileRef = D43F04CE250D42D200E3A901 /* ice_arrivaldelay */; };
 		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
 		D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5C2490195100AF77F6 /* TrainViewList.swift */; };
@@ -55,10 +52,10 @@
 		D47E0A33250BDB110068126D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */; };
 		D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
 		D4A30E44249588C800B2684C /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
-		D4A30E4524958ABD00B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
-		D4A30E4624958ABF00B2684C /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
-		D4A30E4724958BBE00B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
-		D4A30E4824958BBE00B2684C /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
+		D4A5B7E9250EDA8D003257F5 /* MockTrainDataTimeFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABF248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift */; };
+		D4A5B7EB250EDD31003257F5 /* bs_delay in Resources */ = {isa = PBXBuildFile; fileRef = D4BEDC80250ED247006621AB /* bs_delay */; };
+		D4A5B7EC250EDD37003257F5 /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
+		D4A5B7ED250EDD60003257F5 /* MockTrainDataTimeFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABF248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift */; };
 		D4B636902495785B00996744 /* TripVisualizer.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B6368E2495785B00996744 /* TripVisualizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4B636932495785B00996744 /* TripVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; };
 		D4B636942495785B00996744 /* TripVisualizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -79,7 +76,6 @@
 		D4B636A92495793300996744 /* HafasParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB3248A8F770022A6BB /* HafasParser.swift */; };
 		D4B636AA2495793800996744 /* MockTrainDataRadarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505C2488E8CB00A3D857 /* MockTrainDataRadarProvider.swift */; };
 		D4B636AB2495793B00996744 /* MockTrainDataJourneyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506224891D1400A3D857 /* MockTrainDataJourneyProvider.swift */; };
-		D4B636AC2495793E00996744 /* MockTrainDataTimeFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABF248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift */; };
 		D4B636AD2495794200996744 /* TrainDataProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C50592488E70A00A3D857 /* TrainDataProviderProtocol.swift */; };
 		D4B636AE2495794500996744 /* TripProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C5074248A51EA00A3D857 /* TripProvider.swift */; };
 		D4B636AF2495794C00996744 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AF5162248D2E3800C9D7BE /* DateUtils.swift */; };
@@ -121,6 +117,7 @@
 		D4BCAFCA24953752000B40D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAACD2487AC1900D33AA2 /* Main.storyboard */; };
 		D4BCAFCB24953752000B40D8 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46B6B6524912CF200AF77F6 /* StatusView.xib */; };
 		D4BCAFCD24953752000B40D8 /* MKTrainAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF932493FD42000B40D8 /* MKTrainAnnotationView.xib */; };
+		D4BEDC81250ED247006621AB /* bs_delay in Resources */ = {isa = PBXBuildFile; fileRef = D4BEDC80250ED247006621AB /* bs_delay */; };
 		D4D91374250A83B600A7DBE0 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437056B2509883300A1795F /* SettingsTableViewController.swift */; };
 		D4D913B1250A91AE00A7DBE0 /* CSVParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D913A8250A91AD00A7DBE0 /* CSVParser.framework */; };
 		D4D913BE250A91AE00A7DBE0 /* CSVParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4D913A8250A91AD00A7DBE0 /* CSVParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -313,6 +310,7 @@
 		D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrameControllerTests.swift; sourceTree = "<group>"; };
 		D4BEDC3D250E566C006621AB /* Trainspot.App copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Trainspot.App copy2-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/Trainspot.App copy2-Info.plist"; sourceTree = "<absolute>"; };
 		D4BEDC7F250E5684006621AB /* Trainspot.App copy3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Trainspot.App copy3-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/Trainspot.App copy3-Info.plist"; sourceTree = "<absolute>"; };
+		D4BEDC80250ED247006621AB /* bs_delay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bs_delay; sourceTree = "<group>"; };
 		D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasDTOs.swift; sourceTree = "<group>"; };
 		D4D91379250A8D2C00A7DBE0 /* D_Bahnhof_2020_alle.CSV */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = D_Bahnhof_2020_alle.CSV; sourceTree = "<group>"; };
 		D4D9137C250A8D5300A7DBE0 /* CsvReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CsvReader.swift; sourceTree = "<group>"; };
@@ -570,6 +568,7 @@
 		D46B6B6224912C5F00AF77F6 /* MockData */ = {
 			isa = PBXGroup;
 			children = (
+				D4BEDC80250ED247006621AB /* bs_delay */,
 				D43F04CE250D42D200E3A901 /* ice_arrivaldelay */,
 				D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */,
 				D4BCAFD62495405D000B40D8 /* wfb_trip */,
@@ -1028,10 +1027,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D43F04D0250D42D200E3A901 /* ice_arrivaldelay in Resources */,
-				D431C40324963FC000199742 /* wfb_trip_bielefeld in Resources */,
-				D4A30E4724958BBE00B2684C /* FormerScheduledArrivalDeparture in Resources */,
-				D4A30E4824958BBE00B2684C /* wfb_trip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,6 +1037,7 @@
 				D43F04D1250D42D200E3A901 /* ice_arrivaldelay in Resources */,
 				D431C40224963BBE00199742 /* wfb_trip_bielefeld in Resources */,
 				D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */,
+				D4BEDC81250ED247006621AB /* bs_delay in Resources */,
 				D4A30E44249588C800B2684C /* wfb_trip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1081,15 +1077,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A5B7EB250EDD31003257F5 /* bs_delay in Resources */,
 				D437DD96250ABE6E00ED8909 /* BasicCell.xib in Resources */,
 				D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
-				D4A30E4524958ABD00B2684C /* FormerScheduledArrivalDeparture in Resources */,
 				D437DD93250AB6D400ED8909 /* AutoCompleteViewController.xib in Resources */,
-				D43F04CF250D42D200E3A901 /* ice_arrivaldelay in Resources */,
+				D4A5B7EC250EDD37003257F5 /* wfb_trip in Resources */,
 				178090C624981C9D00DBC0B6 /* TrainOverViewCell.xib in Resources */,
 				D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */,
-				D4A30E4624958ABF00B2684C /* wfb_trip in Resources */,
 				D4BCAF942493FD42000B40D8 /* MKTrainAnnotationView.xib in Resources */,
 				D4BCAF98249428F2000B40D8 /* Assets.xcassets in Resources */,
 			);
@@ -1291,7 +1286,6 @@
 				D4B636A32495791200996744 /* Trip.swift in Sources */,
 				D4B636A72495791E00996744 /* HafasDTOs.swift in Sources */,
 				D4B6369E2495790000996744 /* TrainLocationTripAnimationTimeController.swift in Sources */,
-				D4B636AC2495793E00996744 /* MockTrainDataTimeFrameProvider.swift in Sources */,
 				D4B636A82495793000996744 /* NetworkTrainDataTimeFrameProvider.swift in Sources */,
 				D4B636B324957A4700996744 /* MapEntity.swift in Sources */,
 				D4B6369C249578F600996744 /* TrainLocationProxy.swift in Sources */,
@@ -1325,6 +1319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A5B7E9250EDA8D003257F5 /* MockTrainDataTimeFrameProvider.swift in Sources */,
 				D4B636D72495840A00996744 /* TimeFrameControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1397,6 +1392,7 @@
 				D4B636C024957DBE00996744 /* Log.swift in Sources */,
 				D47E09F7250BB6250068126D /* DistanceToStationCell.swift in Sources */,
 				178090C32498182300DBC0B6 /* PaddingLabel.swift in Sources */,
+				D4A5B7ED250EDD60003257F5 /* MockTrainDataTimeFrameProvider.swift in Sources */,
 				D437DD8D250AB55200ED8909 /* AutoCompleteViewController.swift in Sources */,
 				D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */,
 				D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */,

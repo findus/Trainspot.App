@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import TripVisualizer
 
 public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
     
-    var tripFile: String = "wfb_trip"
+    var tripFile: String
    
     var delegate: TrainDataProviderDelegate? = nil
 
@@ -18,8 +19,9 @@ public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
     
     let decoder = JSONDecoder()
       
-    public init() {
+    public init(withFile file: String) {
         decoder.dateDecodingStrategy = .formatted(getDateFormatter())
+        tripFile = file
     }
        
     public func getAllTrips() -> Array<TimeFrameTrip> {
@@ -53,7 +55,7 @@ public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
         do {
             return try decoder.decode(HafasTrip.self, from: trip)
         } catch {
-            Log.error(error)
+            print(error)
         }
         return nil
     }

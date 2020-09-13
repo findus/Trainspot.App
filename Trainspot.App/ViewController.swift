@@ -122,11 +122,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
          
         #if MOCK
         var components = DateComponents()
-        components.second = 00
-        components.hour = 16
-        components.minute = 20
-        components.day = 12
-        components.month = 6
+        components.second = 0
+        components.hour = 0
+        components.minute = 0
+        components.day = 14
+        components.month = 9
         components.year = 2020
         let date = Calendar.current.date(from: components)
         let traveler = TimeTraveler()
@@ -135,14 +135,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         traveler.date = date!
         tripTimeFrameLocationController = TrainLocationTripByTimeFrameController(dateGenerator: traveler.generateDate)
-        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider()))
+        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "bs_delay")))
         #else
         tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(NetworkTrainDataTimeFrameProvider()))
         #endif
 
         self.manager.register(controller: tripTimeFrameLocationController)
-       // self.manager.register(controller: TrainLocationRadarController())
-
         
         self.statusView.startTimer()
         self.bottomView.layer.shadowOpacity = 0.7

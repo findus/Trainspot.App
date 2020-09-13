@@ -13,12 +13,12 @@ import XCTest
 @testable import TripVisualizer
 
 class MockDelegate: NSObject, TrainLocationDelegate {
-    
-    func onUpdateStarted() {
+   
+    func onUpdateEnded(withResult result: Result) {
         
     }
     
-    func onUpdateEnded() {
+    func onUpdateStarted() {
         
     }
     
@@ -600,5 +600,46 @@ class TimeFrameControllerTests: XCTestCase {
         XCTAssertTrue(arrivalTimeDiff == 1 , "Arrival time must decrease in one-second-interval (Is: \(arrivalTimeDiff))")
 
     }
+    
+    // Delay
+    
+    func testDelayForNextStation() {
+        self.dataProvider.setTrip(withName: "bs_delay")
+        self.dataProvider.update()
+        self.reloadTrips()
+        
+        guard let initialTrip = self.initialTrip else {
+            XCTFail("Failed to get trip")
+            return
+        }
+        
+        self.controller.setCurrentLocation(location: initialTrip.locationArray.first!.coords)
+        
+        var components = DateComponents()
+        components.second = 0
+        components.hour = 0
+        components.minute = 0
+        components.day = 14
+        components.month = 9
+        components.year = 2020
+        guard let date = Calendar.current.date(from: components) else {
+            XCTFail("Could not parse date")
+            return
+        }
+        
+        self.timeProvider.date = date
+        
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        guard let (_, data, _) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+        
+        XCTAssertEqual(data.state.get(), "Braunschweig Hbf")
+        XCTAssertEqual(data.delay,300)
+    }
+    
 
 }

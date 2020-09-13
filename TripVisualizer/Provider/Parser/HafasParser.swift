@@ -10,11 +10,11 @@ import Foundation
 import CoreLocation
 import SwiftyJSON
 
-class HafasParser {
+public class HafasParser {
     
 // MARK: TripJourney parsing
     
-    enum HafasParseError : Error {
+    public enum HafasParseError : Error {
         case DecodeError(errormessage: String)
     }
     
@@ -108,7 +108,7 @@ class HafasParser {
         
     }
     
-    struct Section {
+    public struct Section {
         var time: TimeInterval
         var distance: Double
         var distances: Array<Double>
@@ -117,7 +117,7 @@ class HafasParser {
         }
     }
     
-    enum AnimationCalculationError: Error {
+    public enum AnimationCalculationError: Error {
         case NoDurationFound(message : String)
         case DepartureDateNotFound(message : String)
         case PolyLineNotFound(message: String)

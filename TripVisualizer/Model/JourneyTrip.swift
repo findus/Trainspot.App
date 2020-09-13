@@ -16,46 +16,46 @@ public protocol Feature {
     var distanceToNext: Double { get set }
 }
 
-struct Path: Feature {
-    var distanceToNext: Double
-    var durationToNext: Double?
+public struct Path: Feature {
+    public var distanceToNext: Double
+    public var durationToNext: Double?
     
-    var departure: Date?
-    var coords: CLLocation
+    public var departure: Date?
+    public var coords: CLLocation
 
     //animation data
-    var lastBeforeStop: Bool = false
+    public var lastBeforeStop: Bool = false
 }
 
-struct StopOver: Feature {
-    var distanceToNext: Double
-    var durationToNext: Double?
+public struct StopOver: Feature {
+    public var distanceToNext: Double
+    public var durationToNext: Double?
 
-    var name: String
-    var coords: CLLocation
+    public var name: String
+    public var coords: CLLocation
 
-    var arrival: Date?
-    var departure: Date?
+    public var arrival: Date?
+    public var departure: Date?
     
-    var arrivalDelay: Int?
+    public var arrivalDelay: Int?
 }
 
-enum VehicleState {
+public enum VehicleState {
     case Driving
     case Stopping
     case Accelerating
 }
     
-struct AnimationData {
-    var vehicleState: VehicleState
-    var duration: Double
+public struct AnimationData {
+    public var vehicleState: VehicleState
+    public var duration: Double
 }
 
 public struct Timeline {
-    var name: String
-    var line: Array<Feature>
-    var animationData: Array<AnimationData>
-    var departure: Date
+    public var name: String
+    public var line: Array<Feature>
+    public var animationData: Array<AnimationData>
+    public var departure: Date
 }
 
 public class JourneyTrip: Trip, Hashable {
