@@ -166,6 +166,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.setupBus()
 
         self.mapViewController?.delegate = self
+        
+        if UserPrefs.getManualPositionDetermination() {
+            self.tripTimeFrameLocationController.setCurrentLocation(location: UserPrefs.getManualLocation())
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -320,6 +324,7 @@ extension ViewController {
 
 extension ViewController: MapViewControllerDelegate {
     func userPressedAt(location: CLLocation) {
+        UserPrefs.setManualLocation(location)
         tripTimeFrameLocationController.setCurrentLocation(location: location)
     }
 }
@@ -342,6 +347,17 @@ extension ViewController {
         SwiftEventBus.onMainThread(self, name: "UpdatedSettings") { (notification) in
             self.mapViewController?.removeAllEntries()
             self.tripTimeFrameLocationController.fetchServer()
+        }
+        
+        SwiftEventBus.onMainThread(self, name: "useManualPosition") { (notification) in
+            
+            guard let enabled = notification?.object as? Bool else {
+                return
+            }
+            
+            if enabled == true {
+                self.tripTimeFrameLocationController.setCurrentLocation(location: UserPrefs.getManualLocation())
+            }
         }
     }
     

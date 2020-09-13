@@ -25,6 +25,8 @@ class MapViewController: UIViewController {
     var markerDict: Dictionary<String, MKPointAnnotation> = Dictionary.init()
     var lineDict: Dictionary<String, TrainTrackPolyLine> = Dictionary.init()
     
+    var fakedUserPosition: MKPointAnnotation?
+    
     private var selectedPolyLineTripId: String? {
         didSet {
             if selectedPolyLineTripId == nil && oldValue != nil {
@@ -60,6 +62,10 @@ class MapViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         // Check if locationmanager is still active
         self.map.showsUserLocation = !UserPrefs.getManualPositionDetermination()
+       
+        if UserPrefs.getManualPositionDetermination() {
+            self.addFakedUserPosition(onLocation: UserPrefs.getManualLocation().coordinate)
+        }
     }
     
     private func centerCamera(atTripWithId id: String) {
@@ -68,6 +74,17 @@ class MapViewController: UIViewController {
         map.setRegion(region, animated: true)
     }
     
+    private func addFakedUserPosition(onLocation location: CLLocationCoordinate2D) {
+        
+        if let annotation = self.fakedUserPosition {
+            self.map.removeAnnotation(annotation)
+        }
+        
+        let pin = MKPointAnnotation()
+        pin.coordinate = location
+        self.map.addAnnotation(pin)
+        self.fakedUserPosition = pin
+    }
     
     private func selectTrip(withId id: String) {
         let annotation = self.markerDict[id]
@@ -143,6 +160,7 @@ class MapViewController: UIViewController {
         guard sender.state == .began else { return }
         let location = sender.location(in: self.map)
         let coord = self.map.convert(location, toCoordinateFrom: self.map)
+        self.addFakedUserPosition(onLocation: coord)
         self.delegate?.userPressedAt(location: CLLocation(latitude: coord.latitude, longitude: coord.longitude))
     }
     

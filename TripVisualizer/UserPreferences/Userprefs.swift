@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public struct StationInfo: Codable {
     public init(_ name: String,_ ibnr: String) {
@@ -15,6 +16,15 @@ public struct StationInfo: Codable {
     }
     public var name: String
     public var ibnr: String
+}
+
+public struct Location: Codable {
+    public init(_ lat: Double,_ lon: Double) {
+        self.lat = lat
+        self.lon = lon
+    }
+    public var lat: Double
+    public var lon: Double
 }
 
 public class UserPrefs {
@@ -70,6 +80,23 @@ public class UserPrefs {
     
     public static func setManualPositionDetermination(_ useRealLocation: Bool) {
         UserDefaults.standard.set(useRealLocation, forKey: _useRealLocation)
+        UserDefaults.standard.synchronize()
+    }
+    
+    private static let manualLocation = "MANUAL_LOCATION"
+    
+    public static func getManualLocation() -> CLLocation {
+        guard let data = UserDefaults.standard.data(forKey: manualLocation) else {
+            return CLLocation(latitude: 1, longitude: 1)
+        }
+        let location = try! PropertyListDecoder().decode(Location.self, from: data)
+        return CLLocation(latitude: location.lat, longitude: location.lon)
+    }
+    
+    public static func setManualLocation(_ location: CLLocation) {
+        let loc = Location(location.coordinate.latitude, location.coordinate.longitude)
+        let data = try! PropertyListEncoder().encode(loc)
+        UserDefaults.standard.set(data, forKey: manualLocation)
         UserDefaults.standard.synchronize()
     }
 }
