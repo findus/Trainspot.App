@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D4BCAF9924953752000B40D8"
-               BuildableName = "Trainspot.app"
+               BuildableName = "Trainspot.App.app"
                BlueprintName = "Trainspot.App"
                ReferencedContainer = "container:Trainspot.App.xcodeproj">
             </BuildableReference>
@@ -89,7 +89,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D4BCAF9924953752000B40D8"
-            BuildableName = "Trainspot.app"
+            BuildableName = "Trainspot.App.app"
             BlueprintName = "Trainspot.App"
             ReferencedContainer = "container:Trainspot.App.xcodeproj">
          </BuildableReference>
@@ -105,7 +105,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D4BCAF9924953752000B40D8"
-            BuildableName = "Trainspot.app"
+            BuildableName = "Trainspot.App.app"
             BlueprintName = "Trainspot.App"
             ReferencedContainer = "container:Trainspot.App.xcodeproj">
          </BuildableReference>

@@ -17,8 +17,8 @@ public struct Journey: Hashable {
     var when: Date
     var name: String
     
-    public var hashValue: Int {
-        return tripID.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.tripID)
     }
     
     public static func == (lhs: Journey, rhs: Journey) -> Bool {

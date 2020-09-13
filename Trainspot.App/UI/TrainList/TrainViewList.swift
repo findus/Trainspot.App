@@ -82,7 +82,7 @@ extension TrainViewList: TrainLocationDelegate {
         }
         
         if let cell = self.tableView.visibleCells.filter({ ($0 as! TrainOverviewCell).tripId == trip.tripId }).first {
-            self.updateCell(withTrip: trip, andTripData: self.tripData[trip.tripId]!, atCell: cell as! TrainOverviewCell)
+            _ = self.updateCell(withTrip: trip, andTripData: self.tripData[trip.tripId]!, atCell: cell as! TrainOverviewCell)
         }
     }
     
@@ -106,6 +106,7 @@ extension TrainViewList: TrainLocationDelegate {
     /**
      This method updates the content of visible cells without reloading the whole model
      */
+    @discardableResult
     private func updateCell(withTrip trip: Trip, andTripData tripData: TripData, atCell cell: TrainOverviewCell) -> TrainOverviewCell {
         
         cell.tripId = trip.tripId

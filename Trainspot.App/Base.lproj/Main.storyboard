@@ -269,7 +269,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czV-CO-9gO" userLabel="DistanceLabel">
                                                     <rect key="frame" x="344" y="25.5" width="60" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="Lu7-uG-TKd"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Lu7-uG-TKd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -312,7 +312,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvL-54-7ix" userLabel="DistanceLabel">
                                                     <rect key="frame" x="344" y="25.5" width="60" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="Jm8-os-2nB"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Jm8-os-2nB"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>

@@ -192,7 +192,7 @@ class HafasParser {
             
         }
         
-        var animationData = sections.map { (s) -> [AnimationData] in
+        let animationData = sections.map { (s) -> [AnimationData] in
             let distancePerSecond = s.distancePerSecond()
             return s.distances.enumerated().map { (i,singleDistance) -> AnimationData in
                 if i == 0 {

@@ -134,10 +134,6 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
             }
         }
         
-        if trip.polyline[newPos] is StopOver {
-            // TODO stopping
-        }
-        
         self.startNewAnimation(forTrip: trip, toPosition: trip.polyline[newPos].location, withDuration: animationData.duration, andArrayPosition: newPos)
     }
     

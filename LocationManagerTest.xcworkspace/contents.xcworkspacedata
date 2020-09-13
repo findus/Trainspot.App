@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:mapstogpx20200913_005602.gpx">
+   </FileRef>
+   <FileRef
       location = "group:/Users/findus/repos/LocationManagerTest/Trainspot.App.xcodeproj">
    </FileRef>
    <FileRef
