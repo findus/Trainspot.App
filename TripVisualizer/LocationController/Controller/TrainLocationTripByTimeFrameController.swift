@@ -170,7 +170,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         
         let set = Set(trips)
         
-        let remaining = self.trips.intersection(set)
+        let remaining = set.intersection(self.trips)
         let new = set.subtracting(self.trips)
         let lost = self.trips.subtracting(remaining)
         

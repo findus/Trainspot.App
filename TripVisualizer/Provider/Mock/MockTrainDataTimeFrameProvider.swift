@@ -9,6 +9,36 @@
 import Foundation
 import TripVisualizer
 
+/**
+Mock implementation that provides trips passed from the test from code
+*/
+public class MockTrainDataTimeFrameProviderSimple: TrainDataProviderProtocol {    
+    
+    public typealias TripData = TimeFrameTrip
+    
+    var delegate: TrainDataProviderDelegate? = nil
+    
+    public var trips: Array<TimeFrameTrip> = Array.init()
+    
+    public func getAllTrips() -> Array<TripData> {
+        return trips
+    }
+    
+    public func update() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.delegate?.onTripsUpdated(result: .success)
+        }
+    }
+    
+    public func setDeleate(delegate: TrainDataProviderDelegate) {
+        self.delegate = delegate
+    }
+
+}
+
+/**
+ Mock implementation that loads trips from json files
+ */
 public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
     
     var tripFile: String

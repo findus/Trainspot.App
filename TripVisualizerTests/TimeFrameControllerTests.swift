@@ -46,7 +46,7 @@ class MockDelegate: NSObject, TrainLocationDelegate {
 class TimeFrameControllerTests: XCTestCase {
 
     var controller = TrainLocationTripByTimeFrameController()
-    var dataProvider = MockTrainDataTimeFrameProvider()
+    var dataProvider = MockTrainDataTimeFrameProvider(withFile: "wfb_trip")
     var initialTrip: TimeFrameTrip?
     var delegate = MockDelegate()
     var timeProvider = TimeTraveler()
@@ -56,7 +56,7 @@ class TimeFrameControllerTests: XCTestCase {
         
         self.delegate = MockDelegate()
         
-        self.dataProvider = MockTrainDataTimeFrameProvider()
+        self.dataProvider = MockTrainDataTimeFrameProvider(withFile: "wfb_trip")
         controller = TrainLocationTripByTimeFrameController(dateGenerator: timeProvider.generateDate)
         controller.setDataProvider(withProvider: TripProvider(dataProvider))
         controller.delegate = delegate
@@ -641,5 +641,33 @@ class TimeFrameControllerTests: XCTestCase {
         XCTAssertEqual(data.delay,300)
     }
     
+    // UpdateMechanism
+    
+    // Remaining journeys after fetch should still be there, but should have updated data, like delay etc
+    func testRemainingJourneys() {
+        let controller = TrainLocationTripByTimeFrameController()
+        let mockProvider = MockTrainDataTimeFrameProviderSimple()
+        
+        let trip = TimeFrameTrip(withDeparture: Date(), andName: "TestTrip", andPolyline: Array.init(), andLocationMapping: Array.init(), andID: "12", andDestination: "Hell", andDelay: 0)
+        
+        let tripUpdated = TimeFrameTrip(withDeparture: Date(), andName: "TestTrip", andPolyline: Array.init(), andLocationMapping: Array.init(), andID: "12", andDestination: "Hell", andDelay: 9001)
+        
+        mockProvider.trips = [tripUpdated]
+        
+        controller.setDataProvider(withProvider: TripProvider(mockProvider))
+        
+        controller.trips = [trip]
+        controller.update()
+        
+        XCTAssertEqual(controller.trips.count, 1)
+        
+        guard let newTrip = controller.trips.first else {
+            XCTFail("No trip found after update")
+            return
+        }
+        
+        XCTAssertEqual(newTrip.delay, 9001)
+        
+    }
 
 }
