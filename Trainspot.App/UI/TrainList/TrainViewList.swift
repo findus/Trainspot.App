@@ -99,7 +99,7 @@ extension TrainViewList: TrainLocationDelegate {
         
     }
     
-    public func onUpdateEnded() {
+    public func onUpdateEnded(withResult result: Result) {
         
     }
         

@@ -31,7 +31,7 @@ public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
     
     public func update() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.delegate?.onTripsUpdated()
+            self.delegate?.onTripsUpdated(result: .success)
         }
     }
     

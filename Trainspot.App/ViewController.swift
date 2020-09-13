@@ -11,6 +11,7 @@ import CoreLocation
 import MapKit
 import TripVisualizer
 import SwiftEventBus
+import NotificationBannerSwift
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -315,11 +316,18 @@ extension ViewController: TrainLocationDelegate {
         }
     }
     
-    public func onUpdateEnded() {
+    public func onUpdateEnded(withResult result: Result) {
         self.triggeredUpdate = false
         self.loadingIndicator.isHidden = true
         generator.notificationOccurred(.success)
         self.activiyIndicatorWrapper.backgroundColor = #colorLiteral(red: 0.1996439938, green: 0.690910533, blue: 0.4016630921, alpha: 0.759765625)
+        
+        switch result {
+        case .success:
+            Log.trace("Update of train data successful")
+        case .error(let description):
+            printErrorNotification()
+        }
         
         UIView.animate(withDuration: 0.25, animations: {
             self.loadingIndicatorHeightConstraint.constant = 0
@@ -327,6 +335,16 @@ extension ViewController: TrainLocationDelegate {
         }) { (_) in
             self.activiyIndicatorWrapper.backgroundColor = .clear
         }
+    }
+    
+    private func printErrorNotification() {
+        let banner = FloatingNotificationBanner(
+            title: "Fehler beim Abfragen der Fahrplandaten",
+            subtitle: "Prüfe deine Internetverbidnung oder versuche es später noch einmal.", style: .danger)
+        
+        banner.autoDismiss = true
+        banner.haptic = .heavy
+        banner.show()
     }
 }
 

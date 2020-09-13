@@ -216,10 +216,16 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
 //Mark: -- Update Handling
 
 extension TrainLocationTripByTimeFrameController: TrainDataProviderDelegate {
-    public func onTripsUpdated() {
+    public func onTripsUpdated(result: TripVisualizer.Result) {
         Log.info("Trips got updated")
-        self.update()
-        self.delegate?.onUpdateEnded()
+        switch result {
+        case .success:
+            self.update()
+        case .error(let errorDescription):
+            Log.error(errorDescription)
+        }
+        
+        self.delegate?.onUpdateEnded(withResult: result)
     }
 }
 

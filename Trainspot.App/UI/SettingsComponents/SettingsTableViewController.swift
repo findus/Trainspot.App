@@ -12,6 +12,8 @@ import Log
 import CSVParser
 import TripVisualizer
 import SwiftEventBus
+import CoreLocation
+import NotificationBannerSwift
 
 class SettingsTableViewController: UITableViewController  {
     
@@ -70,6 +72,20 @@ class SettingsTableViewController: UITableViewController  {
     }
     
     @IBAction func onLocationSettingsTapped(_ sender: Any) {
+        
+        if self.useManualPosition.isOn == false
+            && (CLLocationManager.authorizationStatus() == .notDetermined
+            || CLLocationManager.authorizationStatus() == .denied) {
+            
+            let banner = FloatingNotificationBanner(
+                title: "Aktiviere Location Dienste für die App",
+                subtitle: "Du hast der App nicht erlaubt die Location-Dienste zu verwenden, aktiviere dies in den Einstellungen.", style: .warning)
+            
+            banner.autoDismiss = true
+            banner.haptic = .medium
+            banner.show()
+            self.useManualPosition.isOn = true
+        }
         
         UserPrefs.setManualPositionDetermination(self.useManualPosition.isOn)
         

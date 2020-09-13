@@ -15,7 +15,12 @@ public protocol TrainDataProviderProtocol {
     func setDeleate(delegate: TrainDataProviderDelegate)
 }
 
+public enum Result {
+    case success
+    case error(String)
+}
+
 //TODO Somehow pass the associated trip type as argument, but currently not sure how to realize this
 public protocol TrainDataProviderDelegate {
-    func onTripsUpdated()
+    func onTripsUpdated(result: Result)
 }

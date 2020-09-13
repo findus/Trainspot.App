@@ -69,12 +69,13 @@ class TransportRestProvider {
                 switch result {
                 case .failure(let error):
                     Log.error(error)
+                    self.delegate?.onTripsUpdated(result: .error(error.errorDescription ?? ""))
                 case .finished:
                     Log.info(result)
                 }
             }) { (trips) in
                 self.trips = trips
-                self.delegate?.onTripsUpdated()
+                self.delegate?.onTripsUpdated(result: .success)
         }
         
         self.stream = cancellable

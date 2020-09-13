@@ -66,7 +66,7 @@ extension TrainLocationProxy : TrainLocationDelegate {
         self.delegate?.forEach( { delegate in delegate.onUpdateStarted() })
     }
     
-    public func onUpdateEnded() {
-        self.delegate?.forEach( { delegate in delegate.onUpdateEnded()})
+    public func onUpdateEnded(withResult result: Result) {
+        self.delegate?.forEach( { delegate in delegate.onUpdateEnded(withResult: result)})
     }
 }

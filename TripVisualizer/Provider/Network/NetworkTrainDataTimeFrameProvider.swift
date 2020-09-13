@@ -33,7 +33,7 @@ public class NetworkTrainDataTimeFrameProvider: TrainDataProviderProtocol, Train
         self.delegate = delegate
     }
     
-    public func onTripsUpdated() {
-        self.delegate?.onTripsUpdated()
+    public func onTripsUpdated(result: Result) {
+        self.delegate?.onTripsUpdated(result: result)
     }
 }
