@@ -33,6 +33,12 @@ public class UserPrefs {
     
     public static func getMaxDistance() -> Int {
         let distance = UserDefaults.standard.integer(forKey: maxDistance)
+        
+        //On first start, default value should be 1 km
+        if distance == 0 {
+            return 1000
+        }
+        
         if distance < 100 {
             return 100
         } else {

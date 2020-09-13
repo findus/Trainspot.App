@@ -324,6 +324,7 @@ extension ViewController {
 
 extension ViewController: MapViewControllerDelegate {
     func userPressedAt(location: CLLocation) {
+        self.generator.notificationOccurred(.success)
         UserPrefs.setManualLocation(location)
         tripTimeFrameLocationController.setCurrentLocation(location: location)
     }
