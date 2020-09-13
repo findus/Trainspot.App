@@ -72,6 +72,11 @@ public class TimeFrameTrip: Trip, Hashable {
         return arrayPosition
     }
     
+    public func nearestTrackPosition(forUserLocation loc : CLLocation) -> CLLocationCoordinate2D {
+        return self.locationArray[self.shortestDistanceArrayPosition(forUserLocation: loc)].coords.coordinate
+    }
+    
+    
     /**
      Returns the current position of the train, which is the nth position inside the array, returns empty if array bounds are exceeded
      */

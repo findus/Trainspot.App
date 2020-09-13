@@ -191,6 +191,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         guard let currentLocation = locations.last else { return }
         lastLocation = currentLocation
         self.tripTimeFrameLocationController.setCurrentLocation(location: currentLocation)
+        
+        // set nearest track polyline
+        guard let selectedTrip = self.selectedTrip else {
+            return
+        }
+        
+        let location = selectedTrip.nearestTrackPosition(forUserLocation: currentLocation)
+        self.mapViewController?.setLineToNearestTrack(forTrackPosition: location, andUserlocation: currentLocation.coordinate)
     }
     
     private func toggleStatusView() {

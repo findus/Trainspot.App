@@ -112,7 +112,7 @@ public class JourneyTrip: Trip, Hashable {
      */
     public func shorttestDistanceToTrack(forUserLocation loc : CLLocation) -> Double {
         //return line[self.shortestDistanceArrayPosition(forUserLocation: loc)].location.distance(from: loc)
-        return 0.0
+        fatalError("Not yet implemented")
     }
     
     private func shortestDistanceArrayPosition(forUserLocation loc: CLLocation) -> Int {
@@ -126,8 +126,13 @@ public class JourneyTrip: Trip, Hashable {
 //        }
 //
 //        return arrayPosition
-        return 0
+        fatalError("Not yet implemented")
     }
+    
+    public func nearestTrackPosition(forUserLocation loc : CLLocation) -> CLLocationCoordinate2D {
+        fatalError("Not yet implemented")
+    }
+
     
     /**
      Returns the current position of the train, which is the nth position inside the array, returns empty if array bounds are exceeded

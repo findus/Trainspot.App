@@ -21,11 +21,12 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var map: MKMapView!
 
-    var entryList: Array<MapEntity> = Array()
-    var markerDict: Dictionary<String, MKPointAnnotation> = Dictionary.init()
-    var lineDict: Dictionary<String, TrainTrackPolyLine> = Dictionary.init()
+    private var entryList: Array<MapEntity> = Array()
+    private var markerDict: Dictionary<String, MKPointAnnotation> = Dictionary.init()
+    private var lineDict: Dictionary<String, TrainTrackPolyLine> = Dictionary.init()
     
-    var fakedUserPosition: MKPointAnnotation?
+    private var fakedUserPosition: MKPointAnnotation?
+    private var nearestTrackPolyline: MKPolyline?
     
     private var selectedPolyLineTripId: String? {
         didSet {
@@ -147,6 +148,19 @@ class MapViewController: UIViewController {
         
     }
     
+    func setLineToNearestTrack(forTrackPosition position: CLLocationCoordinate2D,
+                               andUserlocation userLocation: CLLocationCoordinate2D) {
+        
+        //Remove old one if present
+        if let polyline = self.nearestTrackPolyline {
+            self.map.removeOverlay(polyline)
+        }
+        
+        let polyline = MKPolyline(coordinates: [userLocation, position], count: 2)
+        self.nearestTrackPolyline = polyline
+        self.map.addOverlay(polyline)
+    }
+    
     func removeAllEntries() {
         self.map.removeAnnotations(self.map.annotations)
         self.map.removeOverlays(self.map.overlays)
@@ -222,17 +236,24 @@ extension MapViewController: MKMapViewDelegate
 {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
 
-        let line = overlay as! TrainTrackPolyLine
-        let polylineRenderer = MKPolylineRenderer(overlay: line)
-        if line.type == .some(.selected) {
-            polylineRenderer.strokeColor = #colorLiteral(red: 0.9215893149, green: 0.2225639522, blue: 0.2431446314, alpha: 0.8295162671)
-            polylineRenderer.lineWidth = 2
-        } else {
-            polylineRenderer.strokeColor = #colorLiteral(red: 0.7667021683, green: 0.7898159898, blue: 0.7819377446, alpha: 1)
-            polylineRenderer.lineWidth = 1
+        if overlay is TrainTrackPolyLine {
+            let line = overlay as! TrainTrackPolyLine
+            let polylineRenderer = MKPolylineRenderer(overlay: line)
+            if line.type == .some(.selected) {
+                polylineRenderer.strokeColor = #colorLiteral(red: 0.9215893149, green: 0.2225639522, blue: 0.2431446314, alpha: 0.8295162671)
+                polylineRenderer.lineWidth = 2
+            } else {
+                polylineRenderer.strokeColor = #colorLiteral(red: 0.7667021683, green: 0.7898159898, blue: 0.7819377446, alpha: 1)
+                polylineRenderer.lineWidth = 1
+            }
+            return polylineRenderer
         }
-        return polylineRenderer
-
+        
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = .gray
+        renderer.lineWidth = 1
+        renderer.lineDashPattern = [2, 5];
+        return renderer
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?

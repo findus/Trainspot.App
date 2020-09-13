@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 public class RadarTrip: Trip {
-   
+    
     public var delay: Int?
    
     public var tripId: String
@@ -88,6 +88,9 @@ public class RadarTrip: Trip {
             return arrayPosition
         }
     }
-
+    
+    public func nearestTrackPosition(forUserLocation loc: CLLocation) -> CLLocationCoordinate2D {
+        fatalError("Not yet implemented")
+    }
     
 }
