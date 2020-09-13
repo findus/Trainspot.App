@@ -311,6 +311,8 @@
 		D4BCAFD62495405D000B40D8 /* wfb_trip */ = {isa = PBXFileReference; lastKnownFileType = text; path = wfb_trip; sourceTree = "<group>"; };
 		D4BCAFD924954391000B40D8 /* TimeTraveler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTraveler.swift; sourceTree = "<group>"; };
 		D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrameControllerTests.swift; sourceTree = "<group>"; };
+		D4BEDC3D250E566C006621AB /* Trainspot.App copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Trainspot.App copy2-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/Trainspot.App copy2-Info.plist"; sourceTree = "<absolute>"; };
+		D4BEDC7F250E5684006621AB /* Trainspot.App copy3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Trainspot.App copy3-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/Trainspot.App copy3-Info.plist"; sourceTree = "<absolute>"; };
 		D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasDTOs.swift; sourceTree = "<group>"; };
 		D4D91379250A8D2C00A7DBE0 /* D_Bahnhof_2020_alle.CSV */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = D_Bahnhof_2020_alle.CSV; sourceTree = "<group>"; };
 		D4D9137C250A8D5300A7DBE0 /* CsvReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CsvReader.swift; sourceTree = "<group>"; };
@@ -748,6 +750,8 @@
 				DE099E028417340F4470B39B /* Pods */,
 				AAA8BBA48C41B9BBD430AD08 /* Frameworks */,
 				D47E0A2F250BCEF10068126D /* Trainspot.App copy-Info.plist */,
+				D4BEDC3D250E566C006621AB /* Trainspot.App copy2-Info.plist */,
+				D4BEDC7F250E5684006621AB /* Trainspot.App copy3-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1522,6 +1526,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = RELEASE;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
