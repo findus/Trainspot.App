@@ -190,10 +190,12 @@ extension MapViewController: MapViewControllerProtocol {
      label: The line name of the trip for example RE70
      */
     func deleteEntry(withName: String, andLabel: String) {
+        
         guard let annotation = self.markerDict[withName] else {
             Log.warning(" \(andLabel) Could not remove Annottation")
             return
         }
+        
         self.map.removeAnnotation(annotation)
         
         guard let line = self.lineDict[withName] else {
@@ -201,13 +203,16 @@ extension MapViewController: MapViewControllerProtocol {
             return
         }
         
+        self.map.removeOverlay(line)
+        
         self.entryList.removeAll { (entity) -> Bool in
             entity.tripId == withName
         }
         
+        self.lineDict.removeValue(forKey: withName)
+        
         self.markerDict.removeValue(forKey: withName)
         
-        self.map.removeOverlay(line)
     }
     
     func addEntry(entry: MapEntity) {
