@@ -14,6 +14,15 @@ import SwiftEventBus
 enum LineType {
     case normal
     case selected
+    
+    public func get() -> String {
+        switch self {
+        case .normal:
+            return "normal"
+        case .selected:
+            return "selected"
+        }
+    }
 }
 
 class MapViewController: UIViewController {
@@ -27,22 +36,6 @@ class MapViewController: UIViewController {
     
     private var fakedUserPosition: MKPointAnnotation?
     private var nearestTrackPolyline: MKPolyline?
-    
-    private var selectedPolyLineTripId: String? {
-        didSet {
-            if selectedPolyLineTripId == nil && oldValue != nil {
-                guard let overlay = self.lineDict[oldValue!] else {
-                    return
-                }
-                
-                if let renderer = self.map.renderer(for: overlay) as? MKPolylineRenderer {
-                    renderer.strokeColor = .white
-                    renderer.lineWidth = 1
-                    renderer.invalidatePath()
-                }
-            }
-        }
-    }
     
     weak var delegate: MapViewControllerDelegate?
     
@@ -105,47 +98,66 @@ class MapViewController: UIViewController {
         
     }
     
+    private func drawNewLine(forTrip trip: Trip) {
+        let coords = trip.polyline.map { $0.location.coordinate }
+        let polyline = TrainTrackPolyLine(coordinates: coords, count: coords.count)
+        self.map.insertOverlay(polyline, at: 0)
+        self.lineDict[trip.tripId] = polyline
+    }
+    
+    private func highlightPresentLine(forTrip trip: Trip) {
+        guard let line = self.lineDict[trip.tripId] else {
+            Log.warning("Could not find polyline from trip that should get highlighted")
+            return
+        }
+        
+        line.type = .selected
+        
+        if let renderer = self.map.renderer(for: line) as? MKPolylineRenderer {
+            renderer.strokeColor = .red
+            renderer.lineWidth = 1.2
+            renderer.invalidatePath()
+        }
+        
+        //add line to start
+        self.map.removeOverlay(line)
+        self.map.addOverlay(line)
+
+        
+    }
+    
+    private func deHighlightLine() {
+       
+        let line = self.lineDict.values.filter({ (polyline) -> Bool in
+            polyline.type?.get() == "selected"
+        })
+        
+        guard let l = line.first else {
+            return
+        }
+        
+        if let renderer = self.map.renderer(for: l) as? MKPolylineRenderer {
+            renderer.strokeColor = .white
+            renderer.lineWidth = 1.0
+            renderer.invalidatePath()
+        }
+    }
+    
     /**
      Draws a polyline of the passed trip. Based on the type the line will be rendered differently
      Only one selected line can exists, if another one gets passed to the controller the old one gets redrawn with a normal style
      */
-    func drawLine(entries: Array<MapEntity>, withLineType type: LineType) {
-        let coords = entries.map { $0.location.coordinate }
-        let polyline = TrainTrackPolyLine(coordinates: coords, count: coords.count)
-        let tripID = entries.first!.tripId
+    func drawLine(forTrip trip: Trip, withLineType type: LineType) {
         
-        polyline.type = type
-             
-        // Checks if another trip is already hightlighted, if true it redraws the trip with the base color
-        if type == .selected {
-            guard
-                let oldSelectedPolyLineTripId = self.selectedPolyLineTripId,
-                let oldSelectedTripLine = self.lineDict[oldSelectedPolyLineTripId] else {
-                    
-                    self.map.addOverlay(polyline)
-                    selectedPolyLineTripId = tripID
-                    self.lineDict[tripID] = polyline
-
-                    return
-            }
-            
-            oldSelectedTripLine.type = .normal
-           
-            if let renderer = self.map.renderer(for: oldSelectedTripLine) as? MKPolylineRenderer {
-                renderer.strokeColor = .white
-                renderer.lineWidth = 1
-                renderer.invalidatePath()
-            }
-            
-            self.map.addOverlay(polyline)
-            selectedPolyLineTripId = tripID
-
+        //Check if line is already there
+        let tripLine = self.lineDict[trip.tripId]
+        
+        if tripLine != nil {
+            self.highlightPresentLine(forTrip: trip)
         } else {
-            self.map.insertOverlay(polyline, at: 0)
+            drawNewLine(forTrip: trip)
         }
-        
-        self.lineDict[tripID] = polyline
-        
+
     }
     
     func setLineToNearestTrack(forTrackPosition position: CLLocationCoordinate2D,
@@ -164,7 +176,6 @@ class MapViewController: UIViewController {
     func removeAllEntries() {
         self.map.removeAnnotations(self.map.annotations)
         self.map.removeOverlays(self.map.overlays)
-        self.selectedPolyLineTripId = nil
         self.markerDict = Dictionary.init()
         self.lineDict = Dictionary.init()
         self.entryList = Array.init()
@@ -244,7 +255,7 @@ extension MapViewController: MapViewControllerProtocol {
         }, completion: nil)
         
     }
-    
+        
 }
 
 //MARK: - MKMapviewDelegate
@@ -290,9 +301,9 @@ extension MapViewController: MKMapViewDelegate
             return nil
         }
         
-        if self.selectedPolyLineTripId != nil && an.tripId != self.selectedPolyLineTripId! {
-            view.alpha = 0.2
-        }
+//        if self.selectedPolyLineTripId != nil && an.tripId != self.selectedPolyLineTripId! {
+//            view.alpha = 0.2
+//        }
         
         view.positionDot.layer.cornerRadius = 2
         view.centerOffset = CGPoint(x: 0, y: (-(view.frame.height) / 2) + 2)
@@ -349,7 +360,8 @@ extension MapViewController: MKMapViewDelegate
        
         SwiftEventBus.post("deSelectTripOnMap")
         
-        self.selectedPolyLineTripId = nil
+        self.deHighlightLine()
+        
         self.resetOpacity()
     }
 

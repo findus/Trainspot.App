@@ -297,7 +297,7 @@ extension ViewController: TrainLocationDelegate {
     }
     
     func drawPolyLine(forTrip: Trip) {
-        self.mapViewController?.drawLine(entries: forTrip.polyline, withLineType: .normal)
+        self.mapViewController?.drawLine(forTrip: forTrip, withLineType: .normal)
     }
     
     private func drawHighlightedPolyLineForSelectedTrip() {
@@ -306,7 +306,7 @@ extension ViewController: TrainLocationDelegate {
             return
         }
         
-        self.mapViewController?.drawLine(entries: selectedTrip.polyline, withLineType: .selected)
+        self.mapViewController?.drawLine(forTrip: selectedTrip, withLineType: .selected)
     }
     
     func trainPositionUpdated(forTrip trip: Trip, withData data: TripData, withDuration duration: Double) {
