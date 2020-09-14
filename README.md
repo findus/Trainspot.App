@@ -32,4 +32,4 @@ Settings:
   - Löscht Züge nicht, die beim neuen Fahrplan-Fetch nicht mehr dabei sind
  
  - Manuelle Positionsbestimmung
-  - Schaltet Apples Userlocatin-Service aus, und ermöglicht dem User seine Position manuell zu setzen, fallback wenn Locationdiense inaktiv sind, oder der Nutzer dies der App Verboten hat.
+  - Schaltet Apples Userlocation-Service aus, und ermöglicht dem User seine Position manuell zu setzen, fallback wenn Locationdiense inaktiv sind, oder der Nutzer dies der App Verboten hat.
