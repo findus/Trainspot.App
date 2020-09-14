@@ -428,7 +428,10 @@ extension ViewController {
             }
             
             if enabled == true {
+                                
                 self.tripTimeFrameLocationController.setCurrentLocation(location: UserPrefs.getManualLocation())
+                self.tripTimeFrameLocationController.fetchServer()
+                
             }
         }
     }
