@@ -106,6 +106,9 @@ class MapViewController: UIViewController {
     }
     
     private func highlightPresentLine(forTrip trip: Trip) {
+        
+        deHighlightLine()
+        
         guard let line = self.lineDict[trip.tripId] else {
             Log.warning("Could not find polyline from trip that should get highlighted")
             return
@@ -119,31 +122,29 @@ class MapViewController: UIViewController {
             renderer.invalidatePath()
         }
         
-        //add line to start
+        //add line to front
         self.map.removeOverlay(line)
         self.map.addOverlay(line)
 
         
     }
     
-    private func getHighlightedLine() -> MKPolyline? {
+    private func getHighlightedLines() -> [MKPolyline] {
         return self.lineDict.values.filter({ (polyline) -> Bool in
             polyline.type?.get() == "selected"
-        }).first
-        
+        })
     }
     
     private func deHighlightLine() {
         
-        guard let line = self.getHighlightedLine() else {
-            return
+        getHighlightedLines().forEach { (line) in
+            if let renderer = self.map.renderer(for: line) as? MKPolylineRenderer {
+                renderer.strokeColor = .white
+                renderer.lineWidth = 1.0
+                renderer.invalidatePath()
+            }
         }
         
-        if let renderer = self.map.renderer(for: line) as? MKPolylineRenderer {
-            renderer.strokeColor = .white
-            renderer.lineWidth = 1.0
-            renderer.invalidatePath()
-        }
     }
     
     /**
@@ -155,10 +156,12 @@ class MapViewController: UIViewController {
         //Check if line is already there
         let tripLine = self.lineDict[trip.tripId]
         
-        if tripLine != nil {
+        if tripLine != nil && type.get() == "selected" {
             self.highlightPresentLine(forTrip: trip)
-        } else {
+        } else if tripLine == nil {
             drawNewLine(forTrip: trip)
+        } else {
+            Log.warning("\(trip.tripId)|\(trip.name) already has polyline on mapview, skipping")
         }
 
     }
@@ -205,6 +208,8 @@ extension MapViewController: MapViewControllerProtocol {
      */
     func deleteEntry(withName: String, andLabel: String) {
         
+        Log.debug("Remove \(withName)|\(andLabel) from map")
+        
         if let annotation = self.markerDict[withName]  {
             
             self.map.removeAnnotation(annotation)
@@ -233,6 +238,9 @@ extension MapViewController: MapViewControllerProtocol {
     }
     
     func addEntry(entry: MapEntity) {
+        
+        Log.debug("Add \(entry.name)|\(entry.tripId) from map")
+        
         entryList.append(entry)
         let pin = TrainAnnotation()
         pin.coordinate = entry.location.coordinate
@@ -307,7 +315,7 @@ extension MapViewController: MKMapViewDelegate
             return nil
         }
         
-        if self.getHighlightedLine() != nil {
+        if self.getHighlightedLines().count > 0 {
             view.alpha = 0.2
         }
         
