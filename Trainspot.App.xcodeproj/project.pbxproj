@@ -56,10 +56,11 @@
 		D4A5B7EB250EDD31003257F5 /* bs_delay in Resources */ = {isa = PBXBuildFile; fileRef = D4BEDC80250ED247006621AB /* bs_delay */; };
 		D4A5B7EC250EDD37003257F5 /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
 		D4A5B7ED250EDD60003257F5 /* MockTrainDataTimeFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABF248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift */; };
+		D4A5B7EE250F9E6F003257F5 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF852492479C000B40D8 /* UIView.swift */; };
+		D4A5B7EF250F9E70003257F5 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF852492479C000B40D8 /* UIView.swift */; };
 		D4B636902495785B00996744 /* TripVisualizer.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B6368E2495785B00996744 /* TripVisualizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4B636932495785B00996744 /* TripVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; };
 		D4B636942495785B00996744 /* TripVisualizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D4B63699249578DD00996744 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCAF852492479C000B40D8 /* UIView.swift */; };
 		D4B6369B249578E300996744 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE72487D9F100D33AA2 /* CLLocation+Extension.swift */; };
 		D4B6369C249578F600996744 /* TrainLocationProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506824892CC900A3D857 /* TrainLocationProxy.swift */; };
 		D4B6369D249578FB00996744 /* TrainLocationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C506A24892FB200A3D857 /* TrainLocationProtocol.swift */; };
@@ -1303,7 +1304,6 @@
 				D4B636AA2495793800996744 /* MockTrainDataRadarProvider.swift in Sources */,
 				D4B636B524957ADB00996744 /* Collection.swift in Sources */,
 				D4B636B424957A6F00996744 /* AppConstants.swift in Sources */,
-				D4B63699249578DD00996744 /* UIView.swift in Sources */,
 				D4B636A92495793300996744 /* HafasParser.swift in Sources */,
 				D4B636A12495790D00996744 /* Journey.swift in Sources */,
 				D4B6369B249578E300996744 /* CLLocation+Extension.swift in Sources */,
@@ -1328,6 +1328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A5B7EE250F9E6F003257F5 /* UIView.swift in Sources */,
 				D437DD8E250AB55200ED8909 /* AutoCompleteViewController.swift in Sources */,
 				D4BCAF9D24953752000B40D8 /* TrainLocationPin.swift in Sources */,
 				D4BCAF9E24953752000B40D8 /* ViewController.swift in Sources */,
@@ -1383,6 +1384,7 @@
 				D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */,
 				D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */,
 				178CCC1C249A3D840096ED35 /* MainTabbarViewController.swift in Sources */,
+				D4A5B7EF250F9E70003257F5 /* UIView.swift in Sources */,
 				D4BCAF892492D1F9000B40D8 /* UserLocationController.swift in Sources */,
 				D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */,
 				178CCC18249A3C140096ED35 /* Collection.swift in Sources */,
