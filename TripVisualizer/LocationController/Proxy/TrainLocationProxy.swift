@@ -24,7 +24,7 @@ public class TrainLocationProxy: NSObject {
         Log.info("Registered \(String(describing: controller.self)) as a TrainLocation Controller")
         var ctrl = controller
         ctrl.delegate = self
-        controller.update()
+        //controller.update()
         controller.start()
     }
     
