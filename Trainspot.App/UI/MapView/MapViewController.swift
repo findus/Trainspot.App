@@ -126,17 +126,20 @@ class MapViewController: UIViewController {
         
     }
     
-    private func deHighlightLine() {
-       
-        let line = self.lineDict.values.filter({ (polyline) -> Bool in
+    private func getHighlightedLine() -> MKPolyline? {
+        return self.lineDict.values.filter({ (polyline) -> Bool in
             polyline.type?.get() == "selected"
-        })
+        }).first
         
-        guard let l = line.first else {
+    }
+    
+    private func deHighlightLine() {
+        
+        guard let line = self.getHighlightedLine() else {
             return
         }
         
-        if let renderer = self.map.renderer(for: l) as? MKPolylineRenderer {
+        if let renderer = self.map.renderer(for: line) as? MKPolylineRenderer {
             renderer.strokeColor = .white
             renderer.lineWidth = 1.0
             renderer.invalidatePath()
@@ -301,9 +304,9 @@ extension MapViewController: MKMapViewDelegate
             return nil
         }
         
-//        if self.selectedPolyLineTripId != nil && an.tripId != self.selectedPolyLineTripId! {
-//            view.alpha = 0.2
-//        }
+        if self.getHighlightedLine() != nil {
+            view.alpha = 0.2
+        }
         
         view.positionDot.layer.cornerRadius = 2
         view.centerOffset = CGPoint(x: 0, y: (-(view.frame.height) / 2) + 2)
