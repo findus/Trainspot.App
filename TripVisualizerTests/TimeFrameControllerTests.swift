@@ -51,17 +51,17 @@ class TimeFrameControllerTests: XCTestCase {
     var delegate = MockDelegate()
     var timeProvider = TimeTraveler()
     
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
+    override func setUp()  {
         self.delegate = MockDelegate()
         
         self.dataProvider = MockTrainDataTimeFrameProvider(withFile: "wfb_trip")
-        controller = TrainLocationTripByTimeFrameController(dateGenerator: timeProvider.generateDate)
-        controller.setDataProvider(withProvider: TripProvider(dataProvider))
-        controller.delegate = delegate
-       // controller.setCurrentLocation(location: CLLocation(latitude: 1, longitude: 1))
-        
+        self.controller = TrainLocationTripByTimeFrameController(dateGenerator: timeProvider.generateDate)
+        self.controller.setDataProvider(withProvider: TripProvider(dataProvider))
+        self.controller.delegate = delegate
+    }
+    
+    override func tearDown() {
+        self.controller.pause()
     }
     
     private func reloadTrips() {
@@ -645,7 +645,6 @@ class TimeFrameControllerTests: XCTestCase {
     
     // Remaining journeys after fetch should still be there, but should have updated data, like delay etc
     func testRemainingJourneys() {
-        let controller = TrainLocationTripByTimeFrameController()
         let mockProvider = MockTrainDataTimeFrameProviderSimple()
         
         let trip = TimeFrameTrip(withDeparture: Date(), andName: "TestTrip", andPolyline: Array.init(), andLocationMapping: Array.init(), andID: "12", andDestination: "Hell", andDelay: 0)
@@ -658,6 +657,8 @@ class TimeFrameControllerTests: XCTestCase {
         
         controller.trips = [trip]
         controller.update()
+        
+        controller.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "")))
         
         XCTAssertEqual(controller.trips.count, 1)
         
