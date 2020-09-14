@@ -93,7 +93,7 @@ class TransportRestProvider {
          */
         
         let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
-        let offset = UserPrefs.getTimeOffset()
+        let offset = UserPrefs.getTimeOffset()*60
         let departureDate = Int(Date().addingTimeInterval(-TimeInterval(offset)).timeIntervalSince1970)
         Log.info("Fetching departures that will pass viewer at \(departureDate) up to \(Date().addingTimeInterval(60*45))")
         //TODO time based on distance/time to station
@@ -108,7 +108,7 @@ class TransportRestProvider {
     private func fetchArrivals(forStation id: String) -> AnyPublisher<Array<HafasJourney>, AFError> {
         
         let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
-        let offset = UserPrefs.getTimeOffset()
+        let offset = UserPrefs.getTimeOffset()*60
         let arrivalDate = Int(Date().addingTimeInterval(TimeInterval(offset)).timeIntervalSince1970)
         Log.info("Fetching arrivals at \(arrivalDate) to \(Date().addingTimeInterval(60*45))")
         //TODO time based on distance/time to station
