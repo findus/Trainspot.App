@@ -184,6 +184,11 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MapViewControllerProtocol {
     
+    /**
+     Deletes a train that is currently added to the map-view
+     name:  The detailed trip id that was passed als url parameter to hafas
+     label: The line name of the trip for example RE70
+     */
     func deleteEntry(withName: String, andLabel: String) {
         guard let annotation = self.markerDict[withName] else {
             Log.warning(" \(andLabel) Could not remove Annottation")
@@ -195,6 +200,13 @@ extension MapViewController: MapViewControllerProtocol {
             Log.warning(" \(andLabel) Could not remove Line")
             return
         }
+        
+        self.entryList.removeAll { (entity) -> Bool in
+            entity.tripId == withName
+        }
+        
+        self.markerDict.removeValue(forKey: withName)
+        
         self.map.removeOverlay(line)
     }
     

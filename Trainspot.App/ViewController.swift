@@ -432,6 +432,9 @@ extension ViewController {
                 self.tripTimeFrameLocationController.setCurrentLocation(location: UserPrefs.getManualLocation())
                 self.tripTimeFrameLocationController.fetchServer()
                 
+            } else {
+                
+                self.tripTimeFrameLocationController.fetchServer()
             }
         }
     }
