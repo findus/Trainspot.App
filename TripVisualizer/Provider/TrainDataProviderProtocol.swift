@@ -18,6 +18,7 @@ public protocol TrainDataProviderProtocol {
 public enum Result {
     case success
     case error(String)
+    case noTripsFound
 }
 
 //TODO Somehow pass the associated trip type as argument, but currently not sure how to realize this

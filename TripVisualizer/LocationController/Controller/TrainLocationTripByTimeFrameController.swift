@@ -200,6 +200,14 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
         
         self.start()
         
+        if self.trips.isEmpty {
+            /*
+             Not trips remaining, either no track was in range, or no trains are currently driving
+             on it.
+             */
+            self.delegate?.onUpdateEnded(withResult: .noTripsFound)
+        }
+        
         self.trips.forEach { self.delegate?.drawPolyLine(forTrip: $0) }
     }
     
@@ -224,6 +232,8 @@ extension TrainLocationTripByTimeFrameController: TrainDataProviderDelegate {
             self.update()
         case .error(let errorDescription):
             Log.error(errorDescription)
+        case .noTripsFound:
+            Log.error("No trips found")
         }
         
         self.delegate?.onUpdateEnded(withResult: result)

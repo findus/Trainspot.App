@@ -34,6 +34,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     private var effectCache: UIVisualEffect?
     
+    private var firstLaunch: Bool = false
+    
     // Status View Cache values
     private var triggeredUpdate: Bool = false
     private var isStillPulling = false
@@ -161,8 +163,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         #else
         tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(NetworkTrainDataTimeFrameProvider()))
         #endif
-
-        self.manager.register(controller: tripTimeFrameLocationController)
         
         self.statusView.startTimer()
         self.bottomView.layer.shadowOpacity = 0.7
@@ -178,11 +178,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         gesture.delegate = self
         self.loadingIndicator.isHidden = true
         self.loadingIndicatorHeightConstraint.constant = 0
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            self.tripTimeFrameLocationController.fetchServer()
-            self.toggleStatusView()
-        }
         
         self.proportionalHeightConstraint.isActive = true
         
@@ -203,6 +198,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let location = selectedTrip.nearestTrackPosition(forUserLocation: UserPrefs.getManualLocation())
             self.mapViewController?.setLineToNearestTrack(forTrackPosition: location, andUserlocation: UserPrefs.getManualLocation().coordinate)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if self.firstLaunch == false {
+            self.manager.register(controller: tripTimeFrameLocationController)
+            self.tripTimeFrameLocationController.fetchServer()
+            self.toggleStatusView()
+            self.firstLaunch = true
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -353,6 +358,8 @@ extension ViewController: TrainLocationDelegate {
             Log.trace("Update of train data successful")
         case .error(let description):
             printErrorNotification()
+        case .noTripsFound:
+            printNoTripsFoundNotication()
         }
         
         UIView.animate(withDuration: 0.25, animations: {
@@ -364,9 +371,23 @@ extension ViewController: TrainLocationDelegate {
     }
     
     private func printErrorNotification() {
+        printNotification(
+            withTitle: "Fehler beim Abfragen der Fahrplandaten",
+            andBody: "Prüfe deine Internetverbidnung oder versuche es später noch einmal."
+            , andStyle: .danger)
+    }
+    
+    private func printNoTripsFoundNotication() {
+        printNotification(
+            withTitle: "Keine Fahrten in deiner Nähe gefunden",
+            andBody: "Erhöhe die Reichweite in den Einstellungen, wähle einen anderen Bahnhof aus oder setze eine manuelle Wegmarke"
+            , andStyle: .warning)
+    }
+    
+    private func printNotification(withTitle title:String, andBody body: String, andStyle style: BannerStyle) {
         let banner = FloatingNotificationBanner(
-            title: "Fehler beim Abfragen der Fahrplandaten",
-            subtitle: "Prüfe deine Internetverbidnung oder versuche es später noch einmal.", style: .danger)
+            title: title,
+            subtitle: body, style: style)
         
         banner.autoDismiss = true
         banner.haptic = .heavy
