@@ -205,19 +205,22 @@ extension MapViewController: MapViewControllerProtocol {
      */
     func deleteEntry(withName: String, andLabel: String) {
         
-        guard let annotation = self.markerDict[withName] else {
-            Log.warning(" \(andLabel) Could not remove Annottation")
-            return
+        if let annotation = self.markerDict[withName]  {
+            
+            self.map.removeAnnotation(annotation)
+            
+        } else {
+            Log.warning(" \(andLabel) Could not remove Annotation")
         }
         
-        self.map.removeAnnotation(annotation)
         
-        guard let line = self.lineDict[withName] else {
+        if let line = self.lineDict[withName]  {
+            
+            self.map.removeOverlay(line)
+            
+        } else {
             Log.warning(" \(andLabel) Could not remove Line")
-            return
         }
-        
-        self.map.removeOverlay(line)
         
         self.entryList.removeAll { (entity) -> Bool in
             entity.tripId == withName
