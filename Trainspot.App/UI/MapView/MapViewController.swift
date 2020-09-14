@@ -83,6 +83,7 @@ class MapViewController: UIViewController {
     private func selectTrip(withId id: String) {
         let annotation = self.markerDict[id]
         self.map.selectAnnotation(annotation!, animated: true)
+        self.highlightPresentLine(forTripId: id)
         
         //Reduces opacity of any other visible, non selected map annotation
         for annotation in self.map.annotations {
@@ -105,11 +106,11 @@ class MapViewController: UIViewController {
         self.lineDict[trip.tripId] = polyline
     }
     
-    private func highlightPresentLine(forTrip trip: Trip) {
+    private func highlightPresentLine(forTripId id: String) {
         
         deHighlightLine()
         
-        guard let line = self.lineDict[trip.tripId] else {
+        guard let line = self.lineDict[id] else {
             Log.warning("Could not find polyline from trip that should get highlighted")
             return
         }
@@ -157,7 +158,7 @@ class MapViewController: UIViewController {
         let tripLine = self.lineDict[trip.tripId]
         
         if tripLine != nil && type.get() == "selected" {
-            self.highlightPresentLine(forTrip: trip)
+            self.highlightPresentLine(forTripId: trip.tripId)
         } else if tripLine == nil {
             drawNewLine(forTrip: trip)
         } else {
