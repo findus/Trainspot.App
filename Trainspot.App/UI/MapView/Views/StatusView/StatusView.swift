@@ -45,9 +45,9 @@ class StatusView : UIStackView {
         super.layoutSubviews()
         
         if self.traitCollection.userInterfaceStyle == .light {
-            self.delay.textColor = .label
-        } else {
             self.delay.textColor = .white
+        } else {
+           self.delay.textColor = .label
         }
     }
     
@@ -84,7 +84,9 @@ class StatusView : UIStackView {
         }
         else {
             self.delay.text = String(delay)
-            self.delay.backgroundColor = nil
+            self.delay.backgroundColor = #colorLiteral(red: 0.1996439938, green: 0.690910533, blue: 0.4016630921, alpha: 0.759765625)
+            self.delay.clipsToBounds = true;
+            self.delay.layer.cornerRadius=8.0;
         }
 
     }
