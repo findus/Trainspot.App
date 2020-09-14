@@ -83,7 +83,9 @@
                                                 </constraints>
                                             </view>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <blurEffect style="regular"/>
+                                            <vibrancyEffect style="separator">
+                                                <blurEffect style="regular"/>
+                                            </vibrancyEffect>
                                         </visualEffectView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -127,6 +129,7 @@
                         <outlet property="statusContainerView" destination="iTR-Rt-8KY" id="Nzg-Zh-87F"/>
                         <outlet property="statusView" destination="ebN-Sl-0IC" id="75Q-ZG-XAa"/>
                         <outlet property="statusViewWrapper" destination="kjn-qY-bhp" id="nkD-j5-lEd"/>
+                        <outlet property="vibrancyView" destination="tSQ-4O-Trk" id="vMQ-eR-U68"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

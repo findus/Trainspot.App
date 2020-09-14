@@ -28,7 +28,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet var statusContainerView: UIView!
     
+    @IBOutlet weak var vibrancyView: UIVisualEffectView!
+    
     private var initialConstraintValue = CGFloat(0)
+    
+    private var effectCache: UIVisualEffect?
     
     // Status View Cache values
     private var triggeredUpdate: Bool = false
@@ -113,11 +117,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
         if self.traitCollection.userInterfaceStyle == .light {
-            //self.statusContainerView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+            self.effectCache = self.vibrancyView.effect
+            self.vibrancyView.effect = nil
+            self.vibrancyView.alpha = 0.7
         } else {
-            // User Interface is Light
-           // self.statusContainerView.backgroundColor = .clear
+            
+            guard let effect = self.effectCache else {
+                return
+            }
+            
+            self.vibrancyView.effect = effect
+            self.vibrancyView.alpha = 1.0
         }
     }
 

@@ -41,6 +41,16 @@ class StatusView : UIStackView {
         Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(crossOverAnimation), userInfo: nil, repeats: true)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if self.traitCollection.userInterfaceStyle == .light {
+            self.delay.textColor = .white
+        } else {
+            self.delay.textColor = .label
+        }
+    }
+    
     public func setStatus(forTrip trip: Trip, andData data: TripData) {
         
         self.journeyInfo = {
