@@ -111,7 +111,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let origHeading = self.pinnedLocationBearing - newAngle.toRadians
         return origHeading
     }
+    
+    override func viewWillLayoutSubviews() {
+        if self.traitCollection.userInterfaceStyle == .light {
+            //self.statusContainerView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        } else {
+            // User Interface is Light
+           // self.statusContainerView.backgroundColor = .clear
+        }
+    }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  

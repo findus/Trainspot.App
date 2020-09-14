@@ -21,6 +21,7 @@ public class MKTrainAnnotationView: MKAnnotationView {
     
     private func setupUI() {
         backgroundColor = .red
+        
     }
     
 
