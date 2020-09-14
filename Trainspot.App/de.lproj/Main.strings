@@ -1,0 +1,54 @@
+
+/* Class = "UITableViewController"; title = "Overview"; ObjectID = "1fa-wT-uYc"; */
+"1fa-wT-uYc.title" = "Overview";
+
+/* Class = "UILabel"; text = "Train Name"; ObjectID = "39k-gH-bMO"; */
+"39k-gH-bMO.text" = "Train Name";
+
+/* Class = "UITableViewSection"; headerTitle = "Settings"; ObjectID = "9eX-HH-XwL"; */
+"9eX-HH-XwL.headerTitle" = "Settings";
+
+/* Class = "UILabel"; text = "Status"; ObjectID = "LyP-Pc-Md4"; */
+"LyP-Pc-Md4.text" = "Status";
+
+/* Class = "UILabel"; text = "Manuelle Positionsbestimmung"; ObjectID = "M0M-bd-B89"; */
+"M0M-bd-B89.text" = "Manuelle Positionsbestimmung";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "Otu-6T-2YV"; */
+"Otu-6T-2YV.title" = "Settings";
+
+/* Class = "UILabel"; text = "-1"; ObjectID = "UvL-54-7ix"; */
+"UvL-54-7ix.text" = "-1";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YZo-07-bCn"; */
+"YZo-07-bCn.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Map"; ObjectID = "ZVL-Ji-bya"; */
+"ZVL-Ji-bya.title" = "Map";
+
+/* Class = "UILabel"; text = "Maximale Distanz zur Bahnstrecke in Meter"; ObjectID = "b0j-rp-cqM"; */
+"b0j-rp-cqM.text" = "Maximale Distanz zur Bahnstrecke in Meter";
+
+/* Class = "UILabel"; text = "-1"; ObjectID = "czV-CO-9gO"; */
+"czV-CO-9gO.text" = "-1";
+
+/* Class = "UITabBarItem"; title = "Status Board"; ObjectID = "dur-Ku-Wqm"; */
+"dur-Ku-Wqm.title" = "Status Board";
+
+/* Class = "UIView"; accessibilityLabel = "StatusView"; ObjectID = "ebN-Sl-0IC"; */
+"ebN-Sl-0IC.accessibilityLabel" = "StatusView";
+
+/* Class = "UILabel"; text = "Arrival in"; ObjectID = "fPU-0i-H4t"; */
+"fPU-0i-H4t.text" = "Arrival in";
+
+/* Class = "UIViewController"; title = "Map"; ObjectID = "iqN-KL-GHB"; */
+"iqN-KL-GHB.title" = "Map";
+
+/* Class = "UILabel"; text = "So viele Minuten is der angegebene Bahnhof entfernt"; ObjectID = "oCh-B8-wgP"; */
+"oCh-B8-wgP.text" = "So viele Minuten is der angegebene Bahnhof entfernt";
+
+/* Class = "UILabel"; text = "Behalte alte Züge bei Refresh"; ObjectID = "wjh-Ra-WwY"; */
+"wjh-Ra-WwY.text" = "Behalte alte Züge bei Refresh";
+
+/* Class = "UILabel"; text = "Bahnhof"; ObjectID = "xyb-ci-8kh"; */
+"xyb-ci-8kh.text" = "Bahnhof";

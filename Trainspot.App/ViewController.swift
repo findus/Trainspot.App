@@ -118,11 +118,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
+        // TODO: Check vibrancy after light->darkmode change
         if self.traitCollection.userInterfaceStyle == .light {
+          
             self.effectCache = self.vibrancyView.effect
             self.vibrancyView.effect = nil
-            self.vibrancyView.alpha = 0.7
         } else {
             
             guard let effect = self.effectCache else {
@@ -130,7 +130,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
             
             self.vibrancyView.effect = effect
-            self.vibrancyView.alpha = 1.0
         }
     }
 
@@ -216,6 +215,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+      
+        if let location = manager.location {
+           
+            self.tripTimeFrameLocationController.setCurrentLocation(location: location)
+        }
+      
         UIView.animate(withDuration: 0.5) {
             self.heading = CGFloat(newHeading.trueHeading)
         }

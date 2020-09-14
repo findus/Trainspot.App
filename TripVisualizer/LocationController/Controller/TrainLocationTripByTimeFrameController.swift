@@ -191,6 +191,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
                 let distance = trip.shorttestDistanceToTrack(forUserLocation: userPosition)
                 if Int(distance) > UserPrefs.getMaxDistance() {
                     Log.info("[\(trip.name) - \(trip.tripId)] filtered because track too far away from user")
+                    self.delegate?.removeTripFromMap(forTrip: trip)
                 }
                 
                 return Int(distance) <= UserPrefs.getMaxDistance()

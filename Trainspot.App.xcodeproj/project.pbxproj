@@ -289,6 +289,8 @@
 		D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainTrackPolyline.swift; sourceTree = "<group>"; };
 		D47E0A2F250BCEF10068126D /* Trainspot.App copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Trainspot.App copy-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/Trainspot.App copy-Info.plist"; sourceTree = "<absolute>"; };
 		D4A30E4C24958DC200B2684C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4A5B7F0250FBBFB003257F5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		D4A5B7F1250FBBFC003257F5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationRadarController.swift; sourceTree = "<group>"; };
 		D4AF5162248D2E3800C9D7BE /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
@@ -1007,6 +1009,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = D4DEAABB2487AC1900D33AA2;
 			productRefGroup = D4DEAAC52487AC1900D33AA2 /* Products */;
@@ -1462,6 +1465,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D4DEAACE2487AC1900D33AA2 /* Base */,
+				D4A5B7F0250FBBFB003257F5 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1470,6 +1474,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D4DEAAD32487AC1E00D33AA2 /* Base */,
+				D4A5B7F1250FBBFC003257F5 /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1734,6 +1739,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1795,6 +1801,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
