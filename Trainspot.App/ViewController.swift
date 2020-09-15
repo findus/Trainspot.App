@@ -134,90 +134,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             self.vibrancyView.effect = effect
         }
     }
-
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
- 
-        self.manager.delegate?.append(self)
-        self.imageView.isHidden = true
-
-        UserLocationController.shared.register(delegate: self)
-         
-        #if MOCK
-        var components = DateComponents()
-        components.second = 0
-        components.hour = 0
-        components.minute = 0
-        components.day = 14
-        components.month = 9
-        components.year = 2020
-        let date = Calendar.current.date(from: components)
-        let traveler = TimeTraveler()
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            traveler.travel(by: 1)
-        }
-        traveler.date = date!
-        tripTimeFrameLocationController = TrainLocationTripByTimeFrameController(dateGenerator: traveler.generateDate)
-        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "bs_delay")))
-        #else
-        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(NetworkTrainDataTimeFrameProvider()))
-        #endif
-        
-        self.statusView.startTimer()
-        self.bottomView.layer.shadowOpacity = 0.7
-        self.bottomView.layer.shadowOffset = CGSize(width: 3, height: 3)
-        self.bottomView.layer.shadowRadius = 15.0
-        self.bottomView.layer.shadowColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
-        
-        // Pan reload gesture
-        
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(self.dragged(gesture:)))
-        
-        self.bottomView.addGestureRecognizer(gesture)
-        gesture.delegate = self
-        self.loadingIndicator.isHidden = true
-        self.loadingIndicatorHeightConstraint.constant = 0
-        
-        self.proportionalHeightConstraint.isActive = true
-        
-        self.statusView.isHidden = true
-        self.proportionalHeightConstraint.constant = -200
-
-        self.setupBus()
-
-        self.mapViewController?.delegate = self
-        
-        if UserPrefs.isManualLocationEnabled() {
-            self.tripTimeFrameLocationController.setCurrentLocation(location: UserPrefs.getManualLocation())
-            
-            guard let selectedTrip = self.selectedTrip else {
-                return
-            }
-            
-            let location = selectedTrip.nearestTrackPosition(forUserLocation: UserPrefs.getManualLocation())
-            self.mapViewController?.setLineToNearestTrack(forTrackPosition: location, andUserlocation: UserPrefs.getManualLocation().coordinate)
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if self.firstLaunch == false {
-            self.manager.register(controller: tripTimeFrameLocationController)
-            self.tripTimeFrameLocationController.fetchServer()
-            self.toggleStatusView()
-            self.firstLaunch = true
-        }
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.destination {
-        case let vc1 as MapViewController:
-            self.mapViewController = vc1
-        default:
-            break
-        }
-    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
       
@@ -287,6 +203,94 @@ extension ViewController: UIGestureRecognizerDelegate {
         }
        
     }
+}
+
+// MARK: - Lifecycle
+
+extension ViewController {
+      override func viewDidLoad() {
+           super.viewDidLoad()
+    
+           self.manager.delegate?.append(self)
+           self.imageView.isHidden = true
+
+           UserLocationController.shared.register(delegate: self)
+            
+           #if MOCK
+           var components = DateComponents()
+           components.second = 0
+           components.hour = 0
+           components.minute = 0
+           components.day = 14
+           components.month = 9
+           components.year = 2020
+           let date = Calendar.current.date(from: components)
+           let traveler = TimeTraveler()
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+               traveler.travel(by: 1)
+           }
+           traveler.date = date!
+           tripTimeFrameLocationController = TrainLocationTripByTimeFrameController(dateGenerator: traveler.generateDate)
+           tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "bs_delay")))
+           #else
+           tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(NetworkTrainDataTimeFrameProvider()))
+           #endif
+           
+           self.statusView.startTimer()
+           self.bottomView.layer.shadowOpacity = 0.7
+           self.bottomView.layer.shadowOffset = CGSize(width: 3, height: 3)
+           self.bottomView.layer.shadowRadius = 15.0
+           self.bottomView.layer.shadowColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
+           
+           // Pan reload gesture
+           
+           let gesture = UIPanGestureRecognizer(target: self, action: #selector(self.dragged(gesture:)))
+           
+           self.bottomView.addGestureRecognizer(gesture)
+           gesture.delegate = self
+           self.loadingIndicator.isHidden = true
+           self.loadingIndicatorHeightConstraint.constant = 0
+           
+           self.proportionalHeightConstraint.isActive = true
+           
+           self.statusView.isHidden = true
+           self.proportionalHeightConstraint.constant = -200
+
+           self.setupBus()
+
+           self.mapViewController?.delegate = self
+           
+           if UserPrefs.isManualLocationEnabled() {
+               self.tripTimeFrameLocationController.setCurrentLocation(location: UserPrefs.getManualLocation())
+               
+               guard let selectedTrip = self.selectedTrip else {
+                   return
+               }
+               
+               let location = selectedTrip.nearestTrackPosition(forUserLocation: UserPrefs.getManualLocation())
+               self.mapViewController?.setLineToNearestTrack(forTrackPosition: location, andUserlocation: UserPrefs.getManualLocation().coordinate)
+           }
+       }
+       
+       override func viewDidAppear(_ animated: Bool) {
+        
+           if self.firstLaunch == false {
+               self.manager.register(controller: tripTimeFrameLocationController)
+               self.tripTimeFrameLocationController.fetchServer()
+               self.toggleStatusView()
+               self.firstLaunch = true
+           }
+           
+       }
+       
+       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+           switch segue.destination {
+           case let vc1 as MapViewController:
+               self.mapViewController = vc1
+           default:
+               break
+           }
+       }
 }
 
 extension ViewController: TrainLocationDelegate {
