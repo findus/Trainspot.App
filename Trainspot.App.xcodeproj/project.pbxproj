@@ -141,6 +141,8 @@
 		D4DEAAE52487D55A00D33AA2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */; };
 		D4FF574D2510AF67004E4238 /* IntroductionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */; };
 		D4FF574E2510AF67004E4238 /* IntroductionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */; };
+		D4FF57502510C603004E4238 /* BasicScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574F2510C603004E4238 /* BasicScrollViewController.swift */; };
+		D4FF57512510C603004E4238 /* BasicScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574F2510C603004E4238 /* BasicScrollViewController.swift */; };
 		F092D0F2051A33B5EA16567F /* Pods_Trainspot_AppMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865CCBA35B7032BE98591DC0 /* Pods_Trainspot_AppMock.framework */; };
 /* End PBXBuildFile section */
 
@@ -349,6 +351,7 @@
 		D4DEAAE72487D9F100D33AA2 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
 		D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Math+Extension.swift"; sourceTree = "<group>"; };
 		D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionBaseViewController.swift; sourceTree = "<group>"; };
+		D4FF574F2510C603004E4238 /* BasicScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicScrollViewController.swift; sourceTree = "<group>"; };
 		E8E9BEE4FFF6F86671BBD1E4 /* Pods-TripVisualizerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripVisualizerTests.release.xcconfig"; path = "Target Support Files/Pods-TripVisualizerTests/Pods-TripVisualizerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -644,6 +647,7 @@
 				D4A5B7FB25101951003257F5 /* IntroductionPageViewController.swift */,
 				D4A5B80225101D73003257F5 /* Introduction.storyboard */,
 				D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */,
+				D4FF574F2510C603004E4238 /* BasicScrollViewController.swift */,
 			);
 			path = Introduction;
 			sourceTree = "<group>";
@@ -1383,6 +1387,7 @@
 				D4A5B7FD25101951003257F5 /* IntroductionPageViewController.swift in Sources */,
 				D4B636C2249580EB00996744 /* Math+Extension.swift in Sources */,
 				178090C02498153600DBC0B6 /* Convenience.swift in Sources */,
+				D4FF57512510C603004E4238 /* BasicScrollViewController.swift in Sources */,
 				D4B636C124957DBF00996744 /* Log.swift in Sources */,
 				D43705692509877F00A1795F /* DistanceToStationCell.swift in Sources */,
 				D437056C2509883300A1795F /* SettingsTableViewController.swift in Sources */,
@@ -1443,6 +1448,7 @@
 				D4FF574D2510AF67004E4238 /* IntroductionBaseViewController.swift in Sources */,
 				D437DDA1250ACCAB00ED8909 /* AutocompleteDelegate.swift in Sources */,
 				D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */,
+				D4FF57502510C603004E4238 /* BasicScrollViewController.swift in Sources */,
 				D4DEAACA2487AC1900D33AA2 /* SceneDelegate.swift in Sources */,
 				17B0E4BA2498E61300FAF26B /* Fonts.swift in Sources */,
 				D4DEAAE52487D55A00D33AA2 /* MapViewController.swift in Sources */,
