@@ -12,9 +12,12 @@ import UIKit
 class IntroductionBaseViewController: UIViewController {
     
     @IBOutlet private var closeButton: UIButton!
-    
+    public var onDone: (()->Void)? = nil
     
     @IBAction func onClose(_ sender: Any) {
+        if let doneCallback = onDone {
+            doneCallback()
+        }
         self.dismiss(animated: true, completion: nil)
     }
 }
