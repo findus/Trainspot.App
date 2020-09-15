@@ -17,7 +17,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     // Seconds that a scheduled train gets displayed before actual departure
     var GRACE_PERIOD = 1800.0
     
-    private let dateGenerator: () -> Date
+    public var dateGenerator: () -> Date
 
     public typealias T = TimeFrameTrip
     public typealias P = TripProvider<T>

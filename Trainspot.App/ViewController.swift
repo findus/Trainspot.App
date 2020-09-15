@@ -258,6 +258,11 @@ extension ViewController {
             self.firstLaunch = true
         }
         
+        if UserPrefs.infoDialogShownFor(String(describing: self.classForCoder)) == false {
+            self.displayTutorial()
+            UserPrefs.setInfoDialogShownFor(String(describing: self.classForCoder))
+        }
+
     }
        
        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -337,7 +342,7 @@ extension ViewController: TrainLocationDelegate {
         switch result {
         case .success:
             Log.trace("Update of train data successful")
-        case .error(let description):
+        case .error( _):
             printErrorNotification()
         case .noTripsFound:
             printNoTripsFoundNotication()
@@ -444,4 +449,13 @@ extension ViewController {
         }
     }
     
+}
+
+extension ViewController {
+    
+    private func displayTutorial() {
+        let storyboard = UIStoryboard(name: "Introduction", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "Page 2")
+        self.present(vc, animated: true)
+    }
 }

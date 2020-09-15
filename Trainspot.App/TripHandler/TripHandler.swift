@@ -19,38 +19,51 @@ public class TripHandler {
     
     private init() {
         #if MOCK
-               var components = DateComponents()
-               components.second = 0
-               components.hour = 0
-               components.minute = 0
-               components.day = 14
-               components.month = 9
-               components.year = 2020
-               let date = Calendar.current.date(from: components)
-               let traveler = TimeTraveler()
-               Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-                   traveler.travel(by: 1)
-               }
-               traveler.date = date!
-               tripTimeFrameLocationController = TrainLocationTripByTimeFrameController(dateGenerator: traveler.generateDate)
-               tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "bs_delay")))
-               #else
-               tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(NetworkTrainDataTimeFrameProvider()))
-               #endif
-               
-               self.manager.register(controller: tripTimeFrameLocationController)
-    }
-    
-    func startDemo() {
+        self.setupDemo()
+        #else
+        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(NetworkTrainDataTimeFrameProvider()))
+        #endif
         
+        self.manager.register(controller: tripTimeFrameLocationController)
     }
     
-    func startNormalMode() {
+    func setupDemo() {
+        var components = DateComponents()
+        components.second = 0
+        components.hour = 23
+        components.minute = 30
+        components.day = 13
+        components.month = 9
+        components.year = 2020
+        let date = Calendar.current.date(from: components)
+        let traveler = TimeTraveler()
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+            traveler.travel(by: 1)
+        }
+        traveler.date = date!
+        self.tripTimeFrameLocationController.pause()
+
+        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "bs_delay")))
+        tripTimeFrameLocationController.dateGenerator = traveler.generateDate
+        
+        let loc = CLLocation(latitude: 52.2310468, longitude: 10.4268998)
+        tripTimeFrameLocationController.setCurrentLocation(location: loc)
+        UserLocationController.shared.deactivate()
+        UserPrefs.setManualLocationEnabled(true)
+        UserPrefs.setManualLocation(loc)
+        UserPrefs.setSelectedStation(StationInfo("Braunschweig Hbf", "8000049"))
+    }
+    
+    func start() {
         self.triggerUpdate()
     }
     
     func stop() {
         self.tripTimeFrameLocationController.pause()
+    }
+    
+    func forceStart() {
+        self.tripTimeFrameLocationController.fetchServer()
     }
     
     func triggerUpdate() {

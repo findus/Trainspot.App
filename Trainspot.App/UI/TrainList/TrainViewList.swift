@@ -28,6 +28,12 @@ public class TrainViewList: UITableViewController {
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tableView.reloadData()
+        
+        if UserPrefs.infoDialogShownFor(String(describing: self.classForCoder)) == false {
+            self.displayTutorial()
+            UserPrefs.setInfoDialogShownFor(String(describing: self.classForCoder))
+        }
+
     }
 
     // MARK: - Table view data source
@@ -171,4 +177,13 @@ extension TrainViewList: TrainLocationDelegate {
         return cell
     }
 
+}
+
+extension TrainViewList {
+    
+    private func displayTutorial() {
+        let storyboard = UIStoryboard(name: "Introduction", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "Page 3")
+        self.present(vc, animated: true)
+    }
 }

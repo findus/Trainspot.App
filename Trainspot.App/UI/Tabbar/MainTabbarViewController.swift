@@ -24,7 +24,7 @@ public class MainTabbarViewController: UITabBarController {
         if UserPrefs.getfirstOnboardingTriggered() == false {
             self.displayTutorial()
         } else {
-            TripHandler.shared.startNormalMode()
+            TripHandler.shared.start()
         }
     }
     
@@ -46,11 +46,22 @@ extension MainTabbarViewController: AutoCompleteDelegate {
     private func displayTutorial() {
         let storyboard = UIStoryboard(name: "Introduction", bundle: nil)
         let vc = (storyboard.instantiateViewController(withIdentifier: "introduction") as! IntroductionBaseViewController)
-        vc.onDone = {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                UserPrefs.setfirstOnboardingTriggered(true)
-                self.triggerStationSelection()
+        vc.onDone = { startDemo in
+            UserPrefs.setfirstOnboardingTriggered(true)
+
+            if startDemo {
+                UserPrefs.setDemoModusActive(true)
+                TripHandler.shared.setupDemo()
+                TripHandler.shared.forceStart()
+                let storyboard = UIStoryboard(name: "Introduction", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "Demo")
+                self.present(vc, animated: true)
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.triggerStationSelection()
+                }
             }
+            
         }
         self.present(vc, animated: true)
         

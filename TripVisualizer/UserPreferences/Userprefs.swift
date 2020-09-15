@@ -34,9 +34,9 @@ public class UserPrefs {
     public static func getMaxDistance() -> Int {
         let distance = UserDefaults.standard.integer(forKey: maxDistance)
         
-        //On first start, default value should be 1 km
+        //On first start, default value should be 9 km
         if distance == 0 {
-            return 1000
+            return 9000
         }
         
         if distance < 100 {
@@ -125,6 +125,26 @@ public class UserPrefs {
     
     public static func setfirstOnboardingTriggered(_ triggered: Bool) {
         UserDefaults.standard.set(triggered, forKey: firstOnboardingTriggered)
+        UserDefaults.standard.synchronize()
+    }
+    
+    private static let demoModusActive = "DEMO_MODUS_ACTIVE"
+    
+    public static func isDemoModusActive() -> Bool {
+        UserDefaults.standard.bool(forKey: demoModusActive)
+    }
+    
+    public static func setDemoModusActive(_ active: Bool) {
+        UserDefaults.standard.set(active, forKey: demoModusActive)
+        UserDefaults.standard.synchronize()
+    }
+    
+    public static func infoDialogShownFor(_ dialog: String) -> Bool {
+        UserDefaults.standard.bool(forKey: dialog)
+    }
+    
+    public static func setInfoDialogShownFor(_ dialog: String) {
+        UserDefaults.standard.set(true, forKey: dialog)
         UserDefaults.standard.synchronize()
     }
     

@@ -11,17 +11,19 @@ import UIKit
 
 class IntroductionBaseViewController: UIViewController {
     
+    private var startDemo = false
     @IBOutlet private var demoButton: UIButton!
-    public var onDone: (()->Void)? = nil
+    public var onDone: ((_ startDemo: Bool)->Void)? = nil
     
     @IBAction func onClose(_ sender: Any) {
+        startDemo = true
         self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let doneCallback = onDone {
-            doneCallback()
+            doneCallback(startDemo)
         }
     }
 
