@@ -145,7 +145,7 @@ extension SettingsTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.maxDistanceSlider.value = Float(UserPrefs.getMaxDistance())
         self.macDistanceLabel.text = String(UserPrefs.getMaxDistance())
-        self.useManualPosition.isOn = UserPrefs.hasUserActivatedManualLocation()
+        self.useManualPosition.isOn = UserPrefs.isManualLocationEnabled()
     }
     
 }

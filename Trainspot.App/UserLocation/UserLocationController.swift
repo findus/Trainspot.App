@@ -36,7 +36,6 @@ class UserLocationController: NSObject, CLLocationManagerDelegate {
     func deactivate() {
         Log.info("Disabling Location tracking")
         UserPrefs.setManualLocationEnabled(true)
-        UserPrefs.setHasUserActivatedManualLocation(true)
         locationManager.stopUpdatingHeading()
         locationManager.stopUpdatingLocation()
         locationManager.stopMonitoringSignificantLocationChanges()
