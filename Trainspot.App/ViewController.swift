@@ -385,13 +385,15 @@ extension ViewController: TrainLocationDelegate {
     }
     
     private func printNotification(withTitle title:String, andBody body: String, andStyle style: BannerStyle) {
-        let banner = FloatingNotificationBanner(
-            title: title,
-            subtitle: body, style: style)
-        
-        banner.autoDismiss = true
-        banner.haptic = .heavy
-        banner.show()
+        DispatchQueue.main.async {
+            let banner = FloatingNotificationBanner(
+                title: title,
+                subtitle: body, style: style)
+            
+            banner.autoDismiss = true
+            banner.haptic = .heavy
+            banner.show()
+        }
     }
 }
 
