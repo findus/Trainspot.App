@@ -78,6 +78,7 @@ class MapViewController: UIViewController {
         
         let pin = MKPointAnnotation()
         pin.coordinate = location
+        pin.accessibilityLabel = "manualSetPin"
         self.map.addAnnotation(pin)
         self.fakedUserPosition = pin
     }
@@ -141,7 +142,7 @@ class MapViewController: UIViewController {
     private func updateUserPosAnnotationOpacity() {
         
         guard let pin = map.annotations.filter({ (annotation) -> Bool in
-            annotation is MKPointAnnotation
+            (annotation as? MKPointAnnotation)?.accessibilityLabel == "manualSetPin"
         }).first else {
             return
         }
