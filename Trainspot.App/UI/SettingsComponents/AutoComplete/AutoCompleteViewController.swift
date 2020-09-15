@@ -29,6 +29,9 @@ class AutoCompleteViewController: UITableViewController {
     private var searchString: String? {
         didSet {
             self.filteredData = data?.filter({$0.lowercased().contains(searchString?.lowercased() ?? "")})
+            if searchString?.isEmpty ?? false {
+                self.filteredData = data
+            }
             self.tableView.reloadData()
         }
     }

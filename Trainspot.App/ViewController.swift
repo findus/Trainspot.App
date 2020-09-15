@@ -271,13 +271,15 @@ extension ViewController {
                let location = selectedTrip.nearestTrackPosition(forUserLocation: UserPrefs.getManualLocation())
                self.mapViewController?.setLineToNearestTrack(forTrackPosition: location, andUserlocation: UserPrefs.getManualLocation().coordinate)
            }
-       }
+        
+        // Onboarding
+        
+       // if UserPrefs.getfirstOnboardingTriggered() == false {
+            self.displayTutorial()
+       // }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-      //  if UserPrefs.getfirstOnboardingTriggered() == false {
-            self.displayTutorial()
-    //    }
 
         if self.firstLaunch == false {
             self.manager.register(controller: tripTimeFrameLocationController)
