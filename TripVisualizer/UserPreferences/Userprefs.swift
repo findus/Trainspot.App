@@ -78,13 +78,24 @@ public class UserPrefs {
         UserDefaults.standard.synchronize()
     }
     
+    private static let manualLocationEnabled = "MANUAL_LOCATION_ENABLED"
+    
+    public static func isManualLocationEnabled() -> Bool {
+        return UserDefaults.standard.bool(forKey: manualLocationEnabled)
+    }
+    
+    public static func setManualLocationEnabled(_ useRealLocation: Bool) {
+        UserDefaults.standard.set(useRealLocation, forKey: manualLocationEnabled)
+        UserDefaults.standard.synchronize()
+    }
+    
     private static let _useRealLocation = "USE_USER_SET_LOCATION"
     
-    public static func getManualPositionDetermination() -> Bool {
+    public static func hasUserActivatedManualLocation() -> Bool {
         return UserDefaults.standard.bool(forKey: _useRealLocation)
     }
     
-    public static func setManualPositionDetermination(_ useRealLocation: Bool) {
+    public static func setHasUserActivatedManualLocation(_ useRealLocation: Bool) {
         UserDefaults.standard.set(useRealLocation, forKey: _useRealLocation)
         UserDefaults.standard.synchronize()
     }

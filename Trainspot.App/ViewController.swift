@@ -188,7 +188,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
         self.mapViewController?.delegate = self
         
-        if UserPrefs.getManualPositionDetermination() {
+        if UserPrefs.isManualLocationEnabled() {
             self.tripTimeFrameLocationController.setCurrentLocation(location: UserPrefs.getManualLocation())
             
             guard let selectedTrip = self.selectedTrip else {

@@ -101,15 +101,17 @@ class SettingsTableViewController: UITableViewController  {
             banner.haptic = .medium
             banner.show()
             self.useManualPosition.isOn = true
+            
+            return
         }
         
-        UserPrefs.setManualPositionDetermination(self.useManualPosition.isOn)
+        UserPrefs.setHasUserActivatedManualLocation(self.useManualPosition.isOn)
+        UserPrefs.setManualLocationEnabled(self.useManualPosition.isOn)
         
         if useManualPosition.isOn {
             SwiftEventBus.post("useManualPosition", sender: true)
         } else {
             SwiftEventBus.post("useManualPosition", sender: false)
-            UserLocationController.shared.reask()
         }
         
     }
@@ -143,7 +145,7 @@ extension SettingsTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.maxDistanceSlider.value = Float(UserPrefs.getMaxDistance())
         self.macDistanceLabel.text = String(UserPrefs.getMaxDistance())
-        self.useManualPosition.isOn = UserPrefs.getManualPositionDetermination()
+        self.useManualPosition.isOn = UserPrefs.hasUserActivatedManualLocation()
     }
     
 }

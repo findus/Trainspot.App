@@ -35,7 +35,8 @@ class UserLocationController: NSObject, CLLocationManagerDelegate {
     
     func deactivate() {
         Log.info("Disabling Location tracking")
-        UserPrefs.setManualPositionDetermination(true)
+        UserPrefs.setManualLocationEnabled(true)
+        UserPrefs.setHasUserActivatedManualLocation(true)
         locationManager.stopUpdatingHeading()
         locationManager.stopUpdatingLocation()
         locationManager.stopMonitoringSignificantLocationChanges()
@@ -44,7 +45,7 @@ class UserLocationController: NSObject, CLLocationManagerDelegate {
     
     func activate() {
         Log.info("Activating Location tracking")
-        UserPrefs.setManualPositionDetermination(false)
+        UserPrefs.setManualLocationEnabled(true)
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
         locationManager.startMonitoringSignificantLocationChanges()
@@ -60,7 +61,7 @@ class UserLocationController: NSObject, CLLocationManagerDelegate {
     }
     
     func isEnabled() -> Bool {
-        UserPrefs.getManualPositionDetermination() && CLLocationManager.authorizationStatus() == .authorizedWhenInUse
+        UserPrefs.isManualLocationEnabled() && CLLocationManager.authorizationStatus() == .authorizedWhenInUse
     }
     
     //MARK: - Delegate methods
@@ -78,8 +79,9 @@ class UserLocationController: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if (status == .authorizedWhenInUse || status == .authorizedAlways) && UserPrefs.getManualPositionDetermination() == false {
-            self.activate()
+        if (status == .authorizedWhenInUse || status == .authorizedAlways) && UserPrefs.hasUserActivatedManualLocation() == false {
+            
+            SwiftEventBus.post("useManualPosition", sender: false)
         } else {
             self.deactivate()
         }

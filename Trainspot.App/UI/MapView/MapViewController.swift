@@ -55,9 +55,9 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // Check if locationmanager is still active
-        self.map.showsUserLocation = !UserPrefs.getManualPositionDetermination()
+        self.map.showsUserLocation = UserPrefs.isManualLocationEnabled()
        
-        if UserPrefs.getManualPositionDetermination() {
+        if UserPrefs.isManualLocationEnabled() {
             self.addFakedUserPosition(onLocation: UserPrefs.getManualLocation().coordinate)
         }
     }
