@@ -15,9 +15,14 @@ class IntroductionBaseViewController: UIViewController {
     public var onDone: (()->Void)? = nil
     
     @IBAction func onClose(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if let doneCallback = onDone {
             doneCallback()
         }
-        self.dismiss(animated: true, completion: nil)
     }
+
 }
