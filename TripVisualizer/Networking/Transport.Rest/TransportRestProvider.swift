@@ -12,7 +12,7 @@ import Combine
 
 class TransportRestProvider {
     
-    let SERVER = "https://transport.russendis.co"
+    let SERVER = "https://transport.f1ndus.de"
     
     let decoder = JSONDecoder()
    
