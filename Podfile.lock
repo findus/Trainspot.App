@@ -12,7 +12,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Log
-  - NotificationBannerSwift (~> 3.0.0)
+  - NotificationBannerSwift (from `https://github.com/findus/NotificationBanner.git`)
   - SwiftEventBus (from `https://github.com/cesarferreira/SwiftEventBus.git`, tag `5.0.1`)
   - SwiftyJSON (~> 4.0)
 
@@ -21,16 +21,20 @@ SPEC REPOS:
     - Alamofire
     - Log
     - MarqueeLabel
-    - NotificationBannerSwift
     - SnapKit
     - SwiftyJSON
 
 EXTERNAL SOURCES:
+  NotificationBannerSwift:
+    :git: https://github.com/findus/NotificationBanner.git
   SwiftEventBus:
     :git: https://github.com/cesarferreira/SwiftEventBus.git
     :tag: 5.0.1
 
 CHECKOUT OPTIONS:
+  NotificationBannerSwift:
+    :commit: 31c37f43d0cab982adb857090cfe277c6d5e3c0a
+    :git: https://github.com/findus/NotificationBanner.git
   SwiftEventBus:
     :git: https://github.com/cesarferreira/SwiftEventBus.git
     :tag: 5.0.1
@@ -44,6 +48,6 @@ SPEC CHECKSUMS:
   SwiftEventBus: b30f617a6aca5a9336464b4d3f5931034762f2d5
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 54b26562a008affecb7ade86d3d5abc087daaf83
+PODFILE CHECKSUM: 86a91836bcdaf4e3e786cd10555c0dc4ab9f4d0a
 
 COCOAPODS: 1.8.4

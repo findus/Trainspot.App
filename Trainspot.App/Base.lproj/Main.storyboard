@@ -233,19 +233,27 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bahnhof" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyb-ci-8kh">
-                                                    <rect key="frame" x="30" y="27" width="354" height="23"/>
+                                                    <rect key="frame" x="168.5" y="27" width="77" height="23"/>
                                                     <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qav-D1-pM5">
+                                                    <rect key="frame" x="255.5" y="31" width="20" height="15.5"/>
+                                                    <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="qav-D1-pM5" secondAttribute="height" multiplier="1:1" id="Lzu-l2-haK"/>
+                                                        <constraint firstAttribute="height" constant="20" id="RzS-Ht-o6o"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <gestureRecognizers/>
                                             <constraints>
-                                                <constraint firstItem="xyb-ci-8kh" firstAttribute="leading" secondItem="q1Z-bH-lSA" secondAttribute="leadingMargin" constant="10" id="7wW-2W-zhn"/>
                                                 <constraint firstItem="xyb-ci-8kh" firstAttribute="centerY" secondItem="q1Z-bH-lSA" secondAttribute="centerY" id="BWk-UM-lh7"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="xyb-ci-8kh" secondAttribute="trailing" constant="10" id="JWQ-Cd-s0c"/>
                                                 <constraint firstItem="xyb-ci-8kh" firstAttribute="centerX" secondItem="q1Z-bH-lSA" secondAttribute="centerX" id="R6Y-6G-RW7"/>
+                                                <constraint firstItem="qav-D1-pM5" firstAttribute="centerY" secondItem="q1Z-bH-lSA" secondAttribute="centerY" id="RN4-Iz-Esx"/>
+                                                <constraint firstItem="qav-D1-pM5" firstAttribute="leading" secondItem="xyb-ci-8kh" secondAttribute="trailing" constant="10" id="eDJ-eY-I34"/>
                                             </constraints>
                                             <connections>
                                                 <outletCollection property="gestureRecognizers" destination="NXc-bk-pyK" appends="YES" id="tqI-Zu-4Cf"/>
@@ -319,7 +327,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximale Distanz zur Bahnstrecke in Meter" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0j-rp-cqM">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximale Distanz zur Bahnstrecke in Metern" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0j-rp-cqM">
                                                     <rect key="frame" x="30" y="61" width="354" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -493,6 +501,7 @@
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="location.north.fill" catalog="system" width="108" height="128"/>
         <image name="map" catalog="system" width="128" height="113"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="tray" catalog="system" width="128" height="88"/>
     </resources>
 </document>

@@ -11,7 +11,7 @@ target 'Trainspot.App' do
   pod 'Log'
   pod 'Alamofire', '~> 5.2'
   pod 'SwiftEventBus', :tag => '5.0.1', :git => 'https://github.com/cesarferreira/SwiftEventBus.git'
-  pod 'NotificationBannerSwift', '~> 3.0.0'
+  pod 'NotificationBannerSwift', :git => 'https://github.com/findus/NotificationBanner.git'
   
 end
 
@@ -25,7 +25,7 @@ target 'Trainspot.AppMock' do
   pod 'Log'
   pod 'Alamofire', '~> 5.2'
   pod 'SwiftEventBus', :tag => '5.0.1', :git => 'https://github.com/cesarferreira/SwiftEventBus.git'
-  pod 'NotificationBannerSwift', '~> 3.0.0'
+  pod 'NotificationBannerSwift', :git => 'https://github.com/findus/NotificationBanner.git'
 
 end
 
