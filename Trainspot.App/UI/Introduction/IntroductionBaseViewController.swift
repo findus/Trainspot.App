@@ -11,7 +11,7 @@ import UIKit
 
 class IntroductionBaseViewController: UIViewController {
     
-    @IBOutlet private var closeButton: UIButton!
+    @IBOutlet private var demoButton: UIButton!
     public var onDone: (()->Void)? = nil
     
     @IBAction func onClose(_ sender: Any) {

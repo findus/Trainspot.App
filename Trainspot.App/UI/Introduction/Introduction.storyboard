@@ -21,12 +21,12 @@
                                     <segue destination="u0I-Z3-DMe" kind="embed" id="Swb-Pm-DQc"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwW-O2-9is" customClass="BigBlueButton" customModule="Trainspot_App" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwW-O2-9is" userLabel="DemoButton" customClass="BigBlueButton" customModule="Trainspot_App" customModuleProvider="target">
                                 <rect key="frame" x="62" y="812" width="290" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Cao-dX-E6c"/>
                                 </constraints>
-                                <state key="normal" title="Schließen"/>
+                                <state key="normal" title="Demo"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
                                         <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -53,7 +53,7 @@
                         <viewLayoutGuide key="safeArea" id="aum-kM-j3H"/>
                     </view>
                     <connections>
-                        <outlet property="closeButton" destination="pwW-O2-9is" id="GbJ-HG-AJ5"/>
+                        <outlet property="demoButton" destination="pwW-O2-9is" id="S53-7T-KLf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hh-kB-jCP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -143,14 +143,14 @@ Und erhalte zusätzliche Infos wie:
 </string>
                                                                 <attributes>
                                                                     <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                    <font key="NSFont" metaFont="system" size="14"/>
+                                                                    <font key="NSFont" metaFont="menu" size="14"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                 </attributes>
                                                             </fragment>
                                                             <fragment content="- Die Endhaltestelle">
                                                                 <attributes>
                                                                     <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                    <font key="NSFont" metaFont="system" size="14"/>
+                                                                    <font key="NSFont" metaFont="menu" size="14"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
                                                                 </attributes>
                                                             </fragment>
