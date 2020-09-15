@@ -71,20 +71,19 @@
         <!--Basic Scroll View Controller-->
         <scene sceneID="SUB-4p-7bx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AVG-dj-qAG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Page 1" id="QRD-tA-H4V" customClass="BasicScrollViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" id="wPd-1Z-SWW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hUc-36-nHW">
-                                <rect key="frame" x="0.0" y="0.0" width="266" height="700"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUc-36-nHW">
+                                <rect key="frame" x="0.0" y="0.0" width="885" height="700"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lpn-EN-ujV">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="700"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="lpn-EN-ujV">
+                                        <rect key="frame" x="0.0" y="0.0" width="885" height="700"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trainspot.App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8I3-Ae-xvA">
-                                                <rect key="frame" x="33" y="0.0" width="174" height="100"/>
+                                                <rect key="frame" x="20" y="20" width="845" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="JjA-oP-Nd2"/>
                                                 </constraints>
@@ -93,10 +92,86 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaX-rg-AoA">
-                                                <rect key="frame" x="0.0" y="100" width="240" height="600"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <rect key="frame" x="20" y="138" width="845" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fahrplan-Simulation mit Echtzeitdaten" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKZ-eo-Xv8">
+                                                        <rect key="frame" x="0.0" y="0.0" width="845" height="50"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="UKZ-eo-Xv8" secondAttribute="trailing" id="bUP-7f-EKf"/>
+                                                    <constraint firstAttribute="bottom" secondItem="UKZ-eo-Xv8" secondAttribute="bottom" id="msN-y7-TxS"/>
+                                                    <constraint firstItem="UKZ-eo-Xv8" firstAttribute="top" secondItem="eaX-rg-AoA" secondAttribute="top" id="vUP-gP-T5w"/>
+                                                    <constraint firstItem="UKZ-eo-Xv8" firstAttribute="leading" secondItem="eaX-rg-AoA" secondAttribute="leading" id="ytW-3G-Ngc"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3DT-h4-bjR">
+                                                <rect key="frame" x="20" y="206" width="845" height="338"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_pic_1" translatesAutoresizingMaskIntoConstraints="NO" id="ZSx-SB-cak">
+                                                        <rect key="frame" x="0.0" y="0.0" width="845" height="338"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="3DT-h4-bjR" secondAttribute="height" multiplier="2:0.8" id="5dS-U0-S5E"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ZSx-SB-cak" secondAttribute="trailing" id="5wg-Z4-bVX"/>
+                                                    <constraint firstItem="ZSx-SB-cak" firstAttribute="leading" secondItem="3DT-h4-bjR" secondAttribute="leading" id="Pfk-XK-MFZ"/>
+                                                    <constraint firstItem="ZSx-SB-cak" firstAttribute="top" secondItem="3DT-h4-bjR" secondAttribute="top" id="Xqu-jd-k0K"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ZSx-SB-cak" secondAttribute="bottom" id="dvx-i4-2No"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dql-JJ-cbG">
+                                                <rect key="frame" x="20" y="562" width="845" height="50"/>
+                                                <subviews>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXW-AV-A2D">
+                                                        <rect key="frame" x="0.0" y="-39" width="845" height="128"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <attributedString key="attributedText">
+                                                            <fragment>
+                                                                <string key="content">Erfahre wann welche Züge an deiner Position vorbei fahren
+
+Und erhalte zusätzliche Infos wie:
+
+- Die Liniennummer
+- Die aktuelle Verspätung
+- Der nächster Halt
+</string>
+                                                                <attributes>
+                                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <font key="NSFont" metaFont="system" size="14"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                            <fragment content="- Die Endhaltestelle">
+                                                                <attributes>
+                                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <font key="NSFont" metaFont="system" size="14"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="xXW-AV-A2D" secondAttribute="bottom" id="AP5-Xp-DtP"/>
+                                                    <constraint firstAttribute="trailing" secondItem="xXW-AV-A2D" secondAttribute="trailing" id="ARd-c8-HGe"/>
+                                                    <constraint firstItem="xXW-AV-A2D" firstAttribute="leading" secondItem="Dql-JJ-cbG" secondAttribute="leading" id="mRO-Rw-Kcn"/>
+                                                    <constraint firstItem="xXW-AV-A2D" firstAttribute="top" secondItem="Dql-JJ-cbG" secondAttribute="top" id="n9i-w4-q4n"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KPM-ci-rdW">
+                                                <rect key="frame" x="20" y="630" width="845" height="50"/>
+                                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                         </subviews>
+                                        <edgeInsets key="layoutMargins" top="20" left="20" bottom="20" right="20"/>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -115,6 +190,7 @@
                             <constraint firstItem="hUc-36-nHW" firstAttribute="leading" secondItem="LV1-eq-1XD" secondAttribute="leading" id="ukG-DF-mhx"/>
                             <constraint firstItem="hUc-36-nHW" firstAttribute="bottom" secondItem="LV1-eq-1XD" secondAttribute="bottom" id="yRm-ap-H3X"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Rlv-SP-v6o"/>
                         <viewLayoutGuide key="contentLayoutGuide" id="LV1-eq-1XD"/>
                         <viewLayoutGuide key="frameLayoutGuide" id="hNo-X7-vP9"/>
                     </scrollView>
@@ -123,6 +199,7 @@
                         <outlet property="content" destination="hUc-36-nHW" id="Cbi-gZ-bL8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AVG-dj-qAG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1269.5652173913045" y="138.61607142857142"/>
         </scene>
@@ -134,6 +211,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Xeu-zk-uec"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYH-yM-oYp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -141,4 +219,7 @@
             <point key="canvasLocation" x="2101" y="131"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tutorial_pic_1" width="337" height="138"/>
+    </resources>
 </document>
