@@ -31,7 +31,23 @@ class SettingsTableViewController: UITableViewController  {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        // Show tutorial
+        if indexPath.row == 5 {
+            self.displayTutorial()
+        }
+        
+    }
+    
+    private func displayTutorial() {
+        let storyboard = UIStoryboard(name: "Introduction", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "introduction")
+        self.present(vc, animated: true)
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
@@ -128,10 +144,6 @@ extension SettingsTableViewController {
         self.maxDistanceSlider.value = Float(UserPrefs.getMaxDistance())
         self.macDistanceLabel.text = String(UserPrefs.getMaxDistance())
         self.useManualPosition.isOn = UserPrefs.getManualPositionDetermination()
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

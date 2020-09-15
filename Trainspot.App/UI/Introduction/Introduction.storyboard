@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Introduction Base View Controller-->
+        <scene sceneID="SE2-Na-tJ2">
+            <objects>
+                <viewController storyboardIdentifier="introduction" id="WJI-c1-zn2" customClass="IntroductionBaseViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TQV-m3-EaD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" restorationIdentifier="introduction" translatesAutoresizingMaskIntoConstraints="NO" id="ye6-Nh-Vge">
+                                <rect key="frame" x="0.0" y="44" width="414" height="768"/>
+                                <connections>
+                                    <segue destination="u0I-Z3-DMe" kind="embed" id="Swb-Pm-DQc"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwW-O2-9is" customClass="BigBlueButton" customModule="Trainspot_App" customModuleProvider="target">
+                                <rect key="frame" x="62" y="822" width="290" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Cao-dX-E6c"/>
+                                </constraints>
+                                <state key="normal" title="Schließen"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onClose:" destination="WJI-c1-zn2" eventType="touchUpInside" id="nmR-LK-yhg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ye6-Nh-Vge" firstAttribute="leading" secondItem="aum-kM-j3H" secondAttribute="leading" id="9Z9-My-tOF"/>
+                            <constraint firstItem="pwW-O2-9is" firstAttribute="width" secondItem="TQV-m3-EaD" secondAttribute="width" multiplier="0.7" id="Aup-3z-fh3"/>
+                            <constraint firstItem="pwW-O2-9is" firstAttribute="centerX" secondItem="TQV-m3-EaD" secondAttribute="centerX" id="CYz-Gp-jm8"/>
+                            <constraint firstItem="pwW-O2-9is" firstAttribute="top" secondItem="ye6-Nh-Vge" secondAttribute="bottom" constant="10" id="QvA-CE-WLp"/>
+                            <constraint firstItem="aum-kM-j3H" firstAttribute="bottom" secondItem="pwW-O2-9is" secondAttribute="bottom" id="WGg-A4-MhH"/>
+                            <constraint firstItem="ye6-Nh-Vge" firstAttribute="top" secondItem="aum-kM-j3H" secondAttribute="top" id="cnQ-Un-uZo"/>
+                            <constraint firstItem="aum-kM-j3H" firstAttribute="trailing" secondItem="ye6-Nh-Vge" secondAttribute="trailing" id="pqb-Xs-xGk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aum-kM-j3H"/>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="pwW-O2-9is" id="GbJ-HG-AJ5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2hh-kB-jCP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-341" y="139"/>
+        </scene>
+        <!--Introduction Page View Controller-->
+        <scene sceneID="MDj-L6-TET">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="u0I-Z3-DMe" customClass="IntroductionPageViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YS5-9l-7zD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="309" y="131"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="SUB-4p-7bx">
+            <objects>
+                <viewController storyboardIdentifier="Page 1" id="QRD-tA-H4V" sceneMemberID="viewController">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="wPd-1Z-SWW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <viewLayoutGuide key="safeArea" id="JXh-Da-YaV"/>
+                        <viewLayoutGuide key="contentLayoutGuide" id="LV1-eq-1XD"/>
+                        <viewLayoutGuide key="frameLayoutGuide" id="hNo-X7-vP9"/>
+                    </scrollView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AVG-dj-qAG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1430" y="139"/>
+        </scene>
+    </scenes>
+</document>
