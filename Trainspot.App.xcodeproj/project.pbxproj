@@ -50,6 +50,8 @@
 		D47E09F5250B93E30068126D /* TrainTrackPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */; };
 		D47E09F7250BB6250068126D /* DistanceToStationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43705682509877F00A1795F /* DistanceToStationCell.swift */; };
 		D47E0A33250BDB110068126D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */; };
+		D48E44E725115CF800709290 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E44E625115CF800709290 /* InitialViewController.swift */; };
+		D48E44E825115CF800709290 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E44E625115CF800709290 /* InitialViewController.swift */; };
 		D4A1E98E2510AAB8006B5E10 /* BigBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E98D2510AAB8006B5E10 /* BigBlueButton.swift */; };
 		D4A1E98F2510AAB8006B5E10 /* BigBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E98D2510AAB8006B5E10 /* BigBlueButton.swift */; };
 		D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
@@ -302,6 +304,7 @@
 		D46B6B6524912CF200AF77F6 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
 		D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainTrackPolyline.swift; sourceTree = "<group>"; };
 		D47E0A2F250BCEF10068126D /* Trainspot.App copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Trainspot.App copy-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/Trainspot.App copy-Info.plist"; sourceTree = "<absolute>"; };
+		D48E44E625115CF800709290 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		D4A1E98D2510AAB8006B5E10 /* BigBlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBlueButton.swift; sourceTree = "<group>"; };
 		D4A30E4C24958DC200B2684C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A5B7F0250FBBFB003257F5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -579,6 +582,7 @@
 		D46B6B6124912BD800AF77F6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D48E44E525115CD400709290 /* InitialViewController */,
 				D4A1E98C2510AA9E006B5E10 /* Buttons */,
 				D4A5B7F22510172E003257F5 /* Introduction */,
 				D43705672509874C00A1795F /* SettingsComponents */,
@@ -636,6 +640,14 @@
 				D437DDA0250ACCAB00ED8909 /* AutocompleteDelegate.swift */,
 			);
 			path = AutoComplete;
+			sourceTree = "<group>";
+		};
+		D48E44E525115CD400709290 /* InitialViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D48E44E625115CF800709290 /* InitialViewController.swift */,
+			);
+			path = InitialViewController;
 			sourceTree = "<group>";
 		};
 		D4A1E98C2510AA9E006B5E10 /* Buttons */ = {
@@ -1408,6 +1420,7 @@
 				D4B636C124957DBF00996744 /* Log.swift in Sources */,
 				D43705692509877F00A1795F /* DistanceToStationCell.swift in Sources */,
 				D437056C2509883300A1795F /* SettingsTableViewController.swift in Sources */,
+				D48E44E825115CF800709290 /* InitialViewController.swift in Sources */,
 				178090C42498182300DBC0B6 /* PaddingLabel.swift in Sources */,
 				D4BCAFB624953752000B40D8 /* TrainOverviewCell.swift in Sources */,
 				D4BCAFB724953752000B40D8 /* TrainViewList.swift in Sources */,
@@ -1463,6 +1476,7 @@
 				D4A1E98E2510AAB8006B5E10 /* BigBlueButton.swift in Sources */,
 				D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */,
 				D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */,
+				D48E44E725115CF800709290 /* InitialViewController.swift in Sources */,
 				D4FF574D2510AF67004E4238 /* IntroductionBaseViewController.swift in Sources */,
 				D437DDA1250ACCAB00ED8909 /* AutocompleteDelegate.swift in Sources */,
 				D4270AB7248BACD10022A6BB /* TrainAnnotation.swift in Sources */,

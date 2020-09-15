@@ -249,6 +249,9 @@ extension ViewController {
                self.mapViewController?.setLineToNearestTrack(forTrackPosition: location, andUserlocation: UserPrefs.getManualLocation().coordinate)
            }
         
+        //TODO only for reloading lines, write additional logic that refreshes new registered vcs accordingly
+        TripHandler.shared.triggerUpdate()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

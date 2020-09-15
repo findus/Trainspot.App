@@ -19,6 +19,7 @@ class AutoCompleteViewController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     weak var delegate: AutoCompleteDelegate?
+    private var selectedValue: String?
     
     public var data: Array<String>? {
         didSet {
@@ -76,8 +77,13 @@ class AutoCompleteViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let value = filteredData?[indexPath.row]
-        delegate?.onValueSelected(value)
+        self.selectedValue = value
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        delegate?.onValueSelected(self.selectedValue)
     }
 
 }

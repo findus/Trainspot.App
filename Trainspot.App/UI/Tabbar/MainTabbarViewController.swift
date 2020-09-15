@@ -19,14 +19,7 @@ public class MainTabbarViewController: UITabBarController {
         self.setupEventBusListener()
     }
     
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if UserPrefs.getfirstOnboardingTriggered() == false {
-            self.displayTutorial()
-        } else {
-            TripHandler.shared.start()
-        }
-    }
+   
     
     private func setupEventBusListener() {
         SwiftEventBus.onMainThread(self, name: "selectTab") { notification in
@@ -38,64 +31,3 @@ public class MainTabbarViewController: UITabBarController {
     
 }
 
-
-//MARK: Onboarding
-
-extension MainTabbarViewController: AutoCompleteDelegate {
-    
-    private func displayTutorial() {
-        let storyboard = UIStoryboard(name: "Introduction", bundle: nil)
-        let vc = (storyboard.instantiateViewController(withIdentifier: "introduction") as! IntroductionBaseViewController)
-        vc.onDone = { startDemo in
-            UserPrefs.setfirstOnboardingTriggered(true)
-
-            if startDemo {
-                UserPrefs.setDemoModusActive(true)
-                TripHandler.shared.setupDemo()
-                TripHandler.shared.forceStart()
-                let storyboard = UIStoryboard(name: "Introduction", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "Demo")
-                self.present(vc, animated: true)
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.triggerStationSelection()
-                }
-            }
-            
-        }
-        self.present(vc, animated: true)
-        
-    }
-    
-    private func triggerStationSelection() {
-        let controller = AutoCompleteViewController(nibName: "AutoCompleteViewController", bundle: nil)
-        
-        let content = CsvReader.shared.getAll()
-        controller.delegate = self
-        controller.data = content?.map({ (a) -> String in
-            a.stationName
-        })
-        
-        self.present(controller, animated: true, completion: nil)
-    }
-    
-    func onValueSelected(_ value: String?) {
-        
-        guard let newStationName = value  else {
-            return
-        }
-        
-        Log.info("User selected \(newStationName) as new station")
-        
-        guard let data = CsvReader.shared.getStationInfo(withContent: newStationName)?.first?.ibnr else {
-            Log.error("Could not find ibnr for station named \(newStationName)")
-            return
-        }
-        
-        let stationInfo = StationInfo(newStationName, data)
-        
-        UserPrefs.setSelectedStation(stationInfo)
-        SwiftEventBus.post("UpdatedSettings")
-    }
-    
-}
