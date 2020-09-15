@@ -45,7 +45,7 @@ class UserLocationController: NSObject, CLLocationManagerDelegate {
     
     func activate() {
         Log.info("Activating Location tracking")
-        UserPrefs.setManualLocationEnabled(true)
+        UserPrefs.setManualLocationEnabled(false)
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
         locationManager.startMonitoringSignificantLocationChanges()
@@ -80,7 +80,6 @@ class UserLocationController: NSObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (status == .authorizedWhenInUse || status == .authorizedAlways) && UserPrefs.hasUserActivatedManualLocation() == false {
-            
             SwiftEventBus.post("useManualPosition", sender: false)
         } else {
             self.deactivate()

@@ -60,6 +60,8 @@ class MapViewController: UIViewController {
         if UserPrefs.isManualLocationEnabled() {
             self.addFakedUserPosition(onLocation: UserPrefs.getManualLocation().coordinate)
         }
+        
+        self.updateUserPosAnnotationOpacity()
     }
     
     private func centerCamera(atTripWithId id: String) {
@@ -134,6 +136,17 @@ class MapViewController: UIViewController {
         return self.lineDict.values.filter({ (polyline) -> Bool in
             polyline.type?.get() == "selected"
         })
+    }
+    
+    private func updateUserPosAnnotationOpacity() {
+        
+        guard let pin = map.annotations.filter({ (annotation) -> Bool in
+            annotation is MKPointAnnotation
+        }).first else {
+            return
+        }
+        
+        self.map.view(for: pin)?.alpha = UserPrefs.isManualLocationEnabled() ? 1.0 : 0.4
     }
     
     private func deHighlightLine() {
@@ -309,7 +322,14 @@ extension MapViewController: MKMapViewDelegate
         }
         
         guard let an = (annotation as? TrainAnnotation) else {
-            return  nil
+            // User defined position Annotation
+            if annotation is MKPointAnnotation {
+                let basicAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "manual")
+                basicAnnotationView.alpha = UserPrefs.isManualLocationEnabled() ? 1.0 : 0.4
+                return basicAnnotationView
+            }
+            
+            return nil
         }
         
         guard let view = annotationView else {
