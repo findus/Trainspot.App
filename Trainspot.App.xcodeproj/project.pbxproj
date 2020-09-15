@@ -143,6 +143,8 @@
 		D4FF574E2510AF67004E4238 /* IntroductionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */; };
 		D4FF57502510C603004E4238 /* BasicScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574F2510C603004E4238 /* BasicScrollViewController.swift */; };
 		D4FF57512510C603004E4238 /* BasicScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574F2510C603004E4238 /* BasicScrollViewController.swift */; };
+		D4FF575A251124D4004E4238 /* TripHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF5759251124D3004E4238 /* TripHandler.swift */; };
+		D4FF575B251124D4004E4238 /* TripHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF5759251124D3004E4238 /* TripHandler.swift */; };
 		F092D0F2051A33B5EA16567F /* Pods_Trainspot_AppMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865CCBA35B7032BE98591DC0 /* Pods_Trainspot_AppMock.framework */; };
 /* End PBXBuildFile section */
 
@@ -352,6 +354,7 @@
 		D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Math+Extension.swift"; sourceTree = "<group>"; };
 		D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionBaseViewController.swift; sourceTree = "<group>"; };
 		D4FF574F2510C603004E4238 /* BasicScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicScrollViewController.swift; sourceTree = "<group>"; };
+		D4FF5759251124D3004E4238 /* TripHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripHandler.swift; sourceTree = "<group>"; };
 		E8E9BEE4FFF6F86671BBD1E4 /* Pods-TripVisualizerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripVisualizerTests.release.xcconfig"; path = "Target Support Files/Pods-TripVisualizerTests/Pods-TripVisualizerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -809,6 +812,7 @@
 		D4DEAAC62487AC1900D33AA2 /* Trainspot.App */ = {
 			isa = PBXGroup;
 			children = (
+				D4FF5758251124C1004E4238 /* TripHandler */,
 				178090BD2498152300DBC0B6 /* Convenience */,
 				D4B636BF24957C5600996744 /* Extensions */,
 				D4BCAF872492D1E5000B40D8 /* UserLocation */,
@@ -845,6 +849,14 @@
 				D4B636C4249581AF00996744 /* Math+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D4FF5758251124C1004E4238 /* TripHandler */ = {
+			isa = PBXGroup;
+			children = (
+				D4FF5759251124D3004E4238 /* TripHandler.swift */,
+			);
+			path = TripHandler;
 			sourceTree = "<group>";
 		};
 		DE099E028417340F4470B39B /* Pods */ = {
@@ -1387,6 +1399,7 @@
 				D4A5B7FD25101951003257F5 /* IntroductionPageViewController.swift in Sources */,
 				D4B636C2249580EB00996744 /* Math+Extension.swift in Sources */,
 				178090C02498153600DBC0B6 /* Convenience.swift in Sources */,
+				D4FF575B251124D4004E4238 /* TripHandler.swift in Sources */,
 				D4FF57512510C603004E4238 /* BasicScrollViewController.swift in Sources */,
 				D4B636C124957DBF00996744 /* Log.swift in Sources */,
 				D43705692509877F00A1795F /* DistanceToStationCell.swift in Sources */,
@@ -1431,6 +1444,7 @@
 				D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */,
 				178CCC1C249A3D840096ED35 /* MainTabbarViewController.swift in Sources */,
 				D4A5B7EF250F9E70003257F5 /* UIView.swift in Sources */,
+				D4FF575A251124D4004E4238 /* TripHandler.swift in Sources */,
 				D4BCAF892492D1F9000B40D8 /* UserLocationController.swift in Sources */,
 				D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */,
 				178CCC18249A3C140096ED35 /* Collection.swift in Sources */,

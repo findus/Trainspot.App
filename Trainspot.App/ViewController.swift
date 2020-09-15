@@ -57,7 +57,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     
     private var mapViewController: MapViewController?
-    private let manager = TrainLocationProxy.shared
     
     private var tripIdToUpdateLocation: String? {
         didSet {
@@ -77,7 +76,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    private var tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
     
     private let tripProvider = MockTrainDataJourneyProvider.init()
     
@@ -139,8 +137,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
       
         if let location = manager.location {
-           
-            self.tripTimeFrameLocationController.setCurrentLocation(location: location)
+            TripHandler.shared.setCurrentLocation(location)
         }
       
         UIView.animate(withDuration: 0.5) {
@@ -151,8 +148,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else { return }
         lastLocation = currentLocation
-        self.tripTimeFrameLocationController.setCurrentLocation(location: currentLocation)
-        
+        TripHandler.shared.setCurrentLocation(currentLocation)
+
         // set nearest track polyline
         guard let selectedTrip = self.selectedTrip else {
             return
@@ -197,7 +194,7 @@ extension ViewController: UIGestureRecognizerDelegate {
                 triggeredUpdate = true
                 self.isStillPulling = true
                 self.loadingIndicator.isHidden = false
-                tripTimeFrameLocationController.fetchServer()
+                TripHandler.shared.triggerUpdate()
             }
             // Just a fancy curve to slowly slow down animation speed while panning
             self.loadingIndicatorHeightConstraint.constant = transform.y > 0 ? 0: 9*(pow(abs(transform.y), 0.5)) + initialConstraintValue
@@ -210,32 +207,11 @@ extension ViewController: UIGestureRecognizerDelegate {
 
 extension ViewController {
       override func viewDidLoad() {
-           super.viewDidLoad()
-    
-           self.manager.delegate?.append(self)
-           self.imageView.isHidden = true
+        super.viewDidLoad()
+        TrainLocationProxy.shared.delegate?.append(self)
+        self.imageView.isHidden = true
 
            UserLocationController.shared.register(delegate: self)
-            
-           #if MOCK
-           var components = DateComponents()
-           components.second = 0
-           components.hour = 0
-           components.minute = 0
-           components.day = 14
-           components.month = 9
-           components.year = 2020
-           let date = Calendar.current.date(from: components)
-           let traveler = TimeTraveler()
-           Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-               traveler.travel(by: 1)
-           }
-           traveler.date = date!
-           tripTimeFrameLocationController = TrainLocationTripByTimeFrameController(dateGenerator: traveler.generateDate)
-           tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "bs_delay")))
-           #else
-           tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(NetworkTrainDataTimeFrameProvider()))
-           #endif
            
            self.statusView.startTimer()
            self.bottomView.layer.shadowOpacity = 0.7
@@ -262,7 +238,8 @@ extension ViewController {
            self.mapViewController?.delegate = self
            
            if UserPrefs.isManualLocationEnabled() {
-               self.tripTimeFrameLocationController.setCurrentLocation(location: UserPrefs.getManualLocation())
+          
+            TripHandler.shared.setCurrentLocation(UserPrefs.getManualLocation())
                
                guard let selectedTrip = self.selectedTrip else {
                    return
@@ -272,16 +249,11 @@ extension ViewController {
                self.mapViewController?.setLineToNearestTrack(forTrackPosition: location, andUserlocation: UserPrefs.getManualLocation().coordinate)
            }
         
-        // Onboarding
-        
-       
     }
     
     override func viewDidAppear(_ animated: Bool) {
 
         if self.firstLaunch == false {
-            self.manager.register(controller: tripTimeFrameLocationController)
-            self.tripTimeFrameLocationController.fetchServer()
             self.toggleStatusView()
             self.firstLaunch = true
         }
@@ -421,9 +393,10 @@ extension ViewController {
 extension ViewController: MapViewControllerDelegate {
     func userPressedAt(location: CLLocation) {
         self.generator.notificationOccurred(.success)
-        UserPrefs.setManualLocation(location)
-        tripTimeFrameLocationController.setCurrentLocation(location: location)
         
+        UserPrefs.setManualLocation(location)
+        TripHandler.shared.setCurrentLocation(location)
+
         guard let selectedTrip = self.selectedTrip else {
             return
         }
@@ -450,7 +423,7 @@ extension ViewController {
         
         SwiftEventBus.onMainThread(self, name: "UpdatedSettings") { (notification) in
             self.mapViewController?.removeAllEntries()
-            self.tripTimeFrameLocationController.fetchServer()
+            TripHandler.shared.triggerUpdate()
         }
         
         SwiftEventBus.onMainThread(self, name: "useManualPosition") { (notification) in
@@ -461,12 +434,12 @@ extension ViewController {
             
             if enabled == true {
                                 
-                self.tripTimeFrameLocationController.setCurrentLocation(location: UserPrefs.getManualLocation())
-                self.tripTimeFrameLocationController.fetchServer()
+                TripHandler.shared.setCurrentLocation(UserPrefs.getManualLocation())
+                TripHandler.shared.triggerUpdate()
                 
             } else {
                 
-                self.tripTimeFrameLocationController.fetchServer()
+                TripHandler.shared.triggerUpdate()
             }
         }
     }

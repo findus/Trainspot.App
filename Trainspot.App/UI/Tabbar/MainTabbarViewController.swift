@@ -21,9 +21,11 @@ public class MainTabbarViewController: UITabBarController {
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // if UserPrefs.getfirstOnboardingTriggered() == false {
-        self.displayTutorial()
-        // }
+        if UserPrefs.getfirstOnboardingTriggered() == false {
+            self.displayTutorial()
+        } else {
+            TripHandler.shared.startNormalMode()
+        }
     }
     
     private func setupEventBusListener() {
@@ -46,12 +48,12 @@ extension MainTabbarViewController: AutoCompleteDelegate {
         let vc = (storyboard.instantiateViewController(withIdentifier: "introduction") as! IntroductionBaseViewController)
         vc.onDone = {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UserPrefs.setfirstOnboardingTriggered(true)
                 self.triggerStationSelection()
             }
         }
         self.present(vc, animated: true)
         
-        UserPrefs.setfirstOnboardingTriggered(true)
     }
     
     private func triggerStationSelection() {
