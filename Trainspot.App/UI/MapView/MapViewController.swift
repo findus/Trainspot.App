@@ -55,7 +55,7 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // Check if locationmanager is still active
-        self.map.showsUserLocation = UserPrefs.isManualLocationEnabled()
+        self.map.showsUserLocation = !UserPrefs.isManualLocationEnabled()
        
         if UserPrefs.isManualLocationEnabled() {
             self.addFakedUserPosition(onLocation: UserPrefs.getManualLocation().coordinate)
@@ -322,6 +322,10 @@ extension MapViewController: MKMapViewDelegate
         }
         
         guard let an = (annotation as? TrainAnnotation) else {
+            
+            if annotation is MKUserLocation {
+                return nil
+            }
             // User defined position Annotation
             if annotation is MKPointAnnotation {
                 let basicAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "manual")
