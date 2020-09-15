@@ -116,4 +116,16 @@ public class UserPrefs {
         UserDefaults.standard.set(data, forKey: manualLocation)
         UserDefaults.standard.synchronize()
     }
+    
+    private static let firstOnboardingTriggered = "ONBOARDING_TRIGGERED"
+    
+    public static func getfirstOnboardingTriggered() -> Bool {
+        UserDefaults.standard.bool(forKey: firstOnboardingTriggered)
+    }
+    
+    public static func setfirstOnboardingTriggered(_ triggered: Bool) {
+        UserDefaults.standard.set(triggered, forKey: firstOnboardingTriggered)
+        UserDefaults.standard.synchronize()
+    }
+    
 }
