@@ -46,10 +46,12 @@ public class TripHandler {
         tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "bs_delay")))
         tripTimeFrameLocationController.dateGenerator = traveler.generateDate
         
-        let loc = CLLocation(latitude: 52.2310468, longitude: 10.4268998)
+        // Hildesheim
+        let loc = CLLocation(latitude: 52.161407, longitude: 9.938503)
         tripTimeFrameLocationController.setCurrentLocation(location: loc)
         UserLocationController.shared.deactivate()
         UserPrefs.setManualLocationEnabled(true)
+        UserPrefs.setHasUserActivatedManualLocation(true)
         UserPrefs.setManualLocation(loc)
         UserPrefs.setSelectedStation(StationInfo("Braunschweig Hbf", "8000049"))
     }

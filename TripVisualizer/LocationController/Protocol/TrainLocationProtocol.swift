@@ -22,3 +22,7 @@ public protocol TrainLocationProtocol {
     func setCurrentLocation(location: CLLocation)
     var delegate: TrainLocationDelegate? { set get }
 }
+
+public protocol Updateable {
+    func onNewClientRegistered(_ client: TrainLocationDelegate)
+}

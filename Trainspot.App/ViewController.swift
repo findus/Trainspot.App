@@ -76,9 +76,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    
-    private let tripProvider = MockTrainDataJourneyProvider.init()
-    
     private var lastLocation: CLLocation? {
         didSet {
             self.calcBearing()
@@ -208,7 +205,9 @@ extension ViewController: UIGestureRecognizerDelegate {
 extension ViewController {
       override func viewDidLoad() {
         super.viewDidLoad()
-        TrainLocationProxy.shared.delegate?.append(self)
+        
+        TrainLocationProxy.shared.addListener(listener: self)
+        
         self.imageView.isHidden = true
 
            UserLocationController.shared.register(delegate: self)

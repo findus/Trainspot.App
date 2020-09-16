@@ -12,7 +12,8 @@ import Log
 
 public class TrainLocationProxy: NSObject {
     
-    public var delegate: Array<TrainLocationDelegate>? = Array.init()
+    private var delegate: Array<TrainLocationDelegate>? = Array.init()
+    private var controllerList: Array<Updateable> = Array.init()
     
     public static let shared = TrainLocationProxy()
         
@@ -20,11 +21,12 @@ public class TrainLocationProxy: NSObject {
         
     }
     
-    public func register<T: TrainLocationProtocol>(controller: T) {
+    public func register<T>(controller: T) where T:TrainLocationProtocol, T:Updateable {
         Log.info("Registered \(String(describing: controller.self)) as a TrainLocation Controller")
         var ctrl = controller
         ctrl.delegate = self
         //controller.update()
+        controllerList.append(controller)
         controller.start()
     }
     
@@ -35,6 +37,9 @@ public class TrainLocationProxy: NSObject {
     public func addListener(listener: TrainLocationDelegate) {
         Log.debug("Added Listener \(listener.id) to Proxy")
         self.delegate?.append(listener)
+        controllerList.forEach { (controller) in
+            controller.onNewClientRegistered(listener)
+        }
     }
     
     public func removeLitener(listener: TrainLocationDelegate) {

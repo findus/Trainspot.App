@@ -89,14 +89,14 @@ public class UserPrefs {
         UserDefaults.standard.synchronize()
     }
     
-    private static let _useRealLocation = "USE_USER_SET_LOCATION"
+    private static let _useFakeLocation = "USE_USER_SET_LOCATION"
     
     public static func hasUserActivatedManualLocation() -> Bool {
-        return UserDefaults.standard.bool(forKey: _useRealLocation)
+        return UserDefaults.standard.bool(forKey: _useFakeLocation)
     }
     
-    public static func setHasUserActivatedManualLocation(_ useRealLocation: Bool) {
-        UserDefaults.standard.set(useRealLocation, forKey: _useRealLocation)
+    public static func setHasUserActivatedManualLocation(_ useFakeLocation: Bool) {
+        UserDefaults.standard.set(useFakeLocation, forKey: _useFakeLocation)
         UserDefaults.standard.synchronize()
     }
     

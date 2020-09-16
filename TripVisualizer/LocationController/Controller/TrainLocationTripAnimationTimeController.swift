@@ -14,7 +14,7 @@ import CoreLocation
  Does not work very well and breaks if you zoom the map dont use it
  */
 @available(*, deprecated, message: "Use the Timeframe Controller")
-class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
+class TrainLocationTripAnimationTimeController: TrainLocationProtocol, Updateable  {
     
     typealias T = JourneyTrip
     typealias P = TripProvider<T>
@@ -139,6 +139,10 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol  {
     
     func setDataProvider(withProvider provider: TripProvider<JourneyTrip>) {
         self.dataProvider = provider
+    }
+    
+    public func onNewClientRegistered(_ client: TrainLocationDelegate) {
+        fatalError("Not yet implemented")
     }
     
     func getArrivalInSeconds(forTrip trip: T, loc: CLLocation) -> TimeInterval? {

@@ -12,7 +12,7 @@ import CoreLocation
 /**
 This Controller calculates the approximate train position based on a fixed time. 
  */
-public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
+public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Updateable  {
     
     // Seconds that a scheduled train gets displayed before actual departure
     var GRACE_PERIOD = 1800.0
@@ -218,6 +218,14 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol  {
     public func setDataProvider(withProvider provider: TripProvider<TimeFrameTrip>) {
         self.dataProvider = provider
         self.dataProvider?.setDeleate(delegate: self)
+    }
+    
+    public func onNewClientRegistered(_ client: TrainLocationDelegate) {
+        
+        Log.info("\(client.id) registered at TripTimeframeController, send initial data to sync client")
+        self.trips.forEach { (trip) in
+            client.drawPolyLine(forTrip: trip)
+        }
     }
 
 }

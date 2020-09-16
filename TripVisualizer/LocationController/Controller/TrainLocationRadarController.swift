@@ -13,7 +13,7 @@ import CoreLocation
  Gets Trips from the Hafas Radar Endpoints and prints them on the map, only availlable for DB Fernverkehr
  Pretty old and needs further refactoring to make it usable again
  */
-public class TrainLocationRadarController: TrainLocationProtocol {
+public class TrainLocationRadarController: TrainLocationProtocol, Updateable {
 
     public typealias T = RadarTrip
     public typealias P = TripProvider<T>
@@ -83,5 +83,8 @@ public class TrainLocationRadarController: TrainLocationProtocol {
         self.dataProvider = provider
     }
     
+    public func onNewClientRegistered(_ client: TrainLocationDelegate) {
+        fatalError("Not yet implemented")
+    }
     
 }
