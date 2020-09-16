@@ -31,7 +31,7 @@ class SettingsTableViewController: UITableViewController  {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -39,9 +39,15 @@ class SettingsTableViewController: UITableViewController  {
         
         // Show tutorial
         if indexPath.row == 5 {
-            self.displayTutorial()
+            self.displayInfo()
         }
         
+    }
+    
+    private func displayInfo() {
+        let storyboard = UIStoryboard(name: "Introduction", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "Info")
+        self.present(vc, animated: true)
     }
     
     private func displayTutorial() {

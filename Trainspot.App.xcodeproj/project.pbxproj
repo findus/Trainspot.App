@@ -52,6 +52,10 @@
 		D47E0A33250BDB110068126D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DEAAD02487AC1E00D33AA2 /* Assets.xcassets */; };
 		D48E44E725115CF800709290 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E44E625115CF800709290 /* InitialViewController.swift */; };
 		D48E44E825115CF800709290 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E44E625115CF800709290 /* InitialViewController.swift */; };
+		D48E44EA25123D4600709290 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E44E925123D4600709290 /* InfoViewController.swift */; };
+		D48E44EB25123D4600709290 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E44E925123D4600709290 /* InfoViewController.swift */; };
+		D48E44ED25123E5200709290 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E44EC25123E5200709290 /* AttributedString.swift */; };
+		D48E44EE25123E5200709290 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E44EC25123E5200709290 /* AttributedString.swift */; };
 		D4A1E98E2510AAB8006B5E10 /* BigBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E98D2510AAB8006B5E10 /* BigBlueButton.swift */; };
 		D4A1E98F2510AAB8006B5E10 /* BigBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E98D2510AAB8006B5E10 /* BigBlueButton.swift */; };
 		D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
@@ -305,6 +309,8 @@
 		D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainTrackPolyline.swift; sourceTree = "<group>"; };
 		D47E0A2F250BCEF10068126D /* Trainspot.App copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Trainspot.App copy-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/Trainspot.App copy-Info.plist"; sourceTree = "<absolute>"; };
 		D48E44E625115CF800709290 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		D48E44E925123D4600709290 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		D48E44EC25123E5200709290 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D4A1E98D2510AAB8006B5E10 /* BigBlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBlueButton.swift; sourceTree = "<group>"; };
 		D4A30E4C24958DC200B2684C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A5B7F0250FBBFB003257F5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -665,6 +671,7 @@
 				D4A5B80225101D73003257F5 /* Introduction.storyboard */,
 				D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */,
 				D4FF574F2510C603004E4238 /* BasicScrollViewController.swift */,
+				D48E44E925123D4600709290 /* InfoViewController.swift */,
 			);
 			path = Introduction;
 			sourceTree = "<group>";
@@ -726,6 +733,7 @@
 				D4BCAF852492479C000B40D8 /* UIView.swift */,
 				17B0E4B92498E61300FAF26B /* Fonts.swift */,
 				178CCC17249A3C140096ED35 /* Collection.swift */,
+				D48E44EC25123E5200709290 /* AttributedString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1404,9 +1412,11 @@
 				D4BCAFA224953752000B40D8 /* StatusView.swift in Sources */,
 				D4FF575C25112D40004E4238 /* MockTrainDataTimeFrameProvider.swift in Sources */,
 				D4BCAFA424953752000B40D8 /* AppDelegate.swift in Sources */,
+				D48E44EB25123D4600709290 /* InfoViewController.swift in Sources */,
 				D4BCAFA824953752000B40D8 /* MapViewControllerDelegate.swift in Sources */,
 				178CCC1D249A3D840096ED35 /* MainTabbarViewController.swift in Sources */,
 				D437DDA2250ACCAB00ED8909 /* AutocompleteDelegate.swift in Sources */,
+				D48E44EE25123E5200709290 /* AttributedString.swift in Sources */,
 				D4BCAFAC24953752000B40D8 /* UserLocationController.swift in Sources */,
 				D4BCAFB124953752000B40D8 /* MapViewControllerProtocol.swift in Sources */,
 				178CCC19249A3C140096ED35 /* Collection.swift in Sources */,
@@ -1460,9 +1470,11 @@
 				D4DEAAC82487AC1900D33AA2 /* AppDelegate.swift in Sources */,
 				D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */,
 				178CCC1C249A3D840096ED35 /* MainTabbarViewController.swift in Sources */,
+				D48E44EA25123D4600709290 /* InfoViewController.swift in Sources */,
 				D4A5B7EF250F9E70003257F5 /* UIView.swift in Sources */,
 				D4FF575A251124D4004E4238 /* TripHandler.swift in Sources */,
 				D4BCAF892492D1F9000B40D8 /* UserLocationController.swift in Sources */,
+				D48E44ED25123E5200709290 /* AttributedString.swift in Sources */,
 				D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */,
 				178CCC18249A3C140096ED35 /* Collection.swift in Sources */,
 				D4BCAF922493D221000B40D8 /* MKTrainAnnotationView.swift in Sources */,
