@@ -16,15 +16,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="ua8-gU-6us">
-                                <rect key="frame" x="0.0" y="-44" width="414" height="814"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="ua8-gU-6us" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-44" id="837-mm-fdw"/>
-                            <constraint firstItem="ua8-gU-6us" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Clt-Lt-YXg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ua8-gU-6us" secondAttribute="bottom" constant="-34" id="EAz-dp-8eR"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ua8-gU-6us" secondAttribute="trailing" id="m8U-bO-WGu"/>
+                            <constraint firstItem="ua8-gU-6us" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="837-mm-fdw"/>
+                            <constraint firstItem="ua8-gU-6us" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Clt-Lt-YXg"/>
+                            <constraint firstAttribute="bottom" secondItem="ua8-gU-6us" secondAttribute="bottom" id="EAz-dp-8eR"/>
+                            <constraint firstAttribute="trailing" secondItem="ua8-gU-6us" secondAttribute="trailing" id="m8U-bO-WGu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
