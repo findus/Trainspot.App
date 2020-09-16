@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,17 +12,17 @@
             <objects>
                 <viewController storyboardIdentifier="introduction" id="WJI-c1-zn2" customClass="IntroductionBaseViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TQV-m3-EaD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" restorationIdentifier="introduction" translatesAutoresizingMaskIntoConstraints="NO" id="ye6-Nh-Vge">
-                                <rect key="frame" x="0.0" y="44" width="414" height="758"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
                                 <connections>
                                     <segue destination="u0I-Z3-DMe" kind="embed" id="Swb-Pm-DQc"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwW-O2-9is" userLabel="DemoButton" customClass="BigBlueButton" customModule="Trainspot_App" customModuleProvider="target">
-                                <rect key="frame" x="62" y="812" width="290" height="40"/>
+                                <rect key="frame" x="48" y="518" width="224" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Cao-dX-E6c"/>
                                 </constraints>
@@ -207,35 +207,35 @@ Und erhalte zusätzliche Infos wie:
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AVG-dj-qAG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1269.5652173913045" y="138.61607142857142"/>
+            <point key="canvasLocation" x="1236" y="506"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="zEM-9O-iBk">
             <objects>
                 <viewController storyboardIdentifier="Page 2" id="872-WB-HvH" sceneMemberID="viewController">
                     <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="vlr-LP-UaC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" id="BPM-qq-gOp">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Im-yg-mIH" userLabel="Title">
-                                    <rect key="frame" x="0.0" y="44" width="414" height="89.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dTJ-wY-3kH">
-                                    <rect key="frame" x="0.0" y="136.5" width="414" height="759.5"/>
+                                    <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="luc-2C-cfe">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="152"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="101.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="cmk-rr-hfl">
-                                                    <rect key="frame" x="50" y="0.0" width="54" height="152"/>
+                                                    <rect key="frame" x="34" y="0.0" width="42" height="101.5"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Die Karte zeigt eine Übersicht aller Züge in deiner Nähe an" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uid-aj-DiT">
-                                                    <rect key="frame" x="114" y="0.0" width="290" height="152"/>
+                                                    <rect key="frame" x="86" y="0.0" width="224" height="101.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -254,13 +254,13 @@ Und erhalte zusätzliche Infos wie:
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLO-lf-lcT">
-                                            <rect key="frame" x="0.0" y="152" width="414" height="152"/>
+                                            <rect key="frame" x="0.0" y="101.5" width="320" height="101.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="n9k-xc-F4a">
-                                                    <rect key="frame" x="40" y="0.0" width="54" height="152"/>
+                                                    <rect key="frame" x="24" y="0.0" width="42" height="101.5"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mit einem Longpress kannst du eine  Position unabhängig von deinem Standort auswählen. (In Settings umschaltbar)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9u-Wk-U0M">
-                                                    <rect key="frame" x="104" y="0.0" width="290" height="152"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mit einem Longpress kannst du eine  Position unabhängig von deinem Standort auswählen. (In Settings umschaltbar)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L9u-Wk-U0M">
+                                                    <rect key="frame" x="76" y="0.0" width="224" height="101.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -279,14 +279,14 @@ Und erhalte zusätzliche Infos wie:
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9s0-5q-0uN">
-                                            <rect key="frame" x="0.0" y="304" width="414" height="151.5"/>
+                                            <rect key="frame" x="0.0" y="203" width="320" height="101.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.up" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4RR-4F-upe">
-                                                    <rect key="frame" x="40" y="1" width="54" height="149.5"/>
+                                                    <rect key="frame" x="24" y="1" width="42" height="99.5"/>
                                                     <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wenn du die Statusbar nach oben swipest, werden die Daten aktualisiert" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Uw-Mo-1VY">
-                                                    <rect key="frame" x="104" y="0.0" width="290" height="151.5"/>
+                                                    <rect key="frame" x="76" y="0.0" width="224" height="101.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -305,14 +305,14 @@ Und erhalte zusätzliche Infos wie:
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KvT-c0-cjd">
-                                            <rect key="frame" x="0.0" y="455.5" width="414" height="152"/>
+                                            <rect key="frame" x="0.0" y="304.5" width="320" height="102"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dAi-pd-KnN">
-                                                    <rect key="frame" x="40" y="0.5" width="54" height="151"/>
+                                                    <rect key="frame" x="24" y="0.5" width="42" height="101"/>
                                                     <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Der Pfeil zeigt in Richtung des ausgewählten Zuges" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rxg-cW-pxA">
-                                                    <rect key="frame" x="104" y="0.0" width="290" height="152"/>
+                                                    <rect key="frame" x="76" y="0.0" width="224" height="102"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -331,14 +331,14 @@ Und erhalte zusätzliche Infos wie:
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xcr-l9-Qk3">
-                                            <rect key="frame" x="0.0" y="607.5" width="414" height="152"/>
+                                            <rect key="frame" x="0.0" y="406.5" width="320" height="101.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ice" translatesAutoresizingMaskIntoConstraints="NO" id="eRf-QA-Aw5">
-                                                    <rect key="frame" x="40" y="0.0" width="54" height="152"/>
+                                                    <rect key="frame" x="24" y="0.0" width="42" height="101.5"/>
                                                     <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Einzelne Züge kannst du mit klick auf einen Marker auswählen" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unv-HO-KIW">
-                                                    <rect key="frame" x="104" y="0.0" width="290" height="152"/>
+                                                    <rect key="frame" x="76" y="0.0" width="224" height="101.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -384,29 +384,29 @@ Und erhalte zusätzliche Infos wie:
             <objects>
                 <viewController storyboardIdentifier="Page 3" id="7mE-lo-E7J" sceneMemberID="viewController">
                     <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="Rl0-kn-Jj0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" id="wzW-Ac-bK3">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tabellenansicht" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rm3-yC-jeq" userLabel="Title">
-                                    <rect key="frame" x="0.0" y="44" width="414" height="89.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="t2I-c6-m31">
-                                    <rect key="frame" x="0.0" y="136.5" width="414" height="759.5"/>
+                                    <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bpn-aS-tgd">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="380"/>
+                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Bpn-aS-tgd">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="254"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PBT-Tt-Hqg">
-                                                    <rect key="frame" x="50" y="2" width="54" height="375"/>
+                                                    <rect key="frame" x="34" y="2" width="42" height="249"/>
                                                     <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eB4-jW-P6Z">
-                                                    <rect key="frame" x="114" y="123" width="290" height="257"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eB4-jW-P6Z">
+                                                    <rect key="frame" x="86" y="0.0" width="224" height="254"/>
                                                     <attributedString key="attributedText">
                                                         <fragment>
                                                             <string key="content">Listet alle aktiven Fahrten in einer Tabelle auf.
@@ -421,13 +421,13 @@ Info Emojis:
 </string>
                                                             <attributes>
                                                                 <font key="NSFont" metaFont="system" size="15"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment content="🛤">
                                                             <attributes>
                                                                 <font key="NSFont" size="15" name=".AppleColorEmojiUI"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment>
@@ -435,13 +435,13 @@ Info Emojis:
 </string>
                                                             <attributes>
                                                                 <font key="NSFont" metaFont="system" size="15"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment content="⏸">
                                                             <attributes>
                                                                 <font key="NSFont" size="15" name=".AppleColorEmojiUI"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment>
@@ -449,19 +449,19 @@ Info Emojis:
 </string>
                                                             <attributes>
                                                                 <font key="NSFont" metaFont="system" size="15"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment content="⏰">
                                                             <attributes>
                                                                 <font key="NSFont" size="15" name=".AppleColorEmojiUI"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment content=" = Startet in x Minuten">
                                                             <attributes>
                                                                 <font key="NSFont" metaFont="system" size="15"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="2" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -474,20 +474,21 @@ Info Emojis:
                                                 <constraint firstAttribute="bottom" secondItem="eB4-jW-P6Z" secondAttribute="bottom" id="KwO-NF-5Jt"/>
                                                 <constraint firstAttribute="trailing" secondItem="eB4-jW-P6Z" secondAttribute="trailing" constant="10" id="dtw-Dg-l9W"/>
                                                 <constraint firstItem="eB4-jW-P6Z" firstAttribute="width" secondItem="Bpn-aS-tgd" secondAttribute="width" multiplier="0.7" id="feE-Kz-Ndl"/>
+                                                <constraint firstItem="eB4-jW-P6Z" firstAttribute="height" secondItem="Bpn-aS-tgd" secondAttribute="height" id="gS5-T5-vSW"/>
                                                 <constraint firstItem="PBT-Tt-Hqg" firstAttribute="centerY" secondItem="Bpn-aS-tgd" secondAttribute="centerY" id="jl9-Qa-eDd"/>
                                                 <constraint firstItem="PBT-Tt-Hqg" firstAttribute="width" secondItem="Bpn-aS-tgd" secondAttribute="width" multiplier="0.131016" id="kB5-5G-K8c"/>
                                                 <constraint firstItem="PBT-Tt-Hqg" firstAttribute="top" secondItem="Bpn-aS-tgd" secondAttribute="top" id="pqr-eY-ueh"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Vb-oP-4GO">
-                                            <rect key="frame" x="0.0" y="380" width="414" height="379.5"/>
+                                            <rect key="frame" x="0.0" y="254" width="320" height="254"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ice" translatesAutoresizingMaskIntoConstraints="NO" id="dVQ-tK-NuR">
-                                                    <rect key="frame" x="40" y="0.0" width="54" height="379.5"/>
+                                                    <rect key="frame" x="24" y="0.0" width="42" height="254"/>
                                                     <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Per Klick auf einen Eintrag wird in der Kartenansicht der entprechende Zug ausgewählt" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNZ-ek-Zke">
-                                                    <rect key="frame" x="104" y="0.0" width="290" height="379.5"/>
+                                                    <rect key="frame" x="76" y="0.0" width="224" height="254"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -533,35 +534,35 @@ Info Emojis:
             <objects>
                 <viewController storyboardIdentifier="Demo" id="xcN-mk-74Z" customClass="CloseableCallBackViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="nYK-Pr-dVd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" id="hoD-H6-TSP">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbK-9B-V16" userLabel="Title">
-                                    <rect key="frame" x="0.0" y="44" width="414" height="89.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hAw-ew-JGF">
-                                    <rect key="frame" x="0.0" y="136.5" width="414" height="572.5"/>
+                                    <rect key="frame" x="0.0" y="60" width="320" height="397.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBM-sU-ITe">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="572.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="397.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ice" translatesAutoresizingMaskIntoConstraints="NO" id="F42-Bl-oeD">
-                                                    <rect key="frame" x="10" y="10" width="394" height="193"/>
+                                                    <rect key="frame" x="10" y="10" width="300" height="133.5"/>
                                                 </imageView>
                                                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rIK-bU-xGd">
-                                                    <rect key="frame" x="0.0" y="203" width="414" height="369.5"/>
+                                                    <rect key="frame" x="0.0" y="143.5" width="320" height="254"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dcH-SL-UGK">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="369.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="254"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLD-hK-Qtw">
-                                                                <rect key="frame" x="20" y="0.0" width="374" height="369.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wLD-hK-Qtw">
+                                                                <rect key="frame" x="20" y="0.0" width="280" height="254"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <string key="text">Willkommen zum Demomodus!
 
@@ -627,29 +628,29 @@ Wenn du fertig bist kannst du die App einfach neu starten, dann werden richtige 
             <objects>
                 <viewController storyboardIdentifier="Page 4" id="52V-9N-WfR" sceneMemberID="viewController">
                     <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="t8Q-Yh-gsf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" id="gpe-dF-v4M">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Einstellungen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtG-y1-1Qa" userLabel="Title">
-                                    <rect key="frame" x="0.0" y="44" width="414" height="89.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="88q-1W-hDg">
-                                    <rect key="frame" x="0.0" y="136.5" width="414" height="759.5"/>
+                                    <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLN-qH-oHM">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="253"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="169"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gear" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AK8-zn-a8a">
-                                                    <rect key="frame" x="40" y="0.0" width="54" height="253.5"/>
+                                                    <rect key="frame" x="24" y="0.0" width="42" height="169.5"/>
                                                     <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hier kannst du einen passenden Bahnhof einstellen" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ljw-Wr-VA2">
-                                                    <rect key="frame" x="104" y="0.0" width="290" height="253"/>
+                                                    <rect key="frame" x="76" y="0.0" width="224" height="169"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -668,13 +669,13 @@ Wenn du fertig bist kannst du die App einfach neu starten, dann werden richtige 
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ziy-yY-6R4">
-                                            <rect key="frame" x="0.0" y="253" width="414" height="253.5"/>
+                                            <rect key="frame" x="0.0" y="169" width="320" height="169.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zugfilter" translatesAutoresizingMaskIntoConstraints="NO" id="rCG-5O-KD5">
-                                                    <rect key="frame" x="40" y="0.0" width="54" height="253.5"/>
+                                                    <rect key="frame" x="24" y="0.0" width="42" height="169.5"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ebenso den Abstand zum Bahnhof, um bereits durchgefahrene Züge auszublenden" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbw-qf-rcW">
-                                                    <rect key="frame" x="104" y="0.0" width="290" height="253.5"/>
+                                                    <rect key="frame" x="76" y="0.0" width="224" height="169.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -693,14 +694,14 @@ Wenn du fertig bist kannst du die App einfach neu starten, dann werden richtige 
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LBT-DF-X4g">
-                                            <rect key="frame" x="0.0" y="506.5" width="414" height="253"/>
+                                            <rect key="frame" x="0.0" y="338.5" width="320" height="169.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.clockwise" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4rN-uU-hWO">
-                                                    <rect key="frame" x="40" y="-1" width="54" height="253"/>
+                                                    <rect key="frame" x="24" y="-1" width="42" height="169.5"/>
                                                     <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bei jeder Änderung werden die Daten automatisch aktualisiert" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqR-rJ-6my">
-                                                    <rect key="frame" x="104" y="0.0" width="290" height="253"/>
+                                                    <rect key="frame" x="76" y="0.0" width="224" height="169.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

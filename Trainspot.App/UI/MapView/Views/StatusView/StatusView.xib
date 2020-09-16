@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="567" height="428"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0E-Za-YX5" userLabel="State/Destination">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="R0E-Za-YX5" userLabel="State/Destination">
                     <rect key="frame" x="20" y="52" width="527" height="95.5"/>
                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
