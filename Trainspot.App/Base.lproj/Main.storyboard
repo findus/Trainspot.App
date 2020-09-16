@@ -516,6 +516,7 @@
                             <constraint firstItem="wMn-Te-HGt" firstAttribute="top" secondItem="NEP-in-7Ni" secondAttribute="top" id="nxY-Hj-s7f"/>
                             <constraint firstAttribute="trailing" secondItem="wMn-Te-HGt" secondAttribute="trailing" id="rHL-n0-VDT"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="oFt-wS-2Xp"/>
                     </view>
                     <connections>
                         <segue destination="eiO-9N-ueo" kind="presentation" identifier="main" modalPresentationStyle="fullScreen" id="kwc-m8-dED"/>
