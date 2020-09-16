@@ -31,7 +31,7 @@ class SettingsTableViewController: UITableViewController  {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -46,7 +46,7 @@ class SettingsTableViewController: UITableViewController  {
     
     private func displayTutorial() {
         let storyboard = UIStoryboard(name: "Introduction", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "introduction")
+        let vc = storyboard.instantiateViewController(withIdentifier: "Page 4")
         self.present(vc, animated: true)
     }
     
@@ -146,6 +146,15 @@ extension SettingsTableViewController {
         self.maxDistanceSlider.value = Float(UserPrefs.getMaxDistance())
         self.macDistanceLabel.text = String(UserPrefs.getMaxDistance())
         self.useManualPosition.isOn = UserPrefs.isManualLocationEnabled()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if UserPrefs.infoDialogShownFor(String(describing: self.classForCoder)) == false {
+            self.displayTutorial()
+            UserPrefs.setInfoDialogShownFor(String(describing: self.classForCoder))
+        }
     }
     
 }

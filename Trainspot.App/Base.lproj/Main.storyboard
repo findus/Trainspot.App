@@ -401,26 +401,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="vzc-vb-QJB" userLabel="ShowTutorial" customClass="DistanceToStationCell" customModule="Trainspot_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="505" width="414" height="77"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vzc-vb-QJB" id="18g-3M-7Kj">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial anzeigen" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBn-fU-kel">
-                                                    <rect key="frame" x="141.5" y="28" width="131" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="lBn-fU-kel" firstAttribute="centerX" secondItem="18g-3M-7Kj" secondAttribute="centerX" id="AaU-Ch-HYA"/>
-                                                <constraint firstItem="lBn-fU-kel" firstAttribute="centerY" secondItem="18g-3M-7Kj" secondAttribute="centerY" id="yfI-ph-prx"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
