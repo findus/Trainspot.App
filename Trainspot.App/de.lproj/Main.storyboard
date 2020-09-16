@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d0G-KT-BYU">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Map-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8L-X6-Uqn">
+                                <rect key="frame" x="0.0" y="-19.5" width="414" height="896"/>
+                                <connections>
+                                    <segue destination="iqN-KL-GHB" kind="embed" id="Kx4-hX-DDW"/>
+                                </connections>
+                            </containerView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.north.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vCU-ZU-3hG">
+                                <rect key="frame" x="20" y="441" width="374" height="191.5"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kjn-qY-bhp">
+                                <rect key="frame" x="0.0" y="633" width="414" height="180"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kqV-4S-dwJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tSQ-4O-Trk">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iTR-Rt-8KY" userLabel="StatusContainerView">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dw6-Fb-JU8">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="FNm-hT-YwT"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ebN-Sl-0IC" userLabel="SelectedView" customClass="StatusView" customModule="Trainspot_App" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="StatusView" label="StatusView"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MY9-G4-ofa" userLabel="Acitivity Indicator">
+                                                        <rect key="frame" x="0.0" y="150" width="414" height="30"/>
+                                                        <subviews>
+                                                            <activityIndicatorView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="fHC-sf-lZG">
+                                                                <rect key="frame" x="0.0" y="3" width="414" height="20"/>
+                                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                            </activityIndicatorView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="5G6-wQ-oIY"/>
+                                                            <constraint firstAttribute="trailing" secondItem="fHC-sf-lZG" secondAttribute="trailing" id="Vds-az-Ebw"/>
+                                                            <constraint firstItem="fHC-sf-lZG" firstAttribute="leading" secondItem="MY9-G4-ofa" secondAttribute="leading" id="Zal-C9-4Qn"/>
+                                                            <constraint firstItem="fHC-sf-lZG" firstAttribute="top" secondItem="MY9-G4-ofa" secondAttribute="top" constant="3" id="dEa-gN-g19"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="ebN-Sl-0IC" firstAttribute="top" secondItem="iTR-Rt-8KY" secondAttribute="top" id="1ln-v3-Ke8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="MY9-G4-ofa" secondAttribute="trailing" id="Gan-jS-hOa"/>
+                                                    <constraint firstItem="ebN-Sl-0IC" firstAttribute="leading" secondItem="iTR-Rt-8KY" secondAttribute="leading" id="Jb1-Fc-hdA"/>
+                                                    <constraint firstItem="MY9-G4-ofa" firstAttribute="leading" secondItem="iTR-Rt-8KY" secondAttribute="leading" id="PpO-Lt-GD6"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ebN-Sl-0IC" secondAttribute="trailing" id="VVz-5n-hRH"/>
+                                                    <constraint firstItem="dw6-Fb-JU8" firstAttribute="leading" secondItem="iTR-Rt-8KY" secondAttribute="leading" id="XgJ-tB-KUT"/>
+                                                    <constraint firstItem="MY9-G4-ofa" firstAttribute="top" secondItem="ebN-Sl-0IC" secondAttribute="bottom" id="Xr1-Fc-0q8"/>
+                                                    <constraint firstAttribute="bottom" secondItem="MY9-G4-ofa" secondAttribute="bottom" id="eSQ-bl-xdy"/>
+                                                    <constraint firstItem="dw6-Fb-JU8" firstAttribute="top" secondItem="iTR-Rt-8KY" secondAttribute="top" id="jER-Br-jow"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dw6-Fb-JU8" secondAttribute="trailing" id="rst-ex-L6G"/>
+                                                </constraints>
+                                            </view>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <vibrancyEffect style="separator">
+                                                <blurEffect style="regular"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="tSQ-4O-Trk" firstAttribute="leading" secondItem="kqV-4S-dwJ" secondAttribute="leading" id="06t-p2-CK8"/>
+                                        <constraint firstItem="tSQ-4O-Trk" firstAttribute="top" secondItem="kqV-4S-dwJ" secondAttribute="top" id="KWX-Nw-Cle"/>
+                                        <constraint firstAttribute="trailing" secondItem="tSQ-4O-Trk" secondAttribute="trailing" id="ZKd-ED-PMX"/>
+                                        <constraint firstAttribute="bottom" secondItem="tSQ-4O-Trk" secondAttribute="bottom" id="w7l-pY-wat"/>
+                                    </constraints>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kjn-qY-bhp" secondAttribute="trailing" id="3UT-oW-Sql"/>
+                            <constraint firstItem="vCU-ZU-3hG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="AIn-gD-Lns"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vCU-ZU-3hG" secondAttribute="trailing" constant="20" id="Cgf-UH-iZK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kjn-qY-bhp" secondAttribute="bottom" id="FNW-1c-VyK"/>
+                            <constraint firstItem="g8L-X6-Uqn" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="FPU-04-csQ"/>
+                            <constraint firstItem="kjn-qY-bhp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FS1-6L-idb"/>
+                            <constraint firstItem="ebN-Sl-0IC" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.167411" priority="750" identifier="proportionalHeight" id="KYh-DY-NJY"/>
+                            <constraint firstItem="g8L-X6-Uqn" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="SiL-7W-NEr"/>
+                            <constraint firstItem="kjn-qY-bhp" firstAttribute="top" secondItem="vCU-ZU-3hG" secondAttribute="bottom" id="UZm-6b-e5h"/>
+                            <constraint firstItem="vCU-ZU-3hG" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.25" id="WcP-Z5-div"/>
+                            <constraint firstItem="g8L-X6-Uqn" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Xb5-0Z-Ka4"/>
+                            <constraint firstItem="g8L-X6-Uqn" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="iev-Pa-V6o"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="ZVL-Ji-bya"/>
+                    <connections>
+                        <outlet property="activiyIndicatorWrapper" destination="MY9-G4-ofa" id="DXY-BA-qJ6"/>
+                        <outlet property="bottomView" destination="kjn-qY-bhp" id="MSo-es-f1b"/>
+                        <outlet property="imageView" destination="vCU-ZU-3hG" id="f3L-tZ-QA3"/>
+                        <outlet property="loadingIndicator" destination="fHC-sf-lZG" id="uFh-bf-jUt"/>
+                        <outlet property="loadingIndicatorHeightConstraint" destination="5G6-wQ-oIY" id="ff6-pC-gsW"/>
+                        <outlet property="mapContainerView" destination="g8L-X6-Uqn" id="a17-A3-U7V"/>
+                        <outlet property="proportionalHeightConstraint" destination="KYh-DY-NJY" id="HAI-1Y-66Y"/>
+                        <outlet property="statusContainerView" destination="iTR-Rt-8KY" id="Nzg-Zh-87F"/>
+                        <outlet property="statusView" destination="ebN-Sl-0IC" id="75Q-ZG-XAa"/>
+                        <outlet property="statusViewWrapper" destination="kjn-qY-bhp" id="nkD-j5-lEd"/>
+                        <outlet property="vibrancyView" destination="tSQ-4O-Trk" id="vMQ-eR-U68"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="928.98550724637687" y="-599.33035714285711"/>
+        </scene>
+        <!--Overview-->
+        <scene sceneID="Kd2-Uu-7Vz">
+            <objects>
+                <tableViewController title="Overview" id="1fa-wT-uYc" customClass="TrainViewList" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jqf-Uk-wot">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="trainOverviewCell" id="jyA-xI-vxr" customClass="TrainOverviewCell" customModule="Trainspot_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="37"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jyA-xI-vxr" id="JAM-id-YjI" customClass="TrainOverviewCell" customModule="Trainspot_App" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="center" horizontalCompressionResistancePriority="1000" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IsF-cj-QCd">
+                                            <rect key="frame" x="0.0" y="0.0" width="227.5" height="37"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Train Name" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="2" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39k-gH-bMO" userLabel="Train Name" customClass="PaddingLabel" customModule="Trainspot_App" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="9.5" width="78" height="18"/>
+                                                    <color key="backgroundColor" red="0.7185120558375635" green="0.11447466555494319" blue="0.11936212813607006" alpha="0.81860017123287676" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="2" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPU-0i-H4t" userLabel="Arrival In">
+                                                    <rect key="frame" x="95" y="8.5" width="66.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyP-Pc-Md4" userLabel="Status">
+                                                    <rect key="frame" x="170" y="8.5" width="49.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YZo-07-bCn">
+                                            <rect key="frame" x="237.5" y="0.0" width="176.5" height="37"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="YZo-07-bCn" firstAttribute="top" secondItem="JAM-id-YjI" secondAttribute="top" id="6Vk-OS-DHp"/>
+                                        <constraint firstAttribute="trailing" secondItem="YZo-07-bCn" secondAttribute="trailing" id="7y8-BU-fZb"/>
+                                        <constraint firstItem="YZo-07-bCn" firstAttribute="leading" relation="lessThanOrEqual" secondItem="IsF-cj-QCd" secondAttribute="trailing" constant="10" id="9Kd-lq-U7y"/>
+                                        <constraint firstItem="IsF-cj-QCd" firstAttribute="width" secondItem="JAM-id-YjI" secondAttribute="width" multiplier="0.55" id="BjM-WN-59H"/>
+                                        <constraint firstItem="IsF-cj-QCd" firstAttribute="top" secondItem="JAM-id-YjI" secondAttribute="top" id="CuW-Ss-t6g"/>
+                                        <constraint firstAttribute="bottom" secondItem="IsF-cj-QCd" secondAttribute="bottom" id="Fmf-SE-CDR"/>
+                                        <constraint firstItem="IsF-cj-QCd" firstAttribute="leading" secondItem="JAM-id-YjI" secondAttribute="leading" id="gIp-F0-Vn5"/>
+                                        <constraint firstAttribute="bottom" secondItem="YZo-07-bCn" secondAttribute="bottom" id="zh7-Ya-hHg"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="arrival" destination="fPU-0i-H4t" id="wpJ-CF-nCJ"/>
+                                    <outlet property="distance" destination="LyP-Pc-Md4" id="EJl-r0-bcV"/>
+                                    <outlet property="name" destination="39k-gH-bMO" id="7zG-9b-ZlY"/>
+                                    <outlet property="status" destination="LyP-Pc-Md4" id="vOa-z6-dot"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1fa-wT-uYc" id="qo4-I9-qEn"/>
+                            <outlet property="delegate" destination="1fa-wT-uYc" id="bT5-4G-hgy"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Status Board" image="tray" catalog="system" id="dur-Ku-Wqm"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dPk-VZ-nnL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-413" y="370"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="2wa-Lg-eAq">
+            <objects>
+                <tableViewController id="O1h-9j-mgB" customClass="SettingsTableViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jbJ-qM-Glz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Settings" id="9eX-HH-XwL" userLabel="Settings">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="AEp-f5-YWj" userLabel="StationSelection" customClass="DistanceToStationCell" customModule="Trainspot_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="77"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AEp-f5-YWj" id="q1Z-bH-lSA">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bahnhof" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xyb-ci-8kh">
+                                                    <rect key="frame" x="168.5" y="27" width="77" height="23"/>
+                                                    <gestureRecognizers/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qav-D1-pM5">
+                                                    <rect key="frame" x="255.5" y="31" width="20" height="15.5"/>
+                                                    <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="qav-D1-pM5" secondAttribute="height" multiplier="1:1" id="Lzu-l2-haK"/>
+                                                        <constraint firstAttribute="height" constant="20" id="RzS-Ht-o6o"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <gestureRecognizers/>
+                                            <constraints>
+                                                <constraint firstItem="xyb-ci-8kh" firstAttribute="centerY" secondItem="q1Z-bH-lSA" secondAttribute="centerY" id="BWk-UM-lh7"/>
+                                                <constraint firstItem="xyb-ci-8kh" firstAttribute="centerX" secondItem="q1Z-bH-lSA" secondAttribute="centerX" id="R6Y-6G-RW7"/>
+                                                <constraint firstItem="qav-D1-pM5" firstAttribute="centerY" secondItem="q1Z-bH-lSA" secondAttribute="centerY" id="RN4-Iz-Esx"/>
+                                                <constraint firstItem="qav-D1-pM5" firstAttribute="leading" secondItem="xyb-ci-8kh" secondAttribute="trailing" constant="10" id="eDJ-eY-I34"/>
+                                            </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="NXc-bk-pyK" appends="YES" id="tqI-Zu-4Cf"/>
+                                            </connections>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="123" id="Swp-vt-oxa" userLabel="TimeOffset" customClass="DistanceToStationCell" customModule="Trainspot_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="105" width="414" height="123"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Swp-vt-oxa" id="eE6-mK-7CC">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="123"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Mfr-bT-SbS" userLabel="DistanceSlider">
+                                                    <rect key="frame" x="28" y="21" width="308" height="31"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="offsetSlider"/>
+                                                    <connections>
+                                                        <action selector="sliderOnTouchUp:" destination="O1h-9j-mgB" eventType="touchUpInside" id="U9j-uB-3de"/>
+                                                        <action selector="sliderValueChanged:" destination="O1h-9j-mgB" eventType="valueChanged" id="JYA-Ul-zzR"/>
+                                                    </connections>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czV-CO-9gO" userLabel="DistanceLabel">
+                                                    <rect key="frame" x="344" y="25.5" width="60" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Lu7-uG-TKd"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="So viele Minuten ist der angegebene Bahnhof entfernt" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oCh-B8-wgP">
+                                                    <rect key="frame" x="30" y="61" width="354" height="41"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="oCh-B8-wgP" firstAttribute="leading" secondItem="eE6-mK-7CC" secondAttribute="leadingMargin" constant="10" id="2nT-rb-gul"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oCh-B8-wgP" secondAttribute="trailing" constant="10" id="AF8-EO-HLu"/>
+                                                <constraint firstItem="czV-CO-9gO" firstAttribute="trailing" secondItem="eE6-mK-7CC" secondAttribute="trailingMargin" constant="10" id="F1q-yH-7KH"/>
+                                                <constraint firstItem="Mfr-bT-SbS" firstAttribute="top" secondItem="eE6-mK-7CC" secondAttribute="topMargin" constant="10" id="Pav-8b-6HH"/>
+                                                <constraint firstItem="czV-CO-9gO" firstAttribute="centerY" secondItem="Mfr-bT-SbS" secondAttribute="centerY" id="T7R-KM-rpf"/>
+                                                <constraint firstItem="oCh-B8-wgP" firstAttribute="top" secondItem="Mfr-bT-SbS" secondAttribute="bottom" constant="10" id="bmf-el-PHE"/>
+                                                <constraint firstItem="czV-CO-9gO" firstAttribute="leading" secondItem="Mfr-bT-SbS" secondAttribute="trailing" constant="10" id="cia-DF-c71"/>
+                                                <constraint firstItem="Mfr-bT-SbS" firstAttribute="leading" secondItem="eE6-mK-7CC" secondAttribute="leadingMargin" constant="10" id="pT9-SZ-fa6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="123" id="L8u-fI-KnQ" userLabel="Distance" customClass="DistanceToStationCell" customModule="Trainspot_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="228" width="414" height="123"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L8u-fI-KnQ" id="3co-XP-IUx">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="123"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="uio-Qx-ic4" userLabel="DistanceSlider">
+                                                    <rect key="frame" x="28" y="21" width="308" height="31"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="maxDistanceSlider"/>
+                                                    <connections>
+                                                        <action selector="sliderOnTouchUp:" destination="O1h-9j-mgB" eventType="touchUpInside" id="o9X-FX-rWR"/>
+                                                        <action selector="sliderValueChanged:" destination="O1h-9j-mgB" eventType="valueChanged" id="HMq-5q-3rv"/>
+                                                    </connections>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvL-54-7ix" userLabel="DistanceLabel">
+                                                    <rect key="frame" x="344" y="25.5" width="60" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Jm8-os-2nB"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximale Distanz zur Bahnstrecke in Metern" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="b0j-rp-cqM">
+                                                    <rect key="frame" x="30" y="61" width="354" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="b0j-rp-cqM" firstAttribute="top" secondItem="uio-Qx-ic4" secondAttribute="bottom" constant="10" id="FpH-5H-UPu"/>
+                                                <constraint firstItem="b0j-rp-cqM" firstAttribute="leading" secondItem="3co-XP-IUx" secondAttribute="leadingMargin" constant="10" id="Koz-Lr-er2"/>
+                                                <constraint firstItem="UvL-54-7ix" firstAttribute="centerY" secondItem="uio-Qx-ic4" secondAttribute="centerY" id="LmE-d2-ool"/>
+                                                <constraint firstItem="UvL-54-7ix" firstAttribute="trailing" secondItem="3co-XP-IUx" secondAttribute="trailingMargin" constant="10" id="Qm5-gh-o1L"/>
+                                                <constraint firstItem="uio-Qx-ic4" firstAttribute="top" secondItem="3co-XP-IUx" secondAttribute="topMargin" constant="10" id="ROw-OO-Nl7"/>
+                                                <constraint firstItem="uio-Qx-ic4" firstAttribute="leading" secondItem="3co-XP-IUx" secondAttribute="leadingMargin" constant="10" id="aoR-jw-7ul"/>
+                                                <constraint firstItem="UvL-54-7ix" firstAttribute="leading" secondItem="uio-Qx-ic4" secondAttribute="trailing" constant="10" id="dVD-SG-L0x"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="b0j-rp-cqM" secondAttribute="trailing" constant="10" id="ymI-LX-RS8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="Dal-gp-dsN" userLabel="StationDistanceCell" customClass="DistanceToStationCell" customModule="Trainspot_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="351" width="414" height="77"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dal-gp-dsN" id="Dlx-9Y-uZD">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pyp-Fs-zIe">
+                                                    <rect key="frame" x="30" y="23" width="51" height="31"/>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Behalte alte Züge bei Refresh" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wjh-Ra-WwY">
+                                                    <rect key="frame" x="89" y="28" width="295" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wjh-Ra-WwY" firstAttribute="leading" secondItem="pyp-Fs-zIe" secondAttribute="trailing" constant="10" id="8NP-bB-bSZ"/>
+                                                <constraint firstItem="pyp-Fs-zIe" firstAttribute="leading" secondItem="Dlx-9Y-uZD" secondAttribute="leadingMargin" constant="10" id="9al-mW-lc7"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wjh-Ra-WwY" secondAttribute="trailing" constant="10" id="JF3-ZA-6bq"/>
+                                                <constraint firstItem="wjh-Ra-WwY" firstAttribute="centerY" secondItem="Dlx-9Y-uZD" secondAttribute="centerY" id="YJX-z2-0GV"/>
+                                                <constraint firstItem="pyp-Fs-zIe" firstAttribute="centerY" secondItem="Dlx-9Y-uZD" secondAttribute="centerY" id="pdX-O5-ds9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="a6g-8H-4sT" userLabel="Manuelle Positionsbestimmung" customClass="DistanceToStationCell" customModule="Trainspot_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="428" width="414" height="77"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a6g-8H-4sT" id="ORs-o5-CCG">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3b7-hU-XiJ">
+                                                    <rect key="frame" x="30" y="23" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="onLocationSettingsTapped:" destination="O1h-9j-mgB" eventType="touchUpInside" id="80c-1N-fbd"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manuelle Positionsbestimmung" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="M0M-bd-B89">
+                                                    <rect key="frame" x="89" y="28" width="295" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3b7-hU-XiJ" firstAttribute="leading" secondItem="ORs-o5-CCG" secondAttribute="leadingMargin" constant="10" id="3vr-US-byv"/>
+                                                <constraint firstItem="3b7-hU-XiJ" firstAttribute="centerY" secondItem="ORs-o5-CCG" secondAttribute="centerY" id="EIz-3j-7j5"/>
+                                                <constraint firstItem="M0M-bd-B89" firstAttribute="leading" secondItem="3b7-hU-XiJ" secondAttribute="trailing" constant="10" id="Hxy-CS-oWT"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="M0M-bd-B89" secondAttribute="trailing" constant="10" id="QwS-fb-ngb"/>
+                                                <constraint firstItem="M0M-bd-B89" firstAttribute="centerY" secondItem="ORs-o5-CCG" secondAttribute="centerY" id="VCd-Zk-TzR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="nwZ-Fb-WoO" userLabel="Manuelle Positionsbestimmung" customClass="DistanceToStationCell" customModule="Trainspot_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="505" width="414" height="77"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nwZ-Fb-WoO" id="5as-jN-Gcz">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Dqe-Om-yQF">
+                                                    <rect key="frame" x="192.5" y="28" width="29" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Dqe-Om-yQF" firstAttribute="centerY" secondItem="5as-jN-Gcz" secondAttribute="centerY" id="B9J-oa-4Rb"/>
+                                                <constraint firstItem="Dqe-Om-yQF" firstAttribute="centerX" secondItem="5as-jN-Gcz" secondAttribute="centerX" id="gPt-b7-yQR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="O1h-9j-mgB" id="Nal-Z2-xo1"/>
+                            <outlet property="delegate" destination="O1h-9j-mgB" id="o7d-8Y-ABQ"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="Otu-6T-2YV"/>
+                    <connections>
+                        <outlet property="macDistanceLabel" destination="UvL-54-7ix" id="erm-xK-Eg1"/>
+                        <outlet property="maxDistanceSlider" destination="uio-Qx-ic4" id="ioc-JP-uza"/>
+                        <outlet property="stationLabel" destination="xyb-ci-8kh" id="VwW-80-OGs"/>
+                        <outlet property="timeOffsetLabel" destination="czV-CO-9gO" id="WhJ-d3-gYR"/>
+                        <outlet property="timeOffsetSlider" destination="Mfr-bT-SbS" id="9wU-R3-g6h"/>
+                        <outlet property="useManualPosition" destination="3b7-hU-XiJ" id="luX-1k-s42"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4v5-yC-LkX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="NXc-bk-pyK">
+                    <connections>
+                        <action selector="stationLabelTapped:" destination="O1h-9j-mgB" id="7J9-XH-MGn"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="566.66666666666674" y="327.45535714285711"/>
+        </scene>
+        <!--Main Tabbar View Controller-->
+        <scene sceneID="hCe-6c-J3B">
+            <objects>
+                <tabBarController id="eiO-9N-ueo" customClass="MainTabbarViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="6RP-ij-WOw"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Ar-Rr-b0M">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" destinationCreationSelector="Map" id="fKI-W5-JBX"/>
+                        <segue destination="1fa-wT-uYc" kind="relationship" relationship="viewControllers" destinationCreationSelector="List" id="1hK-UI-7cK"/>
+                        <segue destination="O1h-9j-mgB" kind="relationship" relationship="viewControllers" id="8MR-dw-TBO"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4uL-wl-1bZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-613" y="-648"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="mZg-Rd-dTC">
+            <objects>
+                <viewController title="Map" id="iqN-KL-GHB" customClass="MapViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dc8-Zy-txy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="f8C-dZ-kxd">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="f8C-dZ-kxd" firstAttribute="width" secondItem="Dc8-Zy-txy" secondAttribute="width" id="9Zc-1t-nc3"/>
+                            <constraint firstItem="f8C-dZ-kxd" firstAttribute="centerX" secondItem="Dc8-Zy-txy" secondAttribute="centerX" id="Ld0-Cf-EXg"/>
+                            <constraint firstItem="f8C-dZ-kxd" firstAttribute="height" secondItem="Dc8-Zy-txy" secondAttribute="height" id="OKr-a7-etV"/>
+                            <constraint firstItem="f8C-dZ-kxd" firstAttribute="centerY" secondItem="Dc8-Zy-txy" secondAttribute="centerY" id="t85-Pi-BfV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aZn-jE-wON"/>
+                    </view>
+                    <connections>
+                        <outlet property="map" destination="f8C-dZ-kxd" id="xTW-mM-MTR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s8y-oz-Bv3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1725" y="-582"/>
+        </scene>
+        <!--Initial View Controller-->
+        <scene sceneID="jQm-v0-Jc0">
+            <objects>
+                <viewController id="d0G-KT-BYU" customClass="InitialViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NEP-in-7Ni">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="wMn-Te-HGt">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wMn-Te-HGt" firstAttribute="leading" secondItem="NEP-in-7Ni" secondAttribute="leading" id="IEd-59-3Xh"/>
+                            <constraint firstAttribute="bottom" secondItem="wMn-Te-HGt" secondAttribute="bottom" id="bhg-tv-gu2"/>
+                            <constraint firstItem="wMn-Te-HGt" firstAttribute="top" secondItem="NEP-in-7Ni" secondAttribute="top" id="nxY-Hj-s7f"/>
+                            <constraint firstAttribute="trailing" secondItem="wMn-Te-HGt" secondAttribute="trailing" id="rHL-n0-VDT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oFt-wS-2Xp"/>
+                    </view>
+                    <connections>
+                        <segue destination="eiO-9N-ueo" kind="presentation" identifier="main" modalPresentationStyle="fullScreen" id="kwc-m8-dED"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="07p-sa-Gno" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1583" y="-658"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="location.north.fill" catalog="system" width="108" height="128"/>
+        <image name="map" catalog="system" width="128" height="113"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="splash" width="1815" height="3994"/>
+        <image name="tray" catalog="system" width="128" height="88"/>
+    </resources>
+</document>
