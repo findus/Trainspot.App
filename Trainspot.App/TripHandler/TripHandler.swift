@@ -16,6 +16,7 @@ public class TripHandler {
     private let manager = TrainLocationProxy.shared
     public static let shared = TripHandler()
     private var tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
+    public var demoTimer: TimeTraveler?
     
     private init() {
         #if MOCK
@@ -37,6 +38,7 @@ public class TripHandler {
         components.year = 2020
         let date = Calendar.current.date(from: components)
         let traveler = TimeTraveler()
+        self.demoTimer = traveler
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
             traveler.travel(by: 1)
         }

@@ -61,7 +61,11 @@ class StatusView : UIStackView {
                 let formatted = secondsToHoursMinutesSeconds(seconds: Int(start))
                 return "Departs in \(String(format: "%02d:%02d:%02d",formatted.0, formatted.1, formatted.2))"
             case .Stopped(let date, _):
-                return "Departs in \(Int(date.timeIntervalSince(Date())))s"
+                if let demoTimer = TripHandler.shared.demoTimer {
+                    return "Departs in \(Int(date.timeIntervalSince(demoTimer.generateDate())))s"
+                } else {
+                    return "Departs in \(Int(date.timeIntervalSince(Date())))s"
+                }
             case .Ended:
                 return "Ended"
             default:

@@ -165,7 +165,11 @@ extension TrainViewList: TrainLocationDelegate {
                 let formatted = secondsToHoursMinutesSeconds(seconds: Int(start))
                 return "\(String(format: "%02d:%02d", formatted.1, formatted.2))"
             case .Stopped(let date, let stop):
-                return "\(Int(date.timeIntervalSince(Date())))s \(stop)"
+                if let demoTimer = TripHandler.shared.demoTimer {
+                    return "\(Int(date.timeIntervalSince(demoTimer.generateDate())))s \(stop)"
+                } else {
+                    return "\(Int(date.timeIntervalSince(Date())))s \(stop)"
+                }
             case .Ended:
                 return "Ended"
             default:
