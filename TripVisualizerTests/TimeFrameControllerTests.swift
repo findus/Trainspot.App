@@ -603,6 +603,44 @@ class TimeFrameControllerTests: XCTestCase {
     
     // Delay
     
+    func testDistanceFromUserWithDelay() {
+        self.dataProvider.setTrip(withName: "ice_huge_delay")
+        self.dataProvider.update()
+        self.reloadTrips()
+        
+        guard let initialTrip = self.initialTrip else {
+            XCTFail("Failed to get trip")
+            return
+        }
+        
+        self.controller.setCurrentLocation(location: CLLocation(latitude: 52.243616, longitude: 10.514395))
+
+        var components = DateComponents()
+        components.second = 0
+        components.hour = 20
+        components.minute = 18
+        components.day = 18
+        components.month = 9
+        components.year = 2020
+        guard let date = Calendar.current.date(from: components) else {
+            XCTFail("Could not parse date")
+            return
+        }
+        
+        self.timeProvider.date = date
+        
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        guard let (_, data, _) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+        
+        XCTAssertEqual(data.state.get(), "Braunschweig Hbf")
+        XCTAssertEqual(data.distance,9)
+    }
+    
     func testDelayForNextStation() {
         self.dataProvider.setTrip(withName: "bs_delay")
         self.dataProvider.update()

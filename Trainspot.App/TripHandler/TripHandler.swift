@@ -31,21 +31,21 @@ public class TripHandler {
     func setupDemo() {
         var components = DateComponents()
         components.second = 0
-        components.hour = 23
-        components.minute = 30
-        components.day = 13
+        components.hour = 17
+        components.minute = 19
+        components.day = 18
         components.month = 9
         components.year = 2020
         let date = Calendar.current.date(from: components)
         let traveler = TimeTraveler()
         self.demoTimer = traveler
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            traveler.travel(by: 1)
+            traveler.travel(by: 60)
         }
         traveler.date = date!
         self.tripTimeFrameLocationController.pause()
 
-        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "bs_delay")))
+        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "ice_huge_delay")))
         tripTimeFrameLocationController.dateGenerator = traveler.generateDate
         
         // Hildesheim

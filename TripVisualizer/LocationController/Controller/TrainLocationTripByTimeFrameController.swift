@@ -76,6 +76,14 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
             return nil
         }
         
+        guard let lastStop = trip.locationArray[...nextStop.offset].enumerated().reversed().first(where: { $0.element is StopOver && ($0.element as? StopOver)?.departure != nil }) else {
+            Log.warning("Cannot find last stop")
+            return nil
+        }
+        
+        let lt = (lastStop.element as! StopOver)
+        
+        
         let nextStopDate = (nextStop.element as! StopOver).arrival!
         
         /**
@@ -87,7 +95,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
         let offset = trip.locationArray[userPosInArray...(missingStepsToFirstStop+nextStop.offset)].dropLast().map({$0.durationToNext!}).reduce(0,+)
         
         // If the departure date is in future: Use the Departure Date for calculation, if trip has started, use the current time
-        let date = secondsToDeparture > 0 ? trip.departure : self.dateGenerator()
+        let date = secondsToDeparture > 0 ? lt.departure! : self.dateGenerator()
         //Calculation: Time of next stop minus the time it would take for the train to travel from user position to that stop.
         let timeWhenTrainPassesUser = nextStopDate.addingTimeInterval(-offset)
         //Now Calculate how long it takes the train to arrive at that date, based on the current time(if trip is in progress), or the scheduled departure + time til departure
