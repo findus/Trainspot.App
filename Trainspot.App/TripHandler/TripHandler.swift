@@ -91,7 +91,7 @@ public class TripHandler {
         self.tripTimeFrameLocationController.setCurrentLocation(location: location)
     }
     
-    func setSelectedTrip(_ trip: Trip) {
+    func setSelectedTrip(_ trip: Trip?) {
         self.selectedTrip = trip
     }
         
