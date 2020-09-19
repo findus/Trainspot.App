@@ -83,6 +83,10 @@ public class TrainLocationRadarController: TrainLocationProtocol, Updateable {
         self.trips = trips
     }
     
+    public func getTrip(withID id: String) -> T? {
+        fatalError("Not implemented")
+    }
+    
     public func setDataProvider(withProvider provider: TripProvider<RadarTrip>) {
         self.dataProvider = provider
     }

@@ -9,17 +9,19 @@
 import Foundation
 import TripVisualizer
 import CoreLocation
+import SwiftEventBus
 
-//TODO proxy holder for controller
+//TODO proxy holder for controller, right now it is hardcoded for only one controller, if multiple should be supported this class must be extended to support 1 to n Controllers
 public class TripHandler {
     
     private let manager = TrainLocationProxy.shared
     public static let shared = TripHandler()
     private var tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
     public var demoTimer: TimeTraveler?
-    private var selectedTrip: Trip?
+    private var selectedTrip: String?
     
     private init() {
+        self.setupBus()
         #if MOCK
         self.setupDemo()
         #else
@@ -91,8 +93,27 @@ public class TripHandler {
         self.tripTimeFrameLocationController.setCurrentLocation(location: location)
     }
     
-    func setSelectedTrip(_ trip: Trip?) {
-        self.selectedTrip = trip
+    func setSelectedTripID(_ tripID: String?) {
+        self.selectedTrip = tripID
+    }
+    
+    private func setupBus() {
+        SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { (notification) in
+            if let trip = notification?.object as? Trip {
+                
+                TripHandler.shared.setSelectedTripID(trip.tripId)
+                TripHandler.shared.triggerRefreshForTrips([trip as! TimeFrameTrip])
+            } else if let tripID = notification?.object as? String {
+                TripHandler.shared.setSelectedTripID(tripID)
+                if let trip = self.tripTimeFrameLocationController.getTrip(withID: tripID) {
+                    TripHandler.shared.triggerRefreshForTrips([trip])
+                }
+            }
+        }
+        
+        SwiftEventBus.onMainThread(self, name: "deSelectTripOnMap") { (notification) in
+            TripHandler.shared.setSelectedTripID(nil)
+        }
     }
         
 }

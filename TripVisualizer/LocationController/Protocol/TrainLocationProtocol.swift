@@ -21,7 +21,9 @@ public protocol TrainLocationProtocol {
     func refreshSelected(trips: Array<T>)
     func setDataProvider(withProvider provider: P)
     func setCurrentLocation(location: CLLocation)
+    func getTrip(withID id: String) -> T?
     var delegate: TrainLocationDelegate? { set get }
+    
 }
 
 public protocol Updateable {

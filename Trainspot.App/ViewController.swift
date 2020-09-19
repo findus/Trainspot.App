@@ -421,14 +421,13 @@ extension ViewController {
         SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { (notification) in
             if let trip = notification?.object as? Trip {
                 self.tripIdToUpdateLocation = trip.tripId
-                TripHandler.shared.setSelectedTrip(trip)
-                TripHandler.shared.triggerRefreshForTrips([trip as! TimeFrameTrip])
+            } else if let tripID = notification?.object as? String {
+                self.tripIdToUpdateLocation = tripID
             }
         }
         
         SwiftEventBus.onMainThread(self, name: "deSelectTripOnMap") { (notification) in
             self.tripIdToUpdateLocation = nil
-            TripHandler.shared.setSelectedTrip(nil)
         }
         
         SwiftEventBus.onMainThread(self, name: "UpdatedSettings") { (notification) in

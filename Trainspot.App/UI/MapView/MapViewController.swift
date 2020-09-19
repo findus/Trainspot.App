@@ -400,7 +400,7 @@ extension MapViewController: MKMapViewDelegate
             return
         }
         
-        SwiftEventBus.post("selectTripOnMap",sender: entry)
+        SwiftEventBus.post("selectTripOnMap",sender: entry.tripId)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {

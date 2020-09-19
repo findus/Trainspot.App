@@ -67,8 +67,11 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
         Log.info("Timeframe Controller paused")
         self.timer?.invalidate()
     }
-    
 
+    public func getTrip(withID id: String) -> T? {
+        return trips.first(where: { $0.tripId == id })
+    }
+    
     public func getArrivalInSeconds(forTrip trip: T, userPosInArray: Int, trainPos: Int, secondsToDeparture: Double) -> TimeInterval? {
         /**
          Tries to get the next stop facing from the users position, fetches the time of next arrivals and substracts the time that is needed to get there

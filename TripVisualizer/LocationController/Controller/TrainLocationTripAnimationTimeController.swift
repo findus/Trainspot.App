@@ -109,6 +109,11 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol, Updateabl
         fatalError("Pausing not fully implemented")
     }
     
+    func getTrip(withID id: String) -> T? {
+        fatalError("Not implemented")
+    }
+
+    
     func register(trip: T) {
         self.trips[trip.name] = (trip, Timer())
     }
