@@ -65,9 +65,16 @@ class MapViewController: UIViewController {
     }
     
     private func centerCamera(atTripWithId id: String) {
-        let coords = self.markerDict[id]!.coordinate
-        let region = MKCoordinateRegion(center: coords, latitudinalMeters: 10000, longitudinalMeters: 10000)
-        map.setRegion(region, animated: true)
+        let coords = self.markerDict[id]!
+        
+        self.map.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
+        
+        if UserPrefs.isManualLocationEnabled() && fakedUserPosition != nil {
+            self.map.showAnnotations([coords, fakedUserPosition!], animated: true)
+        } else {
+            self.map.showAnnotations([coords, self.map.userLocation], animated: true)
+        }
+
     }
     
     private func addFakedUserPosition(onLocation location: CLLocationCoordinate2D) {
