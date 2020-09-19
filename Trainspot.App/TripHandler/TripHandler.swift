@@ -19,6 +19,12 @@ public class TripHandler {
     private var tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
     public var demoTimer: TimeTraveler?
     private var selectedTrip: String?
+    private var updateTimer: Timer? {
+        didSet {
+            Log.info("Invalidate Selected-Trip-Refresh Timer and restart it")
+            oldValue?.invalidate()
+        }
+    }
     
     private init() {
         self.setupBus()
@@ -30,13 +36,7 @@ public class TripHandler {
         
         self.manager.register(controller: tripTimeFrameLocationController)
         
-        Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { (timer) in
-            guard let selectedTripID = self.selectedTrip, let trip = self.tripTimeFrameLocationController.getTrip(withID: selectedTripID) else {
-                return
-            }
-            
-            self.tripTimeFrameLocationController.refreshSelected(trips: [trip])
-        }
+        self.updateTimer = self.startUpdateTimer()
     }
     
     func setupDemo() {
@@ -82,12 +82,15 @@ public class TripHandler {
     }
     
     func triggerUpdate() {
+        
+        self.updateTimer = self.startUpdateTimer()
         if UserPrefs.getfirstOnboardingTriggered() == true {
             self.tripTimeFrameLocationController.fetchServer()
         }
     }
     
     func triggerRefreshForTrips(_ trips: Array<TimeFrameTrip>) {
+        self.updateTimer = self.startUpdateTimer()
         self.tripTimeFrameLocationController.refreshSelected(trips: trips)
     }
     
@@ -115,6 +118,16 @@ public class TripHandler {
         
         SwiftEventBus.onMainThread(self, name: "deSelectTripOnMap") { (notification) in
             TripHandler.shared.setSelectedTripID(nil)
+        }
+    }
+    
+    private func startUpdateTimer() -> Timer  {
+        return Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { (timer) in
+            guard let selectedTripID = self.selectedTrip, let trip = self.tripTimeFrameLocationController.getTrip(withID: selectedTripID) else {
+                return
+            }
+            
+            self.tripTimeFrameLocationController.refreshSelected(trips: [trip])
         }
     }
         

@@ -64,7 +64,7 @@ private class BaseTrainDataProvider<T>: TrainDataProviderProtocol where T: Hasha
       }
 }
 
-private class TrainDataProviderBox<P: TrainDataProviderProtocol>: BaseTrainDataProvider<P.TripData> where P.TripData: Hashable {
+private class TrainDataProviderBox<P: TrainDataProviderProtocol>: BaseTrainDataProvider<P.TripData> {
     private let provider: P
     
     init(concreteProvider: P) {

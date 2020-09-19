@@ -19,7 +19,7 @@ class InfoViewController: UIViewController {
         
         self.setLink("https://github.com/Daltron/NotificationBanner", "NotificationBannerSwift", self.podsTextView)
         
-         self.setLink("https://cocoapods.org/pods/Log", "Log", self.podsTextView)
+        self.setLink("https://cocoapods.org/pods/Log", "Log", self.podsTextView)
         
         self.setLink("https://cocoapods.org/pods/SwiftEventBus", "SwiftEventBus", self.podsTextView)
         
@@ -27,14 +27,11 @@ class InfoViewController: UIViewController {
         
         self.setLink("https://cocoapods.org/pods/Alamofire", "Alamofire 5.2", self.podsTextView)
         
-        
         self.setLink("https://transport.rest/", "Transport.rest", self.backendLabel)
         
-         self.setLink("https://transport.f1ndus.de", "https://transport.f1ndus.de", self.backendLabel)
+        self.setLink("https://transport.f1ndus.de", "https://transport.f1ndus.de", self.backendLabel)
         
         self.setLink("https://github.com/findus/Trainspot.App", "Das Projekt auf Github", self.githubLabel)
-        
-        
         
     }
     
@@ -42,7 +39,12 @@ class InfoViewController: UIViewController {
         let text = comp.attributedText
         let highLightedText = NSMutableAttributedString(attributedString: text!)
         highLightedText.addAttribute(NSMutableAttributedString.Key.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: highLightedText.length))
-        highLightedText.setAsLink(textToFind: placeholder, linkURL: url)
+        let result = highLightedText.setAsLink(textToFind: placeholder, linkURL: url)
+        
+        if result == false {
+            Log.warning("Could not link \(url)")
+        }
+        
         // Do any additional setup after loading the view.
         comp.attributedText = highLightedText
     }

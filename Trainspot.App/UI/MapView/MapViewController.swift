@@ -278,7 +278,11 @@ extension MapViewController: MapViewControllerProtocol {
         if self.firstLaunch == true {
             self.firstLaunch = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.map.showAnnotations( Array(self.markerDict.values) , animated: true)
+                if let fakedUserPosition = self.fakedUserPosition {
+                    self.map.showAnnotations( Array(self.markerDict.values) + [fakedUserPosition] , animated: true)
+                } else {
+                    self.map.showAnnotations( Array(self.markerDict.values) + [self.map.userLocation] , animated: true)
+                }
             }
         }
         
