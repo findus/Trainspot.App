@@ -422,6 +422,7 @@ extension ViewController {
             if let trip = notification?.object as? Trip {
                 self.tripIdToUpdateLocation = trip.tripId
                 TripHandler.shared.setSelectedTrip(trip)
+                TripHandler.shared.triggerRefreshForTrips([trip as! TimeFrameTrip])
             }
         }
         
