@@ -431,6 +431,9 @@ extension MapViewController {
             if let tripID = notification?.object as? String {
                 self.centerCamera(atTripWithId: tripID)
                 self.selectTrip(withId: tripID)
+            } else if let trip = notification?.object as? Trip {
+                self.centerCamera(atTripWithId: trip.tripId)
+                self.selectTrip(withId: trip.tripId)
             }
         }
     }
