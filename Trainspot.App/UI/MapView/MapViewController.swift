@@ -51,6 +51,7 @@ class MapViewController: UIViewController {
         map.delegate = self;
         
         self.setupEventBusListener()
+        self.map.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
         
     }
     
@@ -67,9 +68,7 @@ class MapViewController: UIViewController {
     
     private func centerCamera(atTripWithId id: String) {
         let coords = self.markerDict[id]!
-        
-        self.map.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
-        
+                
         if UserPrefs.isManualLocationEnabled() && fakedUserPosition != nil {
             self.map.showAnnotations([coords, fakedUserPosition!], animated: true)
         } else {
@@ -429,9 +428,9 @@ extension MapViewController: MKMapViewDelegate
 extension MapViewController {
     private func setupEventBusListener() {
         SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { notification in
-            if let trip = notification?.object as? Trip {
-                self.centerCamera(atTripWithId: trip.tripId)
-                self.selectTrip(withId: trip.tripId)
+            if let tripID = notification?.object as? String {
+                self.centerCamera(atTripWithId: tripID)
+                self.selectTrip(withId: tripID)
             }
         }
     }

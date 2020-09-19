@@ -31,9 +31,11 @@ public class TripHandler {
         self.manager.register(controller: tripTimeFrameLocationController)
         
         Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { (timer) in
-            if let selectedTrip = self.selectedTrip {
-                self.tripTimeFrameLocationController.refreshSelected(trips: [selectedTrip as! TimeFrameTrip])
+            guard let selectedTripID = self.selectedTrip, let trip = self.tripTimeFrameLocationController.getTrip(withID: selectedTripID) else {
+                return
             }
+            
+            self.tripTimeFrameLocationController.refreshSelected(trips: [trip])
         }
     }
     
