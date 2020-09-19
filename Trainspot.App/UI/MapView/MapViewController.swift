@@ -36,6 +36,7 @@ class MapViewController: UIViewController {
     
     private var fakedUserPosition: MKPointAnnotation?
     private var nearestTrackPolyline: MKPolyline?
+    private var firstLaunch = true
     
     weak var delegate: MapViewControllerDelegate?
     
@@ -273,6 +274,15 @@ extension MapViewController: MapViewControllerProtocol {
     }
     
     func updateTrainLocation(forId id: String, withLabel label: String, toLocation location: CLLocationCoordinate2D, withDuration duration: Double) {
+        
+        //Zoom to boundaries on first launch
+        if self.firstLaunch == true {
+            self.firstLaunch = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.map.showAnnotations( Array(self.markerDict.values) , animated: true)
+            }
+        }
+        
         guard let entry = self.entryList.filter({ $0.tripId == id }).first else {
             print("No MapEntry found for \(id), will create entry at location")
             self.addEntry(entry:
