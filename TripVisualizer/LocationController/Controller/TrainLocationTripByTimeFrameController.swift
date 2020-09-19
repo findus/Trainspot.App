@@ -189,7 +189,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
             Log.info("Got new Trip \(newTrips.name)")
         }
         
-        self.trips = remaining.union(new)
+        self.trips = new.union(remaining)
         
         // Filter out trips that are to far away from user
         if let userPosition = self.currentUserLocation {
