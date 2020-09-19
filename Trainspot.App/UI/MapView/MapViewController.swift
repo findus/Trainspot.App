@@ -393,7 +393,7 @@ extension MapViewController: MKMapViewDelegate
             return
         }
         
-        SwiftEventBus.post("selectTripOnMap",sender: entry.tripId)
+        SwiftEventBus.post("selectTripOnMap",sender: entry)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -412,9 +412,9 @@ extension MapViewController: MKMapViewDelegate
 extension MapViewController {
     private func setupEventBusListener() {
         SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { notification in
-            if let tripId = notification?.object as? String {
-                self.centerCamera(atTripWithId: tripId)
-                self.selectTrip(withId: tripId)
+            if let trip = notification?.object as? Trip {
+                self.centerCamera(atTripWithId: trip.tripId)
+                self.selectTrip(withId: trip.tripId)
             }
         }
     }

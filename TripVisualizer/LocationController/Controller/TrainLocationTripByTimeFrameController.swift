@@ -13,7 +13,7 @@ import CoreLocation
 This Controller calculates the approximate train position based on a fixed time. 
  */
 public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Updateable  {
-    
+
     // Seconds that a scheduled train gets displayed before actual departure
     var GRACE_PERIOD = 1800.0
     
@@ -68,6 +68,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
         self.timer?.invalidate()
     }
     
+
     public func getArrivalInSeconds(forTrip trip: T, userPosInArray: Int, trainPos: Int, secondsToDeparture: Double) -> TimeInterval? {
         /**
          Tries to get the next stop facing from the users position, fetches the time of next arrivals and substracts the time that is needed to get there
@@ -156,6 +157,11 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
     public func fetchServer() {
         self.delegate?.onUpdateStarted()
         self.dataProvider?.update()
+    }
+    
+    public func refreshSelected(trips: Array<TimeFrameTrip>) {
+        self.delegate?.onUpdateStarted()
+        self.dataProvider?.updateExistingTrips(trips)
     }
 
     public func update() {

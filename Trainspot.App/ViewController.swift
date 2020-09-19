@@ -419,8 +419,9 @@ extension ViewController {
     
     private func setupBus() {
         SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { (notification) in
-            if let id = notification?.object as? String {
-                self.tripIdToUpdateLocation = id
+            if let trip = notification?.object as? Trip {
+                self.tripIdToUpdateLocation = trip.tripId
+                TripHandler.shared.setSelectedTrip(trip)
             }
         }
         

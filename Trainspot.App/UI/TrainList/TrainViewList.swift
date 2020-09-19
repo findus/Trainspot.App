@@ -62,7 +62,7 @@ public class TrainViewList: UITableViewController {
         if let trip = self.trips[exist: indexPath.row] {
             SwiftEventBus.post("selectTab", sender: 0)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                SwiftEventBus.post("selectTripOnMap", sender: trip.tripId)
+                SwiftEventBus.post("selectTripOnMap", sender: trip)
             }
         }
     }

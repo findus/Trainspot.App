@@ -18,6 +18,7 @@ public protocol TrainLocationProtocol {
     func start()
     func update()
     func pause()
+    func refreshSelected(trips: Array<T>)
     func setDataProvider(withProvider provider: P)
     func setCurrentLocation(location: CLLocation)
     var delegate: TrainLocationDelegate? { set get }

@@ -17,6 +17,7 @@ public class TripHandler {
     public static let shared = TripHandler()
     private var tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
     public var demoTimer: TimeTraveler?
+    private var selectedTrip: Trip?
     
     private init() {
         #if MOCK
@@ -26,6 +27,12 @@ public class TripHandler {
         #endif
         
         self.manager.register(controller: tripTimeFrameLocationController)
+        
+        Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { (timer) in
+            if let selectedTrip = self.selectedTrip {
+                self.tripTimeFrameLocationController.refreshSelected(trips: [selectedTrip as! TimeFrameTrip])
+            }
+        }
     }
     
     func setupDemo() {
@@ -76,8 +83,16 @@ public class TripHandler {
         }
     }
     
+    func triggerRefreshForTrips(_ trips: Array<TimeFrameTrip>) {
+        self.tripTimeFrameLocationController.refreshSelected(trips: trips)
+    }
+    
     func setCurrentLocation(_ location: CLLocation) {
         self.tripTimeFrameLocationController.setCurrentLocation(location: location)
+    }
+    
+    func setSelectedTrip(_ trip: Trip) {
+        self.selectedTrip = trip
     }
         
 }

@@ -86,6 +86,10 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol, Updateabl
         self.trips[trip.name] = (trip ,Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(expired), userInfo: (trip.name, pos), repeats: true))
     }
     
+    public func refreshSelected(trips: Array<T>) {
+        fatalError("Unimplemented")
+    }
+    
     func update() {
         guard let trips = dataProvider?.getAllTrips() else {
             print("Error retreiving trips")

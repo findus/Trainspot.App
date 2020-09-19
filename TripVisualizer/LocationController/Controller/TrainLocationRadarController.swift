@@ -46,6 +46,10 @@ public class TrainLocationRadarController: TrainLocationProtocol, Updateable {
         }
     }
     
+    public func refreshSelected(trips: Array<T>) {
+        fatalError("Unimplemented")
+    }
+    
     private func updateTrip(trip: Trip) {
         guard let arrayPosition = trip.currentTrainPosition() else {
             return
