@@ -73,7 +73,7 @@ public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
     }
     
     public func updateExistingTrips(_ trips: Array<TimeFrameTrip>) {
-        fatalError("Unimplemented")
+        self.delegate?.onTripsUpdated(result: .success)
     }
     
     public func setDeleate(delegate: TrainDataProviderDelegate) {

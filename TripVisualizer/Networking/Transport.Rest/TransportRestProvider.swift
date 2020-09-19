@@ -68,7 +68,7 @@ class TransportRestProvider<PT: Trip> {
                     Log.info(result)
                 }
             }) { (refreshedTrips) in
-                self.trips = self.trips.union(refreshedTrips)
+                self.trips = Set(refreshedTrips).union(refreshedTrips)
                 self.delegate?.onTripsUpdated(result: .success)
         }
         
