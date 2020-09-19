@@ -9,9 +9,10 @@
 import Foundation
 
 public protocol TrainDataProviderProtocol {
-    associatedtype TripData
-    func getAllTrips() -> Array<TripData>
+    associatedtype TripData: Hashable
+    func getAllTrips() -> Set<TripData>
     func update() -> Void
+    func updateExistingTrips(_ trips: Array<TripData>)
     func setDeleate(delegate: TrainDataProviderDelegate)
 }
 
@@ -24,4 +25,5 @@ public enum Result {
 //TODO Somehow pass the associated trip type as argument, but currently not sure how to realize this
 public protocol TrainDataProviderDelegate {
     func onTripsUpdated(result: Result)
+    func onTripSelectionRefreshed(result: Result)
 }

@@ -10,17 +10,18 @@ import Foundation
 
 
 public class NetworkTrainDataTimeFrameProvider: TrainDataProviderProtocol, TrainDataProviderDelegate {
-    
+
     var delegate: TrainDataProviderDelegate? = nil
-    let networkService = TransportRestProvider()
+    let networkService = TransportRestProvider<TimeFrameTrip>()
 
     public typealias TripData = TimeFrameTrip
+    public typealias PassedTrips = TimeFrameTrip
     
     public init() {
         self.networkService.delegate = self
     }
     
-    public func getAllTrips() -> Array<TimeFrameTrip> {
+    public func getAllTrips() -> Set<TimeFrameTrip> {
         let trips = self.networkService.getAllTrips()
         return HafasParser.loadTimeFrameTrip(fromHafasTrips: trips)
     }
@@ -36,4 +37,13 @@ public class NetworkTrainDataTimeFrameProvider: TrainDataProviderProtocol, Train
     public func onTripsUpdated(result: Result) {
         self.delegate?.onTripsUpdated(result: result)
     }
+    
+    public func onTripSelectionRefreshed(result: Result) {
+        self.delegate?.onTripSelectionRefreshed(result: result)
+    }
+    
+    public func updateExistingTrips(_ trips: Array<TimeFrameTrip>) {
+        self.networkService.updateSelectedTrips(trips: trips)
+    }
+      
 }

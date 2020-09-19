@@ -48,7 +48,7 @@ struct HafasStopOver: Decodable {
 }
 
 
-public struct HafasTrip: Decodable {
+public struct HafasTrip: Decodable, Hashable {
     let id: String
     let origin: HafasStop
     let destination: HafasStop
@@ -59,6 +59,14 @@ public struct HafasTrip: Decodable {
     let line: HafasLine
    //let direction: String
     let stopovers: Array<HafasStopOver>
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
+    
+    public static func == (lhs: HafasTrip, rhs: HafasTrip) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 struct HafasFeatureCollection: Decodable {

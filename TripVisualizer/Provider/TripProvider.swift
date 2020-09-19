@@ -8,9 +8,9 @@
 //https://medium.com/@vhart/a-swift-walk-through-type-erasure-12fbe3827a10
 import Foundation
 
-public class TripProvider<T> : TrainDataProviderProtocol {
+public class TripProvider<T> : TrainDataProviderProtocol where T: Hashable {
     
-    var trips: Array<T> = []
+    var trips: Set<T> = []
     
     private let providerBox: BaseTrainDataProvider<T>
         
@@ -19,7 +19,7 @@ public class TripProvider<T> : TrainDataProviderProtocol {
         self.providerBox = box
     }
     
-    public func getAllTrips() -> Array<T> {
+    public func getAllTrips() -> Set<T> {
         return self.providerBox.getAllTrips()
     }
     
@@ -30,10 +30,14 @@ public class TripProvider<T> : TrainDataProviderProtocol {
     public func setDeleate(delegate: TrainDataProviderDelegate) {
         self.providerBox.setDeleate(delegate: delegate)
     }
+    
+    public func updateExistingTrips(_ trips: Array<T>) {
+        self.providerBox.updateExistingTrips(trips)
+    }
 
 }
 
-private class BaseTrainDataProvider<T>: TrainDataProviderProtocol {
+private class BaseTrainDataProvider<T>: TrainDataProviderProtocol where T: Hashable {
    
     var delegate: TrainDataProviderDelegate?
     
@@ -43,7 +47,7 @@ private class BaseTrainDataProvider<T>: TrainDataProviderProtocol {
         }
     }
     
-    func getAllTrips() -> Array<T> {
+    func getAllTrips() -> Set<T> {
         fatalError("Abstract class, you  must override this")
     }
     
@@ -54,16 +58,20 @@ private class BaseTrainDataProvider<T>: TrainDataProviderProtocol {
     func setDeleate(delegate: TrainDataProviderDelegate) {
         fatalError("Do not initialize this abstract class directly")
     }
+    
+    public func updateExistingTrips(_ trips: Array<T>) {
+        fatalError("Do not initialize this abstract class directly")
+      }
 }
 
-private class TrainDataProviderBox<P: TrainDataProviderProtocol>: BaseTrainDataProvider<P.TripData> {
+private class TrainDataProviderBox<P: TrainDataProviderProtocol>: BaseTrainDataProvider<P.TripData> where P.TripData: Hashable {
     private let provider: P
     
     init(concreteProvider: P) {
         self.provider = concreteProvider
     }
     
-    override func getAllTrips() -> Array<P.TripData> {
+    override func getAllTrips() -> Set<P.TripData> {
         return provider.getAllTrips()
     }
     
@@ -73,5 +81,9 @@ private class TrainDataProviderBox<P: TrainDataProviderProtocol>: BaseTrainDataP
     
     override func setDeleate(delegate: TrainDataProviderDelegate) {
         self.provider.setDeleate(delegate: delegate)
+    }
+    
+    override public func updateExistingTrips(_ trips: Array<P.TripData>) {
+        self.provider.updateExistingTrips(trips)
     }
 }

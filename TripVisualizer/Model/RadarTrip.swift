@@ -94,3 +94,14 @@ public class RadarTrip: Trip {
     }
     
 }
+
+extension RadarTrip: Hashable {
+    
+    public static func == (lhs: RadarTrip, rhs: RadarTrip) -> Bool {
+        lhs.tripId == rhs.tripId
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        return hasher.combine(self.tripId)
+    }
+}

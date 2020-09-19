@@ -233,6 +233,10 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
 //Mark: -- Update Handling
 
 extension TrainLocationTripByTimeFrameController: TrainDataProviderDelegate {
+    public func onTripSelectionRefreshed(result: Result) {
+        self.update()
+    }
+    
     public func onTripsUpdated(result: TripVisualizer.Result) {
         Log.info("Trips got updated")
         switch result {

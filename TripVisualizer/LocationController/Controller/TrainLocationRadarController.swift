@@ -18,10 +18,10 @@ public class TrainLocationRadarController: TrainLocationProtocol, Updateable {
     public typealias T = RadarTrip
     public typealias P = TripProvider<T>
     
-    var trips: Array<T> = [T]()
+    var trips: Set<T> = Set.init()
     var timer: Timer? = nil
     public var uid: UUID
-    private var dataProvider: TripProvider<T>?
+    private var dataProvider: P?
 
     weak public var delegate: TrainLocationDelegate?
         
@@ -31,7 +31,7 @@ public class TrainLocationRadarController: TrainLocationProtocol, Updateable {
     
     
     public func register(trip: T) {
-        self.trips.append(trip)
+        self.trips.insert(trip)
         let data = TripData(location: trip.polyline[0].location, state: .Driving(nil), arrival: -1, delay: 0)
         self.delegate?.trainPositionUpdated(forTrip: trip, withData: data, withDuration: 0)
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {

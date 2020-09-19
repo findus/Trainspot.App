@@ -237,9 +237,9 @@ public class HafasParser {
     }
     
     //TODO for journeys / Mocking
-    public static func loadTimeFrameTrip(fromHafasTrips array: Array<HafasTrip>) -> Array<TimeFrameTrip> {
+    public static func loadTimeFrameTrip(fromHafasTrips array: Set<HafasTrip>) -> Set<TimeFrameTrip> {
         
-        array.compactMap({ (trip) -> TimeFrameTrip? in
+        let tripArray = array.compactMap({ (trip) -> TimeFrameTrip? in
             
             guard let polyline =  trip.polyline else {
                 Log.error("\(trip.line.name) has no polyline")
@@ -258,6 +258,8 @@ public class HafasParser {
             }
             
         })
+        
+        return Set(tripArray)
     }
     
     public static func getJourneys(fromJSON json: JSON) -> Array<Journey> {
