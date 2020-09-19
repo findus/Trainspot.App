@@ -427,6 +427,7 @@ extension ViewController {
         
         SwiftEventBus.onMainThread(self, name: "deSelectTripOnMap") { (notification) in
             self.tripIdToUpdateLocation = nil
+            TripHandler.shared.setSelectedTrip(nil)
         }
         
         SwiftEventBus.onMainThread(self, name: "UpdatedSettings") { (notification) in
