@@ -250,7 +250,7 @@ extension ViewController {
         
         //TODO only for reloading lines, write additional logic that refreshes new registered vcs accordingly
         TripHandler.shared.triggerUpdate()
-        
+                
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -266,15 +266,20 @@ extension ViewController {
         }
 
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        mapViewController?.setBottomContentAnchor(self.bottomView.frame.height + 60 )
+    }
        
-       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-           switch segue.destination {
-           case let vc1 as MapViewController:
-               self.mapViewController = vc1
-           default:
-               break
-           }
-       }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.destination {
+        case let vc1 as MapViewController:
+            self.mapViewController = vc1
+        default:
+            break
+        }
+    }
 }
 
 extension ViewController: TrainLocationDelegate {

@@ -51,7 +51,6 @@ class MapViewController: UIViewController {
         map.delegate = self;
         
         self.setupEventBusListener()
-        self.map.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
         
     }
     
@@ -64,6 +63,10 @@ class MapViewController: UIViewController {
         }
         
         self.updateUserPosAnnotationOpacity()
+    }
+    
+    public func setBottomContentAnchor(_ height: CGFloat) {
+        self.map.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
     }
     
     private func centerCamera(atTripWithId id: String) {
