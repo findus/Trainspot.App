@@ -285,7 +285,8 @@ extension ViewController {
         // Aligns the Mapviews' content view to the status view
         let tabbarHeight = self.tabBarController!.tabBar.frame.height
         let statusView = self.bottomView.frame.height
-        mapViewController?.setBottomContentAnchor((tabbarHeight + statusView) - 4)
+        let offset = 4
+        mapViewController?.setBottomContentAnchor((tabbarHeight + statusView) - CGFloat(offset))
     }
        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
