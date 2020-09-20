@@ -269,7 +269,10 @@ extension ViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        mapViewController?.setBottomContentAnchor(self.bottomView.frame.height + 60 )
+        // Aligns the Mapviews' content view to the status view
+        let tabbarHeight = self.tabBarController!.tabBar.frame.height
+        let statusView = self.bottomView.frame.height
+        mapViewController?.setBottomContentAnchor((tabbarHeight + statusView) - 4)
     }
        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
