@@ -102,6 +102,10 @@ public class TripHandler {
         self.selectedTrip = tripID
     }
     
+    func getSelectedTripID() -> String? {
+        return self.selectedTrip
+    }
+    
     private func setupBus() {
         SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { (notification) in
             if let trip = notification?.object as? Trip {

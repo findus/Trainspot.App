@@ -69,7 +69,7 @@ class MapViewController: UIViewController {
         self.map.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
     }
     
-    private func centerCamera(atTripWithId id: String) {
+    public func centerCamera(atTripWithId id: String) {
         let coords = self.markerDict[id]!
                 
         if UserPrefs.isManualLocationEnabled() && fakedUserPosition != nil {

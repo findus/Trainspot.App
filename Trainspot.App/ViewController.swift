@@ -170,6 +170,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
 extension ViewController: UIGestureRecognizerDelegate {
     
+    @objc func tapped(gesture: UITapGestureRecognizer) {
+        if gesture.state == .ended {
+            if let selectedTrip = TripHandler.shared.getSelectedTripID() {
+                self.mapViewController?.centerCamera(atTripWithId:selectedTrip)
+            }
+        }
+    }
     
     @objc func dragged(gesture: UIPanGestureRecognizer) {
         
@@ -221,9 +228,15 @@ extension ViewController {
            // Pan reload gesture
            
            let gesture = UIPanGestureRecognizer(target: self, action: #selector(self.dragged(gesture:)))
+        
+        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapped(gesture:)))
            
            self.bottomView.addGestureRecognizer(gesture)
            gesture.delegate = self
+       
+           self.bottomView.addGestureRecognizer(touchGesture)
+           touchGesture.delegate = self
+        
            self.loadingIndicator.isHidden = true
            self.loadingIndicatorHeightConstraint.constant = 0
            
