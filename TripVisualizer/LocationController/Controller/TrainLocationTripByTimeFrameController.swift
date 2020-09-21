@@ -291,6 +291,8 @@ extension TrainLocationTripByTimeFrameController {
             return (trip.locationArray.first!.coords, .WaitForStart(trip.departure.timeIntervalSince(date)), 0, 0, 0)
         }
         
+        var lastStopOver: StopOver? = nil
+        
         guard let loc = zip(trip.locationArray.enumerated(),trip.locationArray.dropFirst())
             .first(where: { (arg0, next) -> Bool in
                 let (_, this) = arg0
@@ -305,6 +307,9 @@ extension TrainLocationTripByTimeFrameController {
                 return (this as! Path).departure!.timeIntervalSince(date) <= 0 && (next as! StopOver).arrival!.timeIntervalSince(date) > 0
                
                 } else if this is StopOver && next is Path {
+                    
+                    lastStopOver = this as! StopOver
+                    
                     /**
                     Map Against Arrival Data:
                     Section Start                     Arrival       Departure
@@ -346,6 +351,20 @@ extension TrainLocationTripByTimeFrameController {
                 return (stopover.coords, .Stopped(stopover.departure!, stopover.name), loc.0.offset, 0, stopover.arrivalDelay ?? 0)
             }
         }
+        
+        let secondsInSection = lastStopOver?.departure?.timeIntervalSince(Date())
+        let index = trip.locationArray.firstIndex(where: {$0.departure == lastStopOver!.departure})
+        let nextStopIndex = trip.locationArray[index!...].dropFirst().firstIndex(where: {$0 is StopOver})
+        
+        let currentPositionIndex = trip.locationArray.firstIndex(where: {$0.departure == loc.0.element.departure})
+        
+        let distance = trip.locationArray[index!...nextStopIndex!].dropFirst().map({$0.distanceToNext}).dropLast().reduce(0,+)
+        let duration = trip.locationArray[index!...nextStopIndex!].dropFirst().map({$0.durationToNext!}).dropLast().reduce(0.0,+)
+        
+        let current_duration = trip.locationArray[index!...currentPositionIndex!].map({$0.durationToNext!}).reduce(0.0,+)
+        print("\((trip.locationArray[index!] as! StopOver).name) to \((trip.locationArray[nextStopIndex!] as! StopOver).name) \(distance)Meter \(duration)Sekunden \(current_duration)Sekunden am fahren")
+        
+        let offset = OffsetCalculator().getPositionForTime(current_duration, forSection: OffsetCalculator.Section(length: distance, duration: duration))
         
         // Calculate relative Position between to Points
         let wholeDuration = location.durationToNext!
