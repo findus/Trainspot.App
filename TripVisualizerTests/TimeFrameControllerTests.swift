@@ -726,8 +726,6 @@ class TimeFrameControllerTests: XCTestCase {
         
         XCTAssertEqual(newData.state.get(), "Braunschweig Hbf")
         XCTAssertEqual(newData.delay,560)
-        
-        
     }
 
 }

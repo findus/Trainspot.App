@@ -41,7 +41,7 @@ public class HafasParser {
       
         do {
             
-            let line = try polyline.enumerated().map { (offset,feature) -> Feature in
+            var line = try polyline.enumerated().map { (offset,feature) -> Feature in
                 
                 func isFirstStop() -> Bool {
                     return offset == 0
@@ -104,6 +104,39 @@ public class HafasParser {
             Log.debug("Generate Animation Data for: \(tripName)")
             let animationData = generateAnimationData(fromFeatures: line)
             
+            /**
+             Delay check: Currently the delay indicators are getting nulled if a train departs from a certain stop. Thats leads to problems to the calculation
+             of the current train position, because the simulator now works with "false" starting times for this section
+             
+             For Example: An ICE arrives with +50 at Hannover and Departs with +50. Next Stop is Göttingen with +49
+             Now the Depature-Time in Hannover gets resettet to the original time.
+             For the simulation, the actual time needed from hannover to göttingen is 50 Minutes longer then  is really is.
+             
+             To prevent this issue, every former stops time gets the delay of the first delayed stop as offset
+             */
+            if let (firstDelayIndex,firstStopOverWithDelay) = line
+                .enumerated()
+                .first(where: { ($0.element is StopOver) && ($0.element as! StopOver).arrivalDelay != nil }) {
+               
+                let delayStop = firstStopOverWithDelay as! StopOver
+                
+                line = line.enumerated().map { (offset,feature) -> Feature in
+                    if feature is StopOver && offset < firstDelayIndex {
+                        let f = (feature as! StopOver)
+                        return StopOver(
+                            distanceToNext: f.distanceToNext,
+                            durationToNext: f.durationToNext,
+                            name: f.name,
+                            coords: f.coords,
+                            arrival: f.arrival?.addingTimeInterval(Double(delayStop.arrivalDelay!)),
+                            departure: f.departure?.addingTimeInterval(Double(delayStop.arrivalDelay!)),
+                            arrivalDelay: delayStop.arrivalDelay)
+                    } else {
+                        return feature
+                    }
+                }
+            }
+            
             return Timeline(name: tripName, line: line, animationData: animationData ,departure: date)
             
         } catch {
@@ -151,38 +184,14 @@ public class HafasParser {
                 
                 if currentFeature is StopOver {
                     
-                    // https://github.com/findus/Trainspot.App/issues/16
-                    /**
-                     Checks if the next Stopover has an arrival-delay. If it has one the delay gets added to the arrival and departure date of the current trip
-                     If the next Stopover has no delay the passed date gets handed back
-                     */
-                    func getAdjustedDelayDate(forDate date: Date?) -> Date? {
-                        
-                        guard let date = date else {
-                            return nil
-                        }
-                        
-                        if let nextStopOver = (features[offset...].first(where: {$0 is StopOver}) as? StopOver) {
-                            
-                            if nextStopOver.arrivalDelay != nil &&
-                                nextStopOver.arrivalDelay! > 0 &&
-                                stopover.arrivalDelay == nil
-                            {
-                                return date.addingTimeInterval(Double(nextStopOver.arrivalDelay!))
-                            }
-                        }
-                        return date
-                    }
-                    
-                    
                     let stop = currentFeature as! StopOver
                     
                     var stopover = StopOver(
                         distanceToNext: distance,
                         name: stop.name,
                         coords: stop.coords,
-                        arrival: getAdjustedDelayDate(forDate: stop.arrival),
-                        departure: getAdjustedDelayDate(forDate: stop.departure),
+                        arrival: stop.arrival,
+                        departure: stop.departure,
                         arrivalDelay: stop.arrivalDelay
                     )
                     
