@@ -41,5 +41,5 @@ In der App lassen sich folgende Einstellungen anpassen:
   - Schaltet Apples Userlocation-Service aus, und ermöglicht dem User seine Position manuell zu setzen.
   - Diese funktion ist als Fallback aktiv, wenn Apples Location-Diense inaktiv sind, oder der Nutzer dies der App explizit verboten hat.
 
-## Geplante Features:
+# Geplante Features:
 - Simulation der Beschleunigung und Bremswege der Züge, um etwas genauere Positionangaben zu ermitteln
