@@ -4,7 +4,7 @@ Visualizes the approximate location of trains that are departing and arriving at
 
 <img src="https://raw.githubusercontent.com/findus/x/master/Picture1.png" width="250"> <img src="https://raw.githubusercontent.com/findus/x/master/Picture2.png" width="250">
 
-Dies ist eine kleine Demo Application, die Fahrplandaten grafisch aufbereitet.
+## Dies ist eine kleine Demo Application, die Fahrplandaten grafisch aufbereitet.
 
 Der Fahrtverlauf von Zügen, die vom ausgewählten Bahnhof abfahren, oder ankommen wird auf einer Map angezeigt.
 Aus den Fahrplandaten wird eine ungefähre Position der Züge abgeleitet, welche dann sekündlich auf der Map aktualisiert wird.
@@ -19,21 +19,22 @@ Zusätzlich zeigt die App auch folgende Infos an:
 - Nächster Halt
 - Entfernung zum User in Kilometern (gemessen an der Trassenlänge)
 - Vorraussichtliche Ankunftszeit beim User in Sekunden
+- Vom aktuell ausgewählten Zug werden minütlich die Fahrplandaten aktualisiert, um stehts aktuelle Verspätungsdaten verfügbar zu haben
 
-Einstellungen:
+# Einstellungen:
 
 In der App lassen sich folgende Einstellungen anpassen:
 
-- Entfernung zum Bahnhof
+## -  Entfernung zum Bahnhof
   - Versucht Züge zu entfernen, die schon laut Fahrplan am User vorbei gefahren sind
     - Beispiel: User steht 5 Minuten vom Hauptbahnhof entfernt, und in 2 Minuten fährt ein ICE ein. Dieser ist warscheinlich schon vorbei gefahren und kann somit ausgeblendet werden.
   
-- Maximale Distanz zur Bahnstrecke
-  - Entfernt Züge, deren Trasse zu weit vom User entfernt liegen, z.B. von Regionallinien, die in die andere Richtung abfahren
+## - Maximale Distanz zur Bahnstrecke
+  - Entfernt Züge, deren zu befahrene Trasse zu weit vom User entfernt liegen, z.B. von Regionallinien, die in die andere Richtung abfahren
   
- - Behalte Züge bei Refresh (noch nicht implementiert)
+ ## - Behalte Züge bei Refresh (noch nicht implementiert)
   - Löscht Züge nicht, die beim neuen Fahrplan-Fetch nicht mehr dabei sind
  
- - Manuelle Positionsbestimmung
+ ## - Manuelle Positionsbestimmung
   - Schaltet Apples Userlocation-Service aus, und ermöglicht dem User seine Position manuell zu setzen.
   - Diese funktion ist als Fallback aktiv, wenn Apples Location-Diense inaktiv sind, oder der Nutzer dies der App explizit verboten hat.
