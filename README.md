@@ -29,16 +29,16 @@ In der App lassen sich folgende Einstellungen anpassen:
 
 ## -  Entfernung zum Bahnhof
   - Versucht Züge zu entfernen, die schon laut Fahrplan am User vorbei gefahren sind
-    - Beispiel: User steht 5 Minuten vom Hauptbahnhof entfernt, und in 2 Minuten fährt ein ICE ein. Dieser ist warscheinlich schon vorbei gefahren und kann somit ausgeblendet werden.
+    - Beispiel: User steht 5 Minuten vom Hauptbahnhof entfernt, und in 2 Minuten fährt ein ICE ein. Dieser ist warscheinlich schon vorbei gefahren und kann somit ausgeblendet werden
   
 ## - Maximale Distanz zur Bahnstrecke
   - Entfernt Züge, deren zu befahrene Trasse zu weit vom User entfernt liegen, z.B. von Regionallinien, die in die andere Richtung abfahren
 
 ## - Manuelle Positionsbestimmung
-  - Schaltet Apples Userlocation-Service aus, und ermöglicht dem User seine Position manuell zu setzen.
-  - Diese funktion ist als Fallback aktiv, wenn Apples Location-Diense inaktiv sind, oder der Nutzer dies der App explizit verboten hat.
+  - Schaltet Apples Userlocation-Service aus, und ermöglicht dem User seine Position manuell zu setzen
+  - Diese funktion ist als Fallback aktiv, wenn Apples Location-Diense inaktiv sind, oder der Nutzer dies der App explizit verboten hat
 
 # Geplante Features:
 - Simulation der Beschleunigung und Bremswege der Züge, um etwas genauere Positionangaben zu ermitteln
 - Behalte Züge bei Refresh
-  - Löscht Züge nicht, die beim neuen Fahrplan-Fetch nicht mehr dabei sind
+  - Löscht Züge nicht, die beim neuen Fahrplan-Fetch nicht mehr dabei sind, weil sie z.B. nach in der Vergangenheit abgefahren sind, man sie als User aber noch auf der Karte weiter anzeigen möchte
