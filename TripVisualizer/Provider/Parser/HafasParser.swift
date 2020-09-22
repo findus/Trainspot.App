@@ -132,46 +132,96 @@ public class HafasParser {
      Returns an Array of features where every feature has the needed duration and distance to the next Feature and the current location
      */
     public static func getFeaturesWithDates(forFeatures features: Array<Feature>, andAnimationData animationData: Array<AnimationData>, forTrip trip: HafasTrip) throws -> Array<Feature> {
-        try zip(features, animationData).enumerated().reduce([Feature]()) { (prev, tuple) -> Array<Feature> in
-            var newArray = prev
+        
+        try zip(features, animationData).enumerated().reduce([Feature]()) { (previousFeatureArray, tuple) -> Array<Feature> in
+            
+            var newFeatureArray = previousFeatureArray
             let (offset,(currentFeature, animationData)) = tuple
             
             var distance = 0.0
+            
+            // Check if a next feature exist in the array, if it does calculate the distance to it
             if let nextFeature = features[exist: offset+1]  {
                 distance = currentFeature.coords.distance(from: nextFeature.coords)
             }
             
-            if let last = prev.last {
+            // Check if this is the first stopover, or if we already are "in the middle of the trip"
+            if let last = previousFeatureArray.last {
                 let lastDate = last.departure
                 
                 if currentFeature is StopOver {
-                    let stop = currentFeature as! StopOver
-                    var st: StopOver? = nil
-                    if newArray.isEmpty {
-                        // First StopOver, set grace period so that trains that will start in x minutes wont get removed immediately, needs to be global and in user prefs
-                        st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: Date().addingTimeInterval(-2700), departure: stop.departure)
-                    } else {
-                        st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure,arrivalDelay: stop.arrivalDelay)
+                    
+                    // https://github.com/findus/Trainspot.App/issues/16
+                    /**
+                     Checks if the next Stopover has an arrival-delay. If it has one the delay gets added to the arrival and departure date of the current trip
+                     If the next Stopover has no delay the passed date gets handed back
+                     */
+                    func getAdjustedDelayDate(forDate date: Date?) -> Date? {
+                        
+                        guard let date = date else {
+                            return nil
+                        }
+                        
+                        if let nextStopOver = (features[offset...].first(where: {$0 is StopOver}) as? StopOver) {
+                            
+                            if nextStopOver.arrivalDelay != nil &&
+                                nextStopOver.arrivalDelay! > 0 &&
+                                stopover.arrivalDelay == nil
+                            {
+                                return date.addingTimeInterval(Double(nextStopOver.arrivalDelay!))
+                            }
+                        }
+                        return date
                     }
-    
-                    st!.durationToNext = animationData.duration
-                    newArray.append(st!)
-                    return newArray
+                    
+                    
+                    let stop = currentFeature as! StopOver
+                    
+                    var stopover = StopOver(
+                        distanceToNext: distance,
+                        name: stop.name,
+                        coords: stop.coords,
+                        arrival: getAdjustedDelayDate(forDate: stop.arrival),
+                        departure: getAdjustedDelayDate(forDate: stop.departure),
+                        arrivalDelay: stop.arrivalDelay
+                    )
+                    
+                    stopover.durationToNext = animationData.duration
+                    newFeatureArray.append(stopover)
+                    return newFeatureArray
                 } else {
+                    
                     guard let durationToNext = last.durationToNext else {
                         let errormsg = "[\(trip.line.name)] Could not find the duration from \(last.coords)"
                         throw AnimationCalculationError.NoDurationFound(message: errormsg)
                     }
-                    let path = Path(distanceToNext: distance, durationToNext: animationData.duration, departure: lastDate!.addingTimeInterval(durationToNext), coords: currentFeature.coords, lastBeforeStop: false)
-                    newArray.append(path)
-                    return newArray
+                    
+                    let path = Path(distanceToNext: distance,
+                                    durationToNext: animationData.duration,
+                                    departure: lastDate!.addingTimeInterval(durationToNext),
+                                    coords: currentFeature.coords,
+                                    lastBeforeStop: false)
+                    
+                    newFeatureArray.append(path)
+                    return newFeatureArray
                 }
             } else {
+               
+                // If it is the first entry create the first stopover
                 let stop = currentFeature as! StopOver
-                var st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure, arrivalDelay:  stop.arrivalDelay)
+                
+                var st = StopOver(distanceToNext: distance,
+                                  name: stop.name,
+                                  coords: stop.coords,
+                                  arrival: stop.arrival,
+                                  departure: stop.departure,
+                                  arrivalDelay: stop.arrivalDelay
+                )
+                
                 st.durationToNext = animationData.duration
-                newArray.append(st)
-                return newArray
+                newFeatureArray.append(st)
+                
+                return newFeatureArray
             }
         }
     }
