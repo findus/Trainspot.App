@@ -21,7 +21,7 @@ Zusätzlich zeigt die App auch folgende Infos an:
 - Nächster Halt
 - Entfernung zum User in Kilometern (gemessen an der Trassenlänge)
 - Vorraussichtliche Ankunftszeit beim User in Sekunden
-- Vom aktuell ausgewählten Zug werden minütlich die Fahrplandaten aktualisiert, um stehts aktuelle Verspätungsdaten verfügbar zu haben
+- Vom aktuell ausgewählten Zug werden minütlich die Fahrplandaten aktualisiert, um stehts aktuelle Verspätungsdaten anzeigen zu können
 
 # Einstellungen:
 
