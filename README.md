@@ -4,7 +4,7 @@ Visualizes the approximate location of trains that are departing and arriving at
 
 <img src="https://raw.githubusercontent.com/findus/x/master/Picture1.png" width="250"> <img src="https://raw.githubusercontent.com/findus/x/master/Picture2.png" width="250"> <img src="https://raw.githubusercontent.com/findus/x/master/Picture3.jpeg" width="250">
 
-## Dies ist eine kleine Demo Application, die Fahrplandaten grafisch aufbereitet.
+## Dies ist eine kleine Demo-iOS-App, die Fahrplandaten grafisch aufbereitet.
 
 ## Features:
 
