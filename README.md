@@ -6,6 +6,8 @@ Visualizes the approximate location of trains that are departing and arriving at
 
 ## Dies ist eine kleine Demo Application, die Fahrplandaten grafisch aufbereitet.
 
+## Features:
+
 Der Fahrtverlauf von Zügen, die vom ausgewählten Bahnhof abfahren, oder ankommen wird auf einer Map angezeigt.
 Aus den Fahrplandaten wird eine ungefähre Position der Züge abgeleitet, welche dann sekündlich auf der Map aktualisiert wird.
 
@@ -32,9 +34,12 @@ In der App lassen sich folgende Einstellungen anpassen:
 ## - Maximale Distanz zur Bahnstrecke
   - Entfernt Züge, deren zu befahrene Trasse zu weit vom User entfernt liegen, z.B. von Regionallinien, die in die andere Richtung abfahren
   
- ## - Behalte Züge bei Refresh (noch nicht implementiert)
+## - Behalte Züge bei Refresh (noch nicht implementiert)
   - Löscht Züge nicht, die beim neuen Fahrplan-Fetch nicht mehr dabei sind
  
- ## - Manuelle Positionsbestimmung
+## - Manuelle Positionsbestimmung
   - Schaltet Apples Userlocation-Service aus, und ermöglicht dem User seine Position manuell zu setzen.
   - Diese funktion ist als Fallback aktiv, wenn Apples Location-Diense inaktiv sind, oder der Nutzer dies der App explizit verboten hat.
+
+## Geplante Features:
+- Simulation der Beschleunigung und Bremswege der Züge, um etwas genauere Positionangaben zu ermitteln
