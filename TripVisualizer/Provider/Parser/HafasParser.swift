@@ -18,6 +18,11 @@ public class HafasParser {
         case DecodeError(errormessage: String)
     }
     
+    /**
+     This method generates a so called timeline. A Timeline holds a list with all Path and Stopovers.
+     Stopovers are getting sanitized if departure or arrival time is missing, and a placeholder value (-2) is getting set for the distance to the next feature, that will be calculated later
+     It also holds so called animation data, .
+     */
     public static func generateTimeLine(forTrip trip: HafasTrip) throws -> Timeline {
         
         let tripName = trip.line.name
@@ -173,19 +178,25 @@ public class HafasParser {
     
     public static func generateAnimationData(fromFeatures features: Array<Feature>) -> Array<AnimationData> {
         
+        // Get all StopOvers inside the Path
         let stops = features.enumerated().filter( { $0.element is StopOver } )
+        
+        // Get the array positions of all these Stops
         let station_array_positions = zip(stops, stops.dropFirst()).map( { ($0.0.offset, $0.1.offset) } )
-        let sections = station_array_positions.map { (e) -> Section in
-            let (departure, arrival) = e
+        
+        let sections = station_array_positions.map { (tuple) -> Section in
+            let (departure, arrival) = tuple
             let slice = features[departure...arrival]
             
-            
+            // Calculate the distances between each polyline dots....
             let distances = zip(slice, slice.dropFirst()).map { (loc1, loc2) -> Double in
                 return loc1.coords.distance(from: loc2.coords)
             }
             
+            // ... and Calculate the Distance between the two stops
             let wholeDistance = distances.reduce(0, +)
             
+            // Calculate the time needed to get from stopX to stopX+1 in seconds
             let time = (features[arrival] as! StopOver).arrival!.timeIntervalSince(((features[departure] as! StopOver).departure!))
             
             return Section(time: time, distance: wholeDistance, distances: distances)
