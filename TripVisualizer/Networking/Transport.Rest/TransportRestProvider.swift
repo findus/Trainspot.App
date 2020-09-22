@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import Combine
 
-class TransportRestProvider {
+class TransportRestProvider<PT: Trip> {
     
     let SERVER = "https://transport.f1ndus.de"
     
@@ -19,18 +19,15 @@ class TransportRestProvider {
     var delegate: TrainDataProviderDelegate? = nil
 
     var journeys: Set<Journey> = []
-    var trips: Array<HafasTrip> = []
-    
-    
-    var stream: AnyCancellable? = nil
+    var trips: Set<HafasTrip> = []
 
-    typealias TripData = TimeFrameTrip
+    var stream: AnyCancellable? = nil
     
     init() {
         decoder.dateDecodingStrategy = .formatted(getDateFormatter())
     }
     
-    func getAllTrips() -> Array<HafasTrip> {
+    func getAllTrips() -> Set<HafasTrip> {
         return trips
     }
     
@@ -52,7 +49,32 @@ class TransportRestProvider {
             self.fetchTrip(forJourney: journey)
         })
     }
-     
+    
+    func updateSelectedTrips(trips: Array<PT>) {
+        self.stream?.cancel()
+        
+        let publishers: Array<AnyPublisher<HafasTrip, AFError>> = trips.map({ self.fetchTrip(forTripID: $0.tripId).eraseToAnyPublisher() })
+        
+        let cancelable = Publishers.Sequence(sequence: publishers)
+            .flatMap { $0 }
+            .collect()
+            .eraseToAnyPublisher()
+            .receive(on: RunLoop.main).sink(receiveCompletion: { (result) in
+                switch result {
+                case .failure(let error):
+                    Log.error(error)
+                    self.delegate?.onTripsUpdated(result: .error(error.errorDescription ?? ""))
+                case .finished:
+                    Log.info(result)
+                }
+            }) { (refreshedTrips) in
+                self.trips = Set(refreshedTrips).union(self.trips)
+                self.delegate?.onTripsUpdated(result: .success)
+        }
+        
+        self.stream = cancelable
+    }
+         
     func update() {
         let station = UserPrefs.getSelectedStation()
         let departures = fetchDepartures(forStation: station.ibnr)
@@ -74,7 +96,7 @@ class TransportRestProvider {
                     Log.info(result)
                 }
             }) { (trips) in
-                self.trips = trips
+                self.trips = Set(trips)
                 self.delegate?.onTripsUpdated(result: .success)
         }
         
@@ -122,16 +144,20 @@ class TransportRestProvider {
         
     }
     
-    private func fetchTrip(forJourney journey: HafasJourney) ->  AnyPublisher<HafasTrip, AFError> {
-         
-         let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
-         
-         let parameters = [
-            "lineName" : journey.line.name,
-            "polyline" : "true"
-         ]
+    private func fetchTrip(forTripID id: String) -> AnyPublisher<HafasTrip, AFError> {
+        let headers = HTTPHeaders([HTTPHeader(name: "X-Identifier", value: "de.f1ndus.iOS.train")])
         
-        let urlParameters = URLComponents(string: "\(SERVER)/trips/\(journey.tripId.replacingOccurrences(of: "|", with: "%7C"))")!
+        let parameters = [
+            "lineName" : id,
+            "polyline" : "true"
+        ]
+        
+        let urlParameters = URLComponents(string: "\(SERVER)/trips/\(id.replacingOccurrences(of: "|", with: "%7C"))")!
         return AF.request(urlParameters.url!, parameters: parameters, headers: headers).publishDecodable(type: HafasTrip.self, decoder: self.decoder).value().receive(on: DispatchQueue.main).eraseToAnyPublisher()
-     }
+    }
+    
+    private func fetchTrip(forJourney journey: HafasJourney) ->  AnyPublisher<HafasTrip, AFError> {
+        return self.fetchTrip(forTripID: journey.tripId)
+    }
 }
+

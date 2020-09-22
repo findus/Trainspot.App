@@ -13,7 +13,7 @@ import CoreLocation
 This Controller calculates the approximate train position based on a fixed time. 
  */
 public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Updateable  {
-    
+
     // Seconds that a scheduled train gets displayed before actual departure
     var GRACE_PERIOD = 1800.0
     
@@ -66,6 +66,10 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
     public func pause() {
         Log.info("Timeframe Controller paused")
         self.timer?.invalidate()
+    }
+
+    public func getTrip(withID id: String) -> T? {
+        return trips.first(where: { $0.tripId == id })
     }
     
     public func getArrivalInSeconds(forTrip trip: T, userPosInArray: Int, trainPos: Int, secondsToDeparture: Double) -> TimeInterval? {
@@ -165,6 +169,11 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
         self.delegate?.onUpdateStarted()
         self.dataProvider?.update()
     }
+    
+    public func refreshSelected(trips: Array<TimeFrameTrip>) {
+        self.delegate?.onUpdateStarted()
+        self.dataProvider?.updateExistingTrips(trips)
+    }
 
     public func update() {
         
@@ -191,7 +200,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
             Log.info("Got new Trip \(newTrips.name)")
         }
         
-        self.trips = remaining.union(new)
+        self.trips = new.union(remaining)
         
         // Filter out trips that are to far away from user
         if let userPosition = self.currentUserLocation {
@@ -241,6 +250,10 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
 //Mark: -- Update Handling
 
 extension TrainLocationTripByTimeFrameController: TrainDataProviderDelegate {
+    public func onTripSelectionRefreshed(result: Result) {
+        self.update()
+    }
+    
     public func onTripsUpdated(result: TripVisualizer.Result) {
         Log.info("Trips got updated")
         switch result {

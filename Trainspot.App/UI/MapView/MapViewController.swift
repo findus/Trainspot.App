@@ -36,6 +36,7 @@ class MapViewController: UIViewController {
     
     private var fakedUserPosition: MKPointAnnotation?
     private var nearestTrackPolyline: MKPolyline?
+    private var firstLaunch = true
     
     weak var delegate: MapViewControllerDelegate?
     
@@ -64,10 +65,19 @@ class MapViewController: UIViewController {
         self.updateUserPosAnnotationOpacity()
     }
     
-    private func centerCamera(atTripWithId id: String) {
-        let coords = self.markerDict[id]!.coordinate
-        let region = MKCoordinateRegion(center: coords, latitudinalMeters: 10000, longitudinalMeters: 10000)
-        map.setRegion(region, animated: true)
+    public func setBottomContentAnchor(_ height: CGFloat) {
+        self.map.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
+    }
+    
+    public func centerCamera(atTripWithId id: String) {
+        let coords = self.markerDict[id]!
+                
+        if UserPrefs.isManualLocationEnabled() && fakedUserPosition != nil {
+            self.map.showAnnotations([coords, fakedUserPosition!], animated: true)
+        } else {
+            self.map.showAnnotations([coords, self.map.userLocation], animated: true)
+        }
+
     }
     
     private func addFakedUserPosition(onLocation location: CLLocationCoordinate2D) {
@@ -266,6 +276,19 @@ extension MapViewController: MapViewControllerProtocol {
     }
     
     func updateTrainLocation(forId id: String, withLabel label: String, toLocation location: CLLocationCoordinate2D, withDuration duration: Double) {
+        
+        //Zoom to boundaries on first launch
+        if self.firstLaunch == true {
+            self.firstLaunch = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                if let fakedUserPosition = self.fakedUserPosition {
+                    self.map.showAnnotations( Array(self.markerDict.values) + [fakedUserPosition] , animated: true)
+                } else {
+                    self.map.showAnnotations( Array(self.markerDict.values) + [self.map.userLocation] , animated: true)
+                }
+            }
+        }
+        
         guard let entry = self.entryList.filter({ $0.tripId == id }).first else {
             print("No MapEntry found for \(id), will create entry at location")
             self.addEntry(entry:
@@ -412,9 +435,12 @@ extension MapViewController: MKMapViewDelegate
 extension MapViewController {
     private func setupEventBusListener() {
         SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { notification in
-            if let tripId = notification?.object as? String {
-                self.centerCamera(atTripWithId: tripId)
-                self.selectTrip(withId: tripId)
+            if let tripID = notification?.object as? String {
+                self.centerCamera(atTripWithId: tripID)
+                self.selectTrip(withId: tripID)
+            } else if let trip = notification?.object as? Trip {
+                self.centerCamera(atTripWithId: trip.tripId)
+                self.selectTrip(withId: trip.tripId)
             }
         }
     }

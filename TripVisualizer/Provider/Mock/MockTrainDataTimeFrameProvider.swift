@@ -12,15 +12,15 @@ import TripVisualizer
 /**
 Mock implementation that provides trips passed from the test from code
 */
-public class MockTrainDataTimeFrameProviderSimple: TrainDataProviderProtocol {    
-    
+public class MockTrainDataTimeFrameProviderSimple: TrainDataProviderProtocol {
+ 
     public typealias TripData = TimeFrameTrip
     
     var delegate: TrainDataProviderDelegate? = nil
     
-    public var trips: Array<TimeFrameTrip> = Array.init()
+    public var trips: Set<TimeFrameTrip> = Set.init()
     
-    public func getAllTrips() -> Array<TripData> {
+    public func getAllTrips() -> Set<TripData> {
         return trips
     }
     
@@ -33,6 +33,11 @@ public class MockTrainDataTimeFrameProviderSimple: TrainDataProviderProtocol {
     public func setDeleate(delegate: TrainDataProviderDelegate) {
         self.delegate = delegate
     }
+    
+    
+    public func updateExistingTrips(_ trips: Array<TimeFrameTrip>) {
+        fatalError("Unimplemented")
+    }
 
 }
 
@@ -40,7 +45,7 @@ public class MockTrainDataTimeFrameProviderSimple: TrainDataProviderProtocol {
  Mock implementation that loads trips from json files
  */
 public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
-    
+
     var tripFile: String
    
     var delegate: TrainDataProviderDelegate? = nil
@@ -54,7 +59,7 @@ public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
         tripFile = file
     }
        
-    public func getAllTrips() -> Array<TimeFrameTrip> {
+    public func getAllTrips() -> Set<TimeFrameTrip> {
         guard let trip = self.loadTrip() else {
                 return []
         }
@@ -65,6 +70,10 @@ public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.delegate?.onTripsUpdated(result: .success)
         }
+    }
+    
+    public func updateExistingTrips(_ trips: Array<TimeFrameTrip>) {
+        self.delegate?.onTripsUpdated(result: .success)
     }
     
     public func setDeleate(delegate: TrainDataProviderDelegate) {

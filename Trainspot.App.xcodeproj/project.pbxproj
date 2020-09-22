@@ -50,6 +50,7 @@
 		D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5C2490195100AF77F6 /* TrainViewList.swift */; };
 		D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */; };
 		D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46B6B6524912CF200AF77F6 /* StatusView.xib */; };
+		D47439052516448B0058BC51 /* bs_delay_more_delay in Resources */ = {isa = PBXBuildFile; fileRef = D47439042516448A0058BC51 /* bs_delay_more_delay */; };
 		D47E09F4250B93E30068126D /* TrainTrackPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */; };
 		D47E09F5250B93E30068126D /* TrainTrackPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */; };
 		D47E09F7250BB6250068126D /* DistanceToStationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43705682509877F00A1795F /* DistanceToStationCell.swift */; };
@@ -314,6 +315,7 @@
 		D46B6B5C2490195100AF77F6 /* TrainViewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewList.swift; sourceTree = "<group>"; };
 		D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainOverviewCell.swift; sourceTree = "<group>"; };
 		D46B6B6524912CF200AF77F6 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
+		D47439042516448A0058BC51 /* bs_delay_more_delay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bs_delay_more_delay; sourceTree = "<group>"; };
 		D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainTrackPolyline.swift; sourceTree = "<group>"; };
 		D47E0A2F250BCEF10068126D /* Trainspot.App copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Trainspot.App copy-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/Trainspot.App copy-Info.plist"; sourceTree = "<absolute>"; };
 		D48E44E625115CF800709290 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 			isa = PBXGroup;
 			children = (
 				D445EE302515320400A39B38 /* ice_huge_delay */,
+				D47439042516448A0058BC51 /* bs_delay_more_delay */,
 				D4BEDC80250ED247006621AB /* bs_delay */,
 				D43F04CE250D42D200E3A901 /* ice_arrivaldelay */,
 				D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */,
@@ -1126,6 +1129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D445EE312515320400A39B38 /* ice_huge_delay in Resources */,
+				D47439052516448B0058BC51 /* bs_delay_more_delay in Resources */,
 				D43F04D1250D42D200E3A901 /* ice_arrivaldelay in Resources */,
 				D431C40224963BBE00199742 /* wfb_trip_bielefeld in Resources */,
 				D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */,
@@ -1601,7 +1605,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1610,7 +1614,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1627,7 +1631,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 21;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				INFOPLIST_FILE = "$(SRCROOT)/Trainspot.App/Info.plist";
@@ -1635,7 +1639,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1970,14 +1974,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				INFOPLIST_FILE = Trainspot.App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1995,14 +1999,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				INFOPLIST_FILE = Trainspot.App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";

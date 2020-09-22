@@ -14,21 +14,25 @@ class MockTrainDataRadarProvider : TrainDataProviderProtocol {
    
     var delegate: TrainDataProviderDelegate? = nil
 
-    private var trips : Array<RadarTrip>? = nil
+    private var trips : Set<RadarTrip>? = nil
     
     init() {
         self.trips = self.loadTrips()
     }
     
     func update() {
-        
+        fatalError("Unimplemented")
+    }
+    
+    func updateExistingTrips(_ trips: Array<RadarTrip>) {
+          fatalError("Unimplemented")
     }
     
     func setDeleate(delegate: TrainDataProviderDelegate) {
 
     }
     
-    private func loadTrips() -> Array<RadarTrip>? {
+    private func loadTrips() -> Set<RadarTrip>? {
         guard
             let filePath = Bundle(for: type(of: self)).path(forResource: "data2", ofType: ""),
             let data = NSData(contentsOfFile: filePath) else {
@@ -54,12 +58,12 @@ class MockTrainDataRadarProvider : TrainDataProviderProtocol {
                 return RadarTrip(withDeparture: Date(), andName: name.stringValue, andLines: coords, isType: "radar", andId: "e", withDestination: "-")
         }
         
-        return trips
+        return Set(trips)
 
     }
 
-    func getAllTrips() -> Array<RadarTrip> {
-        return trips ?? []
+    func getAllTrips() -> Set<RadarTrip> {
+        return trips ?? Set.init()
     }
 
 }

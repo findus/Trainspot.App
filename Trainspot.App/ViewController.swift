@@ -170,6 +170,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
 extension ViewController: UIGestureRecognizerDelegate {
     
+    @objc func tapped(gesture: UITapGestureRecognizer) {
+        if gesture.state == .ended {
+            if let selectedTrip = TripHandler.shared.getSelectedTripID() {
+                self.mapViewController?.centerCamera(atTripWithId:selectedTrip)
+            }
+        }
+    }
     
     @objc func dragged(gesture: UIPanGestureRecognizer) {
         
@@ -221,9 +228,15 @@ extension ViewController {
            // Pan reload gesture
            
            let gesture = UIPanGestureRecognizer(target: self, action: #selector(self.dragged(gesture:)))
+        
+        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapped(gesture:)))
            
            self.bottomView.addGestureRecognizer(gesture)
            gesture.delegate = self
+       
+           self.bottomView.addGestureRecognizer(touchGesture)
+           touchGesture.delegate = self
+        
            self.loadingIndicator.isHidden = true
            self.loadingIndicatorHeightConstraint.constant = 0
            
@@ -250,7 +263,7 @@ extension ViewController {
         
         //TODO only for reloading lines, write additional logic that refreshes new registered vcs accordingly
         TripHandler.shared.triggerUpdate()
-        
+                
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -266,15 +279,24 @@ extension ViewController {
         }
 
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // Aligns the Mapviews' content view to the status view
+        let tabbarHeight = self.tabBarController!.tabBar.frame.height
+        let statusView = self.bottomView.frame.height
+        let offset = 4
+        mapViewController?.setBottomContentAnchor((tabbarHeight + statusView) - CGFloat(offset))
+    }
        
-       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-           switch segue.destination {
-           case let vc1 as MapViewController:
-               self.mapViewController = vc1
-           default:
-               break
-           }
-       }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.destination {
+        case let vc1 as MapViewController:
+            self.mapViewController = vc1
+        default:
+            break
+        }
+    }
 }
 
 extension ViewController: TrainLocationDelegate {
@@ -419,8 +441,10 @@ extension ViewController {
     
     private func setupBus() {
         SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { (notification) in
-            if let id = notification?.object as? String {
-                self.tripIdToUpdateLocation = id
+            if let trip = notification?.object as? Trip {
+                self.tripIdToUpdateLocation = trip.tripId
+            } else if let tripID = notification?.object as? String {
+                self.tripIdToUpdateLocation = tripID
             }
         }
         

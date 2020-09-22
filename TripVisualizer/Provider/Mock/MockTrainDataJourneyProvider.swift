@@ -17,15 +17,19 @@ public class MockTrainDataJourneyProvider: TrainDataProviderProtocol {
     
     public init(){}
     
-    public func getAllTrips() -> Array<JourneyTrip> {
+    public func getAllTrips() -> Set<JourneyTrip> {
 //        guard let json = loadJSON(), let journeyTrips = HafasParser.loadJourneyTrip(fromJSON: json) else {
 //            return []
 //        }
-        return []
+        fatalError("Unimplemented")
     }
     
     public func update() {
-        
+        fatalError("Unimplemented")
+    }
+    
+    public func updateExistingTrips(_ trips: Array<JourneyTrip>) {
+        fatalError("Unimplemented")
     }
     
     public func setDeleate(delegate: TrainDataProviderDelegate) {

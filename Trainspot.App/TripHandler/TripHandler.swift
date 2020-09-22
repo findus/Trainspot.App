@@ -9,16 +9,25 @@
 import Foundation
 import TripVisualizer
 import CoreLocation
+import SwiftEventBus
 
-//TODO proxy holder for controller
+//TODO proxy holder for controller, right now it is hardcoded for only one controller, if multiple should be supported this class must be extended to support 1 to n Controllers
 public class TripHandler {
     
     private let manager = TrainLocationProxy.shared
     public static let shared = TripHandler()
     private var tripTimeFrameLocationController = TrainLocationTripByTimeFrameController()
     public var demoTimer: TimeTraveler?
+    private var selectedTrip: String?
+    private var updateTimer: Timer? {
+        didSet {
+            Log.info("Invalidate Selected-Trip-Refresh Timer and restart it")
+            oldValue?.invalidate()
+        }
+    }
     
     private init() {
+        self.setupBus()
         #if MOCK
         self.setupDemo()
         #else
@@ -26,6 +35,8 @@ public class TripHandler {
         #endif
         
         self.manager.register(controller: tripTimeFrameLocationController)
+        
+        self.updateTimer = self.startUpdateTimer()
     }
     
     func setupDemo() {
@@ -71,13 +82,57 @@ public class TripHandler {
     }
     
     func triggerUpdate() {
+        
+        self.updateTimer = self.startUpdateTimer()
         if UserPrefs.getfirstOnboardingTriggered() == true {
             self.tripTimeFrameLocationController.fetchServer()
         }
     }
     
+    func triggerRefreshForTrips(_ trips: Array<TimeFrameTrip>) {
+        self.updateTimer = self.startUpdateTimer()
+        self.tripTimeFrameLocationController.refreshSelected(trips: trips)
+    }
+    
     func setCurrentLocation(_ location: CLLocation) {
         self.tripTimeFrameLocationController.setCurrentLocation(location: location)
+    }
+    
+    func setSelectedTripID(_ tripID: String?) {
+        self.selectedTrip = tripID
+    }
+    
+    func getSelectedTripID() -> String? {
+        return self.selectedTrip
+    }
+    
+    private func setupBus() {
+        SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { (notification) in
+            if let trip = notification?.object as? Trip {
+                
+                TripHandler.shared.setSelectedTripID(trip.tripId)
+                TripHandler.shared.triggerRefreshForTrips([trip as! TimeFrameTrip])
+            } else if let tripID = notification?.object as? String {
+                TripHandler.shared.setSelectedTripID(tripID)
+                if let trip = self.tripTimeFrameLocationController.getTrip(withID: tripID) {
+                    TripHandler.shared.triggerRefreshForTrips([trip])
+                }
+            }
+        }
+        
+        SwiftEventBus.onMainThread(self, name: "deSelectTripOnMap") { (notification) in
+            TripHandler.shared.setSelectedTripID(nil)
+        }
+    }
+    
+    private func startUpdateTimer() -> Timer  {
+        return Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { (timer) in
+            guard let selectedTripID = self.selectedTrip, let trip = self.tripTimeFrameLocationController.getTrip(withID: selectedTripID) else {
+                return
+            }
+            
+            self.tripTimeFrameLocationController.refreshSelected(trips: [trip])
+        }
     }
         
 }
