@@ -41,4 +41,4 @@ In der App lassen sich folgende Einstellungen anpassen:
 # Geplante Features:
 - Simulation der Beschleunigung und Bremswege der Züge, um etwas genauere Positionangaben zu ermitteln
 - Behalte Züge bei Refresh
-  - Löscht Züge nicht, die beim neuen Fahrplan-Fetch nicht mehr dabei sind, weil sie z.B. nach in der Vergangenheit abgefahren sind, man sie als User aber noch auf der Karte weiter anzeigen möchte
+  - Löscht Züge nicht, die beim neuen Fahrplan-Fetch nicht mehr dabei sind, weil sie z.B. in der Vergangenheit abgefahren sind, man sie als User aber noch auf der Karte weiter anzeigen möchte
