@@ -20,10 +20,13 @@ Zusätzlich zeigt die App auch folgende Infos an:
 - Entfernung zum User in Kilometern (gemessen an der Trassenlänge)
 - Vorraussichtliche Ankunftszeit beim User in Sekunden
 
-Settings:
+Einstellungen:
+
+In der App lassen sich folgende Einstellungen anpassen:
 
 - Entfernung zum Bahnhof
   - Versucht Züge zu entfernen, die schon laut Fahrplan am User vorbei gefahren sind
+    - Beispiel: User steht 5 Minuten vom Hauptbahnhof entfernt, und in 2 Minuten fährt ein ICE ein. Dieser ist warscheinlich schon vorbei gefahren und kann somit ausgeblendet werden.
   
 - Maximale Distanz zur Bahnstrecke
   - Entfernt Züge, deren Trasse zu weit vom User entfernt liegen, z.B. von Regionallinien, die in die andere Richtung abfahren
