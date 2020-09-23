@@ -101,8 +101,6 @@ public class HafasParser {
                 Log.warning("\(trip.line.name) First Entry is not a StopOver")
             }
             
-            Log.debug("Generate Animation Data for: \(tripName)")
-            let animationData = generateAnimationData(fromFeatures: line)
             
             /**
              Delay check: Currently the delay indicators are getting nulled if a train departs from a certain stop. Thats leads to problems to the calculation
@@ -138,6 +136,9 @@ public class HafasParser {
                     }
                 }
             }
+            
+            Log.debug("Generate Animation Data for: \(tripName)")
+            let animationData = generateAnimationData(fromFeatures: line)
             
             return Timeline(name: tripName, line: line, animationData: animationData ,departure: date)
             
