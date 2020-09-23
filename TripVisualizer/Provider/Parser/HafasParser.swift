@@ -25,6 +25,7 @@ public class HafasParser {
      */
     public static func generateTimeLine(forTrip trip: HafasTrip) throws -> Timeline {
         
+        let CALCULATED_LATER = -2.0
         let tripName = trip.line.name
         let stops = trip.stopovers
         guard let polyline = trip.polyline?.features else {
@@ -80,7 +81,7 @@ public class HafasParser {
                         arrival = departure
                     }
                     
-                    var newstop = StopOver(distanceToNext: -2, name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure, departureDelay: stopOver.departureDelay)
+                    var newstop = StopOver(distanceToNext: CALCULATED_LATER, name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure, departureDelay: stopOver.departureDelay)
                     
                     if let delay =  stopOver.arrivalDelay  {
                         newstop.arrivalDelay = delay
@@ -89,7 +90,7 @@ public class HafasParser {
                     return newstop
                                
                 } else {
-                    return Path(distanceToNext: -2, coords: CLLocation(latitude: lat, longitude: lon))
+                    return Path(distanceToNext: CALCULATED_LATER, coords: CLLocation(latitude: lat, longitude: lon))
                 }
             }
             
