@@ -139,6 +139,8 @@ public class HafasParser {
                 }
             }
             
+            //TODO delay after immediate departure if hafas still has delay data for prior stop and user selected posisiton is right before that station, right now delay is way off in the past
+            
             Log.debug("Generate Animation Data for: \(tripName)")
             let animationData = generateAnimationData(fromFeatures: line)
             

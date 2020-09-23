@@ -601,7 +601,7 @@ class TimeFrameControllerTests: XCTestCase {
 
     }
     
-    // Delay
+    //MARK: - Delay
     
     func testDelayForNextStation() {
         self.dataProvider.setTrip(withName: "bs_delay")
@@ -641,7 +641,7 @@ class TimeFrameControllerTests: XCTestCase {
         XCTAssertEqual(data.delay,300)
     }
     
-    // UpdateMechanism
+    //MARK:- UpdateMechanism
     
     // Remaining journeys after fetch should still be there, but should have updated data, like delay etc
     func testRemainingJourneys() {
@@ -671,7 +671,7 @@ class TimeFrameControllerTests: XCTestCase {
         
     }
     
-    // Auto Refresh
+    //MARK: - Auto Refresh
     
     //After single trip-refresh, the ice should have more delay
     func testAutoRefreshNewDelay() {
@@ -727,5 +727,9 @@ class TimeFrameControllerTests: XCTestCase {
         XCTAssertEqual(newData.state.get(), "Braunschweig Hbf")
         XCTAssertEqual(newData.delay,560)
     }
+    
+    //MARK: - Time Calculation with Delay
+    
+    
 
 }
