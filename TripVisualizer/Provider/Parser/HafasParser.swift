@@ -113,6 +113,8 @@ public class HafasParser {
              For the simulation, the actual time needed from hannover to göttingen is 50 Minutes longer then  is really is.
              
              To prevent this issue, every former stops time gets the delay of the first delayed stop as offset
+             
+             //TODO might brake next stopover if really has 0 delay
              */
             if let (firstDelayIndex,firstStopOverWithDelay) = line
                 .enumerated()

@@ -148,6 +148,8 @@
 		D4DEAAE52487D55A00D33AA2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */; };
 		D4E69A0B251AA95600FBB67B /* bs_delay_absurd_delay in Resources */ = {isa = PBXBuildFile; fileRef = D4E69A0A251AA95600FBB67B /* bs_delay_absurd_delay */; };
 		D4E69A19251AA96400FBB67B /* bs_delay_absurd_delay in Resources */ = {isa = PBXBuildFile; fileRef = D4E69A0A251AA95600FBB67B /* bs_delay_absurd_delay */; };
+		D4E69A23251B729100FBB67B /* wfb_trip_45_min_delay_to_bs in Resources */ = {isa = PBXBuildFile; fileRef = D4E69A22251B729100FBB67B /* wfb_trip_45_min_delay_to_bs */; };
+		D4E69A2C251B742F00FBB67B /* wfb_trip_45_min_delay_to_bs in Resources */ = {isa = PBXBuildFile; fileRef = D4E69A22251B729100FBB67B /* wfb_trip_45_min_delay_to_bs */; };
 		D4FF574D2510AF67004E4238 /* IntroductionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */; };
 		D4FF574E2510AF67004E4238 /* IntroductionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */; };
 		D4FF57502510C603004E4238 /* BasicScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574F2510C603004E4238 /* BasicScrollViewController.swift */; };
@@ -367,6 +369,7 @@
 		D4DEAAE72487D9F100D33AA2 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
 		D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Math+Extension.swift"; sourceTree = "<group>"; };
 		D4E69A0A251AA95600FBB67B /* bs_delay_absurd_delay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bs_delay_absurd_delay; sourceTree = "<group>"; };
+		D4E69A22251B729100FBB67B /* wfb_trip_45_min_delay_to_bs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wfb_trip_45_min_delay_to_bs; sourceTree = "<group>"; };
 		D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionBaseViewController.swift; sourceTree = "<group>"; };
 		D4FF574F2510C603004E4238 /* BasicScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicScrollViewController.swift; sourceTree = "<group>"; };
 		D4FF5759251124D3004E4238 /* TripHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripHandler.swift; sourceTree = "<group>"; };
@@ -607,6 +610,7 @@
 		D46B6B6224912C5F00AF77F6 /* MockData */ = {
 			isa = PBXGroup;
 			children = (
+				D4E69A22251B729100FBB67B /* wfb_trip_45_min_delay_to_bs */,
 				D4E69A0A251AA95600FBB67B /* bs_delay_absurd_delay */,
 				D47439042516448A0058BC51 /* bs_delay_more_delay */,
 				D4BEDC80250ED247006621AB /* bs_delay */,
@@ -1119,6 +1123,7 @@
 				D43F04D1250D42D200E3A901 /* ice_arrivaldelay in Resources */,
 				D431C40224963BBE00199742 /* wfb_trip_bielefeld in Resources */,
 				D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */,
+				D4E69A23251B729100FBB67B /* wfb_trip_45_min_delay_to_bs in Resources */,
 				D4BEDC81250ED247006621AB /* bs_delay in Resources */,
 				D4A30E44249588C800B2684C /* wfb_trip in Resources */,
 			);
@@ -1166,6 +1171,7 @@
 				D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
 				D437DD93250AB6D400ED8909 /* AutoCompleteViewController.xib in Resources */,
+				D4E69A2C251B742F00FBB67B /* wfb_trip_45_min_delay_to_bs in Resources */,
 				D4A5B7EC250EDD37003257F5 /* wfb_trip in Resources */,
 				D4E69A19251AA96400FBB67B /* bs_delay_absurd_delay in Resources */,
 				178090C624981C9D00DBC0B6 /* TrainOverViewCell.xib in Resources */,

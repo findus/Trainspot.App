@@ -297,38 +297,66 @@ extension TrainLocationTripByTimeFrameController {
         }
         
         guard let loc = zip(trip.locationArray.enumerated(),trip.locationArray.dropFirst())
-            .first(where: { (arg0, next) -> Bool in
-                let (_, this) = arg0
+            .first(where: { (arg0, nextPosition) -> Bool in
+                let (_, thisPosition) = arg0
                 
-                if this is Path && next is StopOver {
+                if thisPosition is Path && nextPosition is StopOver {
                     /**
                      Map Against Arrival Data:
                     Section Start       Train     Arrival       Departure
                         |__________*_____|     Stop     |________> Time .
                       15:00              15:02    15:03          15:04
                      */
-                return (this as! Path).departure!.timeIntervalSince(date) <= 0 && (next as! StopOver).arrival!.timeIntervalSince(date) > 0
+                                        
+                let isInThisSection = (thisPosition as! Path).departure!.timeIntervalSince(date) <= 0 && (nextPosition as! StopOver).arrival!.timeIntervalSince(date) > 0
+                    
+                    if isInThisSection {
+                        print("a")
+                    }
+                    
+                    return isInThisSection
                
-                } else if this is StopOver && next is Path {
+                } else if thisPosition is StopOver && nextPosition is Path {
                     /**
                     Map Against Arrival Data:
                     Section Start                     Arrival       Departure
                         |________________|     Train     |________> Time .
                     15:00                                 15:03          15:04
                     */
-                   return
-                            ((this as! StopOver).arrival?.timeIntervalSince(date) ?? 1 <= 0 && (this as! StopOver).departure!.timeIntervalSince(date) > 0)
-                        ||
-                            (this as! StopOver).departure!.timeIntervalSince(date) <= 0 && (next).departure!.timeIntervalSince(date) >= 0
+                    
+                    //Returns true if the train is currently stopping at this point....
+                    let stopOverArrivalDateInPast = ((thisPosition as! StopOver).arrival?.timeIntervalSince(date) ?? 1 <= 0)
+                    let stopOverDepartueDateInFuture = ((thisPosition as! StopOver).departure!.timeIntervalSince(date) > 0)
+                    
+                    //Or if the the train departet and is between the stop and the next polyline dot
+                    let stopOverSepartureInPast =  (thisPosition as! StopOver).departure!.timeIntervalSince(date) <= 0
+                    let nextPositionDepartureInFuture = (nextPosition).departure!.timeIntervalSince(date) >= 0
+                    
+                    let isInThisSection =
+                        (stopOverArrivalDateInPast && stopOverDepartueDateInFuture) || (stopOverSepartureInPast && nextPositionDepartureInFuture)
+                    
+                    if isInThisSection {
+                        print("b")
+                        print("\((thisPosition as! StopOver).name) \((thisPosition as! StopOver).arrival) \((nextPosition as! Path).departure) \(date)")
+                        print("")
+                    }
+                    
+                    return isInThisSection
 
                 } else {
                     
-                    if this.departure == nil || next.departure == nil {
+                    if thisPosition.departure == nil || nextPosition.departure == nil {
                         Log.warning("\(trip.name) | \(trip.tripId): Departure date of a stopover is nil!")
                         return false
                     }
                     
-                    return this.departure!.timeIntervalSince(date) <= 0 && next.departure!.timeIntervalSince(date) > 0
+                    let isInThisSection = thisPosition.departure!.timeIntervalSince(date) <= 0 && nextPosition.departure!.timeIntervalSince(date) > 0
+                    
+                    if isInThisSection {
+                        print("c")
+                    }
+                    
+                    return isInThisSection
                 }
             }) else {
                 //If Journey has ended

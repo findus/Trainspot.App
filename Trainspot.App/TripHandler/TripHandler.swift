@@ -40,12 +40,13 @@ public class TripHandler {
     }
     
     func setupDemo() {
+        //TODO distinct between demo mode and mocking-debug mode
         var components = DateComponents()
-        components.second = 0
-        components.hour = 23
-        components.minute = 30
-        components.day = 13
-        components.month = 9
+        components.second = 50
+        components.hour = 17
+        components.minute = 37
+        components.day = 12
+        components.month = 6
         components.year = 2020
         let date = Calendar.current.date(from: components)
         let traveler = TimeTraveler()
@@ -56,7 +57,7 @@ public class TripHandler {
         traveler.date = date!
         self.tripTimeFrameLocationController.pause()
 
-        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "bs_delay")))
+        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "wfb_trip_45_min_delay_to_bs")))
         tripTimeFrameLocationController.dateGenerator = traveler.generateDate
         
         // Hildesheim
@@ -65,7 +66,7 @@ public class TripHandler {
         UserLocationController.shared.deactivate()
         UserPrefs.setManualLocationEnabled(true)
         UserPrefs.setHasUserActivatedManualLocation(true)
-        UserPrefs.setManualLocation(loc)
+      //  UserPrefs.setManualLocation(loc)
         UserPrefs.setSelectedStation(StationInfo("Braunschweig Hbf", "8000049"))
     }
     
