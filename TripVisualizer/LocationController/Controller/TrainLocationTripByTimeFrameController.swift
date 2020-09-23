@@ -329,11 +329,11 @@ extension TrainLocationTripByTimeFrameController {
                     let stopOverDepartueDateInFuture = ((thisPosition as! StopOver).departure!.timeIntervalSince(date) > 0)
                     
                     //Or if the the train departet and is between the stop and the next polyline dot
-                    let stopOverSepartureInPast =  (thisPosition as! StopOver).departure!.timeIntervalSince(date) <= 0
+                    let stopOverDepartureInPast =  (thisPosition as! StopOver).departure!.timeIntervalSince(date) <= 0
                     let nextPositionDepartureInFuture = (nextPosition).departure!.timeIntervalSince(date) >= 0
                     
                     let isInThisSection =
-                        (stopOverArrivalDateInPast && stopOverDepartueDateInFuture) || (stopOverSepartureInPast && nextPositionDepartureInFuture)
+                        (stopOverArrivalDateInPast && stopOverDepartueDateInFuture) || (stopOverDepartureInPast && nextPositionDepartureInFuture)
                     
                     if isInThisSection {
                         print("b")
