@@ -92,7 +92,7 @@ class TrainLocationTripAnimationTimeController: TrainLocationProtocol, Updateabl
     
     func update() {
         guard let trips = dataProvider?.getAllTrips() else {
-            print("Error retreiving trips")
+            Log.error("Error retreiving trips")
             return
         }
         
@@ -265,7 +265,7 @@ extension TrainLocationTripAnimationTimeController {
             //            print(normvec)
         }
         
-        print(missingdistance)
+        Log.trace("Missing Distance: \(missingdistance)")
         Log.error("[\(trip.name)] Could not find location")
         return nil
     }

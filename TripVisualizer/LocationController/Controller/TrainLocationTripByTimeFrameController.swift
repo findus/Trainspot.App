@@ -173,7 +173,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
         self.timer?.invalidate()
         
         guard let trips = dataProvider?.getAllTrips() else {
-            print("Error retreiving trips")
+            Log.error("Error retreiving trips")
             return
         }
         
@@ -309,11 +309,7 @@ extension TrainLocationTripByTimeFrameController {
                      */
                                         
                 let isInThisSection = (thisPosition as! Path).departure!.timeIntervalSince(date) <= 0 && (nextPosition as! StopOver).arrival!.timeIntervalSince(date) > 0
-                    
-                    if isInThisSection {
-                        print("a")
-                    }
-                    
+                               
                     return isInThisSection
                
                 } else if thisPosition is StopOver && nextPosition is Path {
@@ -335,12 +331,6 @@ extension TrainLocationTripByTimeFrameController {
                     let isInThisSection =
                         (stopOverArrivalDateInPast && stopOverDepartueDateInFuture) || (stopOverDepartureInPast && nextPositionDepartureInFuture)
                     
-                    if isInThisSection {
-                        print("b")
-                        print("\((thisPosition as! StopOver).name) \((thisPosition as! StopOver).arrival) \((nextPosition as! Path).departure) \(date)")
-                        print("")
-                    }
-                    
                     return isInThisSection
 
                 } else {
@@ -351,11 +341,7 @@ extension TrainLocationTripByTimeFrameController {
                     }
                     
                     let isInThisSection = thisPosition.departure!.timeIntervalSince(date) <= 0 && nextPosition.departure!.timeIntervalSince(date) > 0
-                    
-                    if isInThisSection {
-                        print("c")
-                    }
-                    
+                        
                     return isInThisSection
                 }
             }) else {

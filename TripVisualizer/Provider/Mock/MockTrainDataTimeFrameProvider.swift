@@ -94,7 +94,7 @@ public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
         do {
             return try decoder.decode(HafasTrip.self, from: trip)
         } catch {
-            print(error)
+            Log.error(error)
         }
         return nil
     }

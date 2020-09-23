@@ -290,7 +290,7 @@ extension MapViewController: MapViewControllerProtocol {
         }
         
         guard let entry = self.entryList.filter({ $0.tripId == id }).first else {
-            print("No MapEntry found for \(id), will create entry at location")
+            Log.warning("No MapEntry found for \(id), will create entry at location")
             self.addEntry(entry:
                 MapEntity(name: label, tripId: id, location: CLLocation(latitude: location.latitude, longitude: location.longitude))
             )

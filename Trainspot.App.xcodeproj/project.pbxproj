@@ -42,6 +42,7 @@
 		D437DDA2250ACCAB00ED8909 /* AutocompleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437DDA0250ACCAB00ED8909 /* AutocompleteDelegate.swift */; };
 		D437DDA3250AD0E800ED8909 /* Userprefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437056E2509900400A1795F /* Userprefs.swift */; };
 		D43F04D1250D42D200E3A901 /* ice_arrivaldelay in Resources */ = {isa = PBXBuildFile; fileRef = D43F04CE250D42D200E3A901 /* ice_arrivaldelay */; };
+		D45B7602251BB6150032A90F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B7601251BB6150032A90F /* Log.swift */; };
 		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
 		D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5C2490195100AF77F6 /* TrainViewList.swift */; };
 		D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */; };
@@ -295,6 +296,7 @@
 		D437DDA0250ACCAB00ED8909 /* AutocompleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteDelegate.swift; sourceTree = "<group>"; };
 		D43F04CE250D42D200E3A901 /* ice_arrivaldelay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ice_arrivaldelay; sourceTree = "<group>"; };
 		D445EE2F2512885500A39B38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D45B7601251BB6150032A90F /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationDelegate.swift; sourceTree = "<group>"; };
 		D45C505324883D8800A3D857 /* TrainLocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationPin.swift; sourceTree = "<group>"; };
 		D45C50562488E27400A3D857 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
@@ -515,6 +517,14 @@
 				D437056E2509900400A1795F /* Userprefs.swift */,
 			);
 			path = UserPreferences;
+			sourceTree = "<group>";
+		};
+		D45B7600251BB6060032A90F /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				D45B7601251BB6150032A90F /* Log.swift */,
+			);
+			path = Logging;
 			sourceTree = "<group>";
 		};
 		D45C50582488E6F200A3D857 /* Provider */ = {
@@ -794,6 +804,7 @@
 		D4D91387250A917200A7DBE0 /* CSVParser */ = {
 			isa = PBXGroup;
 			children = (
+				D45B7600251BB6060032A90F /* Logging */,
 				D4D91379250A8D2C00A7DBE0 /* D_Bahnhof_2020_alle.CSV */,
 				D4D9137C250A8D5300A7DBE0 /* CsvReader.swift */,
 				D4D91388250A917200A7DBE0 /* CSVParser.h */,
@@ -1020,6 +1031,7 @@
 				D4D913AC250A91AE00A7DBE0 /* Sources */,
 				D4D913AD250A91AE00A7DBE0 /* Frameworks */,
 				D4D913AE250A91AE00A7DBE0 /* Resources */,
+				5060F4DA7B4B5E40590A326B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1217,6 +1229,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Trainspot.AppMock/Pods-Trainspot.AppMock-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5060F4DA7B4B5E40590A326B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CSVParserTests/Pods-CSVParserTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CSVParserTests/Pods-CSVParserTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CSVParserTests/Pods-CSVParserTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		61A3E61B2D9A8322214A4A86 /* [CP] Check Pods Manifest.lock */ = {
@@ -1461,6 +1490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45B7602251BB6150032A90F /* Log.swift in Sources */,
 				D4D913C7250A986600A7DBE0 /* CsvReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

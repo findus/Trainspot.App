@@ -40,7 +40,7 @@ public class TrainLocationRadarController: TrainLocationProtocol, Updateable {
     }
     
     @objc private func eventLoop() {
-        print("Event loop")
+        Log.trace("Event loop")
         self.trips.forEach { (trip) in
             self.updateTrip(trip: trip)
         }
