@@ -43,6 +43,7 @@
 		D437DDA3250AD0E800ED8909 /* Userprefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437056E2509900400A1795F /* Userprefs.swift */; };
 		D43F04D1250D42D200E3A901 /* ice_arrivaldelay in Resources */ = {isa = PBXBuildFile; fileRef = D43F04CE250D42D200E3A901 /* ice_arrivaldelay */; };
 		D45B7602251BB6150032A90F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B7601251BB6150032A90F /* Log.swift */; };
+		D45B760C251BB76A0032A90F /* HafasparserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B760B251BB76A0032A90F /* HafasparserTests.swift */; };
 		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
 		D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5C2490195100AF77F6 /* TrainViewList.swift */; };
 		D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */; };
@@ -60,6 +61,7 @@
 		D48E44EE25123E5200709290 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E44EC25123E5200709290 /* AttributedString.swift */; };
 		D4A1E98E2510AAB8006B5E10 /* BigBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E98D2510AAB8006B5E10 /* BigBlueButton.swift */; };
 		D4A1E98F2510AAB8006B5E10 /* BigBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E98D2510AAB8006B5E10 /* BigBlueButton.swift */; };
+		D4A2E33D251BBF50002752DC /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB0248A71620022A6BB /* Log.swift */; };
 		D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
 		D4A30E44249588C800B2684C /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
 		D4A5B7E9250EDA8D003257F5 /* MockTrainDataTimeFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABF248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift */; };
@@ -297,6 +299,7 @@
 		D43F04CE250D42D200E3A901 /* ice_arrivaldelay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ice_arrivaldelay; sourceTree = "<group>"; };
 		D445EE2F2512885500A39B38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D45B7601251BB6150032A90F /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		D45B760B251BB76A0032A90F /* HafasparserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasparserTests.swift; sourceTree = "<group>"; };
 		D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationDelegate.swift; sourceTree = "<group>"; };
 		D45C505324883D8800A3D857 /* TrainLocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationPin.swift; sourceTree = "<group>"; };
 		D45C50562488E27400A3D857 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
@@ -764,6 +767,7 @@
 				D46B6B6224912C5F00AF77F6 /* MockData */,
 				D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */,
 				D4B636CE249583D000996744 /* Info.plist */,
+				D45B760B251BB76A0032A90F /* HafasparserTests.swift */,
 			);
 			path = TripVisualizerTests;
 			sourceTree = "<group>";
@@ -1440,6 +1444,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4A5B7E9250EDA8D003257F5 /* MockTrainDataTimeFrameProvider.swift in Sources */,
+				D45B760C251BB76A0032A90F /* HafasparserTests.swift in Sources */,
+				D4A2E33D251BBF50002752DC /* Log.swift in Sources */,
 				D4B636D72495840A00996744 /* TimeFrameControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

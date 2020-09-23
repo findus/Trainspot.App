@@ -101,7 +101,6 @@ public class HafasParser {
                 Log.warning("\(trip.line.name) First Entry is not a StopOver")
             }
             
-            
             /**
              Delay check: Currently the delay indicators are getting nulled if a train departs from a certain stop. Thats leads to problems to the calculation
              of the current train position, because the simulator now works with "false" starting times for this section
@@ -112,7 +111,7 @@ public class HafasParser {
              
              To prevent this issue, every former stops time gets the delay of the first delayed stop as offset
              
-             //TODO might brake next stopover if really has 0 delay
+             //TODO might brake next stopover if really has 0 delay (instead of nil as value)
              */
             if let (firstDelayIndex,firstStopOverWithDelay) = line
                 .enumerated()
