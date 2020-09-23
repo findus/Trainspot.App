@@ -43,21 +43,21 @@ public class TripHandler {
         //TODO distinct between demo mode and mocking-debug mode
         var components = DateComponents()
         components.second = 12
-        components.hour = 20
-        components.minute = 17
-        components.day = 23
-        components.month = 9
+        components.hour = 16
+        components.minute = 40
+        components.day = 12
+        components.month = 6
         components.year = 2020
         let date = Calendar.current.date(from: components)
         let traveler = TimeTraveler()
         self.demoTimer = traveler
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            traveler.travel(by: 1)
+            traveler.travel(by: 30)
         }
         traveler.date = date!
         self.tripTimeFrameLocationController.pause()
 
-        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "departue_bug_delay")))
+        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "wfb_trip_25_min_delay_to_bs")))
         tripTimeFrameLocationController.dateGenerator = traveler.generateDate
         
         // Hildesheim

@@ -11,7 +11,7 @@ import XCTest
 
 @testable import TripVisualizer
 
-class HafasparserTests: XCTest {
+class HafasparserTests: XCTestCase {
     
     let dateFormatter = DateFormatter()
     
@@ -45,7 +45,7 @@ class HafasparserTests: XCTest {
      **/
     func testDelay() {
        
-        guard let tripWithDelay = self.loadTrip(fromFile: "wfb_trip_45_min_delay_to_bs") else {
+        guard let tripWithDelay = self.loadTrip(fromFile: "wfb_trip_25_min_delay_to_bs") else {
             XCTFail("Could not load trip")
             return
         }
@@ -56,14 +56,15 @@ class HafasparserTests: XCTest {
             return
         }
             
-        tripWithDelay.locationArray.filter({$0 is StopOver}).forEach { (feature) in
+        // Drop final destination
+        tripWithDelay.locationArray.dropLast().filter({$0 is StopOver}).forEach { (feature) in
             let stopover = feature as! StopOver
-            XCTAssertEqual(stopover.arrivalDelay,45, "Every stop should now have a delay of 45 minutes")
+            XCTAssertEqual(stopover.arrivalDelay, 60*25 , "(\(stopover.name)) Every stop should now have an arrivaldelay of 45 minutes")
         }
         
-        // Every trip departure should be moved 25 minutes into the future
+        // Every trip departure before the first "real" occured delay should be moved 25 minutes into the future
         zip(tripWithoutDelay.locationArray, tripWithDelay.locationArray).forEach { (normal,with_delay) in
-            XCTAssertEqual(with_delay.departure, with_delay.departure?.addingTimeInterval(60*25))
+            XCTAssertEqual(with_delay.departure, normal.departure?.addingTimeInterval(60*25))
         }
             
     }

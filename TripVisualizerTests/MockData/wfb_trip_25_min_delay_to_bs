@@ -44,7 +44,7 @@
         }
     },
     "departure": "2020-06-12T16:16:00.000+02:00",
-    "arrival": "2020-06-12T17:47:00.000+02:00",
+    "arrival": "2020-06-12T17:27:00.000+02:00",
     "polyline": {
         "type": "FeatureCollection",
         "features": [
@@ -2094,8 +2094,8 @@
                     "taxi": false
                 }
             },
-            "arrival": "2020-06-12T17:47:00.000+02:00",
-            "arrivalDelay": 2700,
+            "arrival": "2020-06-12T17:27:00.000+02:00",
+            "arrivalDelay": 1500,
             "arrivalPlatform": "5",
             "departure": null,
             "departureDelay": null,

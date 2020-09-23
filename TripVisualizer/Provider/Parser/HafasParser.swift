@@ -115,7 +115,7 @@ public class HafasParser {
              */
             if let (firstDelayIndex,firstStopOverWithDelay) = line
                 .enumerated()
-                .first(where: { ($0.element is StopOver) && ($0.element as! StopOver).departureDelay != nil }) {
+                .first(where: { ($0.element is StopOver) && (($0.element as! StopOver).hasArrivalDelay() || ($0.element as! StopOver).hasDepartureDelay()) }) {
                
                 let delayStop = firstStopOverWithDelay as! StopOver
                 
@@ -127,10 +127,10 @@ public class HafasParser {
                             durationToNext: f.durationToNext,
                             name: f.name,
                             coords: f.coords,
-                            arrival: f.arrival?.addingTimeInterval(Double(delayStop.arrivalDelay ?? 0)),
-                            departure: f.departure?.addingTimeInterval(Double(delayStop.departureDelay ?? 0)),
-                            arrivalDelay: delayStop.arrivalDelay,
-                            departureDelay: delayStop.departureDelay
+                            arrival: f.arrival?.addingTimeInterval(Double(delayStop.arrivalDelay ?? delayStop.departureDelay ?? 0)),
+                            departure: f.departure?.addingTimeInterval(Double(delayStop.departureDelay ?? delayStop.arrivalDelay ?? 0)),
+                            arrivalDelay: delayStop.arrivalDelay ?? delayStop.departureDelay,
+                            departureDelay: delayStop.departureDelay ?? delayStop.arrivalDelay
                         )
                     } else {
                         return feature
