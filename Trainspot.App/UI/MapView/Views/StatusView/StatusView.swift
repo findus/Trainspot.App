@@ -49,6 +49,10 @@ class StatusView : UIStackView {
         } else {
            self.delay.textColor = .label
         }
+        
+        self.time.font = self.time.font.monospacedDigitFont
+        self.distance.font = self.distance.font.monospacedDigitFont
+        self.to.font = self.to.font.monospacedDigitFont
     }
     
     public func setStatus(forTrip trip: Trip, andData data: TripData) {
