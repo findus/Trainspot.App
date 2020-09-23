@@ -38,6 +38,7 @@ public struct StopOver: Feature {
     public var departure: Date?
     
     public var arrivalDelay: Int?
+    public var departureDelay: Int?
 }
 
 public enum VehicleState {

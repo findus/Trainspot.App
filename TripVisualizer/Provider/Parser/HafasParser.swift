@@ -80,7 +80,7 @@ public class HafasParser {
                         arrival = departure
                     }
                     
-                    var newstop = StopOver(distanceToNext: -2, name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure)
+                    var newstop = StopOver(distanceToNext: -2, name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure, departureDelay: stopOver.departureDelay)
                     
                     if let delay =  stopOver.arrivalDelay  {
                         newstop.arrivalDelay = delay
@@ -115,7 +115,7 @@ public class HafasParser {
              */
             if let (firstDelayIndex,firstStopOverWithDelay) = line
                 .enumerated()
-                .first(where: { ($0.element is StopOver) && ($0.element as! StopOver).arrivalDelay != nil }) {
+                .first(where: { ($0.element is StopOver) && ($0.element as! StopOver).departureDelay != nil }) {
                
                 let delayStop = firstStopOverWithDelay as! StopOver
                 
@@ -127,9 +127,11 @@ public class HafasParser {
                             durationToNext: f.durationToNext,
                             name: f.name,
                             coords: f.coords,
-                            arrival: f.arrival?.addingTimeInterval(Double(delayStop.arrivalDelay!)),
-                            departure: f.departure?.addingTimeInterval(Double(delayStop.arrivalDelay!)),
-                            arrivalDelay: delayStop.arrivalDelay)
+                            arrival: f.arrival?.addingTimeInterval(Double(delayStop.arrivalDelay ?? 0)),
+                            departure: f.departure?.addingTimeInterval(Double(delayStop.departureDelay ?? 0)),
+                            arrivalDelay: delayStop.arrivalDelay,
+                            departureDelay: delayStop.departureDelay
+                        )
                     } else {
                         return feature
                     }
@@ -194,7 +196,8 @@ public class HafasParser {
                         coords: stop.coords,
                         arrival: stop.arrival,
                         departure: stop.departure,
-                        arrivalDelay: stop.arrivalDelay
+                        arrivalDelay: stop.arrivalDelay,
+                        departureDelay: stop.departureDelay
                     )
                     
                     stopover.durationToNext = animationData.duration
@@ -226,7 +229,8 @@ public class HafasParser {
                                   coords: stop.coords,
                                   arrival: stop.arrival,
                                   departure: stop.departure,
-                                  arrivalDelay: stop.arrivalDelay
+                                  arrivalDelay: stop.arrivalDelay,
+                                  departureDelay: stop.departureDelay
                 )
                 
                 st.durationToNext = animationData.duration
