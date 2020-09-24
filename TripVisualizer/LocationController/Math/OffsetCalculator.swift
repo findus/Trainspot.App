@@ -14,7 +14,6 @@ class OffsetCalculator {
      */
     private let ACCELERATION_TIME = 90.0
     private let TRAIN_ACCELERATION = 0.4
-    private var tripLength = 14
     private var trip: TimeFrameTrip?
     
     /**
@@ -42,11 +41,13 @@ class OffsetCalculator {
             //Train is in acceleration Phase
             
             // Acceleration per time formula
-            return (0.5*TRAIN_ACCELERATION)*pow(time, 2)
+            let result = (0.5*TRAIN_ACCELERATION)*pow(time, 2)
+            return result < 0 ? 0.0 : result
         } else if time >= (section.duration - ACCELERATION_TIME) {
             //Train is in braking Phase
            
-            return (0.5*(-TRAIN_ACCELERATION))*pow((time - section.duration), 2) + section.length
+            let result = (0.5*(-TRAIN_ACCELERATION))*pow((time - section.duration), 2) + section.length
+            return result < 0 ? 0.0 : result
         } else {
             //Train is driving with vmax
             
@@ -60,8 +61,8 @@ class OffsetCalculator {
             let b = startingPointY - (m*ACCELERATION_TIME)
             
             //Position
-            return (m*time)+b
-            
+            let result = (m*time)+b
+            return result < 0 ? 0.0 : result
         }
     }
 }

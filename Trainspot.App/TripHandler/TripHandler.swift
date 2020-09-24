@@ -41,6 +41,27 @@ public class TripHandler {
     
     func setupDemo() {
         //TODO distinct between demo mode and mocking-debug mode
+        #if MOCK
+        var components = DateComponents()
+        components.second = 35
+        components.hour = 17
+        components.minute = 17
+        components.day = 12
+        components.month = 6
+        components.year = 2020
+        let date = Calendar.current.date(from: components)
+        let traveler = TimeTraveler()
+        self.demoTimer = traveler
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+            traveler.travel(by: 1)
+        }
+        traveler.date = date!
+        self.tripTimeFrameLocationController.pause()
+
+        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "wfb_trip_25_min_delay_to_bs")))
+        tripTimeFrameLocationController.dateGenerator = traveler.generateDate
+        let loc = CLLocation(latitude: 52.2595084, longitude: 10.361784)
+        #else
         var components = DateComponents()
         components.second = 0
         components.hour = 17
@@ -59,9 +80,11 @@ public class TripHandler {
 
         tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "ice_huge_delay")))
         tripTimeFrameLocationController.dateGenerator = traveler.generateDate
+        let loc = CLLocation(latitude: 52.161407, longitude: 9.938503)
+        #endif
         
         // Hildesheim
-        let loc = CLLocation(latitude: 52.161407, longitude: 9.938503)
+        
         tripTimeFrameLocationController.setCurrentLocation(location: loc)
         UserLocationController.shared.deactivate()
         UserPrefs.setManualLocationEnabled(true)
