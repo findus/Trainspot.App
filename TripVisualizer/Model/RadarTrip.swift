@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import Log
 
 public class RadarTrip: Trip {
     
@@ -80,11 +81,11 @@ public class RadarTrip: Trip {
         let now = Date.init()
         let diff = now.timeIntervalSince(date)
         if ceil(diff) >= T_45_MINUTES {
-            print("RadarTrip \(self.name) exceeded max time")
+            Log.error("RadarTrip \(self.name) exceeded max time")
             return nil
         } else {
             let arrayPosition = Int(floor( ( (1 / DURATION ) * ceil(diff) ) )  + 1)
-            print("Returning \(arrayPosition) for \(self.name)")
+            Log.debug("Returning \(arrayPosition) for \(self.name)")
             return arrayPosition
         }
     }

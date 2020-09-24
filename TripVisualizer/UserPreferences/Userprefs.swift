@@ -104,7 +104,7 @@ public class UserPrefs {
     
     public static func getManualLocation() -> CLLocation {
         guard let data = UserDefaults.standard.data(forKey: manualLocation) else {
-            return CLLocation(latitude: 1, longitude: 1)
+            return CLLocation(latitude: 52.371088, longitude: 9.742917)
         }
         let location = try! PropertyListDecoder().decode(Location.self, from: data)
         return CLLocation(latitude: location.lat, longitude: location.lon)

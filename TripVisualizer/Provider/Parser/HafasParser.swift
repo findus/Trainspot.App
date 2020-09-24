@@ -18,8 +18,14 @@ public class HafasParser {
         case DecodeError(errormessage: String)
     }
     
+    /**
+     This method generates a so called timeline. A Timeline holds a list with all Path and Stopovers.
+     Stopovers are getting sanitized if departure or arrival time is missing, and a placeholder value (-2) is getting set for the distance to the next feature, that will be calculated later
+     It also holds so called animation data, .
+     */
     public static func generateTimeLine(forTrip trip: HafasTrip) throws -> Timeline {
         
+        let CALCULATED_LATER = -2.0
         let tripName = trip.line.name
         let stops = trip.stopovers
         guard let polyline = trip.polyline?.features else {
@@ -36,7 +42,7 @@ public class HafasParser {
       
         do {
             
-            let line = try polyline.enumerated().map { (offset,feature) -> Feature in
+            var line = try polyline.enumerated().map { (offset,feature) -> Feature in
                 
                 func isFirstStop() -> Bool {
                     return offset == 0
@@ -75,7 +81,7 @@ public class HafasParser {
                         arrival = departure
                     }
                     
-                    var newstop = StopOver(distanceToNext: -2, name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure)
+                    var newstop = StopOver(distanceToNext: CALCULATED_LATER, name: name, coords: CLLocation(latitude: lat, longitude: lon) , arrival: arrival, departure: departure, departureDelay: stopOver.departureDelay)
                     
                     if let delay =  stopOver.arrivalDelay  {
                         newstop.arrivalDelay = delay
@@ -84,7 +90,7 @@ public class HafasParser {
                     return newstop
                                
                 } else {
-                    return Path(distanceToNext: -2, coords: CLLocation(latitude: lat, longitude: lon))
+                    return Path(distanceToNext: CALCULATED_LATER, coords: CLLocation(latitude: lat, longitude: lon))
                 }
             }
             
@@ -95,6 +101,45 @@ public class HafasParser {
             if (line.first is StopOver) == false {
                 Log.warning("\(trip.line.name) First Entry is not a StopOver")
             }
+            
+            /**
+             Delay check: Currently the delay indicators are getting nulled if a train departs from a certain stop. Thats leads to problems to the calculation
+             of the current train position, because the simulator now works with "false" starting times for this section
+             
+             For Example: An ICE arrives with +50 at Hannover and Departs with +50. Next Stop is Göttingen with +49
+             Now the Depature-Time in Hannover gets resettet to the original time.
+             For the simulation, the actual time needed from hannover to göttingen is now 50 Minutes longer than expected.
+             
+             To prevent this issue, every former stops time gets the delay of the first delayed stop as offset
+             
+             //TODO might brake next stopover if really has 0 delay (instead of nil as value)
+             */
+            if let (firstDelayIndex,firstStopOverWithDelay) = line
+                .enumerated()
+                .first(where: { ($0.element is StopOver) && (($0.element as! StopOver).hasArrivalDelay() || ($0.element as! StopOver).hasDepartureDelay()) }) {
+               
+                let delayStop = firstStopOverWithDelay as! StopOver
+                
+                line = line.enumerated().map { (offset,feature) -> Feature in
+                    if feature is StopOver && offset < firstDelayIndex {
+                        let f = (feature as! StopOver)
+                        return StopOver(
+                            distanceToNext: f.distanceToNext,
+                            durationToNext: f.durationToNext,
+                            name: f.name,
+                            coords: f.coords,
+                            arrival: f.arrival?.addingTimeInterval(Double(delayStop.arrivalDelay ?? delayStop.departureDelay ?? 0)),
+                            departure: f.departure?.addingTimeInterval(Double(delayStop.departureDelay ?? delayStop.arrivalDelay ?? 0)),
+                            arrivalDelay: delayStop.arrivalDelay ?? delayStop.departureDelay,
+                            departureDelay: delayStop.departureDelay ?? delayStop.arrivalDelay
+                        )
+                    } else {
+                        return feature
+                    }
+                }
+            }
+            
+            //TODO delay after immediate departure if hafas still has delay data for prior stop and user selected posisiton is right before that station, right now delay is way off in the past
             
             Log.debug("Generate Animation Data for: \(tripName)")
             let animationData = generateAnimationData(fromFeatures: line)
@@ -127,65 +172,104 @@ public class HafasParser {
      Returns an Array of features where every feature has the needed duration and distance to the next Feature and the current location
      */
     public static func getFeaturesWithDates(forFeatures features: Array<Feature>, andAnimationData animationData: Array<AnimationData>, forTrip trip: HafasTrip) throws -> Array<Feature> {
-        try zip(features, animationData).enumerated().reduce([Feature]()) { (prev, tuple) -> Array<Feature> in
-            var newArray = prev
+        
+        try zip(features, animationData).enumerated().reduce([Feature]()) { (previousFeatureArray, tuple) -> Array<Feature> in
+            
+            var newFeatureArray = previousFeatureArray
             let (offset,(currentFeature, animationData)) = tuple
             
             var distance = 0.0
+            
+            // Check if a next feature exist in the array, if it does calculate the distance to it
             if let nextFeature = features[exist: offset+1]  {
                 distance = currentFeature.coords.distance(from: nextFeature.coords)
             }
             
-            if let last = prev.last {
+            // Check if this is the first stopover, or if we already are "in the middle of the trip"
+            if let last = previousFeatureArray.last {
                 let lastDate = last.departure
                 
                 if currentFeature is StopOver {
+                    
                     let stop = currentFeature as! StopOver
-                    var st: StopOver? = nil
-                    if newArray.isEmpty {
-                        // First StopOver, set grace period so that trains that will start in x minutes wont get removed immediately, needs to be global and in user prefs
-                        st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: Date().addingTimeInterval(-2700), departure: stop.departure)
-                    } else {
-                        st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure,arrivalDelay: stop.arrivalDelay)
-                    }
-    
-                    st!.durationToNext = animationData.duration
-                    newArray.append(st!)
-                    return newArray
+                    
+                    var stopover = StopOver(
+                        distanceToNext: distance,
+                        name: stop.name,
+                        coords: stop.coords,
+                        arrival: stop.arrival,
+                        departure: stop.departure,
+                        arrivalDelay: stop.arrivalDelay,
+                        departureDelay: stop.departureDelay
+                    )
+                    
+                    stopover.durationToNext = animationData.duration
+                    newFeatureArray.append(stopover)
+                    return newFeatureArray
                 } else {
+                    
                     guard let durationToNext = last.durationToNext else {
                         let errormsg = "[\(trip.line.name)] Could not find the duration from \(last.coords)"
                         throw AnimationCalculationError.NoDurationFound(message: errormsg)
                     }
-                    let path = Path(distanceToNext: distance, durationToNext: animationData.duration, departure: lastDate!.addingTimeInterval(durationToNext), coords: currentFeature.coords, lastBeforeStop: false)
-                    newArray.append(path)
-                    return newArray
+                    
+                    let path = Path(distanceToNext: distance,
+                                    durationToNext: animationData.duration,
+                                    departure: lastDate!.addingTimeInterval(durationToNext),
+                                    coords: currentFeature.coords,
+                                    lastBeforeStop: false)
+                    
+                    newFeatureArray.append(path)
+                    return newFeatureArray
                 }
             } else {
+               
+                // If it is the first entry create the first stopover
                 let stop = currentFeature as! StopOver
-                var st = StopOver(distanceToNext: distance, name: stop.name, coords: stop.coords, arrival: stop.arrival, departure: stop.departure, arrivalDelay:  stop.arrivalDelay)
+                
+                var st = StopOver(distanceToNext: distance,
+                                  name: stop.name,
+                                  coords: stop.coords,
+                                  arrival: stop.arrival,
+                                  departure: stop.departure,
+                                  arrivalDelay: stop.arrivalDelay,
+                                  departureDelay: stop.departureDelay
+                )
+                
                 st.durationToNext = animationData.duration
-                newArray.append(st)
-                return newArray
+                newFeatureArray.append(st)
+                
+                return newFeatureArray
             }
         }
     }
     
+    /**
+     Old Method to generate Animation-Data for the now deprecated AnimationTripController
+     Most of the data that is generated here is not needed anymore, the only usable thing left is the calculated duration to the next path/stopover.
+     //TODO: Rename or Refactor this method so that TimeFrameTrip-Generators do not need this step anymore
+     */
     public static func generateAnimationData(fromFeatures features: Array<Feature>) -> Array<AnimationData> {
         
+        // Get all StopOvers inside the Path
         let stops = features.enumerated().filter( { $0.element is StopOver } )
+        
+        // Get the array positions of all these Stops
         let station_array_positions = zip(stops, stops.dropFirst()).map( { ($0.0.offset, $0.1.offset) } )
-        let sections = station_array_positions.map { (e) -> Section in
-            let (departure, arrival) = e
+        
+        let sections = station_array_positions.map { (tuple) -> Section in
+            let (departure, arrival) = tuple
             let slice = features[departure...arrival]
             
-            
+            // Calculate the distances between each polyline dots....
             let distances = zip(slice, slice.dropFirst()).map { (loc1, loc2) -> Double in
                 return loc1.coords.distance(from: loc2.coords)
             }
             
+            // ... and Calculate the Distance between the two stops
             let wholeDistance = distances.reduce(0, +)
             
+            // Calculate the time needed to get from stopX to stopX+1 in seconds
             let time = (features[arrival] as! StopOver).arrival!.timeIntervalSince(((features[departure] as! StopOver).departure!))
             
             return Section(time: time, distance: wholeDistance, distances: distances)
@@ -236,7 +320,9 @@ public class HafasParser {
         
     }
     
-    //TODO for journeys / Mocking
+    /**
+     Generates a TimeFrameTrips from a fetched set of HafasTrips.
+     */
     public static func loadTimeFrameTrip(fromHafasTrips array: Set<HafasTrip>) -> Set<TimeFrameTrip> {
         
         let tripArray = array.compactMap({ (trip) -> TimeFrameTrip? in
@@ -260,19 +346,6 @@ public class HafasParser {
         })
         
         return Set(tripArray)
-    }
-    
-    public static func getJourneys(fromJSON json: JSON) -> Array<Journey> {
-        json.arrayValue
-            .filter({ ["nationalExpress", "national", "regionalExp", "regional"].contains(where: $0["line"]["product"].stringValue.contains)  })
-            .compactMap {
-                if $0["cancelled"].exists() {
-                    Log.warning("\($0["stop"]["name"]) cancelled")
-                    return nil
-                }
-                return Journey(from_id: $0["stop"]["id"].stringValue, from: $0["stop"]["name"].stringValue, to: $0["direction"].stringValue, tripID: $0["tripId"].stringValue, when: formatHafasDate(fromString: $0["when"].stringValue)!, name: $0["line"]["id"].stringValue)
-        }
-                
     }
 
 }

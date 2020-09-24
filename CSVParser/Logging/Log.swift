@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  LocationManagerTest
+//  Log.swift
+//  CSVParser
 //
-//  Created by Philipp Hentschel on 05.06.20.
+//  Created by Philipp Hentschel on 23.09.20.
 //  Copyright © 2020 Philipp Hentschel. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import Log
 #if RELEASE
 let Log = Logger(formatter: .detailed, theme: .none, minLevel: .warning)
 #else
-let Log = Logger(formatter: .detailed, theme: .none, minLevel: .debug)
+let Log = Logger(formatter: .detailed, theme: .none, minLevel: .trace)
 #endif
 
 extension Themes {

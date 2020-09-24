@@ -84,7 +84,7 @@ public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
         self.tripFile = name
     }
     
-    private func loadTrip() -> HafasTrip? {
+    func loadTrip() -> HafasTrip? {
         guard
             let filePath = Bundle(for: type(of: self)).path(forResource: self.tripFile, ofType: ""),
             let trip = try? Data(contentsOf: URL(fileURLWithPath: filePath))
@@ -94,7 +94,7 @@ public class MockTrainDataTimeFrameProvider: TrainDataProviderProtocol {
         do {
             return try decoder.decode(HafasTrip.self, from: trip)
         } catch {
-            print(error)
+            Log.error(error)
         }
         return nil
     }

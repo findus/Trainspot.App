@@ -17,7 +17,7 @@ import CSVParser
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapContainerView: UIView!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var compass: UIImageView!
     @IBOutlet var statusView: StatusView!
     @IBOutlet weak var loadingIndicatorHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomView: UIVisualEffectView!
@@ -85,12 +85,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     private var pinnedLocation: CLLocation? {
         didSet {
             self.calcBearing()
-            
-            if self.pinnedLocation != nil {
-                self.imageView.isHidden = false
-            } else {
-                self.imageView.isHidden = true
-            }
+            self.setCompasOpacity()
+        }
+    }
+    
+    /**
+     Hides the compass, if user locations are active, or no trip is selected
+     */
+    private func setCompasOpacity() {
+        
+        UIView.animate(withDuration: 0.25) {
+            self.compass.alpha = (UserPrefs.isManualLocationEnabled() == false && self.tripIdToUpdateLocation != nil) ? 0.5 : 0
         }
     }
     
@@ -106,7 +111,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
      
     private func calcBearing() {
         let angle = self.computeNewAngle(with: CGFloat(self.heading ?? 0))
-        self.imageView.transform = CGAffineTransform(rotationAngle: angle)
+        self.compass.transform = CGAffineTransform(rotationAngle: angle)
     }
     
     func computeNewAngle(with newAngle: CGFloat) -> CGFloat {
@@ -215,7 +220,7 @@ extension ViewController {
         
         TrainLocationProxy.shared.addListener(listener: self)
         
-        self.imageView.isHidden = true
+        //self.compass.isHidden = true
 
            UserLocationController.shared.register(delegate: self)
            
@@ -277,6 +282,8 @@ extension ViewController {
             self.displayTutorial()
             UserPrefs.setInfoDialogShownFor(String(describing: self.classForCoder))
         }
+        
+        self.setCompasOpacity()
 
     }
     
@@ -425,7 +432,10 @@ extension ViewController: MapViewControllerDelegate {
         
         UserPrefs.setManualLocation(location)
         TripHandler.shared.setCurrentLocation(location)
-
+        self.drawLineToNearestTrackPart()
+    }
+    
+    func drawLineToNearestTrackPart() {
         guard let selectedTrip = self.selectedTrip else {
             return
         }
@@ -440,6 +450,11 @@ extension ViewController: MapViewControllerDelegate {
 extension ViewController {
     
     private func setupBus() {
+        
+        SwiftEventBus.onMainThread(self, name: "locationTrackingDisabled") { (notification) in
+            self.userPressedAt(location: UserPrefs.getManualLocation())
+        }
+        
         SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { (notification) in
             if let trip = notification?.object as? Trip {
                 self.tripIdToUpdateLocation = trip.tripId
@@ -450,6 +465,7 @@ extension ViewController {
         
         SwiftEventBus.onMainThread(self, name: "deSelectTripOnMap") { (notification) in
             self.tripIdToUpdateLocation = nil
+            self.setCompasOpacity()
         }
         
         SwiftEventBus.onMainThread(self, name: "UpdatedSettings") { (notification) in
@@ -464,10 +480,9 @@ extension ViewController {
             }
             
             if enabled == true {
-                                
                 TripHandler.shared.setCurrentLocation(UserPrefs.getManualLocation())
                 TripHandler.shared.triggerUpdate()
-                
+                self.drawLineToNearestTrackPart()
             } else {
                 
                 TripHandler.shared.triggerUpdate()

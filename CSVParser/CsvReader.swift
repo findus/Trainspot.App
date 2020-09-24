@@ -36,7 +36,7 @@ public class CsvReader {
            
         } catch {
             // Catch errors from trying to load files
-            print(error)
+            Log.error(error)
             return nil
         }
     }
@@ -58,7 +58,7 @@ public class CsvReader {
             
         } catch {
             // Catch errors from trying to load files
-            print(error)
+            Log.error(error)
             return nil
         }
     }

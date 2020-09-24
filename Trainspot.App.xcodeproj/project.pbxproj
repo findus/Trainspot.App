@@ -44,6 +44,8 @@
 		D43F04D1250D42D200E3A901 /* ice_arrivaldelay in Resources */ = {isa = PBXBuildFile; fileRef = D43F04CE250D42D200E3A901 /* ice_arrivaldelay */; };
 		D445EE312515320400A39B38 /* ice_huge_delay in Resources */ = {isa = PBXBuildFile; fileRef = D445EE302515320400A39B38 /* ice_huge_delay */; };
 		D445EE32251536EA00A39B38 /* ice_huge_delay in Resources */ = {isa = PBXBuildFile; fileRef = D445EE302515320400A39B38 /* ice_huge_delay */; };
+		D45B7602251BB6150032A90F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B7601251BB6150032A90F /* Log.swift */; };
+		D45B760C251BB76A0032A90F /* HafasparserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B760B251BB76A0032A90F /* HafasparserTests.swift */; };
 		D44836C82518F62A00EFCBE1 /* OffsetCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44836C72518F62A00EFCBE1 /* OffsetCalculator.swift */; };
 		D44836D22519276300EFCBE1 /* AccelerationSimulatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44836D12519276300EFCBE1 /* AccelerationSimulatorTest.swift */; };
 		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
@@ -63,6 +65,9 @@
 		D48E44EE25123E5200709290 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48E44EC25123E5200709290 /* AttributedString.swift */; };
 		D4A1E98E2510AAB8006B5E10 /* BigBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E98D2510AAB8006B5E10 /* BigBlueButton.swift */; };
 		D4A1E98F2510AAB8006B5E10 /* BigBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A1E98D2510AAB8006B5E10 /* BigBlueButton.swift */; };
+		D4A2E33D251BBF50002752DC /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270AB0248A71620022A6BB /* Log.swift */; };
+		D4A2E343251BCD22002752DC /* departue_bug_delay in Resources */ = {isa = PBXBuildFile; fileRef = D4A2E342251BCD22002752DC /* departue_bug_delay */; };
+		D4A2E34C251BCD29002752DC /* departue_bug_delay in Resources */ = {isa = PBXBuildFile; fileRef = D4A2E342251BCD22002752DC /* departue_bug_delay */; };
 		D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAF8A2493A9BC000B40D8 /* FormerScheduledArrivalDeparture */; };
 		D4A30E44249588C800B2684C /* wfb_trip in Resources */ = {isa = PBXBuildFile; fileRef = D4BCAFD62495405D000B40D8 /* wfb_trip */; };
 		D4A5B7E9250EDA8D003257F5 /* MockTrainDataTimeFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4270ABF248BE1D80022A6BB /* MockTrainDataTimeFrameProvider.swift */; };
@@ -150,6 +155,10 @@
 		D4DEAADC2487D1AF00D33AA2 /* MapViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAADB2487D1AF00D33AA2 /* MapViewControllerDelegate.swift */; };
 		D4DEAADF2487D3B000D33AA2 /* MapViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAADE2487D3B000D33AA2 /* MapViewControllerProtocol.swift */; };
 		D4DEAAE52487D55A00D33AA2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */; };
+		D4E69A0B251AA95600FBB67B /* bs_delay_absurd_delay in Resources */ = {isa = PBXBuildFile; fileRef = D4E69A0A251AA95600FBB67B /* bs_delay_absurd_delay */; };
+		D4E69A19251AA96400FBB67B /* bs_delay_absurd_delay in Resources */ = {isa = PBXBuildFile; fileRef = D4E69A0A251AA95600FBB67B /* bs_delay_absurd_delay */; };
+		D4E69A23251B729100FBB67B /* wfb_trip_25_min_delay_to_bs in Resources */ = {isa = PBXBuildFile; fileRef = D4E69A22251B729100FBB67B /* wfb_trip_25_min_delay_to_bs */; };
+		D4E69A2C251B742F00FBB67B /* wfb_trip_25_min_delay_to_bs in Resources */ = {isa = PBXBuildFile; fileRef = D4E69A22251B729100FBB67B /* wfb_trip_25_min_delay_to_bs */; };
 		D4FF574D2510AF67004E4238 /* IntroductionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */; };
 		D4FF574E2510AF67004E4238 /* IntroductionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */; };
 		D4FF57502510C603004E4238 /* BasicScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF574F2510C603004E4238 /* BasicScrollViewController.swift */; };
@@ -297,6 +306,8 @@
 		D445EE2F2512885500A39B38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D445EE302515320400A39B38 /* ice_huge_delay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ice_huge_delay; sourceTree = "<group>"; };
 		D44836C72518F62A00EFCBE1 /* OffsetCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetCalculator.swift; sourceTree = "<group>"; };
+		D45B7601251BB6150032A90F /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		D45B760B251BB76A0032A90F /* HafasparserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasparserTests.swift; sourceTree = "<group>"; };
 		D44836D12519276300EFCBE1 /* AccelerationSimulatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationSimulatorTest.swift; sourceTree = "<group>"; };
 		D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationDelegate.swift; sourceTree = "<group>"; };
 		D45C505324883D8800A3D857 /* TrainLocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationPin.swift; sourceTree = "<group>"; };
@@ -322,6 +333,7 @@
 		D48E44E925123D4600709290 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		D48E44EC25123E5200709290 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		D4A1E98D2510AAB8006B5E10 /* BigBlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBlueButton.swift; sourceTree = "<group>"; };
+		D4A2E342251BCD22002752DC /* departue_bug_delay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = departue_bug_delay; sourceTree = "<group>"; };
 		D4A30E4C24958DC200B2684C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A5B7F1250FBBFC003257F5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D4A5B7FB25101951003257F5 /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionPageViewController.swift; sourceTree = "<group>"; };
@@ -371,6 +383,8 @@
 		D4DEAAE42487D55A00D33AA2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D4DEAAE72487D9F100D33AA2 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
 		D4DEAAE92487DA1D00D33AA2 /* Math+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Math+Extension.swift"; sourceTree = "<group>"; };
+		D4E69A0A251AA95600FBB67B /* bs_delay_absurd_delay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bs_delay_absurd_delay; sourceTree = "<group>"; };
+		D4E69A22251B729100FBB67B /* wfb_trip_25_min_delay_to_bs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wfb_trip_25_min_delay_to_bs; sourceTree = "<group>"; };
 		D4FF574C2510AF67004E4238 /* IntroductionBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionBaseViewController.swift; sourceTree = "<group>"; };
 		D4FF574F2510C603004E4238 /* BasicScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicScrollViewController.swift; sourceTree = "<group>"; };
 		D4FF5759251124D3004E4238 /* TripHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripHandler.swift; sourceTree = "<group>"; };
@@ -526,6 +540,14 @@
 			path = Math;
 			sourceTree = "<group>";
 		};
+		D45B7600251BB6060032A90F /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				D45B7601251BB6150032A90F /* Log.swift */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
 		D45C50582488E6F200A3D857 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,6 +642,9 @@
 			isa = PBXGroup;
 			children = (
 				D445EE302515320400A39B38 /* ice_huge_delay */,
+				D4A2E342251BCD22002752DC /* departue_bug_delay */,
+				D4E69A22251B729100FBB67B /* wfb_trip_25_min_delay_to_bs */,
+				D4E69A0A251AA95600FBB67B /* bs_delay_absurd_delay */,
 				D47439042516448A0058BC51 /* bs_delay_more_delay */,
 				D4BEDC80250ED247006621AB /* bs_delay */,
 				D43F04CE250D42D200E3A901 /* ice_arrivaldelay */,
@@ -764,6 +789,7 @@
 				D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */,
 				D4B636CE249583D000996744 /* Info.plist */,
 				D44836D12519276300EFCBE1 /* AccelerationSimulatorTest.swift */,
+				D45B760B251BB76A0032A90F /* HafasparserTests.swift */,
 			);
 			path = TripVisualizerTests;
 			sourceTree = "<group>";
@@ -804,6 +830,7 @@
 		D4D91387250A917200A7DBE0 /* CSVParser */ = {
 			isa = PBXGroup;
 			children = (
+				D45B7600251BB6060032A90F /* Logging */,
 				D4D91379250A8D2C00A7DBE0 /* D_Bahnhof_2020_alle.CSV */,
 				D4D9137C250A8D5300A7DBE0 /* CsvReader.swift */,
 				D4D91388250A917200A7DBE0 /* CSVParser.h */,
@@ -1030,6 +1057,7 @@
 				D4D913AC250A91AE00A7DBE0 /* Sources */,
 				D4D913AD250A91AE00A7DBE0 /* Frameworks */,
 				D4D913AE250A91AE00A7DBE0 /* Resources */,
+				5060F4DA7B4B5E40590A326B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1072,7 +1100,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Philipp Hentschel";
 				TargetAttributes = {
 					D4B6368B2495785B00996744 = {
@@ -1130,10 +1158,13 @@
 			files = (
 				D445EE312515320400A39B38 /* ice_huge_delay in Resources */,
 				D47439052516448B0058BC51 /* bs_delay_more_delay in Resources */,
+				D4E69A0B251AA95600FBB67B /* bs_delay_absurd_delay in Resources */,
 				D43F04D1250D42D200E3A901 /* ice_arrivaldelay in Resources */,
 				D431C40224963BBE00199742 /* wfb_trip_bielefeld in Resources */,
 				D4A30E43249588C500B2684C /* FormerScheduledArrivalDeparture in Resources */,
+				D4E69A23251B729100FBB67B /* wfb_trip_25_min_delay_to_bs in Resources */,
 				D4BEDC81250ED247006621AB /* bs_delay in Resources */,
+				D4A2E343251BCD22002752DC /* departue_bug_delay in Resources */,
 				D4A30E44249588C800B2684C /* wfb_trip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1178,10 +1209,13 @@
 				D4A5B7EB250EDD31003257F5 /* bs_delay in Resources */,
 				D437DD96250ABE6E00ED8909 /* BasicCell.xib in Resources */,
 				D4DEAAD42487AC1E00D33AA2 /* LaunchScreen.storyboard in Resources */,
+				D4A2E34C251BCD29002752DC /* departue_bug_delay in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
 				D437DD93250AB6D400ED8909 /* AutoCompleteViewController.xib in Resources */,
 				D445EE32251536EA00A39B38 /* ice_huge_delay in Resources */,
+				D4E69A2C251B742F00FBB67B /* wfb_trip_25_min_delay_to_bs in Resources */,
 				D4A5B7EC250EDD37003257F5 /* wfb_trip in Resources */,
+				D4E69A19251AA96400FBB67B /* bs_delay_absurd_delay in Resources */,
 				178090C624981C9D00DBC0B6 /* TrainOverViewCell.xib in Resources */,
 				D4A5B80325101D73003257F5 /* Introduction.storyboard in Resources */,
 				D46B6B6624912CF200AF77F6 /* StatusView.xib in Resources */,
@@ -1225,6 +1259,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Trainspot.AppMock/Pods-Trainspot.AppMock-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5060F4DA7B4B5E40590A326B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CSVParserTests/Pods-CSVParserTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CSVParserTests/Pods-CSVParserTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CSVParserTests/Pods-CSVParserTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		61A3E61B2D9A8322214A4A86 /* [CP] Check Pods Manifest.lock */ = {
@@ -1421,6 +1472,8 @@
 			files = (
 				D44836D22519276300EFCBE1 /* AccelerationSimulatorTest.swift in Sources */,
 				D4A5B7E9250EDA8D003257F5 /* MockTrainDataTimeFrameProvider.swift in Sources */,
+				D45B760C251BB76A0032A90F /* HafasparserTests.swift in Sources */,
+				D4A2E33D251BBF50002752DC /* Log.swift in Sources */,
 				D4B636D72495840A00996744 /* TimeFrameControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1471,6 +1524,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45B7602251BB6150032A90F /* Log.swift in Sources */,
 				D4D913C7250A986600A7DBE0 /* CsvReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1605,7 +1659,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1614,7 +1668,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1631,7 +1685,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 24;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				INFOPLIST_FILE = "$(SRCROOT)/Trainspot.App/Info.plist";
@@ -1639,7 +1693,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1876,6 +1930,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1938,6 +1993,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1974,14 +2030,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				INFOPLIST_FILE = Trainspot.App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1999,14 +2055,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				INFOPLIST_FILE = Trainspot.App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";

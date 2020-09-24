@@ -80,14 +80,6 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
             return nil
         }
         
-        guard let lastStop = trip.locationArray[...nextStop.offset].enumerated().reversed().first(where: { $0.element is StopOver && ($0.element as? StopOver)?.departure != nil }) else {
-            Log.warning("Cannot find last stop")
-            return nil
-        }
-        
-        let lt = (lastStop.element as! StopOver)
-        
-        
         let nextStopDate = (nextStop.element as! StopOver).arrival!
         
         /**
@@ -99,7 +91,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
         let offset = trip.locationArray[userPosInArray...(missingStepsToFirstStop+nextStop.offset)].dropLast().map({$0.durationToNext!}).reduce(0,+)
         
         // If the departure date is in future: Use the Departure Date for calculation, if trip has started, use the current time
-        let date = secondsToDeparture > 0 ? lt.departure! : self.dateGenerator()
+        let date = secondsToDeparture > 0 ? trip.departure : self.dateGenerator()
         //Calculation: Time of next stop minus the time it would take for the train to travel from user position to that stop.
         let timeWhenTrainPassesUser = nextStopDate.addingTimeInterval(-offset)
         //Now Calculate how long it takes the train to arrive at that date, based on the current time(if trip is in progress), or the scheduled departure + time til departure
@@ -181,7 +173,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
         self.timer?.invalidate()
         
         guard let trips = dataProvider?.getAllTrips() else {
-            print("Error retreiving trips")
+            Log.error("Error retreiving trips")
             return
         }
         
@@ -287,7 +279,7 @@ extension TrainLocationTripByTimeFrameController {
                 return TrainState.DepartsToLate
             }
             else if start.timeIntervalSince(now) > 0 {
-                Log.debug("Trip \(trip.name) is in future, Now: \(formatter.string(from: now))...........Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]")
+                Log.trace("Trip \(trip.name) is in future, Now: \(formatter.string(from: now))...........Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]")
                 return TrainState.WaitForStart(start.timeIntervalSince(now))
             } else {
                 Log.warning("Trip \(trip.name) is in past, Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))].............Now: \(formatter.string(from: now))")
@@ -304,44 +296,53 @@ extension TrainLocationTripByTimeFrameController {
             return (trip.locationArray.first!.coords, .WaitForStart(trip.departure.timeIntervalSince(date)), 0, 0, 0)
         }
         
-        var lastStopOver: StopOver? = nil
-        
         guard let loc = zip(trip.locationArray.enumerated(),trip.locationArray.dropFirst())
-            .first(where: { (arg0, next) -> Bool in
-                let (_, this) = arg0
+            .first(where: { (arg0, nextPosition) -> Bool in
+                let (_, thisPosition) = arg0
                 
-                if this is Path && next is StopOver {
+                if thisPosition is Path && nextPosition is StopOver {
                     /**
                      Map Against Arrival Data:
                     Section Start       Train     Arrival       Departure
                         |__________*_____|     Stop     |________> Time .
                       15:00              15:02    15:03          15:04
                      */
-                return (this as! Path).departure!.timeIntervalSince(date) <= 0 && (next as! StopOver).arrival!.timeIntervalSince(date) > 0
+                                        
+                let isInThisSection = (thisPosition as! Path).departure!.timeIntervalSince(date) <= 0 && (nextPosition as! StopOver).arrival!.timeIntervalSince(date) > 0
+                               
+                    return isInThisSection
                
-                } else if this is StopOver && next is Path {
-                    
-                    lastStopOver = this as! StopOver
-                    
+                } else if thisPosition is StopOver && nextPosition is Path {
                     /**
                     Map Against Arrival Data:
                     Section Start                     Arrival       Departure
                         |________________|     Train     |________> Time .
                     15:00                                 15:03          15:04
                     */
-                   return
-                            ((this as! StopOver).arrival?.timeIntervalSince(date) ?? 1 <= 0 && (this as! StopOver).departure!.timeIntervalSince(date) > 0)
-                        ||
-                            (this as! StopOver).departure!.timeIntervalSince(date) <= 0 && (next).departure!.timeIntervalSince(date) >= 0
+                    
+                    //Returns true if the train is currently stopping at this point....
+                    let stopOverArrivalDateInPast = ((thisPosition as! StopOver).arrival?.timeIntervalSince(date) ?? 1 <= 0)
+                    let stopOverDepartueDateInFuture = ((thisPosition as! StopOver).departure!.timeIntervalSince(date) > 0)
+                    
+                    //Or if the the train departet and is between the stop and the next polyline dot
+                    let stopOverDepartureInPast =  (thisPosition as! StopOver).departure!.timeIntervalSince(date) <= 0
+                    let nextPositionDepartureInFuture = (nextPosition).departure!.timeIntervalSince(date) >= 0
+                    
+                    let isInThisSection =
+                        (stopOverArrivalDateInPast && stopOverDepartueDateInFuture) || (stopOverDepartureInPast && nextPositionDepartureInFuture)
+                    
+                    return isInThisSection
 
                 } else {
                     
-                    if this.departure == nil || next.departure == nil {
+                    if thisPosition.departure == nil || nextPosition.departure == nil {
                         Log.warning("\(trip.name) | \(trip.tripId): Departure date of a stopover is nil!")
                         return false
                     }
                     
-                    return this.departure!.timeIntervalSince(date) <= 0 && next.departure!.timeIntervalSince(date) > 0
+                    let isInThisSection = thisPosition.departure!.timeIntervalSince(date) <= 0 && nextPosition.departure!.timeIntervalSince(date) > 0
+                        
+                    return isInThisSection
                 }
             }) else {
                 //If Journey has ended
@@ -360,27 +361,10 @@ extension TrainLocationTripByTimeFrameController {
         if location is StopOver {
             let stopover = (location as! StopOver)
             if stopover.arrival?.timeIntervalSince(date) ?? 1 <= 0 && stopover.departure!.timeIntervalSince(date) > 0 {
-                Log.debug("[\(trip.name)] Currently idling at: \(stopover.name) til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
-                return (stopover.coords, .Stopped(stopover.departure!, stopover.name), loc.0.offset, 0, stopover.arrivalDelay ?? 0)
+                Log.trace("[\(trip.name)] Currently idling at: \(stopover.name) til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
+                return (stopover.coords, .Stopped(stopover.departure!, stopover.name), loc.0.offset, 0, stopover.departureDelay ?? 0)
             }
         }
-        
-        let secondsInSection = Date().timeIntervalSince((lastStopOver?.departure!)!)
-        
-        let lastStopIndex = trip.locationArray.firstIndex(where: {$0.departure == lastStopOver!.departure})
-        let nextStopIndex = trip.locationArray[lastStopIndex!...].dropFirst().firstIndex(where: {$0 is StopOver})
-        
-        let currentTrainPositionIndex = trip.locationArray.firstIndex(where: {$0.departure == loc.0.element.departure})
-        
-        //Complete distance from prior stop to next stop
-        let complete_distance = trip.locationArray[lastStopIndex!...nextStopIndex!].dropFirst().map({$0.distanceToNext}).dropLast().reduce(0,+)
-        let complete_duration = trip.locationArray[lastStopIndex!...nextStopIndex!].dropFirst().map({$0.durationToNext!}).dropLast().reduce(0.0,+)
-        
-        let current_duration = trip.locationArray[lastStopIndex!...currentTrainPositionIndex!].map({$0.durationToNext!}).reduce(0.0,+)
-                
-        let offset = OffsetCalculator().getPositionForTime(secondsInSection, forSection: OffsetCalculator.Section(length: complete_distance, duration: complete_duration))
-        
-        print("\(trip.name): \((trip.locationArray[lastStopIndex!] as! StopOver).name) to \((trip.locationArray[nextStopIndex!] as! StopOver).name) \(complete_distance)Meter \(complete_duration)Sekunden \(current_duration)Sekunden am fahren Offset:\(offset)")
         
         // Calculate relative Position between to Points
         let wholeDuration = location.durationToNext!

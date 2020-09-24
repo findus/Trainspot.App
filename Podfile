@@ -61,6 +61,7 @@ target 'CSVParser' do
  # use_frameworks!
   
   platform :ios, '13.5'
+  pod 'Log'
 
 end
 

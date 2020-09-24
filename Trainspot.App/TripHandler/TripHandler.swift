@@ -40,6 +40,7 @@ public class TripHandler {
     }
     
     func setupDemo() {
+        //TODO distinct between demo mode and mocking-debug mode
         var components = DateComponents()
         components.second = 0
         components.hour = 17

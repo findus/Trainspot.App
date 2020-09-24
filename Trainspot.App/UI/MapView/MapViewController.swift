@@ -72,8 +72,9 @@ class MapViewController: UIViewController {
     public func centerCamera(atTripWithId id: String) {
         let coords = self.markerDict[id]!
                 
-        if UserPrefs.isManualLocationEnabled() && fakedUserPosition != nil {
-            self.map.showAnnotations([coords, fakedUserPosition!], animated: true)
+        if UserPrefs.isManualLocationEnabled() {
+            self.addFakedUserPosition(onLocation: UserPrefs.getManualLocation().coordinate)
+            self.map.showAnnotations([coords, self.fakedUserPosition!], animated: true)
         } else {
             self.map.showAnnotations([coords, self.map.userLocation], animated: true)
         }
@@ -290,7 +291,7 @@ extension MapViewController: MapViewControllerProtocol {
         }
         
         guard let entry = self.entryList.filter({ $0.tripId == id }).first else {
-            print("No MapEntry found for \(id), will create entry at location")
+            Log.warning("No MapEntry found for \(id), will create entry at location")
             self.addEntry(entry:
                 MapEntity(name: label, tripId: id, location: CLLocation(latitude: location.latitude, longitude: location.longitude))
             )
@@ -443,6 +444,7 @@ extension MapViewController {
                 self.selectTrip(withId: trip.tripId)
             }
         }
+
     }
     
     private func resetOpacity() {
@@ -453,4 +455,6 @@ extension MapViewController {
             }
         }
     }
+    
+    
 }

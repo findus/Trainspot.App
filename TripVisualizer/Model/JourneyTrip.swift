@@ -38,6 +38,15 @@ public struct StopOver: Feature {
     public var departure: Date?
     
     public var arrivalDelay: Int?
+    public var departureDelay: Int?
+    
+    func hasArrivalDelay() -> Bool {
+        return self.arrivalDelay != nil && self.arrivalDelay! > 0
+    }
+    
+    func hasDepartureDelay() -> Bool {
+        return self.departureDelay != nil && self.departureDelay! > 0
+    }
 }
 
 public enum VehicleState {
