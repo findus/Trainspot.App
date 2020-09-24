@@ -123,7 +123,7 @@
                     <connections>
                         <outlet property="activiyIndicatorWrapper" destination="MY9-G4-ofa" id="DXY-BA-qJ6"/>
                         <outlet property="bottomView" destination="kjn-qY-bhp" id="MSo-es-f1b"/>
-                        <outlet property="imageView" destination="vCU-ZU-3hG" id="f3L-tZ-QA3"/>
+                        <outlet property="compass" destination="vCU-ZU-3hG" id="Dt7-Uy-kZs"/>
                         <outlet property="loadingIndicator" destination="fHC-sf-lZG" id="uFh-bf-jUt"/>
                         <outlet property="loadingIndicatorHeightConstraint" destination="5G6-wQ-oIY" id="ff6-pC-gsW"/>
                         <outlet property="mapContainerView" destination="g8L-X6-Uqn" id="a17-A3-U7V"/>
@@ -148,30 +148,30 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="trainOverviewCell" id="jyA-xI-vxr" customClass="TrainOverviewCell" customModule="Trainspot_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="37"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jyA-xI-vxr" id="JAM-id-YjI" customClass="TrainOverviewCell" customModule="Trainspot_App" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="37"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="center" horizontalCompressionResistancePriority="1000" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IsF-cj-QCd">
-                                            <rect key="frame" x="0.0" y="0.0" width="227.5" height="37"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="227.5" height="44.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Train Name" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="2" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39k-gH-bMO" userLabel="Train Name" customClass="PaddingLabel" customModule="Trainspot_App" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="9.5" width="78" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Train Name" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="2" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39k-gH-bMO" userLabel="Train Name" customClass="PaddingLabel" customModule="Trainspot_App" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="8.5" width="110" height="28"/>
                                                     <color key="backgroundColor" red="0.7185120558375635" green="0.11447466555494319" blue="0.11936212813607006" alpha="0.81860017123287676" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="2" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPU-0i-H4t" userLabel="Arrival In">
-                                                    <rect key="frame" x="95.5" y="8.5" width="66" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Arrival in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="2" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPU-0i-H4t" userLabel="Arrival In">
+                                                    <rect key="frame" x="118" y="12" width="66" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyP-Pc-Md4" userLabel="Status">
-                                                    <rect key="frame" x="170.5" y="8.5" width="49" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyP-Pc-Md4" userLabel="Status">
+                                                    <rect key="frame" x="184" y="12" width="35.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -180,7 +180,7 @@
                                             <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YZo-07-bCn">
-                                            <rect key="frame" x="237.5" y="0.0" width="176.5" height="37"/>
+                                            <rect key="frame" x="237.5" y="0.0" width="176.5" height="44.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -531,7 +531,7 @@
     </scenes>
     <designables>
         <designable name="39k-gH-bMO">
-            <size key="intrinsicContentSize" width="78" height="18"/>
+            <size key="intrinsicContentSize" width="110" height="28"/>
         </designable>
     </designables>
     <resources>
