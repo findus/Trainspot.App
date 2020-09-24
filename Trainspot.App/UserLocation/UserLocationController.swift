@@ -100,6 +100,8 @@ extension UserLocationController {
                 return
             }
             
+            //TODO if distance between points is < x dont update everything
+            
             if enabled {
                 self.deactivate()
             } else {
