@@ -60,18 +60,18 @@ class StatusView : UIStackView {
         self.journeyInfo = {
             switch data.state {
             case .Driving(let nextStop):
-                return "Next Stop: \(nextStop ?? "Hell")"
+                return "Nächster Halt: \(nextStop ?? "Hell")"
             case .WaitForStart(let start):
                 let formatted = secondsToHoursMinutesSeconds(seconds: Int(start))
-                return "Departs in \(String(format: "%02d:%02d:%02d",formatted.0, formatted.1, formatted.2))"
+                return "Abfahrt in \(String(format: "%02d:%02d:%02d",formatted.0, formatted.1, formatted.2))"
             case .Stopped(let date, _):
                 if let demoTimer = TripHandler.shared.demoTimer {
-                    return "Departs in \(Int(date.timeIntervalSince(demoTimer.generateDate())))s"
+                    return "Abfahrt in \(Int(date.timeIntervalSince(demoTimer.generateDate())))s"
                 } else {
-                    return "Departs in \(Int(date.timeIntervalSince(Date())))s"
+                    return "Abfahrt in \(Int(date.timeIntervalSince(Date())))s"
                 }
             case .Ended:
-                return "Ended"
+                return "Ende"
             default:
                 return nil
             }
@@ -80,7 +80,7 @@ class StatusView : UIStackView {
         let delay = data.delay
         
         self.lineName.text = trip.name
-        self.destination = "To: \(trip.destination)"
+        self.destination = "Nach: \(trip.destination)"
         self.distance.text = String(Int((data.distance ?? 0.0)))+String(" Meter")
         let timeFractions = secondsToHoursMinutesSeconds(seconds: Int(data.arrival))
         self.time.text = String(format: "%@%02d:%02d:%02d",timeFractions.3 ? "- " : "", timeFractions.0, timeFractions.1,timeFractions.2)

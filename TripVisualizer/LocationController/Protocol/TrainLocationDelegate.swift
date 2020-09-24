@@ -17,17 +17,20 @@ public enum TrainState {
     case Stopped(Date,String)
     case Driving(String?)
     
-    public func get() -> String {
+    public func get(withTimeGenerator generator: TimeTraveler? = nil) -> String {
         switch self {
         case .WaitForStart(let seconds):
-            return "Departs in \(Int(seconds))s"
+            return "Abfahrt in \(Int(seconds))s"
         case .Ended:
-            return "Ended"
+            return "Ende"
         case .Driving(let nextStop):
             return "\(nextStop ?? "")"
         case .Stopped(let date, let station):
-            //TODO timetravel
-            return "Stopped for \(Int(date.timeIntervalSince(Date())))s at \(station)"
+            if generator != nil {
+                return "Stopped for \(Int(date.timeIntervalSince(generator!.generateDate())))s at \(station)"
+            } else {
+                return "Stopped for \(Int(date.timeIntervalSince(Date())))s at \(station)"
+            }
         case .DepartsToLate:
             return "Departs to late"
         }

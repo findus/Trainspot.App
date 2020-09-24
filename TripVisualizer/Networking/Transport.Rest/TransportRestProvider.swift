@@ -153,7 +153,11 @@ class TransportRestProvider<PT: Trip> {
         ]
         
         let urlParameters = URLComponents(string: "\(SERVER)/trips/\(id.replacingOccurrences(of: "|", with: "%7C"))")!
-        return AF.request(urlParameters.url!, parameters: parameters, headers: headers).publishDecodable(type: HafasTrip.self, decoder: self.decoder).value().receive(on: DispatchQueue.main).eraseToAnyPublisher()
+        
+        Log.debug("Url Request for Trip:", "\(urlParameters)?lineName=\(parameters["lineName"]!)")
+        
+        let request = AF.request(urlParameters.url!, parameters: parameters, headers: headers)
+        return request.publishDecodable(type: HafasTrip.self, decoder: self.decoder).value().receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
     
     private func fetchTrip(forJourney journey: HafasJourney) ->  AnyPublisher<HafasTrip, AFError> {

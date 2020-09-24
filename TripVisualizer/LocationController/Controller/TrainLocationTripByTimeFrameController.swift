@@ -279,7 +279,7 @@ extension TrainLocationTripByTimeFrameController {
                 return TrainState.DepartsToLate
             }
             else if start.timeIntervalSince(now) > 0 {
-                Log.debug("Trip \(trip.name) is in future, Now: \(formatter.string(from: now))...........Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]")
+                Log.trace("Trip \(trip.name) is in future, Now: \(formatter.string(from: now))...........Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))]")
                 return TrainState.WaitForStart(start.timeIntervalSince(now))
             } else {
                 Log.warning("Trip \(trip.name) is in past, Trip Bounds: [\(formatter.string(from: trip.departure))....\(formatter.string(from: end))].............Now: \(formatter.string(from: now))")
@@ -361,7 +361,7 @@ extension TrainLocationTripByTimeFrameController {
         if location is StopOver {
             let stopover = (location as! StopOver)
             if stopover.arrival?.timeIntervalSince(date) ?? 1 <= 0 && stopover.departure!.timeIntervalSince(date) > 0 {
-                Log.debug("[\(trip.name)] Currently idling at: \(stopover.name) til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
+                Log.trace("[\(trip.name)] Currently idling at: \(stopover.name) til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
                 return (stopover.coords, .Stopped(stopover.departure!, stopover.name), loc.0.offset, 0, stopover.departureDelay ?? 0)
             }
         }

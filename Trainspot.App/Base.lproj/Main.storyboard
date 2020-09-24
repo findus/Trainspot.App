@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d0G-KT-BYU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d0G-KT-BYU">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Map-->
+        <!--Karte-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -100,7 +102,8 @@
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kjn-qY-bhp" secondAttribute="trailing" id="3UT-oW-Sql"/>
                             <constraint firstItem="vCU-ZU-3hG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="AIn-gD-Lns"/>
@@ -115,9 +118,8 @@
                             <constraint firstItem="g8L-X6-Uqn" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Xb5-0Z-Ka4"/>
                             <constraint firstItem="g8L-X6-Uqn" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="iev-Pa-V6o"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="ZVL-Ji-bya"/>
+                    <tabBarItem key="tabBarItem" title="Karte" image="map" catalog="system" id="ZVL-Ji-bya"/>
                     <connections>
                         <outlet property="activiyIndicatorWrapper" destination="MY9-G4-ofa" id="DXY-BA-qJ6"/>
                         <outlet property="bottomView" destination="kjn-qY-bhp" id="MSo-es-f1b"/>
@@ -143,7 +145,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jqf-Uk-wot">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="trainOverviewCell" id="jyA-xI-vxr" customClass="TrainOverviewCell" customModule="Trainspot_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="37"/>
@@ -163,13 +165,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arrival in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="2" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPU-0i-H4t" userLabel="Arrival In">
-                                                    <rect key="frame" x="95" y="8.5" width="66.5" height="20.5"/>
+                                                    <rect key="frame" x="95.5" y="8.5" width="66" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyP-Pc-Md4" userLabel="Status">
-                                                    <rect key="frame" x="170" y="8.5" width="49.5" height="20.5"/>
+                                                    <rect key="frame" x="170.5" y="8.5" width="49" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -208,20 +210,20 @@
                             <outlet property="delegate" destination="1fa-wT-uYc" id="bT5-4G-hgy"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Status Board" image="tray" catalog="system" id="dur-Ku-Wqm"/>
+                    <tabBarItem key="tabBarItem" title="Anzeigetafel" image="tray" catalog="system" id="dur-Ku-Wqm"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPk-VZ-nnL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-413" y="370"/>
         </scene>
-        <!--Settings-->
+        <!--Einstellungen-->
         <scene sceneID="2wa-Lg-eAq">
             <objects>
                 <tableViewController id="O1h-9j-mgB" customClass="SettingsTableViewController" customModule="Trainspot_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jbJ-qM-Glz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="Settings" id="9eX-HH-XwL" userLabel="Settings">
                                 <cells>
@@ -429,7 +431,7 @@
                             <outlet property="delegate" destination="O1h-9j-mgB" id="o7d-8Y-ABQ"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="Otu-6T-2YV"/>
+                    <tabBarItem key="tabBarItem" title="Einstellungen" image="gear" catalog="system" id="Otu-6T-2YV"/>
                     <connections>
                         <outlet property="macDistanceLabel" destination="UvL-54-7ix" id="erm-xK-Eg1"/>
                         <outlet property="maxDistanceSlider" destination="uio-Qx-ic4" id="ioc-JP-uza"/>
@@ -480,14 +482,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="aZn-jE-wON"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="f8C-dZ-kxd" firstAttribute="width" secondItem="Dc8-Zy-txy" secondAttribute="width" id="9Zc-1t-nc3"/>
                             <constraint firstItem="f8C-dZ-kxd" firstAttribute="centerX" secondItem="Dc8-Zy-txy" secondAttribute="centerX" id="Ld0-Cf-EXg"/>
                             <constraint firstItem="f8C-dZ-kxd" firstAttribute="height" secondItem="Dc8-Zy-txy" secondAttribute="height" id="OKr-a7-etV"/>
                             <constraint firstItem="f8C-dZ-kxd" firstAttribute="centerY" secondItem="Dc8-Zy-txy" secondAttribute="centerY" id="t85-Pi-BfV"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="aZn-jE-wON"/>
                     </view>
                     <connections>
                         <outlet property="map" destination="f8C-dZ-kxd" id="xTW-mM-MTR"/>
@@ -509,14 +511,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="oFt-wS-2Xp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wMn-Te-HGt" firstAttribute="leading" secondItem="NEP-in-7Ni" secondAttribute="leading" id="IEd-59-3Xh"/>
                             <constraint firstAttribute="bottom" secondItem="wMn-Te-HGt" secondAttribute="bottom" id="bhg-tv-gu2"/>
                             <constraint firstItem="wMn-Te-HGt" firstAttribute="top" secondItem="NEP-in-7Ni" secondAttribute="top" id="nxY-Hj-s7f"/>
                             <constraint firstAttribute="trailing" secondItem="wMn-Te-HGt" secondAttribute="trailing" id="rHL-n0-VDT"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="oFt-wS-2Xp"/>
                     </view>
                     <connections>
                         <segue destination="eiO-9N-ueo" kind="presentation" identifier="main" modalPresentationStyle="fullScreen" id="kwc-m8-dED"/>
@@ -527,12 +529,20 @@
             <point key="canvasLocation" x="-1583" y="-658"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="39k-gH-bMO">
+            <size key="intrinsicContentSize" width="78" height="18"/>
+        </designable>
+    </designables>
     <resources>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="location.north.fill" catalog="system" width="108" height="128"/>
-        <image name="map" catalog="system" width="128" height="113"/>
+        <image name="map" catalog="system" width="128" height="110"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="splash" width="1815" height="3994"/>
         <image name="tray" catalog="system" width="128" height="88"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -114,7 +114,7 @@ class TimeFrameControllerTests: XCTestCase {
             XCTFail("No trip data available")
             return
         }
-        XCTAssertEqual(data.state.get(), "Departs in 1s")
+        XCTAssertEqual(data.state.get(), "Abfahrt in 1s")
     }
     
     //MARK:-- Trip Ending
@@ -137,7 +137,7 @@ class TimeFrameControllerTests: XCTestCase {
             XCTFail("No trip data available")
             return
         }
-        XCTAssertEqual(data.state.get(), "Ended")
+        XCTAssertEqual(data.state.get(), "Ende")
     }
     
     func testCorrectTripStateBeforeEnding() {
@@ -179,7 +179,7 @@ class TimeFrameControllerTests: XCTestCase {
             XCTFail("No trip data available")
             return
         }
-        XCTAssertEqual(data.state.get(), "Ended")
+        XCTAssertEqual(data.state.get(), "Ende")
     }
     
     //MARK:-- Stopping
@@ -406,7 +406,7 @@ class TimeFrameControllerTests: XCTestCase {
         
         print(data.arrival)
         XCTAssertEqual(data.arrival, 0)
-        XCTAssertEqual(data.state.get(),"Ended")
+        XCTAssertEqual(data.state.get(),"Ende")
        }
     
     //MARK: - Grace Period Starting
@@ -443,7 +443,7 @@ class TimeFrameControllerTests: XCTestCase {
      }
 
      print(data.arrival)
-     XCTAssertEqual(data.state.get(),"Departs in 100s")
+     XCTAssertEqual(data.state.get(),"Abfahrt in 100s")
     }
     
     func testGracePeriodBeforeStart1s() {
@@ -475,7 +475,7 @@ class TimeFrameControllerTests: XCTestCase {
      }
 
      print(data.arrival)
-     XCTAssertEqual(data.state.get(),"Departs in 1s")
+     XCTAssertEqual(data.state.get(),"Abfahrt in 1s")
     }
     
     func testGracePeriodBeforeStartTooLate() {
@@ -551,8 +551,8 @@ class TimeFrameControllerTests: XCTestCase {
         }
         
         print(data.arrival)
-        XCTAssertEqual(data.state.get(), "Departs in 10s")
-        XCTAssertEqual(data2.state.get(), "Departs in 9s")
+        XCTAssertEqual(data.state.get(), "Abfahrt in 10s")
+        XCTAssertEqual(data2.state.get(), "Abfahrt in 9s")
 
     }
     
@@ -639,6 +639,80 @@ class TimeFrameControllerTests: XCTestCase {
         
         XCTAssertEqual(data.state.get(), "Braunschweig Hbf")
         XCTAssertEqual(data.delay,300)
+    }
+    
+    /**
+     User is at Vechelde, Train departed after 1 Second and arrives at BS with +25, time to user should still be -1
+     */
+    func testTimeToUserIfDelay() {
+        self.dataProvider.setTrip(withName: "wfb_trip_25_min_delay_to_bs")
+        self.dataProvider.update()
+        self.reloadTrips()
+        
+        guard let initialTrip = self.initialTrip else {
+            XCTFail("Failed to get trip")
+            return
+        }
+        
+        self.controller.setCurrentLocation(location: CLLocation(latitude: 52.2595084, longitude: 10.361784))
+        
+        var components = DateComponents()
+        components.second = 00
+        components.hour = 17
+        components.minute = 17
+        components.day = 12
+        components.month = 6
+        components.year = 2020
+        guard let date = Calendar.current.date(from: components) else {
+            XCTFail("Could not parse date")
+            return
+        }
+        
+        self.timeProvider.date = date
+        
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        guard let (_, data, _) = delegate.updatedArray.first else {
+            XCTFail("No trip data available")
+            return
+        }
+        
+        // Train just arrived at this stop
+        XCTAssertEqual(data.state.get(withTimeGenerator: self.timeProvider), "Stopped for 60s at Vechelde")
+        XCTAssertEqual(data.delay,1500)
+        XCTAssertEqual(data.arrival,0.0)
+        
+        components = DateComponents()
+        components.second = 1
+        components.hour = 17
+        components.minute = 18
+        components.day = 12
+        components.month = 6
+        components.year = 2020
+        guard let secondDate = Calendar.current.date(from: components) else {
+            XCTFail("Could not parse date")
+            return
+        }
+        
+        self.timeProvider.date = secondDate
+
+        self.delegate.updated = XCTestExpectation(description: "Should trigger the update method a second time")
+       
+        controller.start()
+        wait(for: [self.delegate.updated], timeout: 10)
+        controller.pause()
+        
+        guard let (_, secondData, _) = delegate.updatedArray.last else {
+            XCTFail("No trip data available")
+            return
+        }
+        
+        // Train departed one second ago
+        XCTAssertEqual(secondData.state.get(withTimeGenerator: self.timeProvider), "Braunschweig Hbf")
+        XCTAssertEqual(secondData.delay,1500)
+        XCTAssertEqual(secondData.arrival,-61.0)
+        
     }
     
     //MARK:- UpdateMechanism

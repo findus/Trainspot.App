@@ -12,7 +12,7 @@ import Log
 #if RELEASE
 let Log = Logger(formatter: .detailed, theme: .none, minLevel: .warning)
 #else
-let Log = Logger(formatter: .detailed, theme: .none, minLevel: .trace)
+let Log = Logger(formatter: .detailed, theme: .none, minLevel: .debug)
 #endif
 
 extension Themes {
