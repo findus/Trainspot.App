@@ -89,6 +89,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    /**
+     Hides the compass, if user locations are active, or no trip is selected
+     */
     private func setCompasOpacity() {
         
         UIView.animate(withDuration: 0.25) {
@@ -444,6 +447,7 @@ extension ViewController: MapViewControllerDelegate {
 extension ViewController {
     
     private func setupBus() {
+        
         SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { (notification) in
             if let trip = notification?.object as? Trip {
                 self.tripIdToUpdateLocation = trip.tripId

@@ -72,8 +72,9 @@ class MapViewController: UIViewController {
     public func centerCamera(atTripWithId id: String) {
         let coords = self.markerDict[id]!
                 
-        if UserPrefs.isManualLocationEnabled() && fakedUserPosition != nil {
-            self.map.showAnnotations([coords, fakedUserPosition!], animated: true)
+        if UserPrefs.isManualLocationEnabled() {
+            self.addFakedUserPosition(onLocation: UserPrefs.getManualLocation().coordinate)
+            self.map.showAnnotations([coords, self.fakedUserPosition!], animated: true)
         } else {
             self.map.showAnnotations([coords, self.map.userLocation], animated: true)
         }
@@ -443,6 +444,10 @@ extension MapViewController {
                 self.selectTrip(withId: trip.tripId)
             }
         }
+        
+        SwiftEventBus.onMainThread(self, name: "locationTrackingDisabled") { (notification) in
+            self.delegate?.userPressedAt(location: UserPrefs.getManualLocation())
+        }
     }
     
     private func resetOpacity() {
@@ -453,4 +458,6 @@ extension MapViewController {
             }
         }
     }
+    
+    
 }

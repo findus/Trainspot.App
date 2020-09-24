@@ -81,6 +81,7 @@ class UserLocationController: NSObject, CLLocationManagerDelegate {
         if (status == .authorizedWhenInUse || status == .authorizedAlways) && UserPrefs.hasUserActivatedManualLocation() == false {
             SwiftEventBus.post("useManualPosition", sender: false)
         } else {
+            SwiftEventBus.post("locationTrackingDisabled")
             self.deactivate()
         }
     }
