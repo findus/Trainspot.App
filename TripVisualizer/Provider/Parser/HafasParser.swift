@@ -108,7 +108,7 @@ public class HafasParser {
              
              For Example: An ICE arrives with +50 at Hannover and Departs with +50. Next Stop is Göttingen with +49
              Now the Depature-Time in Hannover gets resettet to the original time.
-             For the simulation, the actual time needed from hannover to göttingen is 50 Minutes longer then  is really is.
+             For the simulation, the actual time needed from hannover to göttingen is now 50 Minutes longer than expected.
              
              To prevent this issue, every former stops time gets the delay of the first delayed stop as offset
              
@@ -244,6 +244,11 @@ public class HafasParser {
         }
     }
     
+    /**
+     Old Method to generate Animation-Data for the now deprecated AnimationTripController
+     Most of the data that is generated here is not needed anymore, the only usable thing left is the calculated duration to the next path/stopover.
+     //TODO: Rename or Refactor this method so that TimeFrameTrip-Generators do not need this step anymore
+     */
     public static func generateAnimationData(fromFeatures features: Array<Feature>) -> Array<AnimationData> {
         
         // Get all StopOvers inside the Path
@@ -315,7 +320,9 @@ public class HafasParser {
         
     }
     
-    //TODO for journeys / Mocking
+    /**
+     Generates a TimeFrameTrips from a fetched set of HafasTrips.
+     */
     public static func loadTimeFrameTrip(fromHafasTrips array: Set<HafasTrip>) -> Set<TimeFrameTrip> {
         
         let tripArray = array.compactMap({ (trip) -> TimeFrameTrip? in
@@ -339,19 +346,6 @@ public class HafasParser {
         })
         
         return Set(tripArray)
-    }
-    
-    public static func getJourneys(fromJSON json: JSON) -> Array<Journey> {
-        json.arrayValue
-            .filter({ ["nationalExpress", "national", "regionalExp", "regional"].contains(where: $0["line"]["product"].stringValue.contains)  })
-            .compactMap {
-                if $0["cancelled"].exists() {
-                    Log.warning("\($0["stop"]["name"]) cancelled")
-                    return nil
-                }
-                return Journey(from_id: $0["stop"]["id"].stringValue, from: $0["stop"]["name"].stringValue, to: $0["direction"].stringValue, tripID: $0["tripId"].stringValue, when: formatHafasDate(fromString: $0["when"].stringValue)!, name: $0["line"]["id"].stringValue)
-        }
-                
     }
 
 }

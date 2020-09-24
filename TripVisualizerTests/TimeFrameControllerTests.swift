@@ -648,12 +648,7 @@ class TimeFrameControllerTests: XCTestCase {
         self.dataProvider.setTrip(withName: "wfb_trip_25_min_delay_to_bs")
         self.dataProvider.update()
         self.reloadTrips()
-        
-        guard let initialTrip = self.initialTrip else {
-            XCTFail("Failed to get trip")
-            return
-        }
-        
+
         self.controller.setCurrentLocation(location: CLLocation(latitude: 52.2595084, longitude: 10.361784))
         
         var components = DateComponents()
