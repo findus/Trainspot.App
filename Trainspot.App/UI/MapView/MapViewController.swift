@@ -444,10 +444,7 @@ extension MapViewController {
                 self.selectTrip(withId: trip.tripId)
             }
         }
-        
-        SwiftEventBus.onMainThread(self, name: "locationTrackingDisabled") { (notification) in
-            self.delegate?.userPressedAt(location: UserPrefs.getManualLocation())
-        }
+
     }
     
     private func resetOpacity() {

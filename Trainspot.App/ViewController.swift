@@ -432,7 +432,10 @@ extension ViewController: MapViewControllerDelegate {
         
         UserPrefs.setManualLocation(location)
         TripHandler.shared.setCurrentLocation(location)
-
+        self.drawLineToNearestTrackPart()
+    }
+    
+    func drawLineToNearestTrackPart() {
         guard let selectedTrip = self.selectedTrip else {
             return
         }
@@ -447,6 +450,10 @@ extension ViewController: MapViewControllerDelegate {
 extension ViewController {
     
     private func setupBus() {
+        
+        SwiftEventBus.onMainThread(self, name: "locationTrackingDisabled") { (notification) in
+            self.userPressedAt(location: UserPrefs.getManualLocation())
+        }
         
         SwiftEventBus.onMainThread(self, name: "selectTripOnMap") { (notification) in
             if let trip = notification?.object as? Trip {
@@ -473,10 +480,9 @@ extension ViewController {
             }
             
             if enabled == true {
-                                
                 TripHandler.shared.setCurrentLocation(UserPrefs.getManualLocation())
                 TripHandler.shared.triggerUpdate()
-                
+                self.drawLineToNearestTrackPart()
             } else {
                 
                 TripHandler.shared.triggerUpdate()
