@@ -64,9 +64,9 @@ public class TripHandler {
         #else
         var components = DateComponents()
         components.second = 0
-        components.hour = 17
-        components.minute = 19
-        components.day = 18
+        components.hour = 23
+        components.minute = 30
+        components.day = 13
         components.month = 9
         components.year = 2020
         let date = Calendar.current.date(from: components)
@@ -78,7 +78,7 @@ public class TripHandler {
         traveler.date = date!
         self.tripTimeFrameLocationController.pause()
 
-        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "ice_huge_delay")))
+        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "bs_delay")))
         tripTimeFrameLocationController.dateGenerator = traveler.generateDate
         let loc = CLLocation(latitude: 52.161407, longitude: 9.938503)
         #endif
