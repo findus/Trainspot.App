@@ -603,6 +603,9 @@ class TimeFrameControllerTests: XCTestCase {
     
     //MARK: - Delay
     
+    /**
+     This train has over 2h delay. It should depart from bs hbf
+     */
     func testDistanceFromUserWithDelay() {
         self.dataProvider.setTrip(withName: "ice_huge_delay")
         self.dataProvider.update()
@@ -616,9 +619,9 @@ class TimeFrameControllerTests: XCTestCase {
         self.controller.setCurrentLocation(location: CLLocation(latitude: 52.243616, longitude: 10.514395))
 
         var components = DateComponents()
-        components.second = 0
+        components.second = 59
         components.hour = 20
-        components.minute = 18
+        components.minute = 17
         components.day = 18
         components.month = 9
         components.year = 2020
@@ -637,8 +640,8 @@ class TimeFrameControllerTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(data.state.get(), "Braunschweig Hbf")
-        XCTAssertEqual(data.distance,9)
+        XCTAssertEqual(data.state.get(withTimeGenerator: self.timeProvider), "Stopped for 1s at Braunschweig Hbf")
+        XCTAssertEqual(Int(data.distance!),-2348)
     }
     
     func testDelayForNextStation() {
