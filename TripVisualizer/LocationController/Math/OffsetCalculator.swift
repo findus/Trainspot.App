@@ -29,16 +29,28 @@ class OffsetCalculator {
     /**
      This class tries to mimic an acceleration curve.
      At the moment it just assumes, that the train reaches vmax after 90 seconds, and brakes 90 seconds before the next stop.
-     This might get a litte more accurate positions in real life, because with linear plotting, the train is always a little off because of its acceleration phase
+     For shorter sections we assume that 10% of the sections is needed to reach vmax, also basix acceleration is set to a little highler value to prevent overlappibg curves.
+     This might get a litte more accurate positions in real life, because with linear plotting, the train is always a little off because of its acceleration phase.
+     
+     Additional Featuers that might make sense: Different Curves for ICE/Regional trains,
+     
+     //https://github.com/findus/Trainspot.App/issues/14
      */
     public func getPositionForTime(_ time: Double, forSection section: Section) -> Double {
         
+        /**
+         Use other acceleration curve data for shorter trips and just assume that the train reaches vmax after 10% of the section is completed
+         **/
         if section.duration < 230 {
             
             self.ACCELERATION_TIME = section.duration * 0.10
             self.TRAIN_ACCELERATION = 0.8
         }
         
+        /**
+         If the section is longer than 230 seconds use 90 Seconds as fixed value for now
+         Based on the time the function looks in which phase the train is currently in and calculates/returns a position.
+         */
         if time > 0 && time <= ACCELERATION_TIME {
             //Train is in acceleration Phase
             
