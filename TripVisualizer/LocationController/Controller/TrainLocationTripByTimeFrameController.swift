@@ -238,7 +238,6 @@ extension TrainLocationTripByTimeFrameController {
     struct TrainLocationData {
         var currentLocation: CLLocation
         var trainState: TrainState
-        var arrayPostition: Int
         var delay: Int
         var currentSection: OffsetCalculator.Section? = nil
     }
@@ -406,7 +405,6 @@ extension TrainLocationTripByTimeFrameController {
         if tripNotStartedYet() {
             return TrainLocationData(currentLocation: trip.locationArray.first!.coords,
                                      trainState: .WaitForStart(trip.departure.timeIntervalSince(date)),
-                                     arrayPostition: 0,
                                      delay: 0
             )
         }
@@ -423,7 +421,6 @@ extension TrainLocationTripByTimeFrameController {
                 
                 return TrainLocationData(currentLocation: trip.locationArray.last!.coords,
                                          trainState: .Ended,
-                                         arrayPostition: 0,
                                          delay: (trip.locationArray.last! as! StopOver).arrivalDelay ?? 0
                 )
                 
@@ -445,7 +442,6 @@ extension TrainLocationTripByTimeFrameController {
 
                 return TrainLocationData(currentLocation: stopover.coords,
                                          trainState: .Stopped(stopover.departure!, stopover.name),
-                                         arrayPostition: currentFeatureIndex,
                                          delay: stopover.departureDelay ?? 0,
                                          currentSection: section
                 )
@@ -473,7 +469,6 @@ extension TrainLocationTripByTimeFrameController {
         return TrainLocationData(
             currentLocation: CLLocation(latitude: relativeTrainLocation.latitude, longitude: relativeTrainLocation.longitude),
             trainState: .Driving(nextStopOver?.name),
-            arrayPostition: currentFeatureIndex,
             delay:  nextStopOver?.arrivalDelay ?? 0,
             currentSection: section
         )

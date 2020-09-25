@@ -16,7 +16,7 @@ class ArrivalCalculator<T: TimeFrameTrip> {
                                     userPositionInArray: Int,
                                     dateGenerator: () -> Date = Date.init) -> Date {
       
-        // Drop the last path because that is the the user is on
+        // Drop the last path because that is the one the user is on
         let distance = trip
             .locationArray[section.priorStopOverArrayPosition...userPositionInArray].dropLast()
             .map({$0.distanceToNext}).reduce(0, +)
