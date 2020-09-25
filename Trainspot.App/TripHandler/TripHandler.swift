@@ -43,11 +43,11 @@ public class TripHandler {
         //TODO distinct between demo mode and mocking-debug mode
         #if MOCK
         var components = DateComponents()
-        components.second = 03
-        components.hour = 17
-        components.minute = 1
-        components.day = 12
-        components.month = 6
+        components.second = 45
+        components.hour = 20
+        components.minute = 11
+        components.day = 18
+        components.month = 9
         components.year = 2020
         let date = Calendar.current.date(from: components)
         let traveler = TimeTraveler()
@@ -58,9 +58,9 @@ public class TripHandler {
         traveler.date = date!
         self.tripTimeFrameLocationController.pause()
 
-        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "wfb_trip_25_min_delay_to_bs")))
+        tripTimeFrameLocationController.setDataProvider(withProvider: TripProvider(MockTrainDataTimeFrameProvider(withFile: "ice_huge_delay")))
         tripTimeFrameLocationController.dateGenerator = traveler.generateDate
-        let loc = CLLocation(latitude: 52.2595084, longitude: 10.361784)
+        let loc = CLLocation(latitude: 52.231125, longitude: 10.431500)
         #else
         var components = DateComponents()
         components.second = 0
