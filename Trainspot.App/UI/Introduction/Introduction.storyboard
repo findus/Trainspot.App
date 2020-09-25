@@ -176,7 +176,7 @@ Cg
                                                             </fragment>
                                                             <fragment content="Wenn du gleich loslegen willst swipe den View einfach nach unten">
                                                                 <attributes>
-                                                                    <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <font key="NSFont" size="14" name="HelveticaNeue"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                                 </attributes>
