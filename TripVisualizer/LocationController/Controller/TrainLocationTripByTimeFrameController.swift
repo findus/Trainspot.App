@@ -255,7 +255,10 @@ extension TrainLocationTripByTimeFrameController {
         let complete_distance = trip.locationArray[lastStopIndex!...nextStopIndex!].map({$0.distanceToNext}).dropLast().reduce(0,+)
         let complete_duration = trip.locationArray[lastStopIndex!...nextStopIndex!].map({$0.durationToNext!}).dropLast().reduce(0.0,+)
         
-        let adjusted_distance = OffsetCalculator().getPositionForTime(secondsInSection, forSection: OffsetCalculator.Section(length: complete_distance, duration: complete_duration))
+        let adjusted_distance = OffsetCalculator().getPositionForTime(secondsInSection,
+                                                                      forSection: OffsetCalculator.Section(length: complete_distance,
+                                                                        duration: complete_duration)
+        )
                 
         var addedDistances = 0.0
         // Current index of the section the train is inside
@@ -421,8 +424,14 @@ extension TrainLocationTripByTimeFrameController {
         let relativeTrainLocation = self.calculateTrainLocationWithAcceleration(forTrip: trip, lastStop)
         
         #if MOCK
-        let current_distance = trip.locationArray[lastStopIndex!...currentTrainPositionIndex!].dropFirst().map({$0.distanceToNext}).reduce(0.0,+)
-        let current_duration = trip.locationArray[lastStopIndex!...currentTrainPositionIndex!].dropFirst().map({$0.durationToNext!}).reduce(0.0,+)
+        let current_distance = trip.locationArray[lastStopIndex!...currentTrainPositionIndex!]
+            .dropFirst().map({$0.distanceToNext})
+            .reduce(0.0,+)
+        
+        let current_duration = trip.locationArray[lastStopIndex!...currentTrainPositionIndex!]
+            .dropFirst()
+            .map({$0.durationToNext!})
+            .reduce(0.0,+)
        
         print("\(trip.name): \((trip.locationArray[lastStopIndex!] as! StopOver).name) to \((trip.locationArray[nextStopIndex!] as! StopOver).name) \(complete_distance)Meter \(complete_duration)Sekunden \(current_duration)Sekunden am fahren Lineare Distanz:\(current_distance) Angepasste Distanz:\(adjusted_distance) ArrayPos:\(index) Missing Meters:\(missingMeters)")
         #endif
@@ -453,13 +462,27 @@ extension TrainLocationTripByTimeFrameController {
                
                 let timeTilDeparture = trip.departure.timeIntervalSince(self.dateGenerator())
               
-                let time = self.getArrivalInSeconds(forTrip: trip, userPosInArray: userPosInArray, trainPos: data.arrayPostition, secondsToDeparture: timeTilDeparture > 0 ? timeTilDeparture : 0)
+                let time = self.getArrivalInSeconds(forTrip: trip,
+                                                    userPosInArray: userPosInArray,
+                                                    trainPos: data.arrayPostition,
+                                                    secondsToDeparture: timeTilDeparture > 0 ? timeTilDeparture : 0
+                )
               
-                let distance = self.getDistance(forTrip: trip, arrayPosTrain: data.arrayPostition, arrayPosUser: userPosInArray, currentTrainLoc: data.currentLocation)
+                let distance = self.getDistance(forTrip: trip,
+                                                arrayPosTrain: data.arrayPostition,
+                                                arrayPosUser: userPosInArray,
+                                                currentTrainLoc: data.currentLocation)
                
-                tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: time ?? -1, distance: distance, delay: data.delay )
+                tripData = TripData(location: data.currentLocation,
+                                    state: data.trainState, arrival: time ?? -1,
+                                    distance: distance,
+                                    delay: data.delay )
             } else {
-                tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: -1, delay: data.delay)
+               
+                tripData = TripData(location: data.currentLocation,
+                                    state: data.trainState,
+                                    arrival: -1, delay: data.delay
+                )
             }
             self.delegate?.trainPositionUpdated(forTrip: trip, withData: tripData, withDuration: 1)
         } else {
@@ -477,7 +500,10 @@ extension TrainLocationTripByTimeFrameController {
         /**
          Tries to get the next stop facing from the users position, fetches the time of next arrivals and substracts the time that is needed to get there
          */
-        guard let nextStop = trip.locationArray[userPosInArray...].enumerated().first(where: { $0.element is StopOver && ($0.element as? StopOver)?.arrival != nil }) else {
+        guard let nextStop = trip.locationArray[userPosInArray...]
+                .enumerated()
+                .first(where: { $0.element is StopOver && ($0.element as? StopOver)?.arrival != nil }) else {
+            
             return nil
         }
         
@@ -489,7 +515,10 @@ extension TrainLocationTripByTimeFrameController {
          Also we have to omit the stopover, otherwise we would calculate the needed time to tne next point after the first stopover
          **/
         let missingStepsToFirstStop = (userPosInArray)
-        let offset = trip.locationArray[userPosInArray...(missingStepsToFirstStop+nextStop.offset)].dropLast().map({$0.durationToNext!}).reduce(0,+)
+        let offset = trip.locationArray[userPosInArray...(missingStepsToFirstStop+nextStop.offset)]
+            .dropLast()
+            .map({$0.durationToNext!})
+            .reduce(0,+)
         
         // If the departure date is in future: Use the Departure Date for calculation, if trip has started, use the current time
         let date = secondsToDeparture > 0 ? trip.departure : self.dateGenerator()
@@ -518,7 +547,8 @@ extension TrainLocationTripByTimeFrameController {
                 trip.locationArray[arrayPosTrain + 1...arrayPosUser].map({$0.distanceToNext}).reduce(0, +) // Sum of all Sections to user
         // Train has passed user
         } else if arrayPosUser < arrayPosTrain {
-           return -(trip.locationArray[arrayPosUser...arrayPosTrain].map({$0.distanceToNext}).reduce(0, +) + currentTrainLoc.distance(from: trip.locationArray[arrayPosTrain].coords))
+           return -(trip.locationArray[arrayPosUser...arrayPosTrain]
+                        .map({$0.distanceToNext}).reduce(0, +) + currentTrainLoc.distance(from: trip.locationArray[arrayPosTrain].coords))
         } else {
             return arrayPosTrain < arrayPosUser ? currentTrainLoc.distance(from: nextSection.coords) : -currentTrainLoc.distance(from: trip.locationArray[arrayPosTrain].coords)
         }
