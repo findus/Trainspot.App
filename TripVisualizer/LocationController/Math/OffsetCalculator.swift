@@ -87,6 +87,11 @@ class OffsetCalculator {
     
     func getTimeForDistance(_ distance: Double, forSection section:Section) -> Double {
         //TODO dumb method to calculate this TODO: change forumlar to calculate y instead of x
+        
+        if distance == 0 {
+            return 0.0
+        }
+        
         for i in 0...Int(section.duration) {
             let position = self.getPositionForTime(Double(i), forSection: section)
             if position > distance {

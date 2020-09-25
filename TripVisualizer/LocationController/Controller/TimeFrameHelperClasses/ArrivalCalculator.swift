@@ -25,9 +25,19 @@ class ArrivalCalculator<T: TimeFrameTrip> {
         let duration = OffsetCalculator().getTimeForDistance(distance, forSection: section)
         
         // Add this duration to the departure date of the last stopover
-        let departure = (trip.locationArray[section.priorStopOverArrayPosition] as! StopOver).departure
+        let startingPointStopOver = (trip.locationArray[section.priorStopOverArrayPosition] as! StopOver)
         
-        //And return it
-        return departure!.addingTimeInterval(duration)
+        // If user is on same position as stopover use arrival date
+        if section.priorStopOverArrayPosition == userPositionInArray && startingPointStopOver.arrival != nil {
+           
+            let arrival = startingPointStopOver.arrival
+            return arrival!.addingTimeInterval(duration)
+        } else {
+           
+            let departure = startingPointStopOver.departure
+            return departure!.addingTimeInterval(duration)
+          
+        }
+        
     }
 }

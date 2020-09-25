@@ -501,7 +501,6 @@ extension TrainLocationTripByTimeFrameController {
                 
                 //Currently only on top of polyline point, might be off if user is between points that are far away
                 let userPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: currentLocation)
-                let trainPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: data.currentLocation)
                     
                 let distance = self.getDistance(forTrip: trip,
                                                 arrayPosUser: userPosInArray,
