@@ -87,7 +87,7 @@ extension TrainLocationTripByTimeFrameController {
         self.trips.forEach { (trip) in
             switch self.isTripInBounds(trip: trip) {
             case .Driving, .Stopped(_), .WaitForStart(_):
-                self.calculateTrainPositionAndData(forTrip: trip)
+                self.calculateAndSendTrainPositionData(forTrip: trip)
             case .Ended:
                 self.remove(trip: trip, reason: .Ended)
             case .DepartsToLate:
@@ -439,7 +439,7 @@ extension TrainLocationTripByTimeFrameController {
 
     }
     
-    private func calculateTrainPositionAndData(forTrip trip: T) {
+    private func calculateAndSendTrainPositionData(forTrip trip: T) {
         if let data = self.getTrainLocation(forTrip: trip, atDate: self.dateGenerator()) {
             
             var tripData: TripData
