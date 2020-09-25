@@ -35,7 +35,7 @@ class OffsetCalculator {
         
         if section.duration < 230 {
             
-            self.ACCELERATION_TIME = section.duration * 0.1
+            self.ACCELERATION_TIME = section.duration * 0.10
             self.TRAIN_ACCELERATION = 0.8
         }
         
