@@ -31,8 +31,9 @@ class OffsetCalculator {
     /**
      This class tries to mimic an acceleration curve.
      At the moment it just assumes, that the train reaches vmax after 90 seconds, and brakes 90 seconds before the next stop.
-     For shorter sections we assume that 10% of the sections is needed to reach vmax, also basix acceleration is set to a little highler value to prevent overlappibg curves.
-     This might get a litte more accurate positions in real life, because with linear plotting, the train is always a little off because of its acceleration phase.
+     For shorter sections we assume that 10% of the sections is needed to reach vmax, also basic acceleration is set to a little
+     higher value to prevent overlappibg curves. This might get a litte more accurate positions in real life, because with linear
+     plotting, the train is always a little off, because it instantly departs with the average section speed.
      
      Additional Featuers that might make sense: Different Curves for ICE/Regional trains,
      
