@@ -416,10 +416,17 @@ extension TrainLocationTripByTimeFrameController {
     }
     
     
+    /**
+     Returns the current lcoation of the train inside its locationArray at a specific date
+     */
     func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> TrainLocationData? {
         
+        func tripNotStartedYet() -> Bool {
+            return trip.departure.timeIntervalSince(date) > 0
+        }
+        
         //Return if Trip did not start yet.
-        if trip.departure.timeIntervalSince(date) > 0 {
+        if tripNotStartedYet() {
             return TrainLocationData(currentLocation: trip.locationArray.first!.coords,
                                      trainState: .WaitForStart(trip.departure.timeIntervalSince(date)),
                                      arrayPostition: 0,
@@ -430,8 +437,12 @@ extension TrainLocationTripByTimeFrameController {
         // get the current section-index of the train with additional infos like latest passed stopover and the current section object
         guard let (currentFeatureIndex, currentFeature, lastStop) = self.getCurrentTrainLocationInArray(forTrip: trip, atData: date) else {
             
+            func didJourneyAlreadyEnd() -> Bool {
+                return ((trip.locationArray.last as? StopOver)?.arrival ?? Date(timeIntervalSince1970: 0)).timeIntervalSince(date) <= 0
+            }
+           
             //If Journey has ended
-            if ((trip.locationArray.last as? StopOver)?.arrival ?? Date(timeIntervalSince1970: 0)).timeIntervalSince(date) <= 0 {
+            if didJourneyAlreadyEnd() {
                 
                 return TrainLocationData(currentLocation: trip.locationArray.last!.coords,
                                          trainState: .Ended,
@@ -470,24 +481,15 @@ extension TrainLocationTripByTimeFrameController {
         print("\(trip.name): \((trip.locationArray[lastStopIndex!] as! StopOver).name) to \((trip.locationArray[nextStopIndex!] as! StopOver).name) \(complete_distance)Meter \(complete_duration)Sekunden \(current_duration)Sekunden am fahren Lineare Distanz:\(current_distance) Angepasste Distanz:\(adjusted_distance) ArrayPos:\(index) Missing Meters:\(missingMeters)")
         #endif
         
-        // Get next Stop
-        if let nextStopOver = (trip.locationArray[currentFeatureIndex...].dropFirst().first(where: {$0 is StopOver}) as? StopOver) {
-           
-            return TrainLocationData(
-                currentLocation: CLLocation(latitude: relativeTrainLocation.latitude, longitude: relativeTrainLocation.longitude),
-                trainState: .Driving(nextStopOver.name),
-                arrayPostition: currentFeatureIndex,
-                delay:  nextStopOver.arrivalDelay ?? 0
-            )
-        } else {
-           
-            return TrainLocationData(
-                currentLocation: CLLocation(latitude: relativeTrainLocation.latitude, longitude: relativeTrainLocation.longitude),
-                trainState: .Driving(nil),
-                arrayPostition: currentFeatureIndex,
-                delay:  0
-            )
-        }
+        // Get next Stop for train info object to display next stop information
+        let nextStopOver = (trip.locationArray[currentFeatureIndex...].dropFirst().first(where: {$0 is StopOver}) as? StopOver)
         
+        return TrainLocationData(
+            currentLocation: CLLocation(latitude: relativeTrainLocation.latitude, longitude: relativeTrainLocation.longitude),
+            trainState: .Driving(nextStopOver?.name),
+            arrayPostition: currentFeatureIndex,
+            delay:  nextStopOver?.arrivalDelay ?? 0
+        )
+
     }
 }
