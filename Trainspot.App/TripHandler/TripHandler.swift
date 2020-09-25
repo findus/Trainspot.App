@@ -43,9 +43,9 @@ public class TripHandler {
         //TODO distinct between demo mode and mocking-debug mode
         #if MOCK
         var components = DateComponents()
-        components.second = 35
+        components.second = 03
         components.hour = 17
-        components.minute = 17
+        components.minute = 1
         components.day = 12
         components.month = 6
         components.year = 2020

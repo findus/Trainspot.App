@@ -12,8 +12,8 @@ class OffsetCalculator {
     /**
      
      */
-    private let ACCELERATION_TIME = 90.0
-    private let TRAIN_ACCELERATION = 0.4
+    private var ACCELERATION_TIME = 90.0
+    private var TRAIN_ACCELERATION = 0.4
     private var trip: TimeFrameTrip?
     
     /**
@@ -33,8 +33,10 @@ class OffsetCalculator {
      */
     public func getPositionForTime(_ time: Double, forSection section: Section) -> Double {
         
-        if section.duration < 180 {
-            return -1.0
+        if section.duration < 230 {
+            
+            self.ACCELERATION_TIME = section.duration * 0.1
+            self.TRAIN_ACCELERATION = 0.8
         }
         
         if time > 0 && time <= ACCELERATION_TIME {
