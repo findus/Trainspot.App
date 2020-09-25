@@ -439,6 +439,9 @@ extension TrainLocationTripByTimeFrameController {
 
     }
     
+    /**
+     This method triggers all positional and time calculations and sends the results to delegate objects
+     */
     private func calculateAndSendTrainPositionData(forTrip trip: T) {
         if let data = self.getTrainLocation(forTrip: trip, atDate: self.dateGenerator()) {
             
