@@ -289,98 +289,20 @@ extension TrainLocationTripByTimeFrameController {
         return TrainState.Driving(nil)
     }
     
-    typealias TrainLocationData = (currentLocation: CLLocation, trainState: TrainState, arrayPostition: Int, delay: Int)
+    struct TrainLocationData {
+        var currentLocation: CLLocation
+        var trainState: TrainState
+        var arrayPostition: Int
+        var delay: Int
+    }
     
-    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> TrainLocationData? {
+    /**
+     Calculates the estimated position of the train on a map
+     */
+    private func calculateTrainLocationWithAcceleration(forTrip trip: T, _ lastStop: StopOver) -> CLLocationCoordinate2D {
+        let secondsInSection = self.dateGenerator().timeIntervalSince(lastStop.departure!)
         
-        //Trip did not start yet:
-        if trip.departure.timeIntervalSince(date) > 0 {
-            return (trip.locationArray.first!.coords, .WaitForStart(trip.departure.timeIntervalSince(date)), 0, 0)
-        }
-        
-        var lastStopOver: StopOver? = nil
-        
-        guard let loc = zip(trip.locationArray.enumerated(),trip.locationArray.dropFirst())
-            .first(where: { (arg0, nextPosition) -> Bool in
-                let (_, thisPosition) = arg0
-                
-                if thisPosition is Path && nextPosition is StopOver {
-                    // Train is inside a section right before a stopover
-                    
-                    /**
-                     Map Against Arrival Data:
-                    Section Start       Train     Arrival       Departure
-                        |__________*_____|     Stop     |________> Time .
-                      15:00              15:02    15:03          15:04
-                     */
-                                        
-                let isInThisSection = (thisPosition as! Path).departure!.timeIntervalSince(date) <= 0 && (nextPosition as! StopOver).arrival!.timeIntervalSince(date) > 0
-                               
-                    return isInThisSection
-               
-                } else if thisPosition is StopOver && nextPosition is Path {
-                    // Train is currently stopping or departs inside first section after departure
-                    
-                    /**
-                    Map Against Arrival Data:
-                    Section Start                     Arrival       Departure
-                        |________________|     Train     |________> Time .
-                    15:00                                 15:03          15:04
-                    */
-                   
-                    lastStopOver = thisPosition as? StopOver
-                 
-                    //Returns true if the train is currently stopping at this point....
-                    let stopOverArrivalDateInPast = ((lastStopOver!).arrival?.timeIntervalSince(date) ?? 1 <= 0)
-                    let stopOverDepartueDateInFuture = ((lastStopOver!).departure!.timeIntervalSince(date) > 0)
-                    
-                    //Or if the the train departet and is between the stop and the next polyline dot
-                    let stopOverDepartureInPast =  (lastStopOver!).departure!.timeIntervalSince(date) <= 0
-                    let nextPositionDepartureInFuture = (nextPosition).departure!.timeIntervalSince(date) >= 0
-                    
-                    let isInThisSection =
-                        (stopOverArrivalDateInPast && stopOverDepartueDateInFuture) || (stopOverDepartureInPast && nextPositionDepartureInFuture)
-                    
-                    return isInThisSection
-
-                } else {
-                    // Train is currently moving in a section
-                    if lastStopOver!.departure == nil || nextPosition.departure == nil {
-                        Log.warning("\(trip.name) | \(trip.tripId): Departure date of a stopover is nil!")
-                        return false
-                    }
-                    
-                    let isInThisSection = lastStopOver!.departure!.timeIntervalSince(date) <= 0 && nextPosition.departure!.timeIntervalSince(date) > 0
-                        
-                    return isInThisSection
-                }
-            }) else {
-                //If Journey has ended
-                if ((trip.locationArray.last as? StopOver)?.arrival ?? Date(timeIntervalSince1970: 0)).timeIntervalSince(date) <= 0 {
-                    return (trip.locationArray.last!.coords, .Ended, 0, (trip.locationArray.last! as! StopOver).arrivalDelay ?? 0)
-                } else {
-                    Log.error("Error finding a location for Trip \(trip.name) at \(date)")
-                    return nil
-                }
-        }
-        
-        
-        let location = loc.0.element
-
-        // Check if currently stopping
-        if location is StopOver {
-            let stopover = (location as! StopOver)
-            if stopover.arrival?.timeIntervalSince(date) ?? 1 <= 0 && stopover.departure!.timeIntervalSince(date) > 0 {
-                Log.trace("[\(trip.name)] Currently idling at: \(stopover.name) til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
-                return (stopover.coords, .Stopped(stopover.departure!, stopover.name), loc.0.offset, stopover.departureDelay ?? 0)
-            }
-        }
-        
-        // Acceleration Testing
-        
-        let secondsInSection = self.dateGenerator().timeIntervalSince((lastStopOver?.departure!)!)
-        
-        let lastStopIndex = trip.locationArray.firstIndex(where: {$0.departure == lastStopOver!.departure})
+        let lastStopIndex = trip.locationArray.firstIndex(where: {$0.departure == lastStop.departure})
         let nextStopIndex = trip.locationArray[lastStopIndex!...].dropFirst().firstIndex(where: {$0 is StopOver})
             
         //Complete distance from prior stop to next stop
@@ -420,8 +342,126 @@ extension TrainLocationTripByTimeFrameController {
         let newLat = thiscoords.coordinate.latitude + ((nextcoords.coordinate.latitude - thiscoords.coordinate.latitude) * percentageOfSectionComplete)
         let newLon = thiscoords.coordinate.longitude + ((nextcoords.coordinate.longitude - thiscoords.coordinate.longitude) * percentageOfSectionComplete)
         
+        return CLLocationCoordinate2D(latitude: newLat, longitude: newLon)
+    }
+    
+    private func getCurrentTrainLocationInArray(forTrip trip: T, atData date: Date) -> (Int, Feature, StopOver)? {
+      
+        var lastStopOver: StopOver? = nil
+        
+        let location = zip(trip.locationArray.enumerated(),trip.locationArray.dropFirst())
+            .first(where: { (enumeratedLocationArray, nextPosition) -> Bool in
+                let (_, thisPosition) = enumeratedLocationArray
+                
+                if thisPosition is Path && nextPosition is StopOver {
+                    // Train is inside a section right before a stopover
+                    
+                    /**
+                     Map Against Arrival Data:
+                    Section Start       Train     Arrival       Departure
+                        |__________*_____|     Stop     |________> Time .
+                      15:00              15:02    15:03          15:04
+                     */
+                                        
+                let isInThisSection = (thisPosition as! Path).departure!.timeIntervalSince(date) <= 0 && (nextPosition as! StopOver).arrival!.timeIntervalSince(date) > 0
+                               
+                    return isInThisSection
+               
+                } else if thisPosition is StopOver {
+                    // Train is currently stopping or departs inside first section after departure
+                    
+                    /**
+                    Map Against Arrival Data:
+                    Section Start                     Arrival       Departure
+                        |________________|     Train     |________> Time .
+                    15:00                                 15:03          15:04
+                    */
+                   
+                    lastStopOver = thisPosition as? StopOver
+                 
+                    //Returns true if the train is currently stopping at this point....
+                    let stopOverArrivalDateInPast = ((lastStopOver!).arrival?.timeIntervalSince(date) ?? 1 <= 0)
+                    let stopOverDepartueDateInFuture = ((lastStopOver!).departure!.timeIntervalSince(date) > 0)
+                    
+                    //Or if the the train departet and is between the stop and the next polyline dot
+                    let stopOverDepartureInPast =  (lastStopOver!).departure!.timeIntervalSince(date) <= 0
+                    let nextPositionDepartureInFuture = (nextPosition).departure!.timeIntervalSince(date) >= 0
+                    
+                    let isInThisSection =
+                        (stopOverArrivalDateInPast && stopOverDepartueDateInFuture) || (stopOverDepartureInPast && nextPositionDepartureInFuture)
+                    
+                    return isInThisSection
 
-        let currentTrainPositionIndex = trip.locationArray.firstIndex(where: {$0.departure == loc.0.element.departure})
+                } else {
+                    // Train is currently moving in a section
+                    if lastStopOver?.departure == nil || nextPosition.departure == nil {
+                        Log.warning("\(trip.name) | \(trip.tripId): Departure date of a stopover is nil!")
+                        return false
+                    }
+                    
+                    let isInThisSection = lastStopOver!.departure!.timeIntervalSince(date) <= 0 && nextPosition.departure!.timeIntervalSince(date) > 0
+                        
+                    return isInThisSection
+                }
+            })
+        
+        // Check if a previous stopover was found and if  the train is currentla somwhere inside a section
+        guard let lastStop = lastStopOver,
+              let trainIndexInArray = location?.0.offset,
+              let currentFeature = location?.0.element else {
+            return nil
+        }
+    
+        return (trainIndexInArray, currentFeature, lastStop)
+    }
+    
+    
+    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> TrainLocationData? {
+        
+        //Return if Trip did not start yet.
+        if trip.departure.timeIntervalSince(date) > 0 {
+            return TrainLocationData(currentLocation: trip.locationArray.first!.coords,
+                                     trainState: .WaitForStart(trip.departure.timeIntervalSince(date)),
+                                     arrayPostition: 0,
+                                     delay: 0
+            )
+        }
+       
+        // get the current section-index of the train with additional infos like latest passed stopover and the current section object
+        guard let (currentFeatureIndex, currentFeature, lastStop) = self.getCurrentTrainLocationInArray(forTrip: trip, atData: date) else {
+            
+            //If Journey has ended
+            if ((trip.locationArray.last as? StopOver)?.arrival ?? Date(timeIntervalSince1970: 0)).timeIntervalSince(date) <= 0 {
+                
+                return TrainLocationData(currentLocation: trip.locationArray.last!.coords,
+                                         trainState: .Ended,
+                                         arrayPostition: 0,
+                                         delay: (trip.locationArray.last! as! StopOver).arrivalDelay ?? 0
+                )
+                
+            } else {
+                Log.error("Error finding a location for Trip \(trip.name) at \(date)")
+                return nil
+            }
+        }
+
+        // Check if currently stopping
+        if currentFeature is StopOver {
+            let stopover = (currentFeature as! StopOver)
+           
+            if stopover.arrival?.timeIntervalSince(date) ?? 1 <= 0 && stopover.departure!.timeIntervalSince(date) > 0 {
+                
+                Log.trace("[\(trip.name)] Currently idling at: \(stopover.name) til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
+
+                return TrainLocationData(currentLocation: stopover.coords,
+                                         trainState: .Stopped(stopover.departure!, stopover.name),
+                                         arrayPostition: currentFeatureIndex,
+                                         delay: stopover.departureDelay ?? 0
+                )
+            }
+        }
+        
+        let relativeTrainLocation = self.calculateTrainLocationWithAcceleration(forTrip: trip, lastStop)
         
         #if MOCK
         let current_distance = trip.locationArray[lastStopIndex!...currentTrainPositionIndex!].dropFirst().map({$0.distanceToNext}).reduce(0.0,+)
@@ -431,10 +471,22 @@ extension TrainLocationTripByTimeFrameController {
         #endif
         
         // Get next Stop
-        if let nextStopOver = (trip.locationArray[loc.0.offset...].dropFirst().first(where: {$0 is StopOver}) as? StopOver) {
-            return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nextStopOver.name), loc.0.offset, nextStopOver.arrivalDelay ?? 0)
+        if let nextStopOver = (trip.locationArray[currentFeatureIndex...].dropFirst().first(where: {$0 is StopOver}) as? StopOver) {
+           
+            return TrainLocationData(
+                currentLocation: CLLocation(latitude: relativeTrainLocation.latitude, longitude: relativeTrainLocation.longitude),
+                trainState: .Driving(nextStopOver.name),
+                arrayPostition: currentFeatureIndex,
+                delay:  nextStopOver.arrivalDelay ?? 0
+            )
         } else {
-            return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nil), loc.0.offset, 0)
+           
+            return TrainLocationData(
+                currentLocation: CLLocation(latitude: relativeTrainLocation.latitude, longitude: relativeTrainLocation.longitude),
+                trainState: .Driving(nil),
+                arrayPostition: currentFeatureIndex,
+                delay:  0
+            )
         }
         
     }
