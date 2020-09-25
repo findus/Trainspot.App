@@ -486,15 +486,10 @@ extension TrainLocationTripByTimeFrameController {
                 
                 //Currently only on top of polyline point, might be off if user is between points that are far away
                 let userPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: currentLocation)
-               
-                let timeTilDeparture = trip.departure.timeIntervalSince(self.dateGenerator())
+                let trainPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: data.currentLocation)
+                    
+                let distance = self.getDistance(forTrip: trip, arrayPosUser: userPosInArray, arrayPosTrain: trainPosInArray)
                 
-                let distance = self.getDistance(forTrip: trip,
-                                                arrayPosTrain: data.arrayPostition,
-                                                arrayPosUser: userPosInArray,
-                                                currentTrainLoc: data.currentLocation)
-                
-  
                 let userSection = self.getCurrentUserSection(forTrip: trip, forUserPosition: currentLocation)
                    
                 let arrivalDate = ArrivalCalculator<TimeFrameTrip>().getArrivalInSeconds(forTrip: trip,
@@ -529,26 +524,11 @@ extension TrainLocationTripByTimeFrameController {
     /**
      Calculates the Current Distance, of the train from the user.
      */
-    private func getDistance(forTrip trip: T, arrayPosTrain: Int, arrayPosUser: Int, currentTrainLoc: CLLocation) -> Double {
-        /**
-         We need this, because the train could have already traveled a certain amount on this polyline. That why the current line is omitted and the current location distance to the next segment gets calculated
-         **/
-        guard let nextSection = trip.locationArray[exist: arrayPosTrain + 1] else {
-            return -1
-        }
-        
-        // Train is still in front of user
-        if arrayPosTrain + 1 < arrayPosUser {
-            return
-                currentTrainLoc.distance(from: nextSection.coords) // Remaining distance to next Section
-                +
-                trip.locationArray[arrayPosTrain + 1...arrayPosUser].map({$0.distanceToNext}).reduce(0, +) // Sum of all Sections to user
-        // Train has passed user
-        } else if arrayPosUser < arrayPosTrain {
-           return -(trip.locationArray[arrayPosUser...arrayPosTrain]
-                        .map({$0.distanceToNext}).reduce(0, +) + currentTrainLoc.distance(from: trip.locationArray[arrayPosTrain].coords))
+    private func getDistance(forTrip trip: T, arrayPosUser: Int, arrayPosTrain: Int) -> Double {
+        if arrayPosUser < arrayPosTrain {
+            return trip.locationArray[arrayPosUser...arrayPosTrain].dropLast().map { $0.distanceToNext }.reduce(0, +)
         } else {
-            return arrayPosTrain < arrayPosUser ? currentTrainLoc.distance(from: nextSection.coords) : -currentTrainLoc.distance(from: trip.locationArray[arrayPosTrain].coords)
+            return trip.locationArray[arrayPosTrain...arrayPosUser].dropLast().map { $0.distanceToNext }.reduce(0, +)
         }
     }
 }
