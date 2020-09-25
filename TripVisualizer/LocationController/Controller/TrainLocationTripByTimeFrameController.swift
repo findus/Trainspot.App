@@ -240,13 +240,13 @@ extension TrainLocationTripByTimeFrameController {
         var trainState: TrainState
         var arrayPostition: Int
         var delay: Int
+        var currentSection: OffsetCalculator.Section? = nil
     }
     
     /**
-     Calculates the estimated position of the train on a map
+     Extracts section data from the trip beginning from the provided stop up to the next stop
      */
-    private func calculateTrainLocationWithAcceleration(forTrip trip: T, _ lastStop: StopOver) -> CLLocationCoordinate2D {
-        let secondsInSection = self.dateGenerator().timeIntervalSince(lastStop.departure!)
+    private func getSection(forTrip trip: T, andLastStop lastStop: StopOver) -> OffsetCalculator.Section {
         
         let lastStopIndex = trip.locationArray.firstIndex(where: {$0.departure == lastStop.departure})
         let nextStopIndex = trip.locationArray[lastStopIndex!...].dropFirst().firstIndex(where: {$0 is StopOver})
@@ -255,9 +255,26 @@ extension TrainLocationTripByTimeFrameController {
         let complete_distance = trip.locationArray[lastStopIndex!...nextStopIndex!].map({$0.distanceToNext}).dropLast().reduce(0,+)
         let complete_duration = trip.locationArray[lastStopIndex!...nextStopIndex!].map({$0.durationToNext!}).dropLast().reduce(0.0,+)
         
+        return OffsetCalculator.Section(
+            priorStopOverArrayPosition: lastStopIndex!,
+            nextStopOverArrayPosition: nextStopIndex!,
+            length: complete_distance,
+            duration: complete_duration
+        )
+    }
+    
+    /**
+     Calculates the estimated position of the train on a map
+     */
+    private func calculateTrainLocationWithAcceleration(forTrip trip: T,
+                                                        forSection section: OffsetCalculator.Section)
+    -> CLLocationCoordinate2D {
+       
+        let secondsInSection = self.dateGenerator()
+            .timeIntervalSince(trip.locationArray[section.priorStopOverArrayPosition].departure!)
+        
         let adjusted_distance = OffsetCalculator().getPositionForTime(secondsInSection,
-                                                                      forSection: OffsetCalculator.Section(length: complete_distance,
-                                                                        duration: complete_duration)
+                                                                      forSection: section
         )
                 
         var addedDistances = 0.0
@@ -267,7 +284,7 @@ extension TrainLocationTripByTimeFrameController {
         var missingMeters = 0.0
         
         // Iterates over the location array and searches for the current path the train is on
-        for entry in trip.locationArray[lastStopIndex!...nextStopIndex!].enumerated() {
+        for entry in trip.locationArray[section.priorStopOverArrayPosition...section.nextStopOverArrayPosition].enumerated() {
             addedDistances += entry.element.distanceToNext
             if addedDistances >= adjusted_distance {
                 let remainder = addedDistances - adjusted_distance
@@ -278,20 +295,31 @@ extension TrainLocationTripByTimeFrameController {
             }
         }
 
-        let currentTrainSection = trip.locationArray[lastStopIndex! + currentTrainIndex]
+        let currentTrainSection = trip.locationArray[section.priorStopOverArrayPosition + currentTrainIndex]
         
         let percentageOfSectionComplete = missingMeters / currentTrainSection.distanceToNext
         
         //Starting coords of this section
-        let thiscoords = trip.locationArray[lastStopIndex! + currentTrainIndex].coords
+        let thiscoords = trip.locationArray[section.priorStopOverArrayPosition + currentTrainIndex].coords
         //Startin coords of next section
-        let nextcoords = trip.locationArray[lastStopIndex! + currentTrainIndex + 1].coords
+        let nextcoords = trip.locationArray[section.priorStopOverArrayPosition + currentTrainIndex + 1].coords
         
         //Percentage offset between these two coordinates
         let newLat = thiscoords.coordinate.latitude + ((nextcoords.coordinate.latitude - thiscoords.coordinate.latitude) * percentageOfSectionComplete)
         let newLon = thiscoords.coordinate.longitude + ((nextcoords.coordinate.longitude - thiscoords.coordinate.longitude) * percentageOfSectionComplete)
         
         return CLLocationCoordinate2D(latitude: newLat, longitude: newLon)
+    }
+    
+    private func getCurrentUserSection(forTrip trip: T, forUserPosition position: CLLocation ) -> OffsetCalculator.Section {
+        let userPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: position)
+        var result = trip.locationArray[...userPosInArray].reversed().first(where: { $0 is StopOver })!
+        //if stop is the last stop use the previous as start
+        if (trip.locationArray.last as! StopOver).name == (result as! StopOver).name {
+            result = trip.locationArray[...userPosInArray].reversed().dropFirst().first(where: { $0 is StopOver })!
+        }
+        
+        return getSection(forTrip: trip, andLastStop: result as! StopOver)
     }
     
     private func getCurrentTrainLocationInArray(forTrip trip: T, atData date: Date) -> (Int, Feature, StopOver)? {
@@ -404,6 +432,8 @@ extension TrainLocationTripByTimeFrameController {
                 return nil
             }
         }
+        
+        let section = getSection(forTrip: trip, andLastStop: lastStop)
 
         // Check if currently stopping
         if currentFeature is StopOver {
@@ -416,12 +446,13 @@ extension TrainLocationTripByTimeFrameController {
                 return TrainLocationData(currentLocation: stopover.coords,
                                          trainState: .Stopped(stopover.departure!, stopover.name),
                                          arrayPostition: currentFeatureIndex,
-                                         delay: stopover.departureDelay ?? 0
+                                         delay: stopover.departureDelay ?? 0,
+                                         currentSection: section
                 )
             }
         }
-        
-        let relativeTrainLocation = self.calculateTrainLocationWithAcceleration(forTrip: trip, lastStop)
+                
+        let relativeTrainLocation = self.calculateTrainLocationWithAcceleration(forTrip: trip, forSection: section)
         
         #if MOCK
         let current_distance = trip.locationArray[lastStopIndex!...currentTrainPositionIndex!]
@@ -443,7 +474,8 @@ extension TrainLocationTripByTimeFrameController {
             currentLocation: CLLocation(latitude: relativeTrainLocation.latitude, longitude: relativeTrainLocation.longitude),
             trainState: .Driving(nextStopOver?.name),
             arrayPostition: currentFeatureIndex,
-            delay:  nextStopOver?.arrivalDelay ?? 0
+            delay:  nextStopOver?.arrivalDelay ?? 0,
+            currentSection: section
         )
 
     }
@@ -461,22 +493,25 @@ extension TrainLocationTripByTimeFrameController {
                 let userPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: currentLocation)
                
                 let timeTilDeparture = trip.departure.timeIntervalSince(self.dateGenerator())
-              
-                let time = self.getArrivalInSeconds(forTrip: trip,
-                                                    userPosInArray: userPosInArray,
-                                                    trainPos: data.arrayPostition,
-                                                    secondsToDeparture: timeTilDeparture > 0 ? timeTilDeparture : 0
-                )
-              
+                
                 let distance = self.getDistance(forTrip: trip,
                                                 arrayPosTrain: data.arrayPostition,
                                                 arrayPosUser: userPosInArray,
                                                 currentTrainLoc: data.currentLocation)
-               
+                
+  
+                let userSection = self.getCurrentUserSection(forTrip: trip, forUserPosition: currentLocation)
+                   
+                let arrivalDate = ArrivalCalculator<TimeFrameTrip>().getArrivalInSeconds(forTrip: trip,
+                                                                                         forSection: userSection,
+                                                                                         userPositionInArray: userPosInArray)
+                
                 tripData = TripData(location: data.currentLocation,
-                                    state: data.trainState, arrival: time ?? -1,
+                                    state: data.trainState,
+                                    arrival: arrivalDate.timeIntervalSince(self.dateGenerator()),
                                     distance: distance,
                                     delay: data.delay )
+
             } else {
                
                 tripData = TripData(location: data.currentLocation,
@@ -496,38 +531,6 @@ extension TrainLocationTripByTimeFrameController {
 
 extension TrainLocationTripByTimeFrameController {
    
-    public func getArrivalInSeconds(forTrip trip: T, userPosInArray: Int, trainPos: Int, secondsToDeparture: Double) -> TimeInterval? {
-        /**
-         Tries to get the next stop facing from the users position, fetches the time of next arrivals and substracts the time that is needed to get there
-         */
-        guard let nextStop = trip.locationArray[userPosInArray...]
-                .enumerated()
-                .first(where: { $0.element is StopOver && ($0.element as? StopOver)?.arrival != nil }) else {
-            
-            return nil
-        }
-        
-        let nextStopDate = (nextStop.element as! StopOver).arrival!
-        
-        /**
-         The upper array slice returns the first stop-array-location with an offset, based on the user position, we have to add this offset to the next calculation
-         Example: User is on ArrayPosition 16, next stop is on ArrayPosition 54, the offset of the slice is +16 = Offset of First stop is (54-16) = 38
-         Also we have to omit the stopover, otherwise we would calculate the needed time to tne next point after the first stopover
-         **/
-        let missingStepsToFirstStop = (userPosInArray)
-        let offset = trip.locationArray[userPosInArray...(missingStepsToFirstStop+nextStop.offset)]
-            .dropLast()
-            .map({$0.durationToNext!})
-            .reduce(0,+)
-        
-        // If the departure date is in future: Use the Departure Date for calculation, if trip has started, use the current time
-        let date = secondsToDeparture > 0 ? trip.departure : self.dateGenerator()
-        //Calculation: Time of next stop minus the time it would take for the train to travel from user position to that stop.
-        let timeWhenTrainPassesUser = nextStopDate.addingTimeInterval(-offset)
-        //Now Calculate how long it takes the train to arrive at that date, based on the current time(if trip is in progress), or the scheduled departure + time til departure
-        return timeWhenTrainPassesUser.timeIntervalSince(date) + secondsToDeparture
-    }
-    
     /**
      Calculates the Current Distance, of the train from the user.
      */

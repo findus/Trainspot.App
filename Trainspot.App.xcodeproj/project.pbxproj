@@ -44,10 +44,10 @@
 		D43F04D1250D42D200E3A901 /* ice_arrivaldelay in Resources */ = {isa = PBXBuildFile; fileRef = D43F04CE250D42D200E3A901 /* ice_arrivaldelay */; };
 		D445EE312515320400A39B38 /* ice_huge_delay in Resources */ = {isa = PBXBuildFile; fileRef = D445EE302515320400A39B38 /* ice_huge_delay */; };
 		D445EE32251536EA00A39B38 /* ice_huge_delay in Resources */ = {isa = PBXBuildFile; fileRef = D445EE302515320400A39B38 /* ice_huge_delay */; };
-		D45B7602251BB6150032A90F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B7601251BB6150032A90F /* Log.swift */; };
-		D45B760C251BB76A0032A90F /* HafasparserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B760B251BB76A0032A90F /* HafasparserTests.swift */; };
 		D44836C82518F62A00EFCBE1 /* OffsetCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44836C72518F62A00EFCBE1 /* OffsetCalculator.swift */; };
 		D44836D22519276300EFCBE1 /* AccelerationSimulatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44836D12519276300EFCBE1 /* AccelerationSimulatorTest.swift */; };
+		D45B7602251BB6150032A90F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B7601251BB6150032A90F /* Log.swift */; };
+		D45B760C251BB76A0032A90F /* HafasparserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B760B251BB76A0032A90F /* HafasparserTests.swift */; };
 		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
 		D46B6B5D2490195200AF77F6 /* TrainViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5C2490195100AF77F6 /* TrainViewList.swift */; };
 		D46B6B5F2490211500AF77F6 /* TrainOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B6B5E2490211500AF77F6 /* TrainOverviewCell.swift */; };
@@ -81,6 +81,7 @@
 		D4A5B7FE25101B76003257F5 /* D_Bahnhof_2020_alle.CSV in Resources */ = {isa = PBXBuildFile; fileRef = D4D91379250A8D2C00A7DBE0 /* D_Bahnhof_2020_alle.CSV */; };
 		D4A5B80325101D73003257F5 /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4A5B80225101D73003257F5 /* Introduction.storyboard */; };
 		D4A5B80425101D73003257F5 /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4A5B80225101D73003257F5 /* Introduction.storyboard */; };
+		D4A74C47251E5026006FD41D /* ArrivalCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A74C46251E5026006FD41D /* ArrivalCalculator.swift */; };
 		D4B636902495785B00996744 /* TripVisualizer.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B6368E2495785B00996744 /* TripVisualizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4B636932495785B00996744 /* TripVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; };
 		D4B636942495785B00996744 /* TripVisualizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -306,9 +307,9 @@
 		D445EE2F2512885500A39B38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D445EE302515320400A39B38 /* ice_huge_delay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ice_huge_delay; sourceTree = "<group>"; };
 		D44836C72518F62A00EFCBE1 /* OffsetCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetCalculator.swift; sourceTree = "<group>"; };
+		D44836D12519276300EFCBE1 /* AccelerationSimulatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationSimulatorTest.swift; sourceTree = "<group>"; };
 		D45B7601251BB6150032A90F /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D45B760B251BB76A0032A90F /* HafasparserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasparserTests.swift; sourceTree = "<group>"; };
-		D44836D12519276300EFCBE1 /* AccelerationSimulatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationSimulatorTest.swift; sourceTree = "<group>"; };
 		D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationDelegate.swift; sourceTree = "<group>"; };
 		D45C505324883D8800A3D857 /* TrainLocationPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationPin.swift; sourceTree = "<group>"; };
 		D45C50562488E27400A3D857 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
@@ -338,6 +339,7 @@
 		D4A5B7F1250FBBFC003257F5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D4A5B7FB25101951003257F5 /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionPageViewController.swift; sourceTree = "<group>"; };
 		D4A5B80225101D73003257F5 /* Introduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Introduction.storyboard; sourceTree = "<group>"; };
+		D4A74C46251E5026006FD41D /* ArrivalCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalCalculator.swift; sourceTree = "<group>"; };
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationRadarController.swift; sourceTree = "<group>"; };
 		D4AF5162248D2E3800C9D7BE /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 		D46B6B6024912ACB00AF77F6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D4A74C45251E5003006FD41D /* TimeFrameHelperClasses */,
 				D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */,
 				D45C506624892C8200A3D857 /* TrainLocationTripAnimationTimeController.swift */,
 				D4270ABB248BDEAE0022A6BB /* TrainLocationTripByTimeFrameController.swift */,
@@ -717,6 +720,14 @@
 				D48E44E925123D4600709290 /* InfoViewController.swift */,
 			);
 			path = Introduction;
+			sourceTree = "<group>";
+		};
+		D4A74C45251E5003006FD41D /* TimeFrameHelperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				D4A74C46251E5026006FD41D /* ArrivalCalculator.swift */,
+			);
+			path = TimeFrameHelperClasses;
 			sourceTree = "<group>";
 		};
 		D4AF20022488259C0075F327 /* LocationController */ = {
@@ -1441,6 +1452,7 @@
 				D4B636A82495793000996744 /* NetworkTrainDataTimeFrameProvider.swift in Sources */,
 				D4B636B324957A4700996744 /* MapEntity.swift in Sources */,
 				D4B6369C249578F600996744 /* TrainLocationProxy.swift in Sources */,
+				D4A74C47251E5026006FD41D /* ArrivalCalculator.swift in Sources */,
 				D4B636A62495791E00996744 /* TimeFrameTrip.swift in Sources */,
 				D4B636A52495791A00996744 /* JourneyTrip.swift in Sources */,
 				D4B636A42495791500996744 /* RadarTrip.swift in Sources */,

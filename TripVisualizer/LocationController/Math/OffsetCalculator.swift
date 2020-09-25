@@ -20,6 +20,8 @@ class OffsetCalculator {
      Section Between 2 Stops
      */
     struct Section {
+        var priorStopOverArrayPosition: Int
+        var nextStopOverArrayPosition: Int
         // Lenth in Meters
         var length: Double
         // Duration in Seconds
@@ -81,5 +83,16 @@ class OffsetCalculator {
             let result = (m*time)+b
             return result < 0 ? 0.0 : result
         }
+    }
+    
+    func getTimeForDistance(_ distance: Double, forSection section:Section) -> Double {
+        //TODO dumb method to calculate this TODO: change forumlar to calculate y instead of x
+        for i in 0...Int(section.duration) {
+            let position = self.getPositionForTime(Double(i), forSection: section)
+            if position > distance {
+                return Double(i)
+            }
+        }
+        return section.duration
     }
 }
