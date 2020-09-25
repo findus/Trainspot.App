@@ -289,11 +289,11 @@ extension TrainLocationTripByTimeFrameController {
         return TrainState.Driving(nil)
     }
     
-    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> (currentLocation: CLLocation, trainState: TrainState, arrayPostition: Int, secondsInsideSection: Double, delay: Int)? {
+    func getTrainLocation(forTrip trip: TimeFrameTrip, atDate date: Date) -> (currentLocation: CLLocation, trainState: TrainState, arrayPostition: Int, delay: Int)? {
         
         //Trip did not start yet:
         if trip.departure.timeIntervalSince(date) > 0 {
-            return (trip.locationArray.first!.coords, .WaitForStart(trip.departure.timeIntervalSince(date)), 0, 0, 0)
+            return (trip.locationArray.first!.coords, .WaitForStart(trip.departure.timeIntervalSince(date)), 0, 0)
         }
         
         var lastStopOver: StopOver? = nil
@@ -351,7 +351,7 @@ extension TrainLocationTripByTimeFrameController {
             }) else {
                 //If Journey has ended
                 if ((trip.locationArray.last as? StopOver)?.arrival ?? Date(timeIntervalSince1970: 0)).timeIntervalSince(date) <= 0 {
-                    return (trip.locationArray.last!.coords, .Ended, 0, 0, (trip.locationArray.last! as! StopOver).arrivalDelay ?? 0)
+                    return (trip.locationArray.last!.coords, .Ended, 0, (trip.locationArray.last! as! StopOver).arrivalDelay ?? 0)
                 } else {
                     Log.error("Error finding a location for Trip \(trip.name) at \(date)")
                     return nil
@@ -366,7 +366,7 @@ extension TrainLocationTripByTimeFrameController {
             let stopover = (location as! StopOver)
             if stopover.arrival?.timeIntervalSince(date) ?? 1 <= 0 && stopover.departure!.timeIntervalSince(date) > 0 {
                 Log.trace("[\(trip.name)] Currently idling at: \(stopover.name) til \(stopover.departure!) [\(stopover.departure!.timeIntervalSince(date)) seconds]")
-                return (stopover.coords, .Stopped(stopover.departure!, stopover.name), loc.0.offset, 0, stopover.departureDelay ?? 0)
+                return (stopover.coords, .Stopped(stopover.departure!, stopover.name), 0, stopover.departureDelay ?? 0)
             }
         }
         
@@ -376,16 +376,10 @@ extension TrainLocationTripByTimeFrameController {
         
         let lastStopIndex = trip.locationArray.firstIndex(where: {$0.departure == lastStopOver!.departure})
         let nextStopIndex = trip.locationArray[lastStopIndex!...].dropFirst().firstIndex(where: {$0 is StopOver})
-        
-        let currentTrainPositionIndex = trip.locationArray.firstIndex(where: {$0.departure == loc.0.element.departure})
-        
+            
         //Complete distance from prior stop to next stop
         let complete_distance = trip.locationArray[lastStopIndex!...nextStopIndex!].map({$0.distanceToNext}).dropLast().reduce(0,+)
         let complete_duration = trip.locationArray[lastStopIndex!...nextStopIndex!].map({$0.durationToNext!}).dropLast().reduce(0.0,+)
-        
-        let current_distance = trip.locationArray[lastStopIndex!...currentTrainPositionIndex!].dropFirst().map({$0.distanceToNext}).reduce(0.0,+)
-
-        let current_duration = trip.locationArray[lastStopIndex!...currentTrainPositionIndex!].dropFirst().map({$0.durationToNext!}).reduce(0.0,+)
         
         let adjusted_distance = OffsetCalculator().getPositionForTime(secondsInSection, forSection: OffsetCalculator.Section(length: complete_distance, duration: complete_duration))
                 
@@ -404,38 +398,21 @@ extension TrainLocationTripByTimeFrameController {
             }
         }
 
-        var d = trip.locationArray[lastStopIndex! + index]
+        let currentTrainSection = trip.locationArray[lastStopIndex! + index]
         
-        var perc = missingMeters / d.distanceToNext
+        let percentageOfSectionComplete = missingMeters / currentTrainSection.distanceToNext
         
         let thiscoords = trip.locationArray[lastStopIndex! + index].coords
         let nextcoords = trip.locationArray[lastStopIndex! + index + 1].coords
         
-        let newLat2 = thiscoords.coordinate.latitude + ((nextcoords.coordinate.latitude - thiscoords.coordinate.latitude) * perc)
-        let newLon2 = thiscoords.coordinate.longitude + ((nextcoords.coordinate.longitude - thiscoords.coordinate.longitude) * perc)
-        
-        
-        print("\(trip.name): \((trip.locationArray[lastStopIndex!] as! StopOver).name) to \((trip.locationArray[nextStopIndex!] as! StopOver).name) \(complete_distance)Meter \(complete_duration)Sekunden \(current_duration)Sekunden am fahren Lineare Distanz:\(current_distance) Angepasste Distanz:\(adjusted_distance) ArrayPos:\(index) Missing Meters:\(missingMeters) p \(perc * 100)m")
-        
-        // Calculate relative Position between to Points
-        let wholeDuration = location.durationToNext!
-        let departure = location.departure!
-       
-        let startCoords = location.coords.coordinate
-        let endCoords = loc.1.coords.coordinate
-        
-        let secondsIntoSection = ( date.timeIntervalSince(departure) )
-        
-        let ratio = secondsIntoSection / wholeDuration
-        
-        let newLat = startCoords.latitude + ((endCoords.latitude - startCoords.latitude) * ratio)
-        let newLon = startCoords.longitude + ((endCoords.longitude - startCoords.longitude) * ratio)
+        let newLat = thiscoords.coordinate.latitude + ((nextcoords.coordinate.latitude - thiscoords.coordinate.latitude) * percentageOfSectionComplete)
+        let newLon = thiscoords.coordinate.longitude + ((nextcoords.coordinate.longitude - thiscoords.coordinate.longitude) * percentageOfSectionComplete)
         
         // Get next Stop
         if let nextStopOver = (trip.locationArray[loc.0.offset...].dropFirst().first(where: {$0 is StopOver}) as? StopOver) {
-            return (CLLocation(latitude: newLat2, longitude: newLon2), .Driving(nextStopOver.name), loc.0.offset, secondsIntoSection, nextStopOver.arrivalDelay ?? 0)
+            return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nextStopOver.name), loc.0.offset, nextStopOver.arrivalDelay ?? 0)
         } else {
-            return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nil), loc.0.offset, secondsIntoSection, 0)
+            return (CLLocation(latitude: newLat, longitude: newLon), .Driving(nil), loc.0.offset, 0)
         }
         
     }
