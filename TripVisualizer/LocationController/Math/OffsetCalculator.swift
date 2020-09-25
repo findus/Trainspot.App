@@ -65,6 +65,9 @@ class OffsetCalculator {
         } else {
             //Train is driving with vmax
             
+            /**
+             Calculates a linear curve pased on 2 points, one of the y position 90 seconds after launch, and one y position 90 seconds before the next stop
+             */
             let halfTime = (section.duration/2)
             
             let startingPointY = getPositionForTime(ACCELERATION_TIME, forSection: section)
