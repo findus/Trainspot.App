@@ -240,6 +240,7 @@ extension TrainLocationTripByTimeFrameController {
         var trainState: TrainState
         var delay: Int
         var currentSection: OffsetCalculator.Section? = nil
+        var metersIntoSection: Double
     }
     
     /**
@@ -263,11 +264,11 @@ extension TrainLocationTripByTimeFrameController {
     }
     
     /**
-     Calculates the estimated position of the train on a map
+     Calculates the estimated position of the train on a map, returns the coordinates and the meters inside the newest section
      */
     private func calculateTrainLocationWithAcceleration(forTrip trip: T,
                                                         forSection section: OffsetCalculator.Section)
-    -> CLLocationCoordinate2D {
+    -> (CLLocationCoordinate2D,Double) {
        
         let secondsInSection = self.dateGenerator()
             .timeIntervalSince(trip.locationArray[section.priorStopOverArrayPosition].departure!)
@@ -307,7 +308,7 @@ extension TrainLocationTripByTimeFrameController {
         let newLat = thiscoords.coordinate.latitude + ((nextcoords.coordinate.latitude - thiscoords.coordinate.latitude) * percentageOfSectionComplete)
         let newLon = thiscoords.coordinate.longitude + ((nextcoords.coordinate.longitude - thiscoords.coordinate.longitude) * percentageOfSectionComplete)
         
-        return CLLocationCoordinate2D(latitude: newLat, longitude: newLon)
+        return (CLLocationCoordinate2D(latitude: newLat, longitude: newLon),missingMeters)
     }
     
     private func getCurrentUserSection(forTrip trip: T, forUserPosition position: CLLocation ) -> OffsetCalculator.Section {
@@ -405,7 +406,8 @@ extension TrainLocationTripByTimeFrameController {
         if tripNotStartedYet() {
             return TrainLocationData(currentLocation: trip.locationArray.first!.coords,
                                      trainState: .WaitForStart(trip.departure.timeIntervalSince(date)),
-                                     delay: 0
+                                     delay: 0,
+                                     metersIntoSection: 0
             )
         }
        
@@ -421,7 +423,8 @@ extension TrainLocationTripByTimeFrameController {
                 
                 return TrainLocationData(currentLocation: trip.locationArray.last!.coords,
                                          trainState: .Ended,
-                                         delay: (trip.locationArray.last! as! StopOver).arrivalDelay ?? 0
+                                         delay: (trip.locationArray.last! as! StopOver).arrivalDelay ?? 0,
+                                         metersIntoSection: 0
                 )
                 
             } else {
@@ -443,12 +446,14 @@ extension TrainLocationTripByTimeFrameController {
                 return TrainLocationData(currentLocation: stopover.coords,
                                          trainState: .Stopped(stopover.departure!, stopover.name),
                                          delay: stopover.departureDelay ?? 0,
-                                         currentSection: section
+                                         currentSection: section,
+                                         metersIntoSection: 0
                 )
             }
         }
                 
-        let relativeTrainLocation = self.calculateTrainLocationWithAcceleration(forTrip: trip, forSection: section)
+        let (relativeTrainLocation, missingMeters) =
+            self.calculateTrainLocationWithAcceleration(forTrip: trip, forSection: section)
         
         #if MOCK
         let current_distance = trip.locationArray[lastStopIndex!...currentTrainPositionIndex!]
@@ -470,7 +475,8 @@ extension TrainLocationTripByTimeFrameController {
             currentLocation: CLLocation(latitude: relativeTrainLocation.latitude, longitude: relativeTrainLocation.longitude),
             trainState: .Driving(nextStopOver?.name),
             delay:  nextStopOver?.arrivalDelay ?? 0,
-            currentSection: section
+            currentSection: section,
+            metersIntoSection: missingMeters
         )
 
     }
@@ -488,7 +494,11 @@ extension TrainLocationTripByTimeFrameController {
                 let userPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: currentLocation)
                 let trainPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: data.currentLocation)
                     
-                let distance = self.getDistance(forTrip: trip, arrayPosUser: userPosInArray, arrayPosTrain: trainPosInArray)
+                let distance = self.getDistance(forTrip: trip,
+                                                arrayPosUser: userPosInArray,
+                                                arrayPosTrain: trainPosInArray,
+                                                metersIntoSection: data.metersIntoSection
+                )
                 
                 let userSection = self.getCurrentUserSection(forTrip: trip, forUserPosition: currentLocation)
                    
@@ -524,11 +534,13 @@ extension TrainLocationTripByTimeFrameController {
     /**
      Calculates the Current Distance, of the train from the user.
      */
-    private func getDistance(forTrip trip: T, arrayPosUser: Int, arrayPosTrain: Int) -> Double {
+    private func getDistance(forTrip trip: T, arrayPosUser: Int, arrayPosTrain: Int, metersIntoSection: Double) -> Double {
         if arrayPosUser < arrayPosTrain {
             return trip.locationArray[arrayPosUser...arrayPosTrain].dropLast().map { $0.distanceToNext }.reduce(0, +)
+                + metersIntoSection
         } else {
             return trip.locationArray[arrayPosTrain...arrayPosUser].dropLast().map { $0.distanceToNext }.reduce(0, +)
+            - metersIntoSection
         }
     }
 }
