@@ -23,6 +23,7 @@ Zusätzlich zeigt die App auch folgende Infos an:
 - Vorraussichtliche Ankunftszeit beim User in Sekunden
 - Vom aktuell ausgewählten Zug werden minütlich die Fahrplandaten aktualisiert, um stehts aktuelle Verspätungsdaten anzeigen zu können
 - Kompassnadel, die zum ausgewählten Zug zeigt (wenn man die User-Position verwendet)
+- Simulation der Beschleunigung und Bremswege der Züge, um etwas genauere Positionangaben zu ermitteln
 
 # Einstellungen:
 
@@ -40,6 +41,5 @@ In der App lassen sich folgende Einstellungen anpassen:
   - Diese funktion ist als Fallback aktiv, wenn Apples Location-Diense inaktiv sind, oder der Nutzer dies der App explizit verboten hat
 
 # Geplante Features:
-- Simulation der Beschleunigung und Bremswege der Züge, um etwas genauere Positionangaben zu ermitteln
 - Behalte Züge bei Refresh
   - Löscht Züge nicht, die beim neuen Fahrplan-Fetch nicht mehr dabei sind, weil sie z.B. in der Vergangenheit abgefahren sind, man sie als User aber noch auf der Karte weiter anzeigen möchte
