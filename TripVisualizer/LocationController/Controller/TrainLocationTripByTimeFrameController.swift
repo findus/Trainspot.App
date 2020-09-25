@@ -34,6 +34,7 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
             oldValue?.invalidate()
         }
     }
+    
     private var dataProvider: TripProvider<T>?
         
     var datestack : Array<Date> = []
@@ -44,6 +45,12 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
         self.dateGenerator = dateGenerator
         self.uid = UUID()
     }
+    
+}
+
+//MARK: - Delegate Methods
+
+extension TrainLocationTripByTimeFrameController {
     
     public func remove(trip: TimeFrameTrip) {
         self.timer?.invalidate()
@@ -71,84 +78,16 @@ public class TrainLocationTripByTimeFrameController: TrainLocationProtocol, Upda
     public func getTrip(withID id: String) -> T? {
         return trips.first(where: { $0.tripId == id })
     }
-    
-    public func getArrivalInSeconds(forTrip trip: T, userPosInArray: Int, trainPos: Int, secondsToDeparture: Double) -> TimeInterval? {
-        /**
-         Tries to get the next stop facing from the users position, fetches the time of next arrivals and substracts the time that is needed to get there
-         */
-        guard let nextStop = trip.locationArray[userPosInArray...].enumerated().first(where: { $0.element is StopOver && ($0.element as? StopOver)?.arrival != nil }) else {
-            return nil
-        }
-        
-        let nextStopDate = (nextStop.element as! StopOver).arrival!
-        
-        /**
-         The upper array slice returns the first stop-array-location with an offset, based on the user position, we have to add this offset to the next calculation
-         Example: User is on ArrayPosition 16, next stop is on ArrayPosition 54, the offset of the slice is +16 = Offset of First stop is (54-16) = 38
-         Also we have to omit the stopover, otherwise we would calculate the needed time to tne next point after the first stopover
-         **/
-        let missingStepsToFirstStop = (userPosInArray)
-        let offset = trip.locationArray[userPosInArray...(missingStepsToFirstStop+nextStop.offset)].dropLast().map({$0.durationToNext!}).reduce(0,+)
-        
-        // If the departure date is in future: Use the Departure Date for calculation, if trip has started, use the current time
-        let date = secondsToDeparture > 0 ? trip.departure : self.dateGenerator()
-        //Calculation: Time of next stop minus the time it would take for the train to travel from user position to that stop.
-        let timeWhenTrainPassesUser = nextStopDate.addingTimeInterval(-offset)
-        //Now Calculate how long it takes the train to arrive at that date, based on the current time(if trip is in progress), or the scheduled departure + time til departure
-        return timeWhenTrainPassesUser.timeIntervalSince(date) + secondsToDeparture
-    }
-    
-    /**
-     Calculates the Current Distance, of the train from the user.
-     */
-    private func getDistance(forTrip trip: T, arrayPosTrain: Int, arrayPosUser: Int, currentTrainLoc: CLLocation) -> Double {
-        /**
-         We need this, because the train could have already traveled a certain amount on this polyline. That why the current line is omitted and the current location distance to the next segment gets calculated
-         **/
-        guard let nextSection = trip.locationArray[exist: arrayPosTrain + 1] else {
-            return -1
-        }
-        
-        // Train is still in front of user
-        if arrayPosTrain + 1 < arrayPosUser {
-            return
-                currentTrainLoc.distance(from: nextSection.coords) // Remaining distance to next Section
-                +
-                trip.locationArray[arrayPosTrain + 1...arrayPosUser].map({$0.distanceToNext}).reduce(0, +) // Sum of all Sections to user
-        // Train has passed user
-        } else if arrayPosUser < arrayPosTrain {
-           return -(trip.locationArray[arrayPosUser...arrayPosTrain].map({$0.distanceToNext}).reduce(0, +) + currentTrainLoc.distance(from: trip.locationArray[arrayPosTrain].coords))
-        } else {
-            return arrayPosTrain < arrayPosUser ? currentTrainLoc.distance(from: nextSection.coords) : -currentTrainLoc.distance(from: trip.locationArray[arrayPosTrain].coords)
-        }
-    }
-    
+
     public func setCurrentLocation(location: CLLocation) {
         self.currentUserLocation = location
     }
-    
+        
     @objc func onTick(timer: Timer) {
         self.trips.forEach { (trip) in
             switch self.isTripInBounds(trip: trip) {
             case .Driving, .Stopped(_), .WaitForStart(_):
-                if let data = self.getTrainLocation(forTrip: trip, atDate: self.dateGenerator()) {
-                    
-                    var tripData: TripData
-                    if let currentLocation = self.currentUserLocation {
-                        //Currently only on top of polyline point, might be off if user is between points that are far away
-                        let userPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: currentLocation)
-                        let timeTilDeparture = trip.departure.timeIntervalSince(self.dateGenerator())
-                        let time = self.getArrivalInSeconds(forTrip: trip, userPosInArray: userPosInArray, trainPos: data.arrayPostition, secondsToDeparture: timeTilDeparture > 0 ? timeTilDeparture : 0)
-                        let distance = self.getDistance(forTrip: trip, arrayPosTrain: data.arrayPostition, arrayPosUser: userPosInArray, currentTrainLoc: data.currentLocation)
-                        tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: time ?? -1, distance: distance, delay: data.delay )
-                    } else {
-                        tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: -1, delay: data.delay)
-                    }
-                    self.delegate?.trainPositionUpdated(forTrip: trip, withData: tripData, withDuration: 1)
-                } else {
-                    Log.info("Gonna remove Trip \(trip) from set, because time is invalid")
-                    self.remove(trip: trip, reason: .Ended)
-                }
+                self.calculateTrainPositionAndData(forTrip: trip)
             case .Ended:
                 self.remove(trip: trip, reason: .Ended)
             case .DepartsToLate:
@@ -288,6 +227,13 @@ extension TrainLocationTripByTimeFrameController {
         }
         return TrainState.Driving(nil)
     }
+    
+
+}
+
+// MARK: - Calculation Methods
+
+extension TrainLocationTripByTimeFrameController {
     
     struct TrainLocationData {
         var currentLocation: CLLocation
@@ -491,5 +437,87 @@ extension TrainLocationTripByTimeFrameController {
             delay:  nextStopOver?.arrivalDelay ?? 0
         )
 
+    }
+    
+    private func calculateTrainPositionAndData(forTrip trip: T) {
+        if let data = self.getTrainLocation(forTrip: trip, atDate: self.dateGenerator()) {
+            
+            var tripData: TripData
+            if let currentLocation = self.currentUserLocation {
+                
+                //Currently only on top of polyline point, might be off if user is between points that are far away
+                let userPosInArray = trip.shortestDistanceArrayPosition(forUserLocation: currentLocation)
+               
+                let timeTilDeparture = trip.departure.timeIntervalSince(self.dateGenerator())
+              
+                let time = self.getArrivalInSeconds(forTrip: trip, userPosInArray: userPosInArray, trainPos: data.arrayPostition, secondsToDeparture: timeTilDeparture > 0 ? timeTilDeparture : 0)
+              
+                let distance = self.getDistance(forTrip: trip, arrayPosTrain: data.arrayPostition, arrayPosUser: userPosInArray, currentTrainLoc: data.currentLocation)
+               
+                tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: time ?? -1, distance: distance, delay: data.delay )
+            } else {
+                tripData = TripData(location: data.currentLocation, state: data.trainState, arrival: -1, delay: data.delay)
+            }
+            self.delegate?.trainPositionUpdated(forTrip: trip, withData: tripData, withDuration: 1)
+        } else {
+            Log.info("Gonna remove Trip \(trip) from set, because time is invalid")
+            self.remove(trip: trip, reason: .Ended)
+        }
+    }
+}
+
+//MARK: - User Location Calculation Methods
+
+extension TrainLocationTripByTimeFrameController {
+   
+    public func getArrivalInSeconds(forTrip trip: T, userPosInArray: Int, trainPos: Int, secondsToDeparture: Double) -> TimeInterval? {
+        /**
+         Tries to get the next stop facing from the users position, fetches the time of next arrivals and substracts the time that is needed to get there
+         */
+        guard let nextStop = trip.locationArray[userPosInArray...].enumerated().first(where: { $0.element is StopOver && ($0.element as? StopOver)?.arrival != nil }) else {
+            return nil
+        }
+        
+        let nextStopDate = (nextStop.element as! StopOver).arrival!
+        
+        /**
+         The upper array slice returns the first stop-array-location with an offset, based on the user position, we have to add this offset to the next calculation
+         Example: User is on ArrayPosition 16, next stop is on ArrayPosition 54, the offset of the slice is +16 = Offset of First stop is (54-16) = 38
+         Also we have to omit the stopover, otherwise we would calculate the needed time to tne next point after the first stopover
+         **/
+        let missingStepsToFirstStop = (userPosInArray)
+        let offset = trip.locationArray[userPosInArray...(missingStepsToFirstStop+nextStop.offset)].dropLast().map({$0.durationToNext!}).reduce(0,+)
+        
+        // If the departure date is in future: Use the Departure Date for calculation, if trip has started, use the current time
+        let date = secondsToDeparture > 0 ? trip.departure : self.dateGenerator()
+        //Calculation: Time of next stop minus the time it would take for the train to travel from user position to that stop.
+        let timeWhenTrainPassesUser = nextStopDate.addingTimeInterval(-offset)
+        //Now Calculate how long it takes the train to arrive at that date, based on the current time(if trip is in progress), or the scheduled departure + time til departure
+        return timeWhenTrainPassesUser.timeIntervalSince(date) + secondsToDeparture
+    }
+    
+    /**
+     Calculates the Current Distance, of the train from the user.
+     */
+    private func getDistance(forTrip trip: T, arrayPosTrain: Int, arrayPosUser: Int, currentTrainLoc: CLLocation) -> Double {
+        /**
+         We need this, because the train could have already traveled a certain amount on this polyline. That why the current line is omitted and the current location distance to the next segment gets calculated
+         **/
+        guard let nextSection = trip.locationArray[exist: arrayPosTrain + 1] else {
+            return -1
+        }
+        
+        // Train is still in front of user
+        if arrayPosTrain + 1 < arrayPosUser {
+            return
+                currentTrainLoc.distance(from: nextSection.coords) // Remaining distance to next Section
+                +
+                trip.locationArray[arrayPosTrain + 1...arrayPosUser].map({$0.distanceToNext}).reduce(0, +) // Sum of all Sections to user
+        // Train has passed user
+        } else if arrayPosUser < arrayPosTrain {
+           return -(trip.locationArray[arrayPosUser...arrayPosTrain].map({$0.distanceToNext}).reduce(0, +) + currentTrainLoc.distance(from: trip.locationArray[arrayPosTrain].coords))
+        } else {
+            return arrayPosTrain < arrayPosUser ? currentTrainLoc.distance(from: nextSection.coords) : -currentTrainLoc.distance(from: trip.locationArray[arrayPosTrain].coords)
+        }
     }
 }
