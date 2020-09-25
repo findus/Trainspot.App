@@ -42,6 +42,10 @@
 		D437DDA2250ACCAB00ED8909 /* AutocompleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437DDA0250ACCAB00ED8909 /* AutocompleteDelegate.swift */; };
 		D437DDA3250AD0E800ED8909 /* Userprefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D437056E2509900400A1795F /* Userprefs.swift */; };
 		D43F04D1250D42D200E3A901 /* ice_arrivaldelay in Resources */ = {isa = PBXBuildFile; fileRef = D43F04CE250D42D200E3A901 /* ice_arrivaldelay */; };
+		D445EE312515320400A39B38 /* ice_huge_delay in Resources */ = {isa = PBXBuildFile; fileRef = D445EE302515320400A39B38 /* ice_huge_delay */; };
+		D445EE32251536EA00A39B38 /* ice_huge_delay in Resources */ = {isa = PBXBuildFile; fileRef = D445EE302515320400A39B38 /* ice_huge_delay */; };
+		D44836C82518F62A00EFCBE1 /* OffsetCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44836C72518F62A00EFCBE1 /* OffsetCalculator.swift */; };
+		D44836D22519276300EFCBE1 /* AccelerationSimulatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44836D12519276300EFCBE1 /* AccelerationSimulatorTest.swift */; };
 		D45B7602251BB6150032A90F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B7601251BB6150032A90F /* Log.swift */; };
 		D45B760C251BB76A0032A90F /* HafasparserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B760B251BB76A0032A90F /* HafasparserTests.swift */; };
 		D45C505424883D8800A3D857 /* TrainLocationPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C505324883D8800A3D857 /* TrainLocationPin.swift */; };
@@ -77,6 +81,7 @@
 		D4A5B7FE25101B76003257F5 /* D_Bahnhof_2020_alle.CSV in Resources */ = {isa = PBXBuildFile; fileRef = D4D91379250A8D2C00A7DBE0 /* D_Bahnhof_2020_alle.CSV */; };
 		D4A5B80325101D73003257F5 /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4A5B80225101D73003257F5 /* Introduction.storyboard */; };
 		D4A5B80425101D73003257F5 /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4A5B80225101D73003257F5 /* Introduction.storyboard */; };
+		D4A74C47251E5026006FD41D /* ArrivalCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A74C46251E5026006FD41D /* ArrivalCalculator.swift */; };
 		D4B636902495785B00996744 /* TripVisualizer.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B6368E2495785B00996744 /* TripVisualizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4B636932495785B00996744 /* TripVisualizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; };
 		D4B636942495785B00996744 /* TripVisualizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6368C2495785B00996744 /* TripVisualizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -300,6 +305,9 @@
 		D437DDA0250ACCAB00ED8909 /* AutocompleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteDelegate.swift; sourceTree = "<group>"; };
 		D43F04CE250D42D200E3A901 /* ice_arrivaldelay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ice_arrivaldelay; sourceTree = "<group>"; };
 		D445EE2F2512885500A39B38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D445EE302515320400A39B38 /* ice_huge_delay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ice_huge_delay; sourceTree = "<group>"; };
+		D44836C72518F62A00EFCBE1 /* OffsetCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetCalculator.swift; sourceTree = "<group>"; };
+		D44836D12519276300EFCBE1 /* AccelerationSimulatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationSimulatorTest.swift; sourceTree = "<group>"; };
 		D45B7601251BB6150032A90F /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D45B760B251BB76A0032A90F /* HafasparserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasparserTests.swift; sourceTree = "<group>"; };
 		D45C504F24882C3C00A3D857 /* TrainLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationDelegate.swift; sourceTree = "<group>"; };
@@ -331,6 +339,7 @@
 		D4A5B7F1250FBBFC003257F5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D4A5B7FB25101951003257F5 /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionPageViewController.swift; sourceTree = "<group>"; };
 		D4A5B80225101D73003257F5 /* Introduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Introduction.storyboard; sourceTree = "<group>"; };
+		D4A74C46251E5026006FD41D /* ArrivalCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalCalculator.swift; sourceTree = "<group>"; };
 		D4AF20002488239D0075F327 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainLocationRadarController.swift; sourceTree = "<group>"; };
 		D4AF5162248D2E3800C9D7BE /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
@@ -525,6 +534,14 @@
 			path = UserPreferences;
 			sourceTree = "<group>";
 		};
+		D44836C62518F61A00EFCBE1 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				D44836C72518F62A00EFCBE1 /* OffsetCalculator.swift */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
 		D45B7600251BB6060032A90F /* Logging */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +618,7 @@
 		D46B6B6024912ACB00AF77F6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D4A74C45251E5003006FD41D /* TimeFrameHelperClasses */,
 				D4AF2003248825B20075F327 /* TrainLocationRadarController.swift */,
 				D45C506624892C8200A3D857 /* TrainLocationTripAnimationTimeController.swift */,
 				D4270ABB248BDEAE0022A6BB /* TrainLocationTripByTimeFrameController.swift */,
@@ -626,6 +644,7 @@
 		D46B6B6224912C5F00AF77F6 /* MockData */ = {
 			isa = PBXGroup;
 			children = (
+				D445EE302515320400A39B38 /* ice_huge_delay */,
 				D4A2E342251BCD22002752DC /* departue_bug_delay */,
 				D4E69A22251B729100FBB67B /* wfb_trip_25_min_delay_to_bs */,
 				D4E69A0A251AA95600FBB67B /* bs_delay_absurd_delay */,
@@ -703,9 +722,18 @@
 			path = Introduction;
 			sourceTree = "<group>";
 		};
+		D4A74C45251E5003006FD41D /* TimeFrameHelperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				D4A74C46251E5026006FD41D /* ArrivalCalculator.swift */,
+			);
+			path = TimeFrameHelperClasses;
+			sourceTree = "<group>";
+		};
 		D4AF20022488259C0075F327 /* LocationController */ = {
 			isa = PBXGroup;
 			children = (
+				D44836C62518F61A00EFCBE1 /* Math */,
 				D46B6B6024912ACB00AF77F6 /* Controller */,
 				D45C506D248938F400A3D857 /* Protocol */,
 				D45C506C248938EA00A3D857 /* Proxy */,
@@ -771,6 +799,7 @@
 				D46B6B6224912C5F00AF77F6 /* MockData */,
 				D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */,
 				D4B636CE249583D000996744 /* Info.plist */,
+				D44836D12519276300EFCBE1 /* AccelerationSimulatorTest.swift */,
 				D45B760B251BB76A0032A90F /* HafasparserTests.swift */,
 			);
 			path = TripVisualizerTests;
@@ -1138,6 +1167,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D445EE312515320400A39B38 /* ice_huge_delay in Resources */,
 				D47439052516448B0058BC51 /* bs_delay_more_delay in Resources */,
 				D4E69A0B251AA95600FBB67B /* bs_delay_absurd_delay in Resources */,
 				D43F04D1250D42D200E3A901 /* ice_arrivaldelay in Resources */,
@@ -1193,6 +1223,7 @@
 				D4A2E34C251BCD29002752DC /* departue_bug_delay in Resources */,
 				D4DEAACF2487AC1900D33AA2 /* Main.storyboard in Resources */,
 				D437DD93250AB6D400ED8909 /* AutoCompleteViewController.xib in Resources */,
+				D445EE32251536EA00A39B38 /* ice_huge_delay in Resources */,
 				D4E69A2C251B742F00FBB67B /* wfb_trip_25_min_delay_to_bs in Resources */,
 				D4A5B7EC250EDD37003257F5 /* wfb_trip in Resources */,
 				D4E69A19251AA96400FBB67B /* bs_delay_absurd_delay in Resources */,
@@ -1414,12 +1445,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D44836C82518F62A00EFCBE1 /* OffsetCalculator.swift in Sources */,
 				D4B636A32495791200996744 /* Trip.swift in Sources */,
 				D4B636A72495791E00996744 /* HafasDTOs.swift in Sources */,
 				D4B6369E2495790000996744 /* TrainLocationTripAnimationTimeController.swift in Sources */,
 				D4B636A82495793000996744 /* NetworkTrainDataTimeFrameProvider.swift in Sources */,
 				D4B636B324957A4700996744 /* MapEntity.swift in Sources */,
 				D4B6369C249578F600996744 /* TrainLocationProxy.swift in Sources */,
+				D4A74C47251E5026006FD41D /* ArrivalCalculator.swift in Sources */,
 				D4B636A62495791E00996744 /* TimeFrameTrip.swift in Sources */,
 				D4B636A52495791A00996744 /* JourneyTrip.swift in Sources */,
 				D4B636A42495791500996744 /* RadarTrip.swift in Sources */,
@@ -1449,6 +1482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D44836D22519276300EFCBE1 /* AccelerationSimulatorTest.swift in Sources */,
 				D4A5B7E9250EDA8D003257F5 /* MockTrainDataTimeFrameProvider.swift in Sources */,
 				D45B760C251BB76A0032A90F /* HafasparserTests.swift in Sources */,
 				D4A2E33D251BBF50002752DC /* Log.swift in Sources */,
@@ -1637,7 +1671,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1646,7 +1680,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1663,7 +1697,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				INFOPLIST_FILE = "$(SRCROOT)/Trainspot.App/Info.plist";
@@ -1671,7 +1705,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2008,14 +2042,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				INFOPLIST_FILE = Trainspot.App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2033,14 +2067,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 682WVA5N96;
 				INFOPLIST_FILE = Trainspot.App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = de.f1ndus.trainspot.app;
 				PRODUCT_NAME = Trainspot.App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
