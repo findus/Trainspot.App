@@ -73,7 +73,7 @@ public class TripHandler {
         let traveler = TimeTraveler()
         self.demoTimer = traveler
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            traveler.travel(by: 60)
+            traveler.travel(by: 1)
         }
         traveler.date = date!
         self.tripTimeFrameLocationController.pause()
