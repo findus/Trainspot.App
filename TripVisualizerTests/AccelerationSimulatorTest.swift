@@ -15,7 +15,7 @@ class AccelerationSimulatorTest: XCTestCase {
     func testExample() throws {
         let calculator = OffsetCalculator()
         
-        let section = OffsetCalculator.Section(length: 14000, duration: 600)
+        let section = OffsetCalculator.Section(priorStopOverArrayPosition: 0, nextStopOverArrayPosition: 0, length: 14000, duration: 600)
         for n in 0...600 {
             print("\(n),\(calculator.getPositionForTime(Double(n), forSection: section))")
         }
