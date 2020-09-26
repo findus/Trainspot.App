@@ -12,7 +12,7 @@ import Combine
 
 class TransportRestProvider<PT: Trip> {
     
-    let SERVER = "https://transport.f1ndus.de"
+    let SERVER = "https://v5.transport.f1ndus.de"
     
     let decoder = JSONDecoder()
    
@@ -124,7 +124,7 @@ class TransportRestProvider<PT: Trip> {
             "duration" : "45"
         ]
         
-        return AF.request("\(self.SERVER)/stations/\(id)/departures", parameters: parameters, headers: headers ).publishDecodable(type: Array<HafasJourney>.self,  decoder: self.decoder).value().receive(on: DispatchQueue.main).eraseToAnyPublisher()
+        return AF.request("\(self.SERVER)/stops/\(id)/departures", parameters: parameters, headers: headers ).publishDecodable(type: Array<HafasJourney>.self,  decoder: self.decoder).value().receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
     
     private func fetchArrivals(forStation id: String) -> AnyPublisher<Array<HafasJourney>, AFError> {
@@ -140,7 +140,7 @@ class TransportRestProvider<PT: Trip> {
             "duration" : "45"
         ]
         
-        return AF.request("\(self.SERVER)/stations/\(id)/arrivals", parameters: parameters, headers: headers ).publishDecodable(type: Array<HafasJourney>.self, decoder: self.decoder).value().receive(on: DispatchQueue.main).eraseToAnyPublisher()
+        return AF.request("\(self.SERVER)/stops/\(id)/arrivals", parameters: parameters, headers: headers ).publishDecodable(type: Array<HafasJourney>.self, decoder: self.decoder).value().receive(on: DispatchQueue.main).eraseToAnyPublisher()
         
     }
     

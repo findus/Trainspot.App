@@ -10,7 +10,7 @@ import Foundation
 
 public func formatHafasDate(fromString string: String?) -> Date? {
     let dateFormatterGet = DateFormatter()
-    dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+    dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
     
     guard let string = string else {
         return nil
@@ -21,6 +21,6 @@ public func formatHafasDate(fromString string: String?) -> Date? {
 
 public func getDateFormatter() -> DateFormatter {
     let hafasDateFormatter = DateFormatter()
-    hafasDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+    hafasDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
     return hafasDateFormatter
 }
