@@ -385,7 +385,7 @@ extension MapViewController: MKMapViewDelegate
         case let str where str.lowercased().contains("erx"):
             view.icon.image = #imageLiteral(resourceName: "erixx")
         case let str where str.lowercased().contains("wfb"):
-            view.icon.image = #imageLiteral(resourceName: "westalenbahn")
+            view.icon.image = #imageLiteral(resourceName: "westfalenbahn")
         case let str where str.lowercased().contains("ice"):
             view.icon.image = #imageLiteral(resourceName: "ice")
         case let str where str.lowercased().contains("ic "):
