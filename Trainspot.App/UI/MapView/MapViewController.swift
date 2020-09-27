@@ -122,7 +122,7 @@ class MapViewController: UIViewController {
     
     private func highlightPresentLine(forTripId id: String) {
         
-        deHighlightLine()
+        deHighlightLines()
         
         guard let line = self.lineDict[id] else {
             Log.warning("Could not find polyline from trip that should get highlighted")
@@ -144,7 +144,7 @@ class MapViewController: UIViewController {
         
     }
     
-    private func getHighlightedLines() -> [MKPolyline] {
+    private func getHighlightedLines() -> [TrainTrackPolyLine] {
         return self.lineDict.values.filter({ (polyline) -> Bool in
             polyline.type?.get() == "selected"
         })
@@ -161,9 +161,10 @@ class MapViewController: UIViewController {
         self.map.view(for: pin)?.alpha = UserPrefs.isManualLocationEnabled() ? 1.0 : 0.4
     }
     
-    private func deHighlightLine() {
+    private func deHighlightLines() {
         
         getHighlightedLines().forEach { (line) in
+            line.type = .normal
             if let renderer = self.map.renderer(for: line) as? MKPolylineRenderer {
                 renderer.strokeColor = .white
                 renderer.lineWidth = 1.0
@@ -185,7 +186,7 @@ class MapViewController: UIViewController {
         if tripLine != nil && type.get() == "selected" {
             self.highlightPresentLine(forTripId: trip.tripId)
         } else if tripLine == nil {
-            drawNewLine(forTrip: trip)
+            self.drawNewLine(forTrip: trip)
         } else {
             Log.warning("\(trip.tripId)|\(trip.name) already has polyline on mapview, skipping")
         }
@@ -424,7 +425,7 @@ extension MapViewController: MKMapViewDelegate
        
         SwiftEventBus.post("deSelectTripOnMap")
         
-        self.deHighlightLine()
+        self.deHighlightLines()
         
         self.resetOpacity()
     }
