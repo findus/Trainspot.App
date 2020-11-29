@@ -329,7 +329,6 @@
 		D46B6B6524912CF200AF77F6 /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
 		D47439042516448A0058BC51 /* bs_delay_more_delay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bs_delay_more_delay; sourceTree = "<group>"; };
 		D47E09F3250B93E30068126D /* TrainTrackPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainTrackPolyline.swift; sourceTree = "<group>"; };
-		D47E0A2F250BCEF10068126D /* Trainspot.App copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Trainspot.App copy-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/Trainspot.App copy-Info.plist"; sourceTree = "<absolute>"; };
 		D48E44E625115CF800709290 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		D48E44E925123D4600709290 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		D48E44EC25123E5200709290 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
@@ -360,8 +359,6 @@
 		D4BCAFD62495405D000B40D8 /* wfb_trip */ = {isa = PBXFileReference; lastKnownFileType = text; path = wfb_trip; sourceTree = "<group>"; };
 		D4BCAFD924954391000B40D8 /* TimeTraveler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTraveler.swift; sourceTree = "<group>"; };
 		D4BCAFDC24954979000B40D8 /* TimeFrameControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrameControllerTests.swift; sourceTree = "<group>"; };
-		D4BEDC3D250E566C006621AB /* Trainspot.App copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Trainspot.App copy2-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/Trainspot.App copy2-Info.plist"; sourceTree = "<absolute>"; };
-		D4BEDC7F250E5684006621AB /* Trainspot.App copy3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Trainspot.App copy3-Info.plist"; path = "/Users/findus/repos/LocationManagerTest/Trainspot.App copy3-Info.plist"; sourceTree = "<absolute>"; };
 		D4BEDC80250ED247006621AB /* bs_delay */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bs_delay; sourceTree = "<group>"; };
 		D4C22BEE248E793A00FB7120 /* HafasDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HafasDTOs.swift; sourceTree = "<group>"; };
 		D4D91379250A8D2C00A7DBE0 /* D_Bahnhof_2020_alle.CSV */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = D_Bahnhof_2020_alle.CSV; sourceTree = "<group>"; };
@@ -675,6 +672,13 @@
 			path = StatusView;
 			sourceTree = "<group>";
 		};
+		D47C54EB255D47E500663417 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		D47E09F2250B93C90068126D /* Lines */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,9 +874,6 @@
 				D4DEAAC52487AC1900D33AA2 /* Products */,
 				DE099E028417340F4470B39B /* Pods */,
 				AAA8BBA48C41B9BBD430AD08 /* Frameworks */,
-				D47E0A2F250BCEF10068126D /* Trainspot.App copy-Info.plist */,
-				D4BEDC3D250E566C006621AB /* Trainspot.App copy2-Info.plist */,
-				D4BEDC7F250E5684006621AB /* Trainspot.App copy3-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -892,6 +893,7 @@
 		D4DEAAC62487AC1900D33AA2 /* Trainspot.App */ = {
 			isa = PBXGroup;
 			children = (
+				D47C54EB255D47E500663417 /* Notifications */,
 				D4FF5758251124C1004E4238 /* TripHandler */,
 				178090BD2498152300DBC0B6 /* Convenience */,
 				D4B636BF24957C5600996744 /* Extensions */,

@@ -28,9 +28,22 @@ class UserLocationController: NSObject, CLLocationManagerDelegate {
         locationManager.delegate = self
        
         if CLLocationManager.authorizationStatus() == .notDetermined {
-            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
         }
         
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        
+    }
+    
+    func fromBackground() {
+        Log.info("Location manager exits background mode")
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+    }
+    
+    func background() {
+        Log.info("Location manager enters background mode")
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.allowsBackgroundLocationUpdates = true
     }
     
     func deactivate() {
@@ -56,7 +69,7 @@ class UserLocationController: NSObject, CLLocationManagerDelegate {
     }
     
     func reask() {
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
     }
     
     func isEnabled() -> Bool {

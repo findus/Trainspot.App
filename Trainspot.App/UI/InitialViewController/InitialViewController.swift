@@ -41,7 +41,8 @@ extension InitialViewController: AutoCompleteDelegate {
     //TODO find somethingnicer to prevent callback hell ...
     private func displayTutorial() {
         let storyboard = UIStoryboard(name: "Introduction", bundle: nil)
-        let vc = (storyboard.instantiateViewController(withIdentifier: "introduction") as! IntroductionBaseViewController)
+        let vc = (storyboard.instantiateViewController(withIdentifier: "introduction")
+                    as! IntroductionBaseViewController)
         vc.onDone = { startDemo in
             UserPrefs.setfirstOnboardingTriggered(true)
             
@@ -57,7 +58,7 @@ extension InitialViewController: AutoCompleteDelegate {
                 }
                 self.present(vc, animated: true)
             } else {
-                    self.triggerStationSelection()
+                self.triggerStationSelection()
             }
             
         }
