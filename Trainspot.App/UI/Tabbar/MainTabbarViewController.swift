@@ -17,9 +17,8 @@ public class MainTabbarViewController: UITabBarController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.setupEventBusListener()
+        
     }
-    
-   
     
     private func setupEventBusListener() {
         SwiftEventBus.onMainThread(self, name: "selectTab") { notification in
